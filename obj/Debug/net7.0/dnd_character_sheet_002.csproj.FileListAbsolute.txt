@@ -1,0 +1,15 @@
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\bin\Debug\net7.0\dnd_character_sheet_002.exe
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\bin\Debug\net7.0\dnd_character_sheet_002.deps.json
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\bin\Debug\net7.0\dnd_character_sheet_002.runtimeconfig.json
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\bin\Debug\net7.0\dnd_character_sheet_002.dll
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\bin\Debug\net7.0\dnd_character_sheet_002.pdb
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.csproj.AssemblyReference.cache
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.GeneratedMSBuildEditorConfig.editorconfig
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.AssemblyInfoInputs.cache
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.AssemblyInfo.cs
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.csproj.CoreCompileInputs.cache
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.dll
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\refint\dnd_character_sheet_002.dll
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.pdb
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\dnd_character_sheet_002.genruntimeconfig.cache
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_002\obj\Debug\net7.0\ref\dnd_character_sheet_002.dll
