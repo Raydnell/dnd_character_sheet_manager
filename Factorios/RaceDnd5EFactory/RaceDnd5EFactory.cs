@@ -1,7 +1,16 @@
 ﻿namespace dnd_character_sheet
 {
-    public abstract class RaceDnd5EFactory
+    public class RaceDnd5EFactory
     {
-        public abstract IRaceDnd5E CreateRaceDnd5E();
+        public RaceDnd5EBase? CreateRaceDnd5E(string nameRace)
+        {
+            switch(nameRace)
+            {
+                case "human":
+                    return new HumanRaceDnd5E();
+            }
+
+            return null;
+        }
     }
 }

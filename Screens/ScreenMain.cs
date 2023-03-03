@@ -7,7 +7,7 @@ namespace dnd_character_sheet
         private bool _isSheetLoaded;
 
         private CheckInput _checkInput;
-        private CharacterSheetDnd5E _currentHeroSheet;
+        private CharacterSheetBase _currentHeroSheet;
         private ScreenLoadSheet _loadingScreen;
         private ScreenRollDice _screenRollDice;
         private ScreenSheetCreate _screenSheetCreate;
@@ -19,7 +19,6 @@ namespace dnd_character_sheet
             _isSheetLoaded = false;
             
             _checkInput = new CheckInput();
-            _currentHeroSheet = new CharacterSheetDnd5E();
             _loadingScreen = new ScreenLoadSheet();
             _screenRollDice = new ScreenRollDice();
             _screenSheetCreate = new ScreenSheetCreate();

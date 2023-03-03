@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    public class WarlockClassDnd5E : IClassDnd5E
+    public class WarlockClassDnd5E : ClassDnd5EBase
     {
         private string _className;
 

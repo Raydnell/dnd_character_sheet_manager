@@ -10,11 +10,13 @@ namespace dnd_character_sheet
         private JsonSaveLoad _jsonSaveLoad;
         private CheckInput _checkInput;
 
-        private string _input;
+        private string? _input;
 
         private Dictionary<string, int> _abilities;
 
         private bool _isSet;
+
+        private CharacterSheetFactory _sheetFactory;
 
         public ScreenSheetCreate() 
         {
@@ -23,25 +25,27 @@ namespace dnd_character_sheet
             _jsonSaveLoad = new JsonSaveLoad();
             _checkInput = new CheckInput();
             _abilities = new Dictionary<string, int>();
+            _sheetFactory = new CharacterSheetFactory();
         }
 
-        public CharacterSheetDnd5E SheetCreate(CharacterSheetDnd5E _currentHeroSheet)
+        public CharacterSheetDnd5E SheetCreate(CharacterSheetBase _currentHeroSheet)
         {
             Console.Clear();
             Console.WriteLine("Пришло время создать героя!\n");
+
+            _currentHeroSheet = SetEdition();
 
             Console.Write("Введите имя героя: ");
             _currentHeroSheet.SetName(Console.ReadLine());
 
             Console.Clear();
-            _currentHeroSheet.SetRace();
+            _currentHeroSheet.SetRace(ChooseRace());
 
             Console.Clear();
-            _currentHeroSheet.SetClass();
+            _currentHeroSheet.SetClass(ChooseClass());
 
             Console.Clear();
             _currentHeroSheet.SetSkills();
-            _currentHeroSheet.SetSaveTrows();
 
             Console.Clear();
             _currentHeroSheet.SetAbilities();
@@ -216,6 +220,88 @@ namespace dnd_character_sheet
                 //heroSheet.Abilities = _abilities;
                 _isSet = true;
             }
+        }
+
+        private CharacterSheetBase SetEdition()
+        {
+            _isSet = false;
+            while(_isSet == false)
+            {
+                Console.WriteLine("Укажите редакцию, по которой нужно создать лист персонажа:");
+                
+                foreach (var item in Enum.GetValues(typeof(EnumEditions)))
+                {
+                    Console.Write((int)item + " - ");
+                    Console.Write(item + "\n");
+                }
+
+                _input = Console.ReadLine();
+                if (Enum.TryParse<EnumEditions>(_input, out EnumEditions result))
+                {
+                    switch(result)
+                    {
+                        case EnumEditions.Dnd5E:
+                            return _sheetFactory.CreateCharacterSheet(Convert.ToString(result));
+                        
+                        default:
+                            break;
+                    }
+
+                    _isSet = true;
+                }
+                
+                return null;
+            }
+
+            return null;
+        }
+
+        private string? ChooseRace()
+        {
+            _isSet = false;
+            while(_isSet == false)
+            {
+                Console.WriteLine("Выберите расу из списка:");
+                foreach (var item in Enum.GetValues(typeof(EnumRacesDnd5E)))
+                {
+                    Console.Write((int)item + " - ");
+                    Console.Write(item + "\n");
+                }
+
+                _input = Console.ReadLine();
+                if (Enum.TryParse<EnumRacesDnd5E>(_input, out EnumRacesDnd5E result))
+                {
+                    return Convert.ToString(result);
+                }
+
+                return null;
+            }
+
+            return null;
+        }
+
+        private string? ChooseClass()
+        {
+            _isSet = false;
+            while(_isSet == false)
+            {
+                Console.WriteLine("Выберите класс из списка:");
+                foreach (var item in Enum.GetValues(typeof(EnumClassesDnd5E)))
+                {
+                    Console.Write((int)item + " - ");
+                    Console.Write(item + "\n");
+                }
+
+                _input = Console.ReadLine();
+                if (Enum.TryParse<EnumClassesDnd5E>(_input, out EnumClassesDnd5E result))
+                {
+                    return Convert.ToString(result);
+                }
+
+                return null;
+            }
+
+            return null;
         }
     }
 }

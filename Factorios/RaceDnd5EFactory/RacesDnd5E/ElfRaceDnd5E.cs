@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    public class ElfRaceDnd5E : IRaceDnd5E
+    public class ElfRaceDnd5E : RaceDnd5EBase
     {
         private string _raceName;
 

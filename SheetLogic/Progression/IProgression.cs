@@ -4,6 +4,6 @@
     {
         void GainExpirience(int exp);
         void LevelUp();
-        void GetProficiencyBonus();
+        int GetProficiencyBonus();
     }
 }

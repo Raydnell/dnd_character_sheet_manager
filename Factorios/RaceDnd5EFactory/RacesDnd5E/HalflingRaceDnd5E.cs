@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    public class HalflingRaceDnd5E : IRaceDnd5E
+    public class HalflingRaceDnd5E : RaceDnd5EBase
     {
         private string _raceName;
 

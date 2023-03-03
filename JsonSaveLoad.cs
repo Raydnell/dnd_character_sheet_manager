@@ -22,15 +22,12 @@ namespace dnd_character_sheet
             File.WriteAllText(_pathForFiles + fileName + ".json", savedFile);
         }
 
-        public CharacterSheetDnd5E JsonLoad(string fileName)
+        public CharacterSheetDnd5E? JsonLoad(string fileName)
         {
             _readedJson = File.ReadAllText(_pathForFiles + fileName + ".json");
-            if(JsonSerializer.Deserialize<CharacterSheetDnd5E>(_readedJson) is not null)
-            {
-                _loadedSheet = JsonSerializer.Deserialize<CharacterSheetDnd5E>(_readedJson);
-            }
+            _loadedSheet = JsonSerializer.Deserialize<CharacterSheetDnd5E>(_readedJson);
 
-                return _loadedSheet;
+            return _loadedSheet;
         }
     }
 }

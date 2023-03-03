@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    public class PaladinClassDnd5E : IClassDnd5E
+    public class PaladinClassDnd5E : ClassDnd5EBase
     {
         private string _className;
 

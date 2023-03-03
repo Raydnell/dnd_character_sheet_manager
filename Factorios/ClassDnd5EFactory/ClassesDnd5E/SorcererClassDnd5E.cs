@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    public class SorcererClassDnd5E : IClassDnd5E
+    public class SorcererClassDnd5E : ClassDnd5EBase
     {
         private string _className;
 

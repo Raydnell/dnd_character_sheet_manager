@@ -1,6 +1,8 @@
-﻿namespace dnd_character_sheet
+﻿/* 
+
+namespace dnd_character_sheet
 {
-    public class CharacterSheetDnd5E
+    public class CharacterSheetDnd5E1
     {
         private string _name;
         private string _input;
@@ -408,73 +410,73 @@
                 Console.Clear();
                 Console.WriteLine("Выберите класс из списка:\n");
 
-                foreach (var item in Enum.GetValues(typeof(ClassesDnd5E)))
+                foreach (var item in Enum.GetValues(typeof(EnumClassesDnd5E)))
                 {
                     Console.Write((int)item + " - ");
                     Console.Write(item + "\n");
                 }
 
                 _input = Console.ReadLine();
-                if (Enum.TryParse<ClassesDnd5E>(_input, out ClassesDnd5E result))
+                if (Enum.TryParse<EnumClassesDnd5E>(_input, out EnumClassesDnd5E result))
                 {
                     switch (result)
                     {
-                        case ClassesDnd5E.bard:
+                        case EnumClassesDnd5E.bard:
                             _classDnd5EFactory = new BardClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.barbarian:
+                        case EnumClassesDnd5E.barbarian:
                             _classDnd5EFactory = new BarbarianClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.fighter:
+                        case EnumClassesDnd5E.fighter:
                             _classDnd5EFactory = new FighterClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.wizard:
+                        case EnumClassesDnd5E.wizard:
                             _classDnd5EFactory = new WizardClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.druid:
+                        case EnumClassesDnd5E.druid:
                             _classDnd5EFactory = new DruidClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.cleric:
+                        case EnumClassesDnd5E.cleric:
                             _classDnd5EFactory = new ClericClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.warlock:
+                        case EnumClassesDnd5E.warlock:
                             _classDnd5EFactory = new WarlockClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.paladin:
+                        case EnumClassesDnd5E.paladin:
                             _classDnd5EFactory = new PaladinClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.rogue:
+                        case EnumClassesDnd5E.rogue:
                             _classDnd5EFactory = new RogueClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.ranger:
+                        case EnumClassesDnd5E.ranger:
                             _classDnd5EFactory = new RangerClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.sorcerer:
+                        case EnumClassesDnd5E.sorcerer:
                             _classDnd5EFactory = new SorcererClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
 
-                        case ClassesDnd5E.monk:
+                        case EnumClassesDnd5E.monk:
                             _classDnd5EFactory = new MonkClassDnd5EProduct();
                             _classDnd5E = _classDnd5EFactory.CreateClassDnd5E();
                             break;
@@ -578,3 +580,6 @@
         #endregion
     }
 }
+
+
+ */

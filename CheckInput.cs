@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
     public class CheckInput
     {     
+        private string? _consoleInput;
+        
         public int CheckIntInput()
         {
-            string consoleInput = Console.ReadLine();
+            _consoleInput = Console.ReadLine();
 
-            if (int.TryParse(consoleInput, out int inputInt))
+            if (int.TryParse(_consoleInput, out int inputInt))
             {
                 return inputInt;
             }

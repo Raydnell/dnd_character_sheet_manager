@@ -3,5 +3,6 @@
     interface ISkills
     {
         bool CheckSkill(string skill);
+        void AddSkill(string skill);
     }
 }
