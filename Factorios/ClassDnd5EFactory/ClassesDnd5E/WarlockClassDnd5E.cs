@@ -2,16 +2,16 @@
 {
     public class WarlockClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public WarlockClassDnd5E()
         {
-            _className = "warlock";
+            _name = "warlock";
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

@@ -9,7 +9,7 @@
             _raceName = "gnome";
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return _raceName;
         }

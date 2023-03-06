@@ -2,26 +2,24 @@ namespace dnd_character_sheet
 {
     public abstract class CharacterSheetBase
     {
-        public string _name { get; private set;}
+        public abstract void SetRace(string race);
         
-        public CharacterSheetBase()
-        {
-            _name = "new_sheet";
-        }
+        public abstract RaceDnd5EBase? GetRace();
 
-        public void SetName(string name)
-        {
-            _name = name;
-        }
+        public abstract void SetClass(string sheetClass);
 
-        public virtual void SetRace(string raceName)
-        {
+        public abstract ClassDnd5EBase? GetClass();
 
-        }
+        public abstract IAbilities GetAbilities();
 
-        public virtual void SetClass(string className)
-        {
-            
-        }
+        public abstract ISkills GetSkills();
+
+        public abstract ISaveThrows GetSaveThrows();
+
+        public abstract IProgression GetProgression();
+
+        public abstract void SetName(string name);
+
+        public abstract string GetName();
     }
 }

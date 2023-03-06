@@ -41,5 +41,47 @@ namespace dnd_character_sheet
                 _sheetSkills[skill] = true;
             }
         }
+
+        public Dictionary<string, bool> GetSkills()
+        {
+            return _sheetSkills;
+        }
+
+        public string SkillAbilityName(string skill)
+        {
+            switch(skill)
+            {
+                case "athletics":
+                    return "strength";
+
+                case "acrobatics":
+                case "sleight":
+                case "stealth":
+                    return "dexterity";
+                
+                case "arcana":
+                case "history":
+                case "investigation":
+                case "nature":
+                case "religion":
+                    return "intelligence";
+
+                case "animal":
+                case "insight":
+                case "medicine":
+                case "perception":
+                case "surival":
+                    return "wisdom";
+
+                case "deception":
+                case "intimidation":
+                case "perfomance":
+                case "persuasion":
+                    return "charisma";
+
+                default:
+                    return "null";
+            }
+        }
     }
 }

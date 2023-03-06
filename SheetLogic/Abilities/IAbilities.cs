@@ -1,11 +1,11 @@
 ﻿namespace dnd_character_sheet
 {
-    interface IAbilities
+    public interface IAbilities
     {
-        int GetAbilityModificator(string abilityName);
-        int GetAbilityScore(string ability);
-        int AbilityBonus(int score);
-        void SetAbilities(Dictionary<string, int> abilities);
-        Dictionary<string, int> GetAbilities();
+        public int GetAbilityModificator(string ability);
+        public int GetAbilityScore(string ability);
+        public int AbilityBonus(int score);
+        public void SetAbilities(Dictionary<string, int> abilities);
+        public Dictionary<string, int> GetAbilities();
     }
 }

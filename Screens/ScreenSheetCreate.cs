@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
     public class ScreenSheetCreate
     {
@@ -12,11 +9,10 @@ namespace dnd_character_sheet
 
         private string? _input;
 
-        private Dictionary<string, int> _abilities;
-
         private bool _isSet;
 
         private CharacterSheetFactory _sheetFactory;
+        private IUserOutput _userOutput;
 
         public ScreenSheetCreate() 
         {
@@ -24,202 +20,67 @@ namespace dnd_character_sheet
             _pointChoose = false;
             _jsonSaveLoad = new JsonSaveLoad();
             _checkInput = new CheckInput();
-            _abilities = new Dictionary<string, int>();
             _sheetFactory = new CharacterSheetFactory();
+            _userOutput = new ConsoleOutput();
         }
 
-        public CharacterSheetDnd5E SheetCreate(CharacterSheetBase _currentHeroSheet)
+        public CharacterSheetBase SheetCreate(CharacterSheetBase currentHeroSheet)
         {
             Console.Clear();
             Console.WriteLine("Пришло время создать героя!\n");
+            Console.WriteLine("Выбери редакцию из списка:");
 
-            _currentHeroSheet = SetEdition();
-
+            currentHeroSheet = SetEdition();
+            
+            Console.Clear();
             Console.Write("Введите имя героя: ");
-            _currentHeroSheet.SetName(Console.ReadLine());
+            currentHeroSheet.SetName(Console.ReadLine());
 
             Console.Clear();
-            _currentHeroSheet.SetRace(ChooseRace());
+            currentHeroSheet.SetRace(ChooseRace());
+            Console.WriteLine("Выбранная раса: " + currentHeroSheet.GetRace().GetName());
+            Console.ReadKey();
 
             Console.Clear();
-            _currentHeroSheet.SetClass(ChooseClass());
+            currentHeroSheet.SetClass(ChooseClass());
+            currentHeroSheet.GetSaveThrows().SetSaveTrows(currentHeroSheet.GetClass().GetName());
+            Console.WriteLine("Выбранный класс: " + currentHeroSheet.GetClass().GetName());
+            Console.ReadKey();
 
             Console.Clear();
-            _currentHeroSheet.SetSkills();
-
-            Console.Clear();
-            _currentHeroSheet.SetAbilities();
-
-            Console.Clear();
-            Console.WriteLine("Вот ваш новый герой!\n");
-
-            _currentHeroSheet.PrintSheetInfoAll();
-
-            Console.WriteLine("Хотите сохранить этого героя?\n1. Да\n2. Нет");
-            _choosenPoint = _checkInput.CheckIntInput();
-
-            _pointChoose = false;
-
-            while (_pointChoose == false)
+            _isSet = false;
+            while(_isSet == false)
             {
-                switch (_choosenPoint)
-                {
-                    case 0:
-                    default:
-                        Console.WriteLine("Введено неверное число, нужно ввести число из списка.");
-                        Console.ReadKey();
-                        break;
+                Console.Clear();
+                currentHeroSheet.GetSkills().AddSkill(ChooseSkills());
 
-                    case 1:
-                        _jsonSaveLoad.JsonSave(_currentHeroSheet.GetName(), _currentHeroSheet);
-                        _pointChoose = true;
-                        break;
-
-                    case 2:
-                        _pointChoose = true;
-                        break;
-                }
-            }
-
-            return _currentHeroSheet;
-        }
-
-        private string ChooseFromList(List<string> availableList)
-        {
-            while (true)
-            {
-                foreach (string item in availableList)
-                {
-                    Console.WriteLine(item);
-                }
-
-                Console.WriteLine("\n");
+                Console.WriteLine("Добавить ещё навыки? 1 - да, 2 - нет");
                 _input = Console.ReadLine();
-
-                if (availableList.Contains(_input))
+                if (_input == "1")
                 {
-                    Console.WriteLine($"Вы выбрали {_input}");
-                    return _input;
+                    _isSet = false;
                 }
                 else
                 {
-                    Console.WriteLine("Вы ввели значение не из списка, повторите попытку.");
+                    _isSet = true;
                 }
             }
-        }
 
-        private Dictionary<string, bool> SaveThrowSet(string dndClass, Dictionary<string, bool> saveThrows)
-        {
-            switch (dndClass)
-            {
-                case "bard":
-                    saveThrows["dex"] = true;
-                    saveThrows["cha"] = true;
-                    break;
+            Console.Clear();
+            Console.WriteLine("Впишите характеристики героя:");
+            currentHeroSheet.GetAbilities().SetAbilities(ChooseAbilities());
 
-                case "barbarian":
-                    saveThrows["str"] = true;
-                    saveThrows["con"] = true;
-                    break;
+            Console.Clear();
+            Console.WriteLine("Вот ваш новый герой!\n");
+            Console.WriteLine(currentHeroSheet.GetName());
+            Console.WriteLine(currentHeroSheet.GetRace().GetName());
+            Console.WriteLine(currentHeroSheet.GetClass().GetName());
+            PrintContainerItems(currentHeroSheet.GetAbilities().GetAbilities());
+            PrintContainerItems(currentHeroSheet.GetSkills().GetSkills());
+            PrintContainerItems(currentHeroSheet.GetSaveThrows().GetSaveThrows());
+            Console.ReadKey();
 
-                case "fighter":
-                    saveThrows["str"] = true;
-                    saveThrows["con"] = true;
-                    break;
-
-                case "wizard":
-                    saveThrows["int"] = true;
-                    saveThrows["wis"] = true;
-                    break;
-
-                case "druid":
-                    saveThrows["int"] = true;
-                    saveThrows["wis"] = true;
-                    break;
-
-                case "cleric":
-                    saveThrows["wis"] = true;
-                    saveThrows["cha"] = true;
-                    break;
-
-                case "warlock":
-                    saveThrows["wis"] = true;
-                    saveThrows["cha"] = true;
-                    break;
-
-                case "monk":
-                    saveThrows["str"] = true;
-                    saveThrows["dex"] = true;
-                    break;
-
-                case "paladin":
-                    saveThrows["wis"] = true;
-                    saveThrows["cha"] = true;
-                    break;
-
-                case "rogue":
-                    saveThrows["dex"] = true;
-                    saveThrows["int"] = true;
-                    break;
-
-                case "ranger":
-                    saveThrows["str"] = true;
-                    saveThrows["dex"] = true;
-                    break;
-
-                case "sorcerer":
-                    saveThrows["con"] = true;
-                    saveThrows["cha"] = true;
-                    break;
-
-                default:
-                    Console.WriteLine("Нет подходящего класса для распределения спасбросков.");
-                    break;
-            }
-
-            return saveThrows;
-        }
-
-        private void AbilitySet(CharacterSheetDnd5E heroSheet)
-        {
-            _isSet = false;
-
-            while (_isSet == false)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    switch (i)
-                    {
-                        case 0:
-                        default:
-                            Console.Write("Сила: ");
-                            _abilities["str"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        case 1:
-                            Console.Write("Ловкость: ");
-                            _abilities["dex"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        case 2:
-                            Console.Write("Телосложение: ");
-                            _abilities["con"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        case 3:
-                            Console.Write("Интеллект: ");
-                            _abilities["int"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        case 4:
-                            Console.Write("Мудрость: ");
-                            _abilities["wis"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                        case 5:
-                            Console.Write("Харизма: ");
-                            _abilities["cha"] = Convert.ToInt32(Console.ReadLine());
-                            break;
-                    }
-                }
-                //heroSheet.Abilities = _abilities;
-                _isSet = true;
-            }
+            return currentHeroSheet;
         }
 
         private CharacterSheetBase SetEdition()
@@ -302,6 +163,75 @@ namespace dnd_character_sheet
             }
 
             return null;
+        }
+
+        private string? ChooseSkills()
+        {
+            bool isSet = false;
+            while(isSet == false)
+            {
+                Console.WriteLine("Выберите навык из списка:");
+                foreach (var item in Enum.GetValues(typeof(EnumSkillsDnd5E)))
+                {
+                    Console.Write((int)item + " - ");
+                    Console.Write(item + "\n");
+                }
+
+                _input = Console.ReadLine();
+                if (Enum.TryParse<EnumSkillsDnd5E>(_input, out EnumSkillsDnd5E result))
+                {
+                    return Convert.ToString(result);
+                }
+
+                return null;
+            }
+
+            return null;
+        }
+
+        private Dictionary<string, int> ChooseAbilities()
+        {
+            Dictionary<string, int> tempAbilities = new Dictionary<string, int>();
+            int inputAbility;
+            
+            foreach (var item in Enum.GetValues(typeof(EnumAbilitiesDnd5E)))
+            {
+                _isSet = false;
+                while(_isSet == false)
+                {
+                    inputAbility = _checkInput.CheckIntInput();
+                    if(inputAbility > 0 || inputAbility <= 20)
+                    {
+                        tempAbilities[Convert.ToString(item)] = inputAbility;
+                        _isSet = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Нужно указать значение от 1 до 20");
+                        Console.ReadKey();
+                    }
+                }
+            }
+
+            return tempAbilities;
+        }
+
+        private void PrintContainerItems(Dictionary<string, int> container)
+        {
+            foreach(var item in container)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+
+        private void PrintContainerItems(Dictionary<string, bool> container)
+        {
+            foreach(var item in container)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
 }

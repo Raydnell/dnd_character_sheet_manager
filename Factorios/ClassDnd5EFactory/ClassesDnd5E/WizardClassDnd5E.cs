@@ -2,16 +2,16 @@
 {
     public class WizardClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public WizardClassDnd5E()
         {
-            _className = "wizard";
+            _name = "wizard";
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

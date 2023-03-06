@@ -4,13 +4,12 @@ namespace dnd_character_sheet
     {
         public CharacterSheetBase? CreateCharacterSheet(string edition)
         {
-            if(edition == "Dnd5E")
+            switch(edition)
             {
-                return new CharacterSheetDnd5E();
-            }
-            else
-            {
-                return null;
+                case "Dnd5E":
+                    return new CharacterSheetDnd5E();
+                default:
+                    return null;
             }
         }
     }

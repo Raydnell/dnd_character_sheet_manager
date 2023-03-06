@@ -2,16 +2,16 @@
 {
     public class RangerClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public RangerClassDnd5E()
         {
-            _className = "ranger";
+            _name = "ranger";
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

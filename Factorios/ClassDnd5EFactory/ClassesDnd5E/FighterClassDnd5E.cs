@@ -2,16 +2,17 @@
 {
     public class FighterClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public FighterClassDnd5E()
         {
-            _className = "fighter";
+            _name = "fighter";
+
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿namespace dnd_character_sheet
 {
-    interface ISaveThrows
+    public interface ISaveThrows
     {
-        void SetSaveTrows(string className);                
-        bool CheckSaveThrow(string saveTrow);
+        public void SetSaveTrows(string className);                
+        public bool CheckSaveThrow(string saveTrow);
+        public Dictionary<string, bool> GetSaveThrows();
     }
 }

@@ -2,16 +2,16 @@
 {
     public class RogueClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public RogueClassDnd5E()
         {
-            _className = "rogue";
+            _name = "rogue";
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

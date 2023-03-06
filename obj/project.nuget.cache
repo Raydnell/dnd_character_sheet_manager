@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "boK5uyQ3SqHzUUeCexUXRkrJLhwbaet54WhhNrfSRLreM7cdkjN5UR8oGuE855GtqRLM0iIxvf3taHQ7leQrHA==",
+  "dgSpecHash": "pobVQj39/cBNT4DVlZ4PNAzjXFXKC8FqJ8fy1aYCY7g/TWo9TQszXxNWA5zN0FXmIv9Y6D1U3JC6I4B/kZr3Rw==",
   "success": true,
-  "projectFilePath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_002\\dnd_character_sheet_002.csproj",
+  "projectFilePath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

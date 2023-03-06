@@ -2,16 +2,17 @@
 {
     public class BarbarianClassDnd5E : ClassDnd5EBase
     {
-        private string _className;
-
+        private string _name;
+        
         public BarbarianClassDnd5E()
         {
-            _className = "barbarian";
+            _name = "barbarian";
+
         }
 
-        public string GetName()
+        public override string GetName()
         {
-            return _className;
+            return _name;
         }
     }
 }

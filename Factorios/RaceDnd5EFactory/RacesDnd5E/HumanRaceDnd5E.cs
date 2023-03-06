@@ -9,7 +9,7 @@
             _raceName = "human";
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return _raceName;
         }

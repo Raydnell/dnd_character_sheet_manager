@@ -1,7 +1,7 @@
 ﻿namespace dnd_character_sheet
 {
-    public interface RaceDnd5EBase
+    public abstract class RaceDnd5EBase
     {
-        
+        public abstract string GetName();
     }
 }

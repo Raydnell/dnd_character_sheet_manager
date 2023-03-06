@@ -9,7 +9,7 @@
             _raceName = "elf";
         }
 
-        public string GetName()
+        public override string GetName()
         {
             return _raceName;
         }

@@ -74,5 +74,10 @@ namespace dnd_character_sheet
                 return false;
             }
         }
+
+        public Dictionary<string, bool> GetSaveThrows()
+        {
+            return _saveThrows;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace dnd_character_sheet
         private int _rollResult;
         private int _expInput;
 
-        private string _input;
+        private string? _input;
 
         private bool _backToMenu;
         private bool _correctInput;
@@ -22,7 +22,7 @@ namespace dnd_character_sheet
             _checkInput = new CheckInput();
         }
 
-        public void ChooseSheetRolls(CharacterSheetDnd5E heroSheet)
+        public void ChooseSheetRolls(CharacterSheetBase heroSheet)
         {
             while (_backToMenu == false)
             {
@@ -59,7 +59,7 @@ namespace dnd_character_sheet
                         break;
 
                     case 4:
-                        heroSheet.PrintSheetInfoAll();
+                        //heroSheet.PrintSheetInfoAll();
                         break;
 
                     case 5:
@@ -73,21 +73,23 @@ namespace dnd_character_sheet
             }
         }
 
-        private void CheckAbility(CharacterSheetDnd5E heroSheet)
+        private void CheckAbility(CharacterSheetBase heroSheet)
         {
-
             _correctInput = false;
             while (_correctInput == false)
             {
                 Console.Clear();
                 Console.WriteLine("Какую характеристику нужно проверить:\n");
-                heroSheet.GetAbilities();
+                foreach(var item in heroSheet.GetAbilities().GetAbilities())
+                {
+                    Console.WriteLine(item);
+                }
                 Console.WriteLine("\n");
 
                 _input = Console.ReadLine();
-                if (Enum.TryParse<AbilitiesDnd5E>(_input, out AbilitiesDnd5E result))
+                if (Enum.TryParse<EnumAbilitiesDnd5E>(_input, out EnumAbilitiesDnd5E result))
                 {
-                    _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetAbilityModificator(Convert.ToString(result)));
+                    _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetAbilities().GetAbilityModificator(Convert.ToString(result)));
                     Console.WriteLine($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;
                     Console.ReadKey();
@@ -99,20 +101,30 @@ namespace dnd_character_sheet
             }
         }
 
-        private void CheckSkill(CharacterSheetDnd5E heroSheet)
+        private void CheckSkill(CharacterSheetBase heroSheet)
         {
             _correctInput = false;
             while (_correctInput == false)
             {
                 Console.Clear();
                 Console.Write("Какой навык нужно проверить: \n");
-                heroSheet.GetSkills();
+                foreach(var item in heroSheet.GetSkills().GetSkills())
+                {
+                    Console.WriteLine(item);
+                }
                 Console.WriteLine("\n");
 
                 _input = Console.ReadLine();
-                if (Enum.TryParse<SkillsDnd5E>(_input, out SkillsDnd5E result))
+                if (Enum.TryParse<EnumSkillsDnd5E>(_input, out EnumSkillsDnd5E result))
                 {
-                    _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetSkillModificator(Convert.ToString(result)));
+                    if(heroSheet.GetSkills().CheckSkill(Convert.ToString(result)))
+                    {
+                        _rollResult = _dicer.DiceRoll(1, 20, (heroSheet.GetAbilities().GetAbilityModificator(heroSheet.GetSkills().SkillAbilityName(Convert.ToString(result))) + heroSheet.GetProgression().GetProficiencyBonus()));
+                    }
+                    else
+                    {
+                        _rollResult = _dicer.DiceRoll(1, 20, (heroSheet.GetAbilities().GetAbilityModificator(heroSheet.GetSkills().SkillAbilityName(Convert.ToString(result)))));
+                    }
                     Console.WriteLine($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;
                     Console.ReadKey();
@@ -124,20 +136,30 @@ namespace dnd_character_sheet
             }
         }
 
-        private void CheckSaveThrow(CharacterSheetDnd5E heroSheet)
+        private void CheckSaveThrow(CharacterSheetBase heroSheet)
         {
             _correctInput = false;
             while (_correctInput == false)
             {
                 Console.Clear();
                 Console.WriteLine("Какой спасбросок нужно сделать:");
-                heroSheet.GetSaveThrows();
+                foreach(var item in heroSheet.GetSaveThrows().GetSaveThrows())
+                {
+                    Console.WriteLine(item);
+                }
                 Console.WriteLine("\n");
 
                 _input = Console.ReadLine();
-                if (Enum.TryParse<AbilitiesDnd5E>(_input, out AbilitiesDnd5E result))
+                if (Enum.TryParse<EnumAbilitiesDnd5E>(_input, out EnumAbilitiesDnd5E result))
                 {
-                    _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetSaveThrowModificator(Convert.ToString(result)));
+                    if(heroSheet.GetSaveThrows().CheckSaveThrow(Convert.ToString(result)))
+                    {
+                        _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetAbilities().GetAbilityModificator(Convert.ToString(result)) + heroSheet.GetProgression().GetProficiencyBonus());
+                    }
+                    else
+                    {
+                        _rollResult = _dicer.DiceRoll(1, 20, heroSheet.GetAbilities().GetAbilityModificator(Convert.ToString(result)));
+                    }
                     Console.WriteLine($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;
                     Console.ReadKey();
@@ -149,13 +171,13 @@ namespace dnd_character_sheet
             }
         }
 
-        private void RaiseExpirience(CharacterSheetDnd5E heroSheet)
+        private void RaiseExpirience(CharacterSheetBase heroSheet)
         {
             Console.Write("Сколько опыта нужно добавить: ");
             _expInput = _checkInput.CheckIntInput();
-            heroSheet.GainExpirience(_expInput);
+            heroSheet.GetProgression().GainExpirience(_expInput);
             Console.Write("\nТекущее количество опыта: ");
-            heroSheet.GetExpirience();
+            Console.Write(heroSheet.GetProgression().GetExpirience());
             Console.ReadKey();
         }
     }

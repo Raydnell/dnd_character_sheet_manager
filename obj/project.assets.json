@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_002\\dnd_character_sheet_002.csproj",
+      "projectUniqueName": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
       "projectName": "dnd_character_sheet_002",
-      "projectPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_002\\dnd_character_sheet_002.csproj",
+      "projectPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
       "packagesPath": "C:\\Users\\raydnell\\.nuget\\packages\\",
-      "outputPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_002\\obj\\",
+      "outputPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\raydnell\\AppData\\Roaming\\NuGet\\NuGet.Config",

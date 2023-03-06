@@ -1,8 +1,10 @@
 ﻿namespace dnd_character_sheet
 {
-    interface ISkills
+    public interface ISkills
     {
-        bool CheckSkill(string skill);
-        void AddSkill(string skill);
+        public bool CheckSkill(string skill);
+        public void AddSkill(string skill);
+        public Dictionary<string, bool> GetSkills();
+        public string SkillAbilityName(string skill);
     }
 }

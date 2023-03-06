@@ -1,9 +1,10 @@
 ﻿namespace dnd_character_sheet
 {
-    interface IProgression
+    public interface IProgression
     {
-        void GainExpirience(int exp);
-        void LevelUp();
-        int GetProficiencyBonus();
+        public void GainExpirience(int exp);
+        public void LevelUp();
+        public int GetProficiencyBonus();
+        public int GetExpirience();
     }
 }

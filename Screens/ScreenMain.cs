@@ -1,53 +1,52 @@
-﻿using System;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
     internal class ScreenMain
     {
         private bool _isSheetLoaded;
+        private int _choosenPoint;
 
         private CheckInput _checkInput;
-        private CharacterSheetBase _currentHeroSheet;
+        private CharacterSheetBase? _currentHeroSheet;
         private ScreenLoadSheet _loadingScreen;
         private ScreenRollDice _screenRollDice;
         private ScreenSheetCreate _screenSheetCreate;
         private ScreenWorkWithSheet _screenWorkWithSheet;
         private JsonSaveLoad _jsonSaveLoad;
+        private IUserOutput _userOutput;
 
         public ScreenMain()
         {
-            _isSheetLoaded = false;
-            
             _checkInput = new CheckInput();
             _loadingScreen = new ScreenLoadSheet();
             _screenRollDice = new ScreenRollDice();
             _screenSheetCreate = new ScreenSheetCreate();
             _screenWorkWithSheet = new ScreenWorkWithSheet();
             _jsonSaveLoad = new JsonSaveLoad();
+            _userOutput = new ConsoleOutput();
         }
         
         public void ShowMainScreen()
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Добро пожаловать в программу создания листов персонажей!");
-                Console.WriteLine("\nМеню:");
-                Console.WriteLine("1. Создание листа");
-                Console.WriteLine("2. Загрузить лист");
-                Console.WriteLine("3. Вывести информацию о текущем листе персонажа");
-                Console.WriteLine("4. Свободные броски кубика");
-                Console.WriteLine("5. Работа с листом");
-                Console.WriteLine("6. Сохранить текущий лист");
-                Console.WriteLine("10. Выход");
-                Console.Write("\nВведите число, для перехода по меню: ");
+                _userOutput.Clear();
+                _userOutput.Print("\nМеню:");
+                _userOutput.Print("1. Создание листа");
+                _userOutput.Print("2. Загрузить лист");
+                _userOutput.Print("3. Вывести информацию о текущем листе персонажа");
+                _userOutput.Print("Добро пожаловать в программу создания листов персонажей!");
+                _userOutput.Print("4. Свободные броски кубика");
+                _userOutput.Print("5. Работа с листом");
+                _userOutput.Print("6. Сохранить текущий лист");
+                _userOutput.Print("10. Выход");
+                _userOutput.Print("\nВведите число, для перехода по меню: ", false);
 
-                int _choosenPoint = _checkInput.CheckIntInput();
+                _choosenPoint = _checkInput.CheckIntInput();
                 switch (_choosenPoint)
                 {
                     case 0:
                     default:
-                        Console.WriteLine("Введено неверное число, нужно ввести число из списка.");
+                        _userOutput.Print("Введено неверное число, нужно ввести число из списка.");
                         Console.ReadKey();
                         break;
 
@@ -64,14 +63,13 @@ namespace dnd_character_sheet
                     case 3:
                         if (_isSheetLoaded == true)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Экран информации о текущем листе персонажа.\n");
-                            _currentHeroSheet.PrintSheetInfoAll();
+                            _userOutput.Clear();
+                            _userOutput.Print("Экран информации о текущем листе персонажа.\n");
                         }
                         else
                         {
-                            Console.Clear();
-                            Console.WriteLine("Сначала нужно создать или загрузить лист персонажа.");
+                            _userOutput.Clear();
+                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
                             Console.ReadKey();
                         }
                         break;
@@ -87,8 +85,8 @@ namespace dnd_character_sheet
                         }
                         else
                         {
-                            Console.Clear();
-                            Console.WriteLine("Сначала нужно создать или загрузить лист персонажа.");
+                            _userOutput.Clear();
+                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
                             Console.ReadKey();
                         }
                         break;
@@ -96,12 +94,12 @@ namespace dnd_character_sheet
                     case 6:
                         if (_isSheetLoaded == true)
                         {
-                            _jsonSaveLoad.JsonSave(_currentHeroSheet.GetName(), _currentHeroSheet);
+                            //_jsonSaveLoad.JsonSave(_currentHeroSheet.GetName(), _currentHeroSheet);
                         }
                         else
                         {
-                            Console.Clear();
-                            Console.WriteLine("Сначала нужно создать или загрузить лист персонажа.");
+                            _userOutput.Clear();
+                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
                             Console.ReadKey();
                         }
                         break;
