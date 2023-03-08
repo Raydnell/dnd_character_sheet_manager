@@ -3,59 +3,57 @@
     public class ScreenSheetCreate
     {
         private int _choosenPoint;
+        
+        private string _input;
+
         private bool _pointChoose;
-        private JsonSaveLoad _jsonSaveLoad;
-        private CheckInput _checkInput;
-
-        private string? _input;
-
         private bool _isSet;
 
+        private JsonSaveLoad _jsonSaveLoad;
         private CharacterSheetFactory _sheetFactory;
         private IUserOutput _userOutput;
+        private IUserInput _userInput;
 
         public ScreenSheetCreate() 
         {
-            _choosenPoint = 0;
-            _pointChoose = false;
             _jsonSaveLoad = new JsonSaveLoad();
-            _checkInput = new CheckInput();
             _sheetFactory = new CharacterSheetFactory();
             _userOutput = new ConsoleOutput();
+            _userInput = new ConsoleInput();
+            _input = string.Empty;
         }
 
         public CharacterSheetBase SheetCreate(CharacterSheetBase currentHeroSheet)
         {
-            Console.Clear();
-            Console.WriteLine("Пришло время создать героя!\n");
-            Console.WriteLine("Выбери редакцию из списка:");
+            _userOutput.Clear();
+            _userOutput.Print("Пришло время создать героя!\n");
+            _userOutput.Print("Выбери редакцию из списка:");
 
             currentHeroSheet = SetEdition();
             
-            Console.Clear();
-            Console.Write("Введите имя героя: ");
-            currentHeroSheet.SetName(Console.ReadLine());
+            _userOutput.Clear();
+            _userOutput.Print("Введите имя героя: ");
+            currentHeroSheet.Name = _userInput.InputString();
 
-            Console.Clear();
+            _userOutput.Clear();
             currentHeroSheet.SetRace(ChooseRace());
-            Console.WriteLine("Выбранная раса: " + currentHeroSheet.GetRace().GetName());
-            Console.ReadKey();
+            _userOutput.Print("Выбранная раса: " + currentHeroSheet.SheetRace.Name);
+            _userInput.InputKey();
 
-            Console.Clear();
+            _userOutput.Clear();
             currentHeroSheet.SetClass(ChooseClass());
-            currentHeroSheet.GetSaveThrows().SetSaveTrows(currentHeroSheet.GetClass().GetName());
-            Console.WriteLine("Выбранный класс: " + currentHeroSheet.GetClass().GetName());
-            Console.ReadKey();
+            currentHeroSheet.SheetSaveThrows.SetSaveTrows(currentHeroSheet.SheetClass.Name);
+            _userOutput.Print("Выбранный класс: " + currentHeroSheet.SheetClass.Name);
+            _userInput.InputKey();
 
-            Console.Clear();
             _isSet = false;
             while(_isSet == false)
             {
-                Console.Clear();
-                currentHeroSheet.GetSkills().AddSkill(ChooseSkills());
+                _userOutput.Clear();
+                currentHeroSheet.SheetSkills.AddSkill(ChooseSkills());
 
-                Console.WriteLine("Добавить ещё навыки? 1 - да, 2 - нет");
-                _input = Console.ReadLine();
+                _userOutput.Print("Добавить ещё навыки? 1 - да, 2 - нет");
+                _input = _userInput.InputString();
                 if (_input == "1")
                 {
                     _isSet = false;
@@ -66,19 +64,19 @@
                 }
             }
 
-            Console.Clear();
-            Console.WriteLine("Впишите характеристики героя:");
-            currentHeroSheet.GetAbilities().SetAbilities(ChooseAbilities());
+            _userOutput.Clear();
+            _userOutput.Print("Впишите характеристики героя:");
+            currentHeroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
 
-            Console.Clear();
-            Console.WriteLine("Вот ваш новый герой!\n");
-            Console.WriteLine(currentHeroSheet.GetName());
-            Console.WriteLine(currentHeroSheet.GetRace().GetName());
-            Console.WriteLine(currentHeroSheet.GetClass().GetName());
-            PrintContainerItems(currentHeroSheet.GetAbilities().GetAbilities());
-            PrintContainerItems(currentHeroSheet.GetSkills().GetSkills());
-            PrintContainerItems(currentHeroSheet.GetSaveThrows().GetSaveThrows());
-            Console.ReadKey();
+            _userOutput.Clear();
+            _userOutput.Print("Вот ваш новый герой!\n");
+            _userOutput.Print(currentHeroSheet.Name);
+            _userOutput.Print(currentHeroSheet.SheetRace.Name);
+            _userOutput.Print(currentHeroSheet.SheetClass.Name);
+            _userOutput.Print(currentHeroSheet.SheetAbilities.GetAbilities());
+            _userOutput.Print(currentHeroSheet.SheetSkills.GetSkills());
+            _userOutput.Print(currentHeroSheet.SheetSaveThrows.GetSaveThrows());
+            _userInput.InputKey();
 
             return currentHeroSheet;
         }
@@ -88,13 +86,17 @@
             _isSet = false;
             while(_isSet == false)
             {
-                Console.WriteLine("Укажите редакцию, по которой нужно создать лист персонажа:");
+                _userOutput.Print("Укажите редакцию, по которой нужно создать лист персонажа:");
                 
                 foreach (var item in Enum.GetValues(typeof(EnumEditions)))
                 {
-                    Console.Write((int)item + " - ");
-                    Console.Write(item + "\n");
+                    _userOutput.Print((int)item + " - ", false);
+                    _userOutput.Print(item + "\n", false);
                 }
+
+                _userOutput.Print(typeof(EnumEditions));
+
+                Enum.GetNames<EnumEditions>();
 
                 _input = Console.ReadLine();
                 if (Enum.TryParse<EnumEditions>(_input, out EnumEditions result))
@@ -117,52 +119,44 @@
             return null;
         }
 
-        private string? ChooseRace()
+        private string ChooseRace()
         {
             _isSet = false;
             while(_isSet == false)
             {
-                Console.WriteLine("Выберите расу из списка:");
-                foreach (var item in Enum.GetValues(typeof(EnumRacesDnd5E)))
-                {
-                    Console.Write((int)item + " - ");
-                    Console.Write(item + "\n");
-                }
+                _userOutput.Print("Выберите расу из списка:");
+                _userOutput.Print(typeof(EnumRacesDnd5E));
 
-                _input = Console.ReadLine();
+                _input = _userInput.InputString();
                 if (Enum.TryParse<EnumRacesDnd5E>(_input, out EnumRacesDnd5E result))
                 {
-                    return Convert.ToString(result);
+                    return result.ToString();
                 }
 
-                return null;
+                return string.Empty;
             }
 
-            return null;
+            return string.Empty;
         }
 
-        private string? ChooseClass()
+        private string ChooseClass()
         {
             _isSet = false;
             while(_isSet == false)
             {
-                Console.WriteLine("Выберите класс из списка:");
-                foreach (var item in Enum.GetValues(typeof(EnumClassesDnd5E)))
-                {
-                    Console.Write((int)item + " - ");
-                    Console.Write(item + "\n");
-                }
+                _userOutput.Print("Выберите класс из списка:");
+                _userOutput.Print(typeof(EnumClassesDnd5E));
 
-                _input = Console.ReadLine();
+                _input = _userInput.InputString();
                 if (Enum.TryParse<EnumClassesDnd5E>(_input, out EnumClassesDnd5E result))
                 {
-                    return Convert.ToString(result);
+                    return result.ToString();
                 }
 
-                return null;
+                return string.Empty;
             }
 
-            return null;
+            return string.Empty;
         }
 
         private string? ChooseSkills()
@@ -170,23 +164,19 @@
             bool isSet = false;
             while(isSet == false)
             {
-                Console.WriteLine("Выберите навык из списка:");
-                foreach (var item in Enum.GetValues(typeof(EnumSkillsDnd5E)))
-                {
-                    Console.Write((int)item + " - ");
-                    Console.Write(item + "\n");
-                }
+                _userOutput.Print("Выберите навык из списка:");
+                _userOutput.Print(typeof(EnumSkillsDnd5E));
 
-                _input = Console.ReadLine();
+                _input = _userInput.InputString();
                 if (Enum.TryParse<EnumSkillsDnd5E>(_input, out EnumSkillsDnd5E result))
                 {
-                    return Convert.ToString(result);
+                    return result.ToString();
                 }
 
-                return null;
+                return string.Empty;
             }
 
-            return null;
+            return string.Empty;
         }
 
         private Dictionary<string, int> ChooseAbilities()
@@ -199,39 +189,22 @@
                 _isSet = false;
                 while(_isSet == false)
                 {
-                    inputAbility = _checkInput.CheckIntInput();
+                    _userOutput.Print(item.ToString() + ": ", false);
+                    inputAbility = _userInput.InputInt();
                     if(inputAbility > 0 || inputAbility <= 20)
                     {
-                        tempAbilities[Convert.ToString(item)] = inputAbility;
+                        tempAbilities[item.ToString()] = inputAbility;
                         _isSet = true;
                     }
                     else
                     {
-                        Console.WriteLine("Нужно указать значение от 1 до 20");
-                        Console.ReadKey();
+                        _userOutput.Print("Нужно указать значение от 1 до 20");
+                        _userInput.InputKey();
                     }
                 }
             }
 
             return tempAbilities;
-        }
-
-        private void PrintContainerItems(Dictionary<string, int> container)
-        {
-            foreach(var item in container)
-            {
-                Console.WriteLine(item);
-            }
-
-        }
-
-        private void PrintContainerItems(Dictionary<string, bool> container)
-        {
-            foreach(var item in container)
-            {
-                Console.WriteLine(item);
-            }
-
         }
     }
 }

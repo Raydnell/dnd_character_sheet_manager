@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public class CharacterSheetFactory
     {
-        public CharacterSheetBase? CreateCharacterSheet(string edition)
+        public CharacterSheetBase CreateCharacterSheet(string edition)
         {
             switch(edition)
             {

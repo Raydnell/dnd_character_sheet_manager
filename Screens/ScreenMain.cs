@@ -5,24 +5,24 @@
         private bool _isSheetLoaded;
         private int _choosenPoint;
 
-        private CheckInput _checkInput;
-        private CharacterSheetBase? _currentHeroSheet;
+        private CharacterSheetBase _currentHeroSheet;
         private ScreenLoadSheet _loadingScreen;
         private ScreenRollDice _screenRollDice;
         private ScreenSheetCreate _screenSheetCreate;
         private ScreenWorkWithSheet _screenWorkWithSheet;
         private JsonSaveLoad _jsonSaveLoad;
         private IUserOutput _userOutput;
+        private IUserInput _userInput;
 
         public ScreenMain()
         {
-            _checkInput = new CheckInput();
             _loadingScreen = new ScreenLoadSheet();
             _screenRollDice = new ScreenRollDice();
             _screenSheetCreate = new ScreenSheetCreate();
             _screenWorkWithSheet = new ScreenWorkWithSheet();
             _jsonSaveLoad = new JsonSaveLoad();
             _userOutput = new ConsoleOutput();
+            _userInput = new ConsoleInput();
         }
         
         public void ShowMainScreen()
@@ -41,13 +41,13 @@
                 _userOutput.Print("10. Выход");
                 _userOutput.Print("\nВведите число, для перехода по меню: ", false);
 
-                _choosenPoint = _checkInput.CheckIntInput();
+                _choosenPoint = _userInput.InputInt();
                 switch (_choosenPoint)
                 {
                     case 0:
                     default:
                         _userOutput.Print("Введено неверное число, нужно ввести число из списка.");
-                        Console.ReadKey();
+                        _userInput.InputKey();
                         break;
 
                     case 1:
@@ -70,7 +70,7 @@
                         {
                             _userOutput.Clear();
                             _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            Console.ReadKey();
+                            _userInput.InputKey();
                         }
                         break;
 
@@ -87,7 +87,7 @@
                         {
                             _userOutput.Clear();
                             _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            Console.ReadKey();
+                            _userInput.InputKey();
                         }
                         break;
 
@@ -100,7 +100,7 @@
                         {
                             _userOutput.Clear();
                             _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            Console.ReadKey();
+                            _userInput.InputKey();
                         }
                         break;
 

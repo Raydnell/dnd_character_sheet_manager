@@ -40,9 +40,9 @@ public class ConsoleOutput : IUserOutput
         }
     }
 
-    public void Print(Enum value)
+    public void Print(Type value)
     {
-        var values = Enum.GetNames(value.GetType());
+        var values = Enum.GetNames(value);
         foreach(var item in values)
         {
             Console.WriteLine(item);
