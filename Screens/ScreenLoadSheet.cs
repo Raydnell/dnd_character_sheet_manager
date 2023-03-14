@@ -14,7 +14,7 @@ namespace dnd_character_sheet
             _name = string.Empty;
         }
 
-        public CharacterSheetDnd5E LoadSheetFromFile()
+        public CharacterSheetBase LoadSheetFromFile()
         {
             Console.Clear();
             Console.WriteLine("Экран загрузки листа персонажа.\n");
@@ -25,7 +25,7 @@ namespace dnd_character_sheet
 
             if (File.Exists(@"dnd5e_char_sheets\" + _name + ".json"))
             {
-                CharacterSheetDnd5E loadedCharSheet = _jsonSaveLoad.JsonLoad(_name);
+                CharacterSheetBase loadedCharSheet = _jsonSaveLoad.JsonLoad(_name, @"dnd5e_char_sheets\");
                 Console.WriteLine("Герой загружен.");
                 Console.ReadKey();
 

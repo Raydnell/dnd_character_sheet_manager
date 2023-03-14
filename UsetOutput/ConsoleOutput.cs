@@ -36,16 +36,30 @@ public class ConsoleOutput : IUserOutput
     {
         foreach(var item in value)
         {
-            Console.WriteLine(value);
+            Console.WriteLine(item);
         }
     }
 
-    public void Print(Type value)
+    public void Print(Type value, bool orderNumber = true)
     {
-        var values = Enum.GetNames(value);
-        foreach(var item in values)
+        int number = 1;
+        
+        if(orderNumber)
         {
-            Console.WriteLine(item);
+            var values = Enum.GetNames(value);
+            foreach(var item in values)
+            {
+                Console.WriteLine(number + " - " + item);
+                number++;
+            }
+        }
+        else
+        {
+            var values = Enum.GetNames(value);
+            foreach(var item in values)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 

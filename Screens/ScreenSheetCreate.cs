@@ -27,12 +27,11 @@
         {
             _userOutput.Clear();
             _userOutput.Print("Пришло время создать героя!\n");
-            _userOutput.Print("Выбери редакцию из списка:");
 
             currentHeroSheet = SetEdition();
             
             _userOutput.Clear();
-            _userOutput.Print("Введите имя героя: ");
+            _userOutput.Print("Введите имя героя: ", false);
             currentHeroSheet.Name = _userInput.InputString();
 
             _userOutput.Clear();
@@ -70,12 +69,12 @@
 
             _userOutput.Clear();
             _userOutput.Print("Вот ваш новый герой!\n");
-            _userOutput.Print(currentHeroSheet.Name);
-            _userOutput.Print(currentHeroSheet.SheetRace.Name);
-            _userOutput.Print(currentHeroSheet.SheetClass.Name);
-            _userOutput.Print(currentHeroSheet.SheetAbilities.GetAbilities());
-            _userOutput.Print(currentHeroSheet.SheetSkills.GetSkills());
-            _userOutput.Print(currentHeroSheet.SheetSaveThrows.GetSaveThrows());
+            _userOutput.Print("\nИмя: " + currentHeroSheet.Name);
+            _userOutput.Print("\nРаса: " + currentHeroSheet.SheetRace.Name);
+            _userOutput.Print("\nКласс: " + currentHeroSheet.SheetClass.Name);
+            _userOutput.Print("\nХарактеристики: " + currentHeroSheet.SheetAbilities.GetAbilities());
+            _userOutput.Print("\nНавыки: " + currentHeroSheet.SheetSkills.GetSkills());
+            _userOutput.Print("\nСпасброски: " + currentHeroSheet.SheetSaveThrows.GetSaveThrows());
             _userInput.InputKey();
 
             return currentHeroSheet;
@@ -87,24 +86,15 @@
             while(_isSet == false)
             {
                 _userOutput.Print("Укажите редакцию, по которой нужно создать лист персонажа:");
-                
-                foreach (var item in Enum.GetValues(typeof(EnumEditions)))
-                {
-                    _userOutput.Print((int)item + " - ", false);
-                    _userOutput.Print(item + "\n", false);
-                }
-
                 _userOutput.Print(typeof(EnumEditions));
 
-                Enum.GetNames<EnumEditions>();
-
-                _input = Console.ReadLine();
+                _input = _userInput.InputString();
                 if (Enum.TryParse<EnumEditions>(_input, out EnumEditions result))
                 {
                     switch(result)
                     {
                         case EnumEditions.Dnd5E:
-                            return _sheetFactory.CreateCharacterSheet(Convert.ToString(result));
+                            return _sheetFactory.CreateCharacterSheet(result.ToString());
                         
                         default:
                             break;

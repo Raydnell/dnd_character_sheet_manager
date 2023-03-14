@@ -1,0 +1,15 @@
+{
+  "Name": "Hero2",
+  "SheetRace": {
+    "Name": "gnome"
+  },
+  "SheetClass": {
+    "Name": "barbarian"
+  },
+  "SheetAbilities": {},
+  "SheetSkills": {},
+  "SheetProgression": {},
+  "SheetSaveThrows": {},
+  "RaceFactory": {},
+  "ClassFactory": {}
+}

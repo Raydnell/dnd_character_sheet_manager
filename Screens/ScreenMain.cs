@@ -34,7 +34,6 @@
                 _userOutput.Print("1. Создание листа");
                 _userOutput.Print("2. Загрузить лист");
                 _userOutput.Print("3. Вывести информацию о текущем листе персонажа");
-                _userOutput.Print("Добро пожаловать в программу создания листов персонажей!");
                 _userOutput.Print("4. Свободные броски кубика");
                 _userOutput.Print("5. Работа с листом");
                 _userOutput.Print("6. Сохранить текущий лист");
@@ -94,7 +93,7 @@
                     case 6:
                         if (_isSheetLoaded == true)
                         {
-                            //_jsonSaveLoad.JsonSave(_currentHeroSheet.GetName(), _currentHeroSheet);
+                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, _currentHeroSheet, @"dnd5e_char_sheets\");
                         }
                         else
                         {
