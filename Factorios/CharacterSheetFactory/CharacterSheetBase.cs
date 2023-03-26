@@ -2,13 +2,14 @@ namespace dnd_character_sheet
 {
     public abstract class CharacterSheetBase
     {
-        private string _name = string.Empty;        
+        private string _name = string.Empty;
+        private string _edition = string.Empty;        
         private RaceDndBase _sheetRace;
         private ClassDndBase _sheetClass;
-        private IAbilities _sheetAbilities;
-        private ISkills _sheetSkills;
-        private IProgression _sheetProgression;
-        private ISaveThrows _sheetSaveThrows;
+        private SheetAbilities _sheetAbilities;
+        private SheetSkills _sheetSkills;
+        private SheetProgression _sheetProgression;
+        private SheetSaveThrows _sheetSaveThrows;
         private IRaceDndFactory _raceFactory;
         private IClassDndFactory _classFactory;
 
@@ -21,6 +22,18 @@ namespace dnd_character_sheet
             set
             {
                 _name = value;
+            }
+        }
+
+        public string Edition
+        {
+            get
+            {
+                return _edition;
+            }
+            protected set
+            {
+                _edition = value;
             }
         }
 
@@ -48,7 +61,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public IAbilities SheetAbilities
+        public SheetAbilities SheetAbilities
         {
             get
             {
@@ -60,7 +73,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public ISkills SheetSkills
+        public SheetSkills SheetSkills
         {
             get
             {
@@ -72,7 +85,7 @@ namespace dnd_character_sheet
             }
         }
         
-        public IProgression SheetProgression
+        public SheetProgression SheetProgression
         {
             get
             {
@@ -84,7 +97,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public ISaveThrows SheetSaveThrows
+        public SheetSaveThrows SheetSaveThrows
         {
             get
             {

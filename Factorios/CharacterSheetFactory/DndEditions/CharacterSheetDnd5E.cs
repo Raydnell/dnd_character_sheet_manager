@@ -10,6 +10,7 @@ namespace dnd_character_sheet
             SheetProgression = new ProgressionDnd5E();
             ClassFactory = new ClassDnd5EFactory();
             RaceFactory = new RaceDnd5EFactory();
+            Edition = "DND5E";
         }
 
         public override void SetRace(string race)

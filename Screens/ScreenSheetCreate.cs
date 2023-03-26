@@ -68,13 +68,16 @@
             currentHeroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
 
             _userOutput.Clear();
-            _userOutput.Print("Вот ваш новый герой!\n");
+            _userOutput.Print("Вот ваш новый герой!");
             _userOutput.Print("\nИмя: " + currentHeroSheet.Name);
             _userOutput.Print("\nРаса: " + currentHeroSheet.SheetRace.Name);
             _userOutput.Print("\nКласс: " + currentHeroSheet.SheetClass.Name);
-            _userOutput.Print("\nХарактеристики: " + currentHeroSheet.SheetAbilities.GetAbilities());
-            _userOutput.Print("\nНавыки: " + currentHeroSheet.SheetSkills.GetSkills());
-            _userOutput.Print("\nСпасброски: " + currentHeroSheet.SheetSaveThrows.GetSaveThrows());
+            _userOutput.Print("\nХарактеристики:");
+            _userOutput.Print(currentHeroSheet.SheetAbilities.Abilities);
+            _userOutput.Print("\nНавыки:");
+            _userOutput.Print(currentHeroSheet.SheetSkills.Skills);
+            _userOutput.Print("\nСпасброски: ");
+            _userOutput.Print(currentHeroSheet.SheetSaveThrows.SaveThrows);
             _userInput.InputKey();
 
             return currentHeroSheet;
@@ -93,7 +96,7 @@
                 {
                     switch(result)
                     {
-                        case EnumEditions.Dnd5E:
+                        case EnumEditions.DND5E:
                             return _sheetFactory.CreateCharacterSheet(result.ToString());
                         
                         default:
@@ -149,7 +152,7 @@
             return string.Empty;
         }
 
-        private string? ChooseSkills()
+        private string ChooseSkills()
         {
             bool isSet = false;
             while(isSet == false)

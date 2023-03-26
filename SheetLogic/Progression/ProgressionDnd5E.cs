@@ -1,49 +1,41 @@
 namespace dnd_character_sheet
 {
-    public class ProgressionDnd5E : IProgression
+    public class ProgressionDnd5E : SheetProgression
     {
-        private int _expirience;
-        private int _level;
-
         public ProgressionDnd5E()
         {
-            _expirience = 0;
-            _level = 1;
+            Expirience = 0;
+            Level = 1;
         }
         
-        public void GainExpirience(int exp)
+        public override void GainExpirience(int exp)
         {
-            _expirience += exp;
-            if(_expirience <= 299)
-                _level = 1;
-            else if(_expirience <= 899)
-                _level = 2;
-            else if(_expirience <= 2699)
-                _level = 3;
+            Expirience += exp;
+            if(Expirience <= 299)
+                Level = 1;
+            else if(Expirience <= 899)
+                Level = 2;
+            else if(Expirience <= 2699)
+                Level = 3;
         }
 
-        public void LevelUp()
+        public override void LevelUp()
         {
-            _level++;
+            Level++;
         }
 
-        public int GetProficiencyBonus()
+        public override int GetProficiencyBonus()
         {
-            if (_level <= 4)
+            if (Level <= 4)
                 return 2;
-            else if (_level <= 8)
+            else if (Level <= 8)
                 return 3;
-            else if (_level <= 12)
+            else if (Level <= 12)
                 return 4;
-            else if (_level <= 16)
+            else if (Level <= 16)
                 return 5;
             else
                 return 6;
-        }
-
-        public int GetExpirience()
-        {
-            return _expirience;
         }
     }
 }

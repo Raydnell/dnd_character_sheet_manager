@@ -6,7 +6,7 @@ namespace dnd_character_sheet
         {
             switch(edition)
             {
-                case "Dnd5E":
+                case "DND5E":
                     return new CharacterSheetDnd5E();
                 default:
                     return null;

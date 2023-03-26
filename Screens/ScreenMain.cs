@@ -64,6 +64,16 @@
                         {
                             _userOutput.Clear();
                             _userOutput.Print("Экран информации о текущем листе персонажа.\n");
+                            _userOutput.Print("\nИмя: " + _currentHeroSheet.Name);
+                            _userOutput.Print("\nРаса: " + _currentHeroSheet.SheetRace.Name);
+                            _userOutput.Print("\nКласс: " + _currentHeroSheet.SheetClass.Name);
+                            _userOutput.Print("\nХарактеристики:");
+                            _userOutput.Print(_currentHeroSheet.SheetAbilities.Abilities);
+                            _userOutput.Print("\nНавыки:");
+                            _userOutput.Print(_currentHeroSheet.SheetSkills.Skills);
+                            _userOutput.Print("\nСпасброски: ");
+                            _userOutput.Print(_currentHeroSheet.SheetSaveThrows.SaveThrows);
+                            _userInput.InputKey();
                         }
                         else
                         {
@@ -93,7 +103,7 @@
                     case 6:
                         if (_isSheetLoaded == true)
                         {
-                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, _currentHeroSheet, @"dnd5e_char_sheets\");
+                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, _currentHeroSheet, @"Character_Sheets\" + _currentHeroSheet.Edition + @"\");
                         }
                         else
                         {

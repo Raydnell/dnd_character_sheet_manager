@@ -1,12 +1,10 @@
 namespace dnd_character_sheet
 {
-    public class AbilitiesDnd5E : IAbilities
+    public class AbilitiesDnd5E : SheetAbilities
     {
-        private Dictionary<string, int> _abilities;
-
         public AbilitiesDnd5E()
         {
-            _abilities = new Dictionary<string, int>()
+            Abilities = new Dictionary<string, int>()
             {
                 ["strength"] = 1,
                 ["dexterity"] = 1,
@@ -17,17 +15,17 @@ namespace dnd_character_sheet
             };
         }
         
-        public int GetAbilityModificator(string ability)
+        public override int GetAbilityModificator(string ability)
         {
             return AbilityBonus(GetAbilityScore(ability));
         }
 
-        public int GetAbilityScore(string ability)
+        public override int GetAbilityScore(string ability)
         {
-            return _abilities[ability];
+            return Abilities[ability];
         }
 
-        public int AbilityBonus(int score)
+        public override int AbilityBonus(int score)
         {
             if (score == 1)
                 return -5;
@@ -63,24 +61,19 @@ namespace dnd_character_sheet
                 return 10;
         }
 
-        public void SetAbilities(Dictionary<string, int> abilities)
+        public override void SetAbilities(Dictionary<string, int> abilities)
         {
             if(abilities.Count() == 6)
             {
                 foreach(var item in abilities)
                 {
-                    _abilities[item.Key] = item.Value;
+                    Abilities[item.Key] = item.Value;
                 }
             }
             else
             {
                 throw new InvalidOperationException("Abilities count must be six");
             }
-        }
-
-        public Dictionary<string, int> GetAbilities()
-        {
-            return _abilities;
         }
     }
 }

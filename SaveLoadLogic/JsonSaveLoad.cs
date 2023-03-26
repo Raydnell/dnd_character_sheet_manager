@@ -4,20 +4,21 @@ namespace dnd_character_sheet
 {
     class JsonSaveLoad
     {
-        JsonSerializerOptions options = new JsonSerializerOptions
-        {
-            WriteIndented = true
-        };
-        
         public void JsonSave(string fileName, CharacterSheetBase savingFile, string pathSave)
         {
-            string savedFile = JsonSerializer.Serialize<CharacterSheetBase>(savingFile, options);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string savedFile = JsonSerializer.Serialize(savingFile, options);
             File.WriteAllText(pathSave + fileName + ".json", savedFile);
         }
 
-        public CharacterSheetBase JsonLoad(string fileName, string pathLoad)
+        public void JsonLoad(string pathLoad, CharacterSheetBase sheet)
         {
-            return JsonSerializer.Deserialize<CharacterSheetBase>(File.ReadAllText(pathLoad + fileName + ".json"));
+            string readedFile = File.ReadAllText(pathLoad);
+            Console.WriteLine(readedFile);
+            Console.ReadKey();
+            CharacterSheetBase tempSheet2 = JsonSerializer.Deserialize<CharacterSheetDnd5E>(readedFile);
+            
+            sheet = JsonSerializer.Deserialize<CharacterSheetDnd5E>(readedFile);
         }
     }
 }

@@ -1,12 +1,10 @@
 namespace dnd_character_sheet
 {
-    public class SkillsDnd5E : ISkills
+    public class SkillsDnd5E : SheetSkills
     {
-        private Dictionary<string, bool> _sheetSkills;
-
         public SkillsDnd5E()
         {
-            _sheetSkills = new Dictionary<string, bool>()
+            Skills = new Dictionary<string, bool>()
             {
                 ["athletics"] = false,
                 ["acrobatics"] = false,
@@ -29,25 +27,20 @@ namespace dnd_character_sheet
             };
         }
 
-        public bool CheckSkill(string skill)
+        public override bool CheckSkill(string skill)
         {
-            return _sheetSkills[skill];
+            return Skills[skill];
         }
 
-        public void AddSkill(string skill)
+        public override void AddSkill(string skill)
         {
-            if(_sheetSkills.ContainsKey(skill))
+            if(Skills.ContainsKey(skill))
             {
-                _sheetSkills[skill] = true;
+                Skills[skill] = true;
             }
         }
 
-        public Dictionary<string, bool> GetSkills()
-        {
-            return _sheetSkills;
-        }
-
-        public string SkillAbilityName(string skill)
+        public override string SkillAbilityName(string skill)
         {
             switch(skill)
             {

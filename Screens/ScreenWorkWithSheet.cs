@@ -83,7 +83,7 @@ namespace dnd_character_sheet
             {
                 _userOutput.Clear();
                 _userOutput.Print("Какую характеристику нужно проверить:\n");
-                _userOutput.Print(heroSheet.SheetAbilities.GetAbilities());
+                _userOutput.Print(heroSheet.SheetAbilities.Abilities);
                 _userOutput.Print("\n");
 
                 _input = _userInput.InputString();
@@ -109,7 +109,7 @@ namespace dnd_character_sheet
             {
                 _userOutput.Clear();
                 _userOutput.Print("Какой навык нужно проверить: \n");
-                _userOutput.Print(heroSheet.SheetSkills.GetSkills());
+                _userOutput.Print(heroSheet.SheetSkills.Skills);
                 _userOutput.Print("\n");
 
                 _input = _userInput.InputString();
@@ -142,7 +142,7 @@ namespace dnd_character_sheet
             {
                 _userOutput.Clear();
                 _userOutput.Print("Какой спасбросок нужно сделать:");
-                _userOutput.Print(heroSheet.SheetSaveThrows.GetSaveThrows());
+                _userOutput.Print(heroSheet.SheetSaveThrows.SaveThrows);
                 _userOutput.Print("\n");
 
                 _input = _userInput.InputString();
@@ -174,7 +174,7 @@ namespace dnd_character_sheet
             _expInput = _userInput.InputInt();
             heroSheet.SheetProgression.GainExpirience(_expInput);
             Console.Write("\nТекущее количество опыта: ");
-            Console.Write(heroSheet.SheetProgression.GetExpirience());
+            Console.Write(heroSheet.SheetProgression.Expirience);
             Console.ReadKey();
         }
     }
