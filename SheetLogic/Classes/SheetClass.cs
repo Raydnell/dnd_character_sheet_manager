@@ -1,9 +1,8 @@
 namespace dnd_character_sheet
 {
-    public abstract class RaceDndBase
+    public abstract class SheetClass
     {
-        private string _name = string.Empty;
-
+        private string _name;
         public string Name
         {
             get
@@ -15,5 +14,7 @@ namespace dnd_character_sheet
                 _name = value;
             }
         }
+
+        public abstract void SetClass(string sheetClass);
     }
 }

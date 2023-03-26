@@ -1,19 +1,20 @@
-﻿namespace dnd_character_sheet
+namespace dnd_character_sheet
 {
-    public abstract class ClassDndBase
+    public abstract class SheetRace
     {
         private string _name = string.Empty;
-        
-        public string Name 
-        { 
+        public string Name
+        {
             get
             {
                 return _name;
             }
             protected set
             {
-                _name =  value;
+                _name = value;
             }
         }
+
+        public abstract void SetRace(string race);
     }
 }

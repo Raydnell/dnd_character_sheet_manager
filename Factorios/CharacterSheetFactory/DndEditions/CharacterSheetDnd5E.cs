@@ -8,19 +8,9 @@ namespace dnd_character_sheet
             SheetSaveThrows = new SaveThrowsDnd5E();
             SheetSkills = new SkillsDnd5E();
             SheetProgression = new ProgressionDnd5E();
-            ClassFactory = new ClassDnd5EFactory();
-            RaceFactory = new RaceDnd5EFactory();
+            SheetRace = new RaceDND5E();
+            SheetClass = new ClassDND5E();
             Edition = "DND5E";
-        }
-
-        public override void SetRace(string race)
-        {
-            SheetRace = RaceFactory.CreateRace(race);
-        }
-
-        public override void SetClass(string sheetClass)
-        {
-            SheetClass = ClassFactory.CreateClassDnd(sheetClass);
         }
     }
 }

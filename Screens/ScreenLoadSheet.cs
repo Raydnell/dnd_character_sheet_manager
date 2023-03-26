@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
     internal class ScreenLoadSheet
     {
@@ -16,8 +13,6 @@ namespace dnd_character_sheet
         private IUserOutput _userOutput;
         private IUserInput _userInput;
         private DirectoryInfo _folderInfo;
-        private CharacterSheetFactory _sheetFactory;
-        private CharacterSheetBase _tempSheet;
 
         public ScreenLoadSheet()
         {
@@ -29,7 +24,6 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
             _userInput = new ConsoleInput();
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
-            _sheetFactory = new CharacterSheetFactory();
         }
 
         public CharacterSheetBase LoadSheetFromFile()
@@ -47,7 +41,6 @@ namespace dnd_character_sheet
                     switch(result)
                     {
                         case EnumEditions.DND5E:
-                            _tempSheet = _sheetFactory.CreateCharacterSheet(result.ToString());
                             _choosenEdition = result.ToString();
                             _isEditionChoose = true;
                             break;
@@ -81,14 +74,17 @@ namespace dnd_character_sheet
                     _name = _userInput.InputString();
                     if (File.Exists(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json"))
                     {
-                        Console.WriteLine(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json");
-                        Console.ReadKey();
-                        _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", _tempSheet);
-                        Console.WriteLine("Герой загружен.");
-                        Console.ReadKey();
-                        _isSheetLoaded = true;
-
-                        return _tempSheet;
+                        switch(_choosenEdition)
+                        {
+                            case("DND5E"):
+                                CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
+                                _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", ref tempSheet);
+                                Console.WriteLine("Герой загружен.");
+                                Console.ReadKey();
+                                Console.WriteLine(tempSheet.SheetRace.Name);
+                                _isSheetLoaded = true;
+                                return tempSheet;
+                        }
                     }
                     else
                     {
@@ -98,7 +94,7 @@ namespace dnd_character_sheet
                 }
             }
 
-            return _tempSheet;
+            return null;
         }
     }
 }

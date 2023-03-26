@@ -1,0 +1,58 @@
+{
+  "Name": "Hero 13",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "dwarf"
+  },
+  "SheetClass": {
+    "Name": "fighter"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "strength": 12,
+      "dexterity": 13,
+      "constitution": 14,
+      "intelligence": 15,
+      "wisdom": 16,
+      "charisma": 17
+    }
+  },
+  "SheetSkills": {
+    "Skills": {
+      "athletics": false,
+      "acrobatics": false,
+      "sleight": false,
+      "stealth": true,
+      "arcana": false,
+      "history": false,
+      "investigation": false,
+      "nature": false,
+      "religion": false,
+      "animal": false,
+      "insight": false,
+      "medicine": false,
+      "perception": false,
+      "surival": false,
+      "deception": false,
+      "intimidation": false,
+      "perfomance": false,
+      "persuasion": false
+    }
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": {
+      "strength": true,
+      "dexterity": false,
+      "constitution": true,
+      "intelligence": false,
+      "wisdom": false,
+      "charisma": false
+    }
+  },
+  "RaceFactory": {},
+  "ClassFactory": {}
+}

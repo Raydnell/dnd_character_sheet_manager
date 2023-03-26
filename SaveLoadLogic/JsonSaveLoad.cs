@@ -1,24 +1,18 @@
-﻿using System.Text.Json;
+﻿using Newtonsoft.Json;
 
 namespace dnd_character_sheet
 {
     class JsonSaveLoad
     {
-        public void JsonSave(string fileName, CharacterSheetBase savingFile, string pathSave)
+        public void JsonSave<T>(string fileName, ref T savingFile, string pathSave)
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string savedFile = JsonSerializer.Serialize(savingFile, options);
+            string savedFile = JsonConvert.SerializeObject(savingFile);
             File.WriteAllText(pathSave + fileName + ".json", savedFile);
         }
 
-        public void JsonLoad(string pathLoad, CharacterSheetBase sheet)
+        public void JsonLoad<T>(string pathLoad, ref T sheet)
         {
-            string readedFile = File.ReadAllText(pathLoad);
-            Console.WriteLine(readedFile);
-            Console.ReadKey();
-            CharacterSheetBase tempSheet2 = JsonSerializer.Deserialize<CharacterSheetDnd5E>(readedFile);
-            
-            sheet = JsonSerializer.Deserialize<CharacterSheetDnd5E>(readedFile);
+            sheet = JsonConvert.DeserializeObject<T>(File.ReadAllText(pathLoad));
         }
     }
 }

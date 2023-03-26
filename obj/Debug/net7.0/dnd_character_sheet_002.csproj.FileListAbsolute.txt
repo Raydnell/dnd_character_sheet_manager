@@ -43,3 +43,5 @@ D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\refint\dnd_chara
 D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\dnd_character_sheet_002.pdb
 D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\dnd_character_sheet_002.genruntimeconfig.cache
 D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\ref\dnd_character_sheet_002.dll
+D:\Progaem\c_sharp\dnd_character_sheet_manager\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\dnd_character_sheet_002.csproj.CopyComplete

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pobVQj39/cBNT4DVlZ4PNAzjXFXKC8FqJ8fy1aYCY7g/TWo9TQszXxNWA5zN0FXmIv9Y6D1U3JC6I4B/kZr3Rw==",
+  "dgSpecHash": "vt0OK+zHCtodofChA+Dp/dHTrLSrsXMQtSySNB3buszEUtuUOtN5e8qIumFlU3AcukrRhvJwR2cCi2BFmE/CZA==",
   "success": true,
-  "projectFilePath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Raydnell\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

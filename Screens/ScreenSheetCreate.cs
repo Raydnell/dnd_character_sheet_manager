@@ -35,12 +35,12 @@
             currentHeroSheet.Name = _userInput.InputString();
 
             _userOutput.Clear();
-            currentHeroSheet.SetRace(ChooseRace());
+            currentHeroSheet.SheetRace.SetRace(ChooseRace());
             _userOutput.Print("Выбранная раса: " + currentHeroSheet.SheetRace.Name);
             _userInput.InputKey();
 
             _userOutput.Clear();
-            currentHeroSheet.SetClass(ChooseClass());
+            currentHeroSheet.SheetClass.SetClass(ChooseClass());
             currentHeroSheet.SheetSaveThrows.SetSaveTrows(currentHeroSheet.SheetClass.Name);
             _userOutput.Print("Выбранный класс: " + currentHeroSheet.SheetClass.Name);
             _userInput.InputKey();

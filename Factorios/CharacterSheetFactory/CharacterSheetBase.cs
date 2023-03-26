@@ -3,16 +3,6 @@ namespace dnd_character_sheet
     public abstract class CharacterSheetBase
     {
         private string _name = string.Empty;
-        private string _edition = string.Empty;        
-        private RaceDndBase _sheetRace;
-        private ClassDndBase _sheetClass;
-        private SheetAbilities _sheetAbilities;
-        private SheetSkills _sheetSkills;
-        private SheetProgression _sheetProgression;
-        private SheetSaveThrows _sheetSaveThrows;
-        private IRaceDndFactory _raceFactory;
-        private IClassDndFactory _classFactory;
-
         public string Name
         {
             get
@@ -25,6 +15,7 @@ namespace dnd_character_sheet
             }
         }
 
+        private string _edition = string.Empty;        
         public string Edition
         {
             get
@@ -37,7 +28,8 @@ namespace dnd_character_sheet
             }
         }
 
-        public RaceDndBase SheetRace
+        private SheetRace _sheetRace;
+        public SheetRace SheetRace
         {
             get
             {
@@ -49,7 +41,8 @@ namespace dnd_character_sheet
             }
         }
 
-        public ClassDndBase SheetClass
+        private SheetClass _sheetClass;
+        public SheetClass SheetClass
         {
             get
             {
@@ -61,6 +54,7 @@ namespace dnd_character_sheet
             }
         }
 
+        private SheetAbilities _sheetAbilities;
         public SheetAbilities SheetAbilities
         {
             get
@@ -73,6 +67,7 @@ namespace dnd_character_sheet
             }
         }
 
+        private SheetSkills _sheetSkills;
         public SheetSkills SheetSkills
         {
             get
@@ -84,7 +79,8 @@ namespace dnd_character_sheet
                 _sheetSkills = value;
             }
         }
-        
+
+        private SheetProgression _sheetProgression;
         public SheetProgression SheetProgression
         {
             get
@@ -97,6 +93,7 @@ namespace dnd_character_sheet
             }
         }
 
+        private SheetSaveThrows _sheetSaveThrows;
         public SheetSaveThrows SheetSaveThrows
         {
             get
@@ -108,32 +105,5 @@ namespace dnd_character_sheet
                 _sheetSaveThrows = value;
             }
         }
-
-        public IRaceDndFactory RaceFactory
-        {
-            get
-            {
-                return _raceFactory;
-            }
-            protected set
-            {
-                _raceFactory = value;
-            }
-        }
-
-        public IClassDndFactory ClassFactory
-        {
-            get
-            {
-                return _classFactory;
-            }
-            protected set
-            {
-                _classFactory = value;
-            }
-        }
-        
-        public abstract void SetRace(string race);
-        public abstract void SetClass(string sheetClass);
     }
 }

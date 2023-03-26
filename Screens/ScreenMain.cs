@@ -103,7 +103,7 @@
                     case 6:
                         if (_isSheetLoaded == true)
                         {
-                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, _currentHeroSheet, @"Character_Sheets\" + _currentHeroSheet.Edition + @"\");
+                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, ref _currentHeroSheet, @"Character_Sheets\" + _currentHeroSheet.Edition + @"\");
                         }
                         else
                         {
