@@ -1,8 +1,12 @@
+using Newtonsoft.Json;
+
 namespace dnd_character_sheet
 {
     public abstract class SheetClass
     {
         private string _name;
+        
+        [JsonProperty("Name")]
         public string Name
         {
             get
