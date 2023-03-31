@@ -105,5 +105,60 @@ namespace dnd_character_sheet
                 _sheetSaveThrows = value;
             }
         }
+
+        private SheetPersonality _sheetPersonality;
+        public SheetPersonality SheetPersonality
+        {
+            get
+            {
+                return _sheetPersonality;
+            }
+            protected set
+            {
+                _sheetPersonality = value;
+            }
+        }
+
+        private SheetCombatAbilities _sheetCombatAbilities;
+
+        public SheetCombatAbilities SheetCombatAbilities
+        {
+            get
+            {
+                return _sheetCombatAbilities;
+            }
+            protected set
+            {
+                _sheetCombatAbilities = value;
+            }
+        }
+
+        private SheetProficiencies _sheetProficiencies;
+
+        public SheetProficiencies SheetProficiencies
+        {
+            get
+            {
+                return _sheetProficiencies;
+            }
+            protected set
+            {
+                _sheetProficiencies = value;
+            }
+        }
+
+        private SheetInventory _sheetInventory;
+
+        public SheetInventory SheetInventory
+        {
+            get
+            {
+                return _sheetInventory;
+            }
+            protected set
+            {
+                _sheetInventory = value;
+            }
+        }
     }
 }

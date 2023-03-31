@@ -13,6 +13,7 @@
         private JsonSaveLoad _jsonSaveLoad;
         private IUserOutput _userOutput;
         private IUserInput _userInput;
+        private PrintSheetInfo _printSheetInfo;
 
         public ScreenMain()
         {
@@ -23,6 +24,7 @@
             _jsonSaveLoad = new JsonSaveLoad();
             _userOutput = new ConsoleOutput();
             _userInput = new ConsoleInput();
+            _printSheetInfo = new PrintSheetInfo();
         }
         
         public void ShowMainScreen()
@@ -63,16 +65,7 @@
                         if (_isSheetLoaded == true)
                         {
                             _userOutput.Clear();
-                            _userOutput.Print("Экран информации о текущем листе персонажа.\n");
-                            _userOutput.Print("\nИмя: " + _currentHeroSheet.Name);
-                            _userOutput.Print("\nРаса: " + _currentHeroSheet.SheetRace.Name);
-                            _userOutput.Print("\nКласс: " + _currentHeroSheet.SheetClass.Name);
-                            _userOutput.Print("\nХарактеристики:");
-                            _userOutput.Print(_currentHeroSheet.SheetAbilities.Abilities);
-                            _userOutput.Print("\nНавыки:");
-                            _userOutput.Print(_currentHeroSheet.SheetSkills.Skills);
-                            _userOutput.Print("\nСпасброски: ");
-                            _userOutput.Print(_currentHeroSheet.SheetSaveThrows.SaveThrows);
+                            _printSheetInfo.ShowSheetFields(_currentHeroSheet);
                             _userInput.InputKey();
                         }
                         else

@@ -1,8 +1,12 @@
-﻿namespace dnd_character_sheet
+﻿using Newtonsoft.Json;
+
+namespace dnd_character_sheet
 {
     public abstract class SheetSkills
     {
         private Dictionary<string, bool> _skills = new Dictionary<string, bool>();
+        
+        [JsonProperty("Skills")]
         public Dictionary<string, bool> Skills
         {
             get

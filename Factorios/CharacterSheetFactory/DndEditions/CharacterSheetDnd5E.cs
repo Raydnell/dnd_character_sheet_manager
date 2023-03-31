@@ -11,6 +11,10 @@ namespace dnd_character_sheet
             SheetRace = new RaceDND5E();
             SheetClass = new ClassDND5E();
             Edition = "DND5E";
+            SheetPersonality = new PersonalityDND5E();
+            SheetCombatAbilities = new CombatAbilitiesDND5E();
+            SheetProficiencies = new ProficienciesDND5E();
+            SheetInventory = new InventoryDND5E();
         }
     }
 }

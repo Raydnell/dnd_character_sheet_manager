@@ -1,8 +1,12 @@
-﻿namespace dnd_character_sheet
+﻿using Newtonsoft.Json;
+
+namespace dnd_character_sheet
 {
     public abstract class SheetProgression
     {
         private int _expirience;
+        
+        [JsonProperty("Expirience")]
         public int Expirience
         {
             get
@@ -15,6 +19,8 @@
             }
         }
         private int _level;
+        
+        [JsonProperty("Level")]
         public int Level
         {
             get
