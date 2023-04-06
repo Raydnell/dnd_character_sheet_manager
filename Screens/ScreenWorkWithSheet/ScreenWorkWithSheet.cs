@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
-    public class ScreenWorkWithSheet
+    public class ScreenWorkWithSheet : IScreen
     {
         private int _choosenPoint;
         private int _rollResult;
@@ -25,7 +23,7 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
         }
 
-        public void ChooseSheetRolls(CharacterSheetBase heroSheet)
+        public void ShowScreen(CharacterSheetBase heroSheet)
         {
             while (_backToMenu == false)
             {

@@ -1,0 +1,97 @@
+{
+  "Name": "Hero 17",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "human"
+  },
+  "SheetClass": {
+    "Name": "barbarian"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "strength": 12,
+      "dexterity": 13,
+      "constitution": 14,
+      "intelligence": 15,
+      "wisdom": 16,
+      "charisma": 17
+    }
+  },
+  "SheetSkills": {
+    "Skills": {
+      "athletics": true,
+      "acrobatics": false,
+      "sleight": false,
+      "stealth": false,
+      "arcana": false,
+      "history": false,
+      "investigation": false,
+      "nature": false,
+      "religion": false,
+      "animal": false,
+      "insight": false,
+      "medicine": false,
+      "perception": false,
+      "surival": false,
+      "deception": false,
+      "intimidation": false,
+      "perfomance": false,
+      "persuasion": false
+    }
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": {
+      "strength": true,
+      "dexterity": false,
+      "constitution": true,
+      "intelligence": false,
+      "wisdom": false,
+      "charisma": false
+    }
+  },
+  "SheetPersonality": {
+    "Background": "",
+    "Alignment": "",
+    "PersonalityTraits": "",
+    "Ideals": "",
+    "Bonds": "",
+    "Flaws": "",
+    "Age": 1,
+    "Height": 1,
+    "Weight": 1,
+    "Eyes": "",
+    "Skin": "",
+    "Hair": ""
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 14,
+    "CurrentHP": 14,
+    "TemporaryHP": 0,
+    "Speed": 30,
+    "ArmorClass": 11,
+    "Initiative": 1,
+    "HitDice": 12,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 13
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "LightArmor",
+      "MediumArmor",
+      "HeavyArmor",
+      "Shield",
+      "Battleaxe",
+      "Greataxe"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

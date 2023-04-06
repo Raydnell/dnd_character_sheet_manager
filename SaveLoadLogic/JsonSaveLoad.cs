@@ -4,7 +4,7 @@ namespace dnd_character_sheet
 {
     class JsonSaveLoad
     {
-        public void JsonSave<T>(string fileName, ref T savingFile, string pathSave)
+        public void JsonSave<T>(string fileName, T savingFile, string pathSave)
         {
             string savedFile = JsonConvert.SerializeObject(savingFile, Formatting.Indented);
             File.WriteAllText(pathSave + fileName + ".json", savedFile);

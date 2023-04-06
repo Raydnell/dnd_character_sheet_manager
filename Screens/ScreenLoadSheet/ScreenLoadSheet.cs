@@ -1,6 +1,6 @@
 ﻿namespace dnd_character_sheet
 {
-    internal class ScreenLoadSheet
+    public class ScreenLoadSheet : IScreen
     {
         private string _name;
         private string _stringInput;
@@ -26,7 +26,7 @@
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
         }
 
-        public CharacterSheetBase LoadSheetFromFile()
+        public void ShowScreen(CharacterSheetBase heroSheet)
         {
             while(_isEditionChoose == false)
             {
@@ -83,7 +83,7 @@
                                 Console.ReadKey();
                                 Console.WriteLine(tempSheet.SheetRace.Name);
                                 _isSheetLoaded = true;
-                                return tempSheet;
+                                break;
                         }
                     }
                     else
@@ -93,8 +93,6 @@
                     }
                 }
             }
-
-            return null;
         }
     }
 }

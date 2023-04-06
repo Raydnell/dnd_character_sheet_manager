@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-            ScreenMain _screenMain = new ScreenMain();
+            IScreen screen = new ScreenMain();
+            CharacterSheetBase characterSheetBase = null;
 
-            _screenMain.ShowMainScreen();
+            screen.ShowScreen(characterSheetBase);
         }
     }
 }

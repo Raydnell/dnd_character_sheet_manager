@@ -77,5 +77,13 @@ namespace dnd_character_sheet
                 Console.WriteLine(item.Value.Name);
             }
         }
+
+        public void Print(List<string> value)
+        {
+            foreach(var item in value)
+            {
+                Console.WriteLine(item);
+            }
+        }
     }
 }

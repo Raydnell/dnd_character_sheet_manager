@@ -2,7 +2,7 @@
 
 namespace dnd_character_sheet
 {
-    public class ScreenRollDice
+    public class ScreenRollDice : IScreen
     {
         private bool _pointChoose;
 
@@ -18,15 +18,13 @@ namespace dnd_character_sheet
         public ScreenRollDice() 
         {
             _pointChoose = false;
-            _choosenPoint = 0;
             _checkInput = new CheckInput();
             _dicer = new Dicer();
         }
 
-        public void RollDice()
+        public void ShowScreen(CharacterSheetBase heroSheet)
         {
             _pointChoose = false;
-
             while (_pointChoose == false)
             {
                 _diceCount = 0;
@@ -62,6 +60,7 @@ namespace dnd_character_sheet
                     _pointChoose = true;
                 }
             }
+
         }
     }
 }

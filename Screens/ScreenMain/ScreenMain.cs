@@ -1,35 +1,30 @@
 ﻿namespace dnd_character_sheet
 {
-    internal class ScreenMain
+    public class ScreenMain : IScreen
     {
         private bool _isSheetLoaded;
+        private bool _isPointChoose;
+
         private int _choosenPoint;
 
-        private CharacterSheetBase _currentHeroSheet;
-        private ScreenLoadSheet _loadingScreen;
-        private ScreenRollDice _screenRollDice;
-        private ScreenSheetCreate _screenSheetCreate;
-        private ScreenWorkWithSheet _screenWorkWithSheet;
         private JsonSaveLoad _jsonSaveLoad;
         private IUserOutput _userOutput;
         private IUserInput _userInput;
         private PrintSheetInfo _printSheetInfo;
+        private IScreen _screen;
 
         public ScreenMain()
         {
-            _loadingScreen = new ScreenLoadSheet();
-            _screenRollDice = new ScreenRollDice();
-            _screenSheetCreate = new ScreenSheetCreate();
-            _screenWorkWithSheet = new ScreenWorkWithSheet();
             _jsonSaveLoad = new JsonSaveLoad();
             _userOutput = new ConsoleOutput();
             _userInput = new ConsoleInput();
             _printSheetInfo = new PrintSheetInfo();
         }
         
-        public void ShowMainScreen()
+        public void ShowScreen(CharacterSheetBase heroSheet)
         {
-            while (true)
+            _isPointChoose = false;
+            while(_isPointChoose == false)
             {
                 _userOutput.Clear();
                 _userOutput.Print("\nМеню:");
@@ -43,74 +38,77 @@
                 _userOutput.Print("\nВведите число, для перехода по меню: ", false);
 
                 _choosenPoint = _userInput.InputInt();
-                switch (_choosenPoint)
+                switch(_choosenPoint)
                 {
-                    case 0:
-                    default:
-                        _userOutput.Print("Введено неверное число, нужно ввести число из списка.");
-                        _userInput.InputKey();
-                        break;
-
                     case 1:
-                        _currentHeroSheet = _screenSheetCreate.SheetCreate(_currentHeroSheet);
+                        _screen = new ScreenSheetCreate();
+                        _screen.ShowScreen(heroSheet);
                         _isSheetLoaded = true;
                         break;
 
                     case 2:
-                        _currentHeroSheet = _loadingScreen.LoadSheetFromFile();
+                        _screen = new ScreenLoadSheet();
+                        _screen.ShowScreen(heroSheet);
                         _isSheetLoaded = true;
                         break;
 
                     case 3:
-                        if (_isSheetLoaded == true)
+                        if(_isSheetLoaded == true)
                         {
                             _userOutput.Clear();
-                            _printSheetInfo.ShowSheetFields(_currentHeroSheet);
+                            _printSheetInfo.ShowSheetFields(heroSheet);
                             _userInput.InputKey();
                         }
                         else
                         {
-                            _userOutput.Clear();
-                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            _userInput.InputKey();
+                            PrintListNotLoaded();
                         }
                         break;
 
                     case 4:
-                        _screenRollDice.RollDice();
+                        _screen = new ScreenRollDice();
+                        _screen.ShowScreen(heroSheet);
                         break;
 
                     case 5:
-                        if (_isSheetLoaded == true)
+                        if(_isSheetLoaded == true)
                         {
-                            _screenWorkWithSheet.ChooseSheetRolls(_currentHeroSheet);
+                            _screen = new ScreenWorkWithSheet();
+                            _screen.ShowScreen(heroSheet);
                         }
                         else
                         {
-                            _userOutput.Clear();
-                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            _userInput.InputKey();
+                            PrintListNotLoaded();
                         }
                         break;
 
                     case 6:
-                        if (_isSheetLoaded == true)
+                        if(_isSheetLoaded == true)
                         {
-                            _jsonSaveLoad.JsonSave(_currentHeroSheet.Name, ref _currentHeroSheet, @"Character_Sheets\" + _currentHeroSheet.Edition + @"\");
+                            _jsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
                         }
                         else
                         {
-                            _userOutput.Clear();
-                            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
-                            _userInput.InputKey();
+                            PrintListNotLoaded();
                         }
                         break;
 
                     case 10:
                         Environment.Exit(0);
                         break;
+
+                    default:
+                        PrintListNotLoaded();
+                        break;
                 }
             }
+        }
+
+        private void PrintListNotLoaded()
+        {
+            _userOutput.Clear();
+            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
+            _userInput.InputKey();
         }
     }
 }
