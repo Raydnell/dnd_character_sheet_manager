@@ -23,7 +23,7 @@
             _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             while (_backToMenu == false)
             {

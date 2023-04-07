@@ -7,7 +7,7 @@
             IScreen screen = new ScreenMain();
             CharacterSheetBase characterSheetBase = null;
 
-            screen.ShowScreen(characterSheetBase);
+            screen.ShowScreen(ref characterSheetBase);
         }
     }
 }

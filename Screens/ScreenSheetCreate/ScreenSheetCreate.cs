@@ -26,7 +26,7 @@
             _printSheetInfo = new PrintSheetInfo();
         }
 
-        public void ShowScreen(CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             _userOutput.Clear();
             _userOutput.Print("Пришло время создать героя!\n");

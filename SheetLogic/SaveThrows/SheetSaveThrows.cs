@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetSaveThrows
     {
-        private Dictionary<string, bool> _saveThrows = new Dictionary<string, bool>();
+        private List<string> _saveThrows = new List<string>();
         
         [JsonProperty("SaveThrows")]
-        public Dictionary<string, bool> SaveThrows
+        public List<string> SaveThrows
         {
             get
             {

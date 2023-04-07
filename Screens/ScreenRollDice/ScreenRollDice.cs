@@ -22,7 +22,7 @@ namespace dnd_character_sheet
             _dicer = new Dicer();
         }
 
-        public void ShowScreen(CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             _pointChoose = false;
             while (_pointChoose == false)

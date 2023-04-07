@@ -26,8 +26,9 @@
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
         }
 
-        public void ShowScreen(CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
+            _isEditionChoose = false;
             while(_isEditionChoose == false)
             {
                 _userOutput.Clear();
@@ -77,11 +78,10 @@
                         switch(_choosenEdition)
                         {
                             case("DND5E"):
-                                CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
-                                _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", ref tempSheet);
+                                heroSheet = new CharacterSheetDnd5E();
+                                _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", ref heroSheet);
                                 Console.WriteLine("Герой загружен.");
                                 Console.ReadKey();
-                                Console.WriteLine(tempSheet.SheetRace.Name);
                                 _isSheetLoaded = true;
                                 break;
                         }

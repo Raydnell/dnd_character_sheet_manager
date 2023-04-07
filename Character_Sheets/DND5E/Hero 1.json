@@ -1,11 +1,11 @@
 {
-  "Name": "Hero 13",
+  "Name": "Hero 1",
   "Edition": "DND5E",
   "SheetRace": {
     "Name": "dwarf"
   },
   "SheetClass": {
-    "Name": "fighter"
+    "Name": "barbarian"
   },
   "SheetAbilities": {
     "Abilities": {
@@ -20,9 +20,9 @@
   "SheetSkills": {
     "Skills": {
       "athletics": false,
-      "acrobatics": false,
+      "acrobatics": true,
       "sleight": false,
-      "stealth": true,
+      "stealth": false,
       "arcana": false,
       "history": false,
       "investigation": false,
@@ -53,6 +53,41 @@
       "charisma": false
     }
   },
-  "RaceFactory": {},
-  "ClassFactory": {}
+  "SheetPersonality": {
+    "Background": "",
+    "Alignment": "",
+    "PersonalityTraits": "",
+    "Ideals": "",
+    "Bonds": "",
+    "Flaws": "",
+    "Age": 1,
+    "Height": 1,
+    "Weight": 1,
+    "Eyes": "",
+    "Skin": "",
+    "Hair": ""
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 14,
+    "CurrentHP": 14,
+    "TemporaryHP": 0,
+    "Speed": 25,
+    "ArmorClass": 11,
+    "Initiative": 1,
+    "HitDice": 12,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 13
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "LightArmor",
+      "MediumArmor"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
 }

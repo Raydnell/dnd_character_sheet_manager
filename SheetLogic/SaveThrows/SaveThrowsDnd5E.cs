@@ -4,15 +4,7 @@ namespace dnd_character_sheet
     {
         public SaveThrowsDnd5E()
         {
-            SaveThrows = new Dictionary<string, bool>()
-            {
-                ["strength"] = false,
-                ["dexterity"] = false,
-                ["constitution"] = false,
-                ["intelligence"] = false,
-                ["wisdom"] = false,
-                ["charisma"] = false
-            };
+            SaveThrows = new List<string>();
         }
         
         public override void SetSaveTrows(string className)
@@ -20,57 +12,50 @@ namespace dnd_character_sheet
             switch (className)
             {
                 case "bard":
-                    SaveThrows["dexterity"] = true;
-                    SaveThrows["charisma"] = true;
+                    SaveThrows.Add("dexterity");
+                    SaveThrows.Add("charisma");
                     break;
 
                 case "barbarian":
                 case "fighter":
-                    SaveThrows["strength"] = true;
-                    SaveThrows["constitution"] = true;
+                    SaveThrows.Add("strength");
+                    SaveThrows.Add("constitution");
                     break;
 
                 case "wizard":
                 case "druid":
-                    SaveThrows["intelligence"] = true;
-                    SaveThrows["wisdom"] = true;
+                    SaveThrows.Add("intelligence");
+                    SaveThrows.Add("wisdom");
                     break;
 
                 case "cleric":
                 case "warlock":
                 case "paladin":
-                    SaveThrows["wisdom"] = true;
-                    SaveThrows["charisma"] = true;
+                    SaveThrows.Add("wisdom");
+                    SaveThrows.Add("charisma");
                     break;
 
                 case "monk":
                 case "ranger":
-                    SaveThrows["strength"] = true;
-                    SaveThrows["dexterity"] = true;
+                    SaveThrows.Add("strength");
+                    SaveThrows.Add("dexterity");
                     break;
 
                 case "rogue":
-                    SaveThrows["dexterity"] = true;
-                    SaveThrows["intelligence"] = true;
+                    SaveThrows.Add("dexterity");
+                    SaveThrows.Add("intelligence");
                     break;
 
                 case "sorcerer":
-                    SaveThrows["constitution"] = true;
-                    SaveThrows["charisma"] = true;
+                    SaveThrows.Add("constitution");
+                    SaveThrows.Add("charisma");
                     break;
             }
         }
 
         public override bool CheckSaveThrow(string saveTrow)
         {
-            if(SaveThrows.ContainsKey(saveTrow))
-            {
-                return SaveThrows[saveTrow];
-            }
-            else
-            {
-                return false;
-            }
+            return SaveThrows.Contains(saveTrow);
         }
     }
 }

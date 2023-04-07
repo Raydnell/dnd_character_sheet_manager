@@ -4,39 +4,19 @@ namespace dnd_character_sheet
     {
         public SkillsDnd5E()
         {
-            Skills = new Dictionary<string, bool>()
-            {
-                ["athletics"] = false,
-                ["acrobatics"] = false,
-                ["sleight"] = false,
-                ["stealth"] = false,
-                ["arcana"] = false,
-                ["history"] = false,
-                ["investigation"] = false,
-                ["nature"] = false,
-                ["religion"] = false,
-                ["animal"] = false,
-                ["insight"] = false,
-                ["medicine"] = false,
-                ["perception"] = false,
-                ["surival"] = false,
-                ["deception"] = false,
-                ["intimidation"] = false,
-                ["perfomance"] = false,
-                ["persuasion"] = false
-            };
+            Skills = new List<string>();
         }
 
         public override bool CheckSkill(string skill)
         {
-            return Skills[skill];
+            return Skills.Contains(skill);
         }
 
         public override void AddSkill(string skill)
         {
-            if(Skills.ContainsKey(skill))
+            if(Skills.Contains(skill) == false)
             {
-                Skills[skill] = true;
+                Skills.Add(skill);
             }
         }
 

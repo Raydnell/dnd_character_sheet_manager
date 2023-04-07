@@ -21,7 +21,7 @@
             _printSheetInfo = new PrintSheetInfo();
         }
         
-        public void ShowScreen(CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             _isPointChoose = false;
             while(_isPointChoose == false)
@@ -42,13 +42,13 @@
                 {
                     case 1:
                         _screen = new ScreenSheetCreate();
-                        _screen.ShowScreen(heroSheet);
+                        _screen.ShowScreen(ref heroSheet);
                         _isSheetLoaded = true;
                         break;
 
                     case 2:
                         _screen = new ScreenLoadSheet();
-                        _screen.ShowScreen(heroSheet);
+                        _screen.ShowScreen(ref heroSheet);
                         _isSheetLoaded = true;
                         break;
 
@@ -67,14 +67,14 @@
 
                     case 4:
                         _screen = new ScreenRollDice();
-                        _screen.ShowScreen(heroSheet);
+                        _screen.ShowScreen(ref heroSheet);
                         break;
 
                     case 5:
                         if(_isSheetLoaded == true)
                         {
                             _screen = new ScreenWorkWithSheet();
-                            _screen.ShowScreen(heroSheet);
+                            _screen.ShowScreen(ref heroSheet);
                         }
                         else
                         {

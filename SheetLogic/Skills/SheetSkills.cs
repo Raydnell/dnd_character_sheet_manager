@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetSkills
     {
-        private Dictionary<string, bool> _skills = new Dictionary<string, bool>();
+        private List<string> _skills;
         
         [JsonProperty("Skills")]
-        public Dictionary<string, bool> Skills
+        public List<string> Skills
         {
             get
             {
