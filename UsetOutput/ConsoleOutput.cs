@@ -85,5 +85,13 @@ namespace dnd_character_sheet
                 Console.WriteLine(item);
             }
         }
+
+        public void Print(Dictionary<string, string> value)
+        {
+            foreach(var item in value)
+            {
+                Console.WriteLine(item.Key + " - " + item.Value);
+            }
+        }
     }
 }

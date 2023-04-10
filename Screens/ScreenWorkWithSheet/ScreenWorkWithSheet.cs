@@ -14,6 +14,7 @@
         private Dicer _dicer;
         private IUserInput _userInput;
         private IUserOutput _userOutput;
+        private PrintSheetInfo _printSheetInfo;
 
         public ScreenWorkWithSheet()
         {
@@ -21,6 +22,7 @@
             _input = string.Empty;
             _userInput = new ConsoleInput();
             _userOutput = new ConsoleOutput();
+            _printSheetInfo = new PrintSheetInfo();
         }
 
         public void ShowScreen(ref CharacterSheetBase heroSheet)
@@ -60,7 +62,8 @@
                         break;
 
                     case 4:
-                        //heroSheet.PrintSheetInfoAll();
+                        _printSheetInfo.ShowSheetFields(heroSheet);
+                        _userInput.InputKey();
                         break;
 
                     case 5:

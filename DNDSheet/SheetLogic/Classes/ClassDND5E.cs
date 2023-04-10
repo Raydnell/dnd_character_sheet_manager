@@ -4,7 +4,7 @@ namespace dnd_character_sheet
     {
         public ClassDND5E()
         {
-            Name = "work bitch";
+            Name = string.Empty;
         }
 
         public override void SetClass(string sheetClass)

@@ -115,6 +115,15 @@
             );
 
             _userOutput.Clear();
+            _userOutput.Print("Укажите персоналии героя: \n");
+            string[] personalityList = Enum.GetNames(typeof(EnumPersonalitiesDND5E));
+            foreach(string item in personalityList)
+            {
+                _userOutput.Print(item + ": ", false);
+                heroSheet.SheetPersonality.AddPersonality(item, _userInput.InputString());
+            }
+
+            _userOutput.Clear();
             _userOutput.Print("Вот ваш новый герой!");
             _printSheetInfo.ShowSheetFields(heroSheet);
             _userInput.InputKey();

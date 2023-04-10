@@ -1,0 +1,73 @@
+{
+  "Name": "Hero 21",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "halforc"
+  },
+  "SheetClass": {
+    "Name": "druid"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "strength": 12,
+      "dexterity": 13,
+      "constitution": 14,
+      "intelligence": 15,
+      "wisdom": 16,
+      "charisma": 17
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      "arcana"
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 600,
+    "Level": 2
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      "intelligence",
+      "wisdom"
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "general",
+      "Alignment": "general",
+      "PersonalityTraits": "treait",
+      "Ideals": "dasda",
+      "Bonds": "sdfgas",
+      "Flaws": "dfasdf",
+      "Age": "sdfasdf",
+      "Height": "sdf",
+      "Weight": "sdf",
+      "Eyes": "sdfgh",
+      "Skin": "asda",
+      "Hair": "qwe23"
+    }
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 10,
+    "CurrentHP": 10,
+    "TemporaryHP": 0,
+    "Speed": 30,
+    "ArmorClass": 11,
+    "Initiative": 1,
+    "HitDice": 8,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 13
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "GlassblowersTools"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

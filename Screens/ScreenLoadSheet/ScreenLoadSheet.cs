@@ -73,13 +73,14 @@
                     }
                     
                     _name = _userInput.InputString();
-                    if (File.Exists(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json"))
+                    if(File.Exists(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json"))
                     {
                         switch(_choosenEdition)
                         {
                             case("DND5E"):
-                                heroSheet = new CharacterSheetDnd5E();
-                                _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", ref heroSheet);
+                                CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
+                                _jsonSaveLoad.JsonLoad(@"Character_Sheets\" + _choosenEdition + @"\" + _name + ".json", ref tempSheet);
+                                heroSheet = tempSheet;
                                 Console.WriteLine("Герой загружен.");
                                 Console.ReadKey();
                                 _isSheetLoaded = true;
