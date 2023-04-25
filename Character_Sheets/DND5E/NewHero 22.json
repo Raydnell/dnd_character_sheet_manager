@@ -1,0 +1,70 @@
+{
+  "Name": "NewHero 22",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "Полурослик"
+  },
+  "SheetClass": {
+    "Name": "Колдун"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "strength": 14,
+      "dexterity": 15,
+      "constitution": 16,
+      "intelligence": 17,
+      "wisdom": 18,
+      "charisma": 19
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      "История",
+      "Атлетика",
+      "Магия"
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "123",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "132",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 9,
+    "CurrentHP": 9,
+    "TemporaryHP": 0,
+    "Speed": 30,
+    "ArmorClass": 12,
+    "Initiative": 2,
+    "HitDice": 6,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 14
+  },
+  "SheetProficiencies": {
+    "Proficiencies": []
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

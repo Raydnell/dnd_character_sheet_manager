@@ -6,11 +6,11 @@ namespace dnd_character_sheet
         
         public InventoryDND5E()
         {
-            Inventory = new Dictionary<int, Item>();
+            Inventory = new Dictionary<int, BaseItem>();
             _random = new Random();
         }
 
-        public override void AddItem(Item item)
+        public override void AddItem(BaseItem item)
         {
             Inventory.Add(_random.Next(1000), item);
         }

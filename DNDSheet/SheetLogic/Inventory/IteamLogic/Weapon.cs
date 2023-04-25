@@ -1,6 +1,6 @@
 namespace dnd_character_sheet
 {
-    public abstract class Weapon : Item
+    public abstract class Weapon : BaseItem
     {
         private int _damageDiceCount;
         public int DamageDiceCount

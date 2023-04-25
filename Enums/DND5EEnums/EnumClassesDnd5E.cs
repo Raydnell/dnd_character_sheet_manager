@@ -2,17 +2,17 @@
 {
     public enum EnumClassesDnd5E
     {
-        bard = 1,
-        barbarian,
-        fighter,
-        wizard,
-        druid,
-        cleric,
-        warlock,
-        monk,
-        paladin,
-        rogue,
-        ranger,
-        sorcerer
+        Bard,
+        Barbarian,
+        Fighter,
+        Wizard,
+        Druid,
+        Cleric,
+        Warlock,
+        Monk,
+        Paladin,
+        Rogue,
+        Ranger,
+        Sorcerer
     }
 }

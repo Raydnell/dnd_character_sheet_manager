@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public abstract class CharacterSheetBase
     {
-        private string _name = string.Empty;
+        private string _name;
         public string Name
         {
             get
@@ -15,7 +15,7 @@ namespace dnd_character_sheet
             }
         }
 
-        private string _edition = string.Empty;        
+        private string _edition;        
         public string Edition
         {
             get

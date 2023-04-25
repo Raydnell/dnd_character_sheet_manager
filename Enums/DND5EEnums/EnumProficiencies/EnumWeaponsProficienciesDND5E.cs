@@ -1,0 +1,43 @@
+namespace dnd_character_sheet
+{
+    public enum EnumWeaponsProficienciesDND5E
+    {
+        Club,
+        Dagger,
+        Greatclub,
+        Handaxe,
+        Javelin,
+        LightHammer,
+        Mace,
+        Quarterstaff,
+        Sickle,
+        Spear,
+        Crossbow,
+        Dart,
+        Shortbow,
+        Sling,
+        Battleaxe,
+        Flail,
+        Glaive,
+        Greataxe,
+        Greatsword,
+        Halberd,
+        Lance,
+        Longsword,
+        Maul,
+        Morningstar,
+        Pike,
+        Rapier,
+        Scimitar,
+        Shortsword,
+        Trident,
+        WarPick,
+        Warhammer,
+        Whip,
+        Blowgun,
+        CrossbowHand,
+        CrossbowHeavy,
+        Longbow,
+        Net
+    }
+}

@@ -4,23 +4,23 @@ namespace dnd_character_sheet
     {
         public AbilitiesDnd5E()
         {
-            Abilities = new Dictionary<string, int>()
+            Abilities = new Dictionary<Enum, int>()
             {
-                ["strength"] = 1,
-                ["dexterity"] = 1,
-                ["constitution"] = 1,
-                ["intelligence"] = 1,
-                ["wisdom"] = 1,
-                ["charisma"] = 1
+                [EnumAbilitiesDnd5E.Strength] = 1,
+                [EnumAbilitiesDnd5E.Dexterity] = 1,
+                [EnumAbilitiesDnd5E.Constitution] = 1,
+                [EnumAbilitiesDnd5E.Intelligence] = 1,
+                [EnumAbilitiesDnd5E.Wisdom] = 1,
+                [EnumAbilitiesDnd5E.Charisma] = 1
             };
         }
         
-        public override int GetAbilityModificator(string ability)
+        public override int GetAbilityModificator(Enum ability)
         {
             return AbilityBonus(GetAbilityScore(ability));
         }
 
-        public override int GetAbilityScore(string ability)
+        public override int GetAbilityScore(Enum ability)
         {
             return Abilities[ability];
         }
@@ -61,18 +61,19 @@ namespace dnd_character_sheet
                 return 10;
         }
 
-        public override void SetAbilities(Dictionary<string, int> abilities)
+        public override void SetAbilities(Dictionary<Enum, int> abilities)
         {
-            if(abilities.Count() == 6)
+            foreach(var item in abilities)
             {
-                foreach(var item in abilities)
-                {
-                    Abilities[item.Key] = item.Value;
-                }
+                Abilities[item.Key] = item.Value;
             }
-            else
+        }
+
+        public override void SetAbilityScore(Enum abilityName, int abilityScore)
+        {
+            if(abilityScore > 0 && Abilities.ContainsKey(abilityName))
             {
-                throw new InvalidOperationException("Abilities count must be six");
+                Abilities[abilityName] = abilityScore;
             }
         }
     }

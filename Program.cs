@@ -4,10 +4,19 @@
     {
         static void Main(string[] args)
         {
+            ShowMenusCursor showMenusCursor = new ShowMenusCursor();
+            Enum language;
             IScreen screen = new ScreenMain();
-            CharacterSheetBase characterSheetBase = null;
+            CharacterSheetBase heroSheet = new CharacterSheetDnd5E();
 
-            screen.ShowScreen(ref characterSheetBase);
+            language = showMenusCursor.ShowMenuPoints(
+                LocalizationsStash.StartScreenTitle,
+                LocalizationsStash.StartScreenPoints,
+                EnumLanguages.Russian,
+                EnumStartMenuTitles.ChooseLang
+            );
+            
+            screen.ShowScreen(ref heroSheet, language);
         }
     }
 }

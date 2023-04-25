@@ -1,0 +1,70 @@
+{
+  "Name": "Enum Hero",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "Драконорожденный"
+  },
+  "SheetClass": {
+    "Name": "Жрец"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 13,
+      "Dexterity": 14,
+      "Constitution": 15,
+      "Intelligence": 16,
+      "Wisdom": 17,
+      "Charisma": 18
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      "Внимательсность"
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Предыстория": "123",
+      "Мировоззрение": "123",
+      "Черты характера": "123",
+      "Идеалы": "123",
+      "Привязанности": "123",
+      "Слабости": "123",
+      "Возраст": "123",
+      "Рост": "123",
+      "Вес": "123",
+      "Кожа": "123",
+      "Глаза": "123",
+      "Причёска": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 10,
+    "CurrentHP": 10,
+    "TemporaryHP": 0,
+    "Speed": 30,
+    "ArmorClass": 12,
+    "Initiative": 2,
+    "HitDice": 8,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 15
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "Лёгкий доспех"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

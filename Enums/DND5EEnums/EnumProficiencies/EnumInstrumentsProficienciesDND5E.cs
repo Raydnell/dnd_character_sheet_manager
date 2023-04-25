@@ -1,8 +1,8 @@
 namespace dnd_character_sheet
 {
-    public enum EnumArtisansToolsProficienciesDND5E
+    public enum EnumInstrumentsProficienciesDND5E
     {
-	    AlchemistsSupplies = 1,
+	    AlchemistsSupplies,
         BrewersSupplies,
         CalligraphersSupplies,
         CarpentersTools,
@@ -18,6 +18,12 @@ namespace dnd_character_sheet
         SmithsTools,
         TinkersTools,
         WeaversTools,
-        WoodcarversTools
+        WoodcarversTools,
+        NavigatorsTools,
+        PoisonersKit,
+        ThievesTools,
+		DisguiseKit,
+        ForgeryKit,
+		Herbalism
     }
 }

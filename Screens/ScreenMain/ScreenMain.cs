@@ -5,13 +5,14 @@
         private bool _isSheetLoaded;
         private bool _isPointChoose;
 
-        private int _choosenPoint;
+        private string _choosenPoint;
 
         private JsonSaveLoad _jsonSaveLoad;
         private IUserOutput _userOutput;
         private IUserInput _userInput;
         private PrintSheetInfo _printSheetInfo;
         private IScreen _screen;
+        private ShowMenusCursor _showMenusCursor;
 
         public ScreenMain()
         {
@@ -19,44 +20,41 @@
             _userOutput = new ConsoleOutput();
             _userInput = new ConsoleInput();
             _printSheetInfo = new PrintSheetInfo();
+            _showMenusCursor = new ShowMenusCursor();
         }
-        
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+
+        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
+            Enum _choosenPoint2;
+            
             _isPointChoose = false;
             while(_isPointChoose == false)
             {
-                _userOutput.Clear();
-                _userOutput.Print("\nМеню:");
-                _userOutput.Print("1. Создание листа");
-                _userOutput.Print("2. Загрузить лист");
-                _userOutput.Print("3. Вывести информацию о текущем листе персонажа");
-                _userOutput.Print("4. Свободные броски кубика");
-                _userOutput.Print("5. Работа с листом");
-                _userOutput.Print("6. Сохранить текущий лист");
-                _userOutput.Print("10. Выход");
-                _userOutput.Print("\nВведите число, для перехода по меню: ", false);
-
-                _choosenPoint = _userInput.InputInt();
-                switch(_choosenPoint)
+                _choosenPoint2 = _showMenusCursor.ShowMenuPoints(
+                    LocalizationsStash.MainMenuTitles, 
+                    LocalizationsStash.MainMenuPoints, 
+                    language, 
+                    EnumMainMenuTitles.MainMenu
+                );
+                switch(_choosenPoint2)
                 {
-                    case 1:
+                    case EnumMainMenuPoints.CreateSheet:
                         _screen = new ScreenSheetCreate();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen(ref heroSheet, language);
                         _isSheetLoaded = true;
                         break;
 
-                    case 2:
+                    case EnumMainMenuPoints.LoadSheet:
                         _screen = new ScreenLoadSheet();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen(ref heroSheet, language);
                         _isSheetLoaded = true;
                         break;
 
-                    case 3:
+                    case EnumMainMenuPoints.PrintSheet:
                         if(_isSheetLoaded == true)
                         {
                             _userOutput.Clear();
-                            _printSheetInfo.ShowSheetFields(heroSheet);
+                            _printSheetInfo.ShowSheetFields(heroSheet, language);
                             _userInput.InputKey();
                         }
                         else
@@ -65,16 +63,16 @@
                         }
                         break;
 
-                    case 4:
+                    case EnumMainMenuPoints.DiceRolls:
                         _screen = new ScreenRollDice();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen(ref heroSheet, language);
                         break;
 
-                    case 5:
+                    case EnumMainMenuPoints.WorkWithSheet:
                         if(_isSheetLoaded == true)
                         {
-                            _screen = new ScreenWorkWithSheet();
-                            _screen.ShowScreen(ref heroSheet);
+                            _screen = new ScreenWorkSheetMenu();
+                            _screen.ShowScreen(ref heroSheet, language);
                         }
                         else
                         {
@@ -82,10 +80,12 @@
                         }
                         break;
 
-                    case 6:
+                    case EnumMainMenuPoints.SaveSheeet:
                         if(_isSheetLoaded == true)
                         {
                             _jsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
+                            _userOutput.Print(LocalizationsStash.MainMenuTitles[EnumMainMenuTitles.SheetSaved][EnumLanguages.Russian]);
+                            _userInput.InputKey();
                         }
                         else
                         {
@@ -93,7 +93,7 @@
                         }
                         break;
 
-                    case 10:
+                    case EnumMainMenuPoints.Exit:
                         Environment.Exit(0);
                         break;
 

@@ -1,6 +1,6 @@
 namespace dnd_character_sheet
 {
-    public abstract class Armor : Item
+    public abstract class Armor : BaseItem
     {
         private int _armorClass;
         public int ArmorClass

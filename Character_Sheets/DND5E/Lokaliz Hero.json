@@ -1,0 +1,74 @@
+{
+  "Name": "Lokaliz Hero",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "Драконорожденный"
+  },
+  "SheetClass": {
+    "Name": "Волщебник"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Сила": 1,
+      "Ловкость": 1,
+      "Телосложение": 1,
+      "Интеллект": 1,
+      "Мудрость": 1,
+      "Харизма": 1
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      "Атлетика",
+      "Запугивание",
+      "Акробатика"
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Предыстория": "123",
+      "Мировоззрение": "123",
+      "Черты характера": "123",
+      "Идеалы": "123",
+      "Привязанности": "123",
+      "Слабости": "123",
+      "Возраст": "123",
+      "Рост": "123",
+      "Вес": "123",
+      "Кожа": "123",
+      "Глаза": "123",
+      "Причёска": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 1,
+    "CurrentHP": 1,
+    "TemporaryHP": 0,
+    "Speed": 30,
+    "ArmorClass": 5,
+    "Initiative": -5,
+    "HitDice": 6,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 1,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 5
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "Средний доспех",
+      "Воинское рукопашное оружие",
+      "Драконьи шахматы"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

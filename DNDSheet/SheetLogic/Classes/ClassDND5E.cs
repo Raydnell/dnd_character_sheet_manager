@@ -9,10 +9,7 @@ namespace dnd_character_sheet
 
         public override void SetClass(string sheetClass)
         {
-            if (Enum.TryParse<EnumClassesDnd5E>(sheetClass, out EnumClassesDnd5E result))
-            {
-                Name =  result.ToString();
-            }
+            Name =  sheetClass;
         }
     }
 }

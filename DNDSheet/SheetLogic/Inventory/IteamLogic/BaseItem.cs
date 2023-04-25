@@ -1,6 +1,6 @@
 namespace dnd_character_sheet
 {
-    public abstract class Item
+    public abstract class BaseItem
     {
         private string _name = string.Empty;
         

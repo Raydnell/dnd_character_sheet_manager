@@ -2,11 +2,11 @@
 {
     public enum EnumAbilitiesDnd5E
     {
-        strength = 1,
-        dexterity,
-        constitution,
-        intelligence,
-        wisdom,
-        charisma
+        Strength,
+        Dexterity,
+        Constitution,
+        Intelligence,
+        Wisdom,
+        Charisma
     }
 }

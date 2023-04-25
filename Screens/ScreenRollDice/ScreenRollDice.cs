@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace dnd_character_sheet
+﻿namespace dnd_character_sheet
 {
     public class ScreenRollDice : IScreen
     {
@@ -12,17 +10,18 @@ namespace dnd_character_sheet
         private int _diceResult;
         private int _diceModificator;
 
-        private CheckInput _checkInput;
+        private IUserInput _userInput;
+        private IUserOutput _userOutput;
         private Dicer _dicer;
 
         public ScreenRollDice() 
         {
-            _pointChoose = false;
-            _checkInput = new CheckInput();
             _dicer = new Dicer();
+            _userInput = new ConsoleInput();
+            _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
             _pointChoose = false;
             while (_pointChoose == false)
@@ -33,23 +32,23 @@ namespace dnd_character_sheet
                 _diceModificator = 0;
 
                 Console.Clear();
-                Console.WriteLine("Время бросать кубы!");
+                Console.WriteLine("Время бросать кубы!\n");
                 Console.WriteLine("Сколько кубов нужно кинуть?");
-                _diceCount = _checkInput.CheckIntInput();
+                _diceCount = _userInput.InputInt();
 
                 Console.WriteLine("Сколько граней?");
-                _diceValue = _checkInput.CheckIntInput();
+                _diceValue = _userInput.InputInt();
 
                 Console.WriteLine("Какой модификатор?");
-                _diceModificator = _checkInput.CheckIntInput();
+                _diceModificator = _userInput.InputInt();
 
                 _diceResult = _dicer.DiceRoll(_diceCount, _diceValue, _diceModificator);
 
-                Console.Write($"Результат броска: {_diceResult}\n");
+                _userOutput.Print($"Результат броска: {_diceResult}\n");
 
-                Console.WriteLine("Бросить ещё? (1 = Да, другое = Нет)");
+                _userOutput.Print("Бросить ещё? (1 = Да, другое = Нет)");
 
-                _choosenPoint = _checkInput.CheckIntInput();
+                _choosenPoint = _userInput.InputInt();;
 
                 if (_choosenPoint == 1)
                 {
@@ -60,7 +59,6 @@ namespace dnd_character_sheet
                     _pointChoose = true;
                 }
             }
-
         }
     }
 }

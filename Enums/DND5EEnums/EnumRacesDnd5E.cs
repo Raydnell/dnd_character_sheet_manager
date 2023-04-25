@@ -2,14 +2,14 @@
 {
     public enum EnumRacesDnd5E
     {
-        gnome = 1,
-        dwarf,
-        dragonborn,
-        halforc,
-        halfling,
-        halfelf,
-        tiefling,
-        human,
-        elf
+        Gnome,
+        Dwarf,
+        Dragonborn,
+        Halforc,
+        Halfling,
+        Halfelf,
+        Tiefling,
+        Human,
+        Elf
     }
 }

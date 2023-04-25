@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public enum EnumMusicalInstrumentProficienciesDND5E
     {
-        Bagpipes = 1,
+        Bagpipes,
         Drum,
         Dulcimer,
         Flute,

@@ -1,0 +1,78 @@
+{
+  "Name": "NewHero",
+  "Edition": "DND5E",
+  "SheetRace": {
+    "Name": "human"
+  },
+  "SheetClass": {
+    "Name": "bard"
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "strength": 12,
+      "dexterity": 15,
+      "constitution": 14,
+      "intelligence": 15,
+      "wisdom": 16,
+      "charisma": 17
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      "arcana",
+      "history",
+      "religion"
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 400,
+    "Level": 2
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      "intelligence",
+      "wisdom"
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "general",
+      "Alignment": "general",
+      "PersonalityTraits": "treait",
+      "Ideals": "dasda",
+      "Bonds": "sdfgas",
+      "Flaws": "dfasdf",
+      "Age": "sdfasdf",
+      "Height": "sdf",
+      "Weight": "sdf",
+      "Eyes": "sdfgh",
+      "Skin": "asda",
+      "Hair": "Black",
+      "Finger": "Pink"
+    }
+  },
+  "SheetCombatAbilities": {
+    "MaximumHP": 22,
+    "CurrentHP": 20,
+    "TemporaryHP": 14,
+    "Speed": 25,
+    "ArmorClass": 14,
+    "Initiative": 1,
+    "HitDice": 8,
+    "TotalHitDices": 1,
+    "CurrentHitDices": 0,
+    "DeathSucces": 0,
+    "DeathFailure": 0,
+    "PassiveWisdom": 13
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      "GlassblowersTools",
+      "Dart",
+      "Crossbow"
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

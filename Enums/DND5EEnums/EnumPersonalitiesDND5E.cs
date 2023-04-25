@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public enum EnumPersonalitiesDND5E
     {
-            Background = 1,
+            Background,
             Alignment,
             PersonalityTraits,
             Ideals,

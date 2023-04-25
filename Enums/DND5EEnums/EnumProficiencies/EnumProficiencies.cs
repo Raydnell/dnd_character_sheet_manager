@@ -2,14 +2,11 @@ namespace dnd_character_sheet
 {
     public enum EnumProficiencies
     {
-        SimpleMelee,
-        SimpleRanged,
-        MartialMelee,
-        MartialRanged,
-        Musician,
-        Gaming,
+        Weapons,
+        Armor,
         Instrument,
         Artisan,
-        Armor
+        Musician,
+        Gaming
     }
 }

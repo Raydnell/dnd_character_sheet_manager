@@ -25,7 +25,7 @@
             _printSheetInfo = new PrintSheetInfo();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
             while (_backToMenu == false)
             {
@@ -50,7 +50,7 @@
                         break;
 
                     case 1:
-                        CheckAbility(heroSheet);
+                        CheckAbility(heroSheet, language);
                         break;
 
                     case 2:
@@ -62,7 +62,7 @@
                         break;
 
                     case 4:
-                        _printSheetInfo.ShowSheetFields(heroSheet);
+                        _printSheetInfo.ShowSheetFields(heroSheet, language);
                         _userInput.InputKey();
                         break;
 
@@ -77,20 +77,20 @@
             }
         }
 
-        private void CheckAbility(CharacterSheetBase heroSheet)
+        private void CheckAbility(CharacterSheetBase heroSheet, Enum language)
         {
             _correctInput = false;
             while (_correctInput == false)
             {
                 _userOutput.Clear();
                 _userOutput.Print("Какую характеристику нужно проверить:\n");
-                _userOutput.Print(heroSheet.SheetAbilities.Abilities);
+                _userOutput.Print(heroSheet.SheetAbilities.Abilities, language);
                 _userOutput.Print("\n");
 
                 _input = _userInput.InputString();
                 if (Enum.TryParse<EnumAbilitiesDnd5E>(_input, out EnumAbilitiesDnd5E result))
                 {
-                    _rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()));
+                    //_rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()));
                     _userOutput.Print($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;
                     _userInput.InputKey();
@@ -118,11 +118,11 @@
                 {
                     if(heroSheet.SheetSkills.CheckSkill(result.ToString()))
                     {
-                        _rollResult = _dicer.DiceRoll(1, 20, (heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString())) + heroSheet.SheetProgression.GetProficiencyBonus()));
+                        //_rollResult = _dicer.DiceRoll(1, 20, (heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString())) + heroSheet.SheetProgression.GetProficiencyBonus()));
                     }
                     else
                     {
-                        _rollResult = _dicer.DiceRoll(1, 20, (heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString()))));
+                        //_rollResult = _dicer.DiceRoll(1, 20, (heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString()))));
                     }
                     _userOutput.Print($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;
@@ -151,11 +151,11 @@
                 {
                     if(heroSheet.SheetSaveThrows.CheckSaveThrow(result.ToString()))
                     {
-                        _rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()) + heroSheet.SheetProgression.GetProficiencyBonus());
+                        //_rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()) + heroSheet.SheetProgression.GetProficiencyBonus());
                     }
                     else
                     {
-                        _rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()));
+                        //_rollResult = _dicer.DiceRoll(1, 20, heroSheet.SheetAbilities.GetAbilityModificator(result.ToString()));
                     }
                     _userOutput.Print($"\nРезультат проверки: {_rollResult}");
                     _correctInput = true;

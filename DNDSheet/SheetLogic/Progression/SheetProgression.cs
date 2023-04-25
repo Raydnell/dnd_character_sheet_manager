@@ -36,5 +36,7 @@ namespace dnd_character_sheet
         public abstract void GainExpirience(int exp);
         public abstract void LevelUp();
         public abstract int GetProficiencyBonus();
+        public abstract void LowerExpirience(int exp);
+        public abstract void CalculateLevel();
     }
 }

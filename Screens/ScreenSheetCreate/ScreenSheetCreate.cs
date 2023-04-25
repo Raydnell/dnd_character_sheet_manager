@@ -2,21 +2,20 @@
 {
     public class ScreenSheetCreate : IScreen
     {
-        private int _choosenPoint;
-        private int _inputInt;
-        
         private string _inputString;
+        private Enum _choosenMenuPoint;
 
-        private bool _pointChoose;
         private bool _isSet;
+        private bool _isFieldEditing;
 
         private JsonSaveLoad _jsonSaveLoad;
         private CharacterSheetFactory _sheetFactory;
         private IUserOutput _userOutput;
         private IUserInput _userInput;
         private PrintSheetInfo _printSheetInfo;
+        private ShowMenusCursor _showMenusCursor;
 
-        public ScreenSheetCreate() 
+        public ScreenSheetCreate()
         {
             _jsonSaveLoad = new JsonSaveLoad();
             _sheetFactory = new CharacterSheetFactory();
@@ -24,65 +23,105 @@
             _userInput = new ConsoleInput();
             _inputString = string.Empty;
             _printSheetInfo = new PrintSheetInfo();
+            _showMenusCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
             _userOutput.Clear();
-            _userOutput.Print("Пришло время создать героя!\n");
-            _userInput.InputKey();
-
-            //Указание редакции
-            _userOutput.Clear();
-            _userOutput.Print("Укажите редакцию, по которой нужно создать лист персонажа:");
-            heroSheet = _sheetFactory.CreateCharacterSheet(ChooseFromEnum(typeof(EnumEditions)));
-            
             //Указание имени
-            _userOutput.Clear();
-            _userOutput.Print("Введите имя героя: ", false);
+            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.EnterTheNameOfTheHero][language], false);
             heroSheet.Name = _userInput.InputString();
 
             //Указание расы
-            _userOutput.Clear();
-            _userOutput.Print("Выберите расу из списка:");
-            heroSheet.SheetRace.SetRace(ChooseFromEnum(typeof(EnumRacesDnd5E)));
-            _userOutput.Print("Выбранная раса: " + heroSheet.SheetRace.Name);
-            _userInput.InputKey();
+            heroSheet.SheetRace.SetRace(
+                LocalizationsStash.DND5eRaces[
+                    _showMenusCursor.ShowMenuPoints(
+                        LocalizationsStash.ScreenSheetCreateTitles, 
+                        LocalizationsStash.DND5eRaces,
+                        language, 
+                        EnumSheetCreateTitles.SelectARaceFromTheList
+                    )
+                ][language]
+            );
 
             //Указание класса
-            _userOutput.Clear();
-            _userOutput.Print("Выберите класс из списка:");
-            heroSheet.SheetClass.SetClass(ChooseFromEnum(typeof(EnumClassesDnd5E)));
-            _userOutput.Print("Выбранный класс: " + heroSheet.SheetClass.Name);
-            _userInput.InputKey();
+            heroSheet.SheetClass.SetClass(
+                LocalizationsStash.DND5eClasses[
+                    _showMenusCursor.ShowMenuPoints(
+                        LocalizationsStash.ScreenSheetCreateTitles,
+                        LocalizationsStash.DND5eClasses,
+                        language,
+                        EnumSheetCreateTitles.SelectAClassFromTheList
+                    )
+                ][language]
+            );
 
             //Указание скилов
-            _isSet = false;
-            while(_isSet == false)
+            _isFieldEditing = true;
+            while (_isFieldEditing == true)
             {
-                _userOutput.Clear();
-                _userOutput.Print("Выберите навык из списка:");
-                heroSheet.SheetSkills.AddSkill(ChooseFromEnum(typeof(EnumSkillsDnd5E)));
+                heroSheet.SheetSkills.AddSkill(
+                    LocalizationsStash.DND5eSkills[
+                        _showMenusCursor.ShowMenuPoints(
+                            LocalizationsStash.ScreenSheetCreateTitles,
+                            LocalizationsStash.DND5eSkills,
+                            language,
+                            EnumSheetCreateTitles.SelectASkillFromTheList
+                        )
+                    ][language]
+                );
 
-                _userOutput.Print("Добавить ещё навыки? 1 - да, 2 - нет");
-                _inputString = _userInput.InputString();
-                if (_inputString == "1")
-                {
-                    _isSet = false;
-                }
-                else
-                {
-                    _isSet = true;
-                }
+                _isFieldEditing = IsNeedOneMore(language);
             }
 
             //Указание характеристик
             _userOutput.Clear();
-            _userOutput.Print("Впишите характеристики героя:");
-            heroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
+            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.EnterTheCharacteristicsOfTheHero][language]);
+            heroSheet.SheetAbilities.SetAbilities(ChooseAbilities(language));
 
             //Указание владений
-            SetUpProficiency(heroSheet);
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5eArmor,
+                language,
+                EnumSheetCreateTitles.AddOwnershipOfTheArmorType
+            );
+
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5EGroupsOfWeapons, 
+                language,
+                EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons
+            );
+
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5eWeapons, 
+                language,
+                EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon
+            );
+
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5eProfInstruments, 
+                language,
+                EnumSheetCreateTitles.AddOwnershipFfTools
+            );
+
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5eMusicalInstruments, 
+                language,
+                EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments
+            );
+
+            SetUpProficiencies(
+                heroSheet, 
+                LocalizationsStash.DND5eProfGamingSets, 
+                language,
+                EnumSheetCreateTitles.AddOwnershipOfGameSets
+            );
 
             //Указание скорости
             heroSheet.SheetCombatAbilities.SetSpeed(GetRaceSpeed(heroSheet.SheetRace.Name));
@@ -91,87 +130,66 @@
             heroSheet.SheetSaveThrows.SetSaveTrows(heroSheet.SheetClass.Name);
 
             //Указание HP
-            heroSheet.SheetCombatAbilities.SetMaximumHP(SetUpHeroHP(heroSheet.SheetClass.Name, heroSheet.SheetAbilities.GetAbilityModificator("constitution")));
+            heroSheet.SheetCombatAbilities.SetMaximumHP(GetClassHitDice(heroSheet.SheetClass.Name) + heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution));
             heroSheet.SheetCombatAbilities.SetCurrentHP(heroSheet.SheetCombatAbilities.MaximumHP);
 
             //Указание базового КД (без брони)
-            heroSheet.SheetCombatAbilities.SetArmorClass(10 + heroSheet.SheetAbilities.GetAbilityModificator("dexterity"));
+            heroSheet.SheetCombatAbilities.SetArmorClass(10 + heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity));
 
             //Указание инициативы
-            heroSheet.SheetCombatAbilities.SetInitiative(heroSheet.SheetAbilities.GetAbilityModificator("dexterity"));
+            heroSheet.SheetCombatAbilities.SetInitiative(heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity));
 
             //Указание кости хитов
             heroSheet.SheetCombatAbilities.SetTotalHitDices(heroSheet.SheetProgression.Level);
             heroSheet.SheetCombatAbilities.SetCurrentHitDices(heroSheet.SheetProgression.Level);
-            heroSheet.SheetCombatAbilities.SetHitDice(SetUpHeroHitDice(heroSheet.SheetClass.Name));
+            heroSheet.SheetCombatAbilities.SetHitDice(GetClassHitDice(heroSheet.SheetClass.Name));
 
             //Указание пассивной внимательности
             heroSheet.SheetCombatAbilities.SetPassiveWisdom(
                 SetUpPassiveWisdom(
-                    heroSheet.SheetAbilities.GetAbilityModificator("wisdom"),
+                    heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom),
                     heroSheet.SheetProgression.GetProficiencyBonus(),
-                    heroSheet.SheetSkills.CheckSkill("perception")
+                    heroSheet.SheetSkills.CheckSkill("Внимательсность")
                 )
             );
 
             _userOutput.Clear();
-            _userOutput.Print("Укажите персоналии героя: \n");
-            string[] personalityList = Enum.GetNames(typeof(EnumPersonalitiesDND5E));
-            foreach(string item in personalityList)
+            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero][language]);
+            foreach (var item in LocalizationsStash.DND5ePersonalities)
             {
-                _userOutput.Print(item + ": ", false);
-                heroSheet.SheetPersonality.AddPersonality(item, _userInput.InputString());
+                if (item.Value.ContainsKey(language))
+                {
+                    _userOutput.Print(item.Value[language] + ": ", false);
+                    heroSheet.SheetPersonality.AddPersonality(item.Value[language], _userInput.InputString());
+                }
             }
 
             _userOutput.Clear();
-            _userOutput.Print("Вот ваш новый герой!");
-            _printSheetInfo.ShowSheetFields(heroSheet);
+            _userOutput.Print("Вот ваш новый герой!\n");
+            _printSheetInfo.ShowSheetFields(heroSheet, language);
             _userInput.InputKey();
         }
 
-        private string ChooseFromEnum(Type enumItems)
+        private Dictionary<Enum, int> ChooseAbilities(Enum language)
         {
-            _userOutput.Print(enumItems);
-            string[] enumNames = enumItems.GetEnumNames();
-
-            _isSet = false;
-            while(_isSet == false)
-            {
-                _inputInt = _userInput.InputInt();
-                if(enumNames[_inputInt - 1] != null)
-                {
-                    return enumNames[_inputInt - 1];
-                }
-                else
-                {
-                    _userOutput.Print("Неверный ввод, повторите попытку");
-                    _userInput.InputKey();
-                }
-            }
-
-            return string.Empty;
-        }
-
-        private Dictionary<string, int> ChooseAbilities()
-        {
-            Dictionary<string, int> tempAbilities = new Dictionary<string, int>();
+            Dictionary<Enum, int> tempAbilities = new Dictionary<Enum, int>();
             int inputAbility;
-            
-            foreach (var item in Enum.GetValues(typeof(EnumAbilitiesDnd5E)))
+
+            foreach (var item in LocalizationsStash.DND5eAbilities)
             {
                 _isSet = false;
-                while(_isSet == false)
+                while (_isSet == false)
                 {
-                    _userOutput.Print(item.ToString() + ": ", false);
+                    _userOutput.Print(item.Value[language] + ": ", false);
                     inputAbility = _userInput.InputInt();
-                    if(inputAbility > 0 && inputAbility <= 20)
+                    if (inputAbility > 0 && inputAbility <= 20)
                     {
-                        tempAbilities[item.ToString()] = inputAbility;
+                        tempAbilities[item.Key] = inputAbility;
                         _isSet = true;
                     }
                     else
                     {
-                        _userOutput.Print("Нужно указать значение от 1 до 20");
+                        _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.YouNeedToSpecifyAValueFrom1To20][language]);
                         _userInput.InputKey();
                     }
                 }
@@ -182,56 +200,29 @@
 
         private int GetRaceSpeed(string race)
         {
-            switch(race)
+            switch (race)
             {
-                case "gnome":
-                case "dwarf":
-                case "halfling":
+                case "Гном":
+                case "Дварф":
+                case "Полурослик":
                     return 25;
-                
-                case "dragonborn":
-                case "halforc":
-                case "halfelf":
-                case "tiefling":
-                case "human":
-                case "elf":
+
+                case "Драконорожденный":
+                case "Полуорк":
+                case "Полуэльф":
+                case "Тифлинг":
+                case "Человек":
+                case "Эльф":
                     return 30;
 
                 default:
                     return 30;
-            }
-        }
-
-        private int SetUpHeroHP(string sheetClass, int constitutionMod)
-        {
-            switch(sheetClass)
-            {
-                default:
-                case "sorcerer":
-                case "wizard":
-                    return 6 + constitutionMod;
-
-                case "bard":
-                case "cleric":
-                case "druid":
-                case "monk":
-                case "rogue":
-                case "warlock":
-                    return 8 + constitutionMod;
-                
-                case "fighter":
-                case "paladin":
-                case "ranger":
-                    return 10 + constitutionMod;
-                
-                case "barbarian":
-                    return 12 + constitutionMod;
             }
         }
 
         private int SetUpPassiveWisdom(int wisdomModificator, int perceptionModificator, bool havePerception)
         {
-            if(havePerception)
+            if (havePerception)
             {
                 return 10 + wisdomModificator + perceptionModificator;
             }
@@ -241,89 +232,84 @@
             }
         }
 
-        private int SetUpHeroHitDice(string sheetClass)
+        private int GetClassHitDice(string sheetClass)
         {
-            switch(sheetClass)
+            switch (sheetClass)
             {
                 default:
-                case "sorcerer":
-                case "wizard":
+                case "Чародей":
+                case "Волщебник":
                     return 6;
 
-                case "bard":
-                case "cleric":
-                case "druid":
-                case "monk":
-                case "rogue":
-                case "warlock":
+                case "Бард":
+                case "Жрец":
+                case "Друид":
+                case "Монах":
+                case "Плут":
+                case "Колдун":
                     return 8;
-                
-                case "fighter":
-                case "paladin":
-                case "ranger":
+
+                case "Воин":
+                case "Паладин":
+                case "Следопыт":
                     return 10;
-                
-                case "barbarian":
+
+                case "Варвар":
                     return 12;
             }
         }
 
-        private void SetUpProficiency(CharacterSheetBase heroSheet)
+        private void SetUpProficiencies(CharacterSheetBase heroSheet, Dictionary<Enum, Dictionary<Enum, string>> menuPoints, Enum choosenLanguage, Enum selectetTitle)
         {
-            List<Type> choosenProficiencies = new List<Type>();
-            
-            _userOutput.Clear();
-            _userOutput.Print("Выберите группы владений, из которых будут выбираться владения");
+            _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(
+                LocalizationsStash.ScreenSheetCreateTitles,
+                LocalizationsStash.YesNo,
+                choosenLanguage,
+                selectetTitle
+            );
 
-            foreach(var prof in ProficiencyGroups.ProficienciesGroups)
+            switch(_choosenMenuPoint)
             {
-                _userOutput.Print("Нужны ли владения из этой группы?\n\n" + prof.ToString() + "\n\n 1 - да, 2 - нет");
-
-                _inputString = _userInput.InputString();
-                if(_inputString == "1")
-                {
-                    choosenProficiencies.Add(prof);
-                    _userOutput.Print("Группа владений " + prof + " добавлена к выбору.");
-                    _userInput.InputKey();
-                }
-            }
-
-            if(choosenProficiencies.Count > 0)
-            {
-                foreach(var item in choosenProficiencies)
-                {
-                    _isSet = false;
-                    while(_isSet == false) 
+                case EnumYesNo.Yes:
+                    _isFieldEditing = true;
+                    while (_isFieldEditing == true)
                     {
-                        var values = Enum.GetNames(item);
-                        
-                        _userOutput.Clear();
-                        _userOutput.Print("Какие владения нужно добавить:\n");
-                        _userOutput.Print(item);
+                        heroSheet.SheetProficiencies.AddProficiency(
+                            menuPoints[ 
+                                _showMenusCursor.ShowMenuPoints(
+                                    LocalizationsStash.ScreenSheetCreateTitles, 
+                                    menuPoints, 
+                                    choosenLanguage, 
+                                    EnumSheetCreateTitles.WhatOwnershipToAdd
+                                )
+                            ][choosenLanguage]
+                        );
 
-                        int _inputStringInt = _userInput.InputInt();
-                        string valuesItem = values[_inputStringInt - 1];
-
-                        if(valuesItem != null)
-                        {
-                            heroSheet.SheetProficiencies.AddProficiency(valuesItem);
-                            _userOutput.Print("Добавлено владение " + valuesItem);
-                            _userOutput.Print("Нужно ли добавить ещё владение из этого списка?\n\n1 - да, 2 - нет");
-
-                            _inputString = _userInput.InputString();
-                            if(_inputString != "1")
-                            {
-                                _isSet = true;
-                            }
-                        }
-                        else
-                        {
-                            _userOutput.Print("Введён несуществующий пункт, повторите попытку");
-                            _userInput.InputKey();
-                        }
+                        _isFieldEditing = IsNeedOneMore(choosenLanguage);
                     }
-                }
+                    break;
             }
+        }
+
+        private bool IsNeedOneMore(Enum language)
+        {
+            _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(
+                LocalizationsStash.ScreenSheetCreateTitles,
+                LocalizationsStash.YesNo,
+                language,
+                EnumSheetCreateTitles.AddMore
+            );
+
+            switch(_choosenMenuPoint)
+            {
+                case EnumYesNo.Yes:
+                    return true;
+
+                case EnumYesNo.No:
+                    return false;
+            }
+
+            return false;
         }
     }
 }

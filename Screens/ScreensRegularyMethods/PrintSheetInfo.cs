@@ -9,7 +9,7 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
         }
         
-        public void ShowSheetFields(CharacterSheetBase sheet)
+        public void ShowSheetFields(CharacterSheetBase sheet, Enum language)
         {
             _userOutput.Print("Имя: " + sheet.Name);
             _userOutput.Print("\nРаса: " + sheet.SheetRace.Name);
@@ -17,7 +17,7 @@ namespace dnd_character_sheet
             _userOutput.Print("\nУровень: " + sheet.SheetProgression.Level);
             _userOutput.Print("\nОпыт: " + sheet.SheetProgression.Expirience);
             _userOutput.Print("\nХарактеристики: ");
-            _userOutput.Print(sheet.SheetAbilities.Abilities);
+            _userOutput.Print(sheet.SheetAbilities.Abilities, language);
             _userOutput.Print("\nНавыки: ");
             _userOutput.Print(sheet.SheetSkills.Skills);
             _userOutput.Print("\nВладения: ");

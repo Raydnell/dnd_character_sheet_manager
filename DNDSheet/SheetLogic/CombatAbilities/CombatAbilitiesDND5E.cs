@@ -11,7 +11,7 @@ namespace dnd_character_sheet
             ArmorClass = 10;
             Initiative = 0;
             HitDice = 1;
-            TotalHitDices = 2;
+            TotalHitDices = 1;
             CurrentHitDices = 1;
             DeathSucces = 0;
             DeathFailure = 0;

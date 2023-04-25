@@ -70,7 +70,7 @@ namespace dnd_character_sheet
             Console.Clear();
         }
 
-        public void Print(Dictionary<int, Item> value)
+        public void Print(Dictionary<int, BaseItem> value)
         {
             foreach(var item in value)
             {
@@ -91,6 +91,22 @@ namespace dnd_character_sheet
             foreach(var item in value)
             {
                 Console.WriteLine(item.Key + " - " + item.Value);
+            }
+        }
+
+        public void Print(Dictionary<string, string>.KeyCollection value)
+        {
+            foreach(string item in value)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public void Print(Dictionary<Enum, int> value, Enum language)
+        {
+            foreach(var item in value)
+            {
+                Console.WriteLine(LocalizationsStash.DND5eAbilities[item.Key][language] + ": " + item.Value);
             }
         }
     }

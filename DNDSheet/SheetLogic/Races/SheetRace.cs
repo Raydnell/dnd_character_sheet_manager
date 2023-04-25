@@ -4,7 +4,7 @@ namespace dnd_character_sheet
 {
     public abstract class SheetRace
     {
-        private string _name = string.Empty;
+        private string _name;
 
         [JsonProperty("Name")]
         public string Name
