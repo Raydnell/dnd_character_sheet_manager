@@ -12,6 +12,6 @@ namespace dnd_character_sheet
         public void Print(List<string> value);
         public void Clear();
         public void Print(Dictionary<string, string>.KeyCollection value);
-        public void Print(Dictionary<Enum, int> value, Enum language);
+        public void Print(Dictionary<EnumAbilitiesDnd5E, int> value, Enum language);
     }
 }

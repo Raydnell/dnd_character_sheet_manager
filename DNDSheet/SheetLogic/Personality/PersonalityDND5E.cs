@@ -4,10 +4,10 @@ namespace dnd_character_sheet
     {
         public PersonalityDND5E()
         {
-            PersonalityList = new Dictionary<string, string>();
+            PersonalityList = new Dictionary<EnumPersonalitiesDND5E, string>();
         }
 
-        public override void AddPersonality(string personality, string value)
+        public override void AddPersonality(EnumPersonalitiesDND5E personality, string value)
         {
             PersonalityList[personality] = value;
         }

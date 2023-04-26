@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetProficiencies
     {
-        private List<string> _proficiencies = new List<string>();
+        private List<EnumAllDND5eProficiencies> _proficiencies = new List<EnumAllDND5eProficiencies>();
 
         [JsonProperty("Proficiencies")]
-        public List<string> Proficiencies
+        public List<EnumAllDND5eProficiencies> Proficiencies
         {
             get
             {
@@ -19,7 +19,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void AddProficiency(string prof);
-        public abstract bool CheckProficiency(string prof);
+        public abstract void AddProficiency(Enum prof);
+        public abstract bool CheckProficiency(EnumAllDND5eProficiencies prof);
     }
 }

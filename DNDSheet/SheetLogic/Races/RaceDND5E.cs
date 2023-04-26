@@ -4,12 +4,15 @@ namespace dnd_character_sheet
     {
         public RaceDND5E()
         {
-            Name = string.Empty;
+            Name = EnumRacesDnd5E.Human;
         }
 
-        public override void SetRace(string race)
+        public override void SetRace(Enum race)
         {
-            Name =  race;
+            if (Enum.TryParse<EnumRacesDnd5E>(race.ToString(), out EnumRacesDnd5E result))
+            {
+                Name =  result;
+            } 
         }
     }
 }

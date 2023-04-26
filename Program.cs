@@ -10,10 +10,9 @@
             CharacterSheetBase heroSheet = new CharacterSheetDnd5E();
 
             language = showMenusCursor.ShowMenuPoints(
-                LocalizationsStash.StartScreenTitle,
-                LocalizationsStash.StartScreenPoints,
-                EnumLanguages.Russian,
-                EnumStartMenuTitles.ChooseLang
+                EnumStartMenuTitles.ChooseLang,
+                typeof(EnumLanguages),
+                EnumLanguages.Russian
             );
             
             screen.ShowScreen(ref heroSheet, language);

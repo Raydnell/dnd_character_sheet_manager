@@ -2,28 +2,20 @@ namespace dnd_character_sheet
 {
     public static class LocalizationsStash
     {
-        public static Dictionary<Enum, Dictionary<Enum, string>> StartScreenTitle = new Dictionary<Enum, Dictionary<Enum, string>>()
+        public static Dictionary<Enum, Dictionary<Enum, string>> Localizations = new Dictionary<Enum, Dictionary<Enum, string>>()
         {
             {
                 EnumStartMenuTitles.ChooseLang, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, @"Выберите язык \ Choose language" }
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> StartScreenPoints = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumLanguages.Russian, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, @"Русский \ Russian" }
                 }
-            }
-        };
-        
-        public static Dictionary<Enum, Dictionary<Enum, string>> MainMenuTitles = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumMainMenuTitles.MainMenu, new Dictionary<Enum, string>()
                 {
@@ -35,11 +27,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Лист сохранён"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> MainMenuPoints = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumMainMenuPoints.CreateSheet, new Dictionary<Enum, string>()
                 {
@@ -81,11 +69,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Выход" }
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> ScreenSheetCreateTitles = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumSheetCreateTitles.EnterTheNameOfTheHero, new Dictionary<Enum, string>()
                 {
@@ -181,11 +165,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Какое владение добавить?"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eRaces = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumRacesDnd5E.Gnome, new Dictionary<Enum, string>()
                 {
@@ -239,11 +219,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Эльф"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eClasses = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumClassesDnd5E.Bard, new Dictionary<Enum, string>()
                 {
@@ -315,11 +291,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Следопыт"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eSkills = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumSkillsDnd5E.Acrobatics, new Dictionary<Enum, string>()
                 {
@@ -427,11 +399,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Уход за животными"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> YesNo = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumYesNo.Yes, new Dictionary<Enum, string>()
                 {
@@ -443,11 +411,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Нет"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5EGroupsOfWeapons = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumWeaponsGroupsDND5E.SimpleMelee, new Dictionary<Enum, string>()
                 {
@@ -471,11 +435,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Воинское дальнобойное оружие"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eWeapons = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumWeaponsProficienciesDND5E.Quarterstaff, new Dictionary<Enum, string>()
                 {
@@ -697,11 +657,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Сеть"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eArmor = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumArmorProficienciesDND5E.LightArmor, new Dictionary<Enum, string>()
                 {
@@ -725,11 +681,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Щит"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eProfInstruments = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumInstrumentsProficienciesDND5E.ThievesTools, new Dictionary<Enum, string>()
                 {
@@ -867,11 +819,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Набор травника"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eMusicalInstruments = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumMusicalInstrumentProficienciesDND5E.Drum, new Dictionary<Enum, string>()
                 {
@@ -931,11 +879,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Шалмей"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eProfGamingSets = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumGamingSetProficienciesDND5E.DiceSet, new Dictionary<Enum, string>()
                 {
@@ -959,11 +903,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Ставка трех драконов"}
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5eAbilities = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumAbilitiesDnd5E.Strength, new Dictionary<Enum, string>()
                 {
@@ -999,11 +939,7 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Харизма" }
                 }
-            }
-        };
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> DND5ePersonalities = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumPersonalitiesDND5E.Background, new Dictionary<Enum, string>()
                 {
@@ -1075,17 +1011,25 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Причёска" }
                 }
-            }
-        }; 
-
-        public static Dictionary<Enum, Dictionary<Enum, string>> IncorrectInputTitle = new Dictionary<Enum, Dictionary<Enum, string>>()
-        {
+            },
             {
                 EnumIncorrectInput.IncorrectInput, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Некорректный ввод" }
                 }
+            },
+            {
+                EnumMenuNavigate.Page, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Страница" }
+                }
+            },
+            {
+                EnumMainMenuTitles.FirstLoadOrCreateSheet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сначала нужно создать или загрузить лист персонажа." }
+                }
             }
-        };        
+        };    
     }
 }

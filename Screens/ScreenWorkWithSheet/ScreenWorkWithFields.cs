@@ -16,6 +16,8 @@ namespace dnd_character_sheet
 
         public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
+            /*
+            
             _isPointChoose = false;
             while (_isPointChoose == false)
             {
@@ -506,6 +508,8 @@ namespace dnd_character_sheet
             {
                 IncorrectInput();
             }
+
+            */
         }
 
         private void IncorrectInput()

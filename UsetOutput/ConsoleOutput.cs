@@ -102,11 +102,11 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<Enum, int> value, Enum language)
+        public void Print(Dictionary<EnumAbilitiesDnd5E, int> value, Enum language)
         {
             foreach(var item in value)
             {
-                Console.WriteLine(LocalizationsStash.DND5eAbilities[item.Key][language] + ": " + item.Value);
+                //Console.WriteLine(LocalizationsStash.DND5eAbilities[item.Key][language] + ": " + item.Value);
             }
         }
     }

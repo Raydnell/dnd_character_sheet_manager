@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetAbilities
     {
-        private Dictionary<Enum, int> _abilities = new Dictionary<Enum, int>();
+        private Dictionary<EnumAbilitiesDnd5E, int> _abilities = new Dictionary<EnumAbilitiesDnd5E, int>();
         
         [JsonProperty("Abilities")]
-        public  Dictionary<Enum, int> Abilities
+        public  Dictionary<EnumAbilitiesDnd5E, int> Abilities
         {
             get
             {
@@ -19,10 +19,10 @@ namespace dnd_character_sheet
             }
         }
         
-        public abstract int GetAbilityModificator(Enum ability);
-        public abstract int GetAbilityScore(Enum ability);
+        public abstract int GetAbilityModificator(EnumAbilitiesDnd5E ability);
+        public abstract int GetAbilityScore(EnumAbilitiesDnd5E ability);
         public abstract int AbilityBonus(int score);
         public abstract void SetAbilities(Dictionary<Enum, int> abilities);
-        public abstract void SetAbilityScore(Enum abilityName, int abilityScore);
+        public abstract void SetAbilityScore(EnumAbilitiesDnd5E abilityName, int abilityScore);
     }
 }

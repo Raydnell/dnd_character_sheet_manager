@@ -4,56 +4,59 @@ namespace dnd_character_sheet
     {
         public SkillsDnd5E()
         {
-            Skills = new List<string>();
+            Skills = new List<EnumSkillsDnd5E>();
         }
 
-        public override bool CheckSkill(string skill)
+        public override bool CheckSkill(EnumSkillsDnd5E skill)
         {
             return Skills.Contains(skill);
         }
 
-        public override void AddSkill(string skill)
+        public override void AddSkill(Enum skill)
         {
-            if(Skills.Contains(skill) == false)
+            if (Enum.TryParse<EnumSkillsDnd5E>(skill.ToString(), out EnumSkillsDnd5E result))
             {
-                Skills.Add(skill);
+                if(Skills.Contains(result) == false)
+                {
+                    Skills.Add(result);
+                }
             }
         }
 
-        public override string SkillAbilityName(string skill)
+        public override EnumAbilitiesDnd5E SkillAbilityName(EnumSkillsDnd5E skill)
         {
             switch(skill)
             {
-                case "athletics":
-                    return "strength";
+                case EnumSkillsDnd5E.Athletics:
+                    return EnumAbilitiesDnd5E.Strength;
 
-                case "acrobatics":
-                case "sleight":
-                case "stealth":
-                    return "dexterity";
+                case EnumSkillsDnd5E.Acrobatics:
+                case EnumSkillsDnd5E.Sleight:
+                case EnumSkillsDnd5E.Stealth:
+                    return EnumAbilitiesDnd5E.Dexterity;
                 
-                case "arcana":
-                case "history":
-                case "investigation":
-                case "nature":
-                case "religion":
-                    return "intelligence";
+                case EnumSkillsDnd5E.Arcana:
+                case EnumSkillsDnd5E.History:
+                case EnumSkillsDnd5E.Investigation:
+                case EnumSkillsDnd5E.Nature:
+                case EnumSkillsDnd5E.Religion:
+                    return EnumAbilitiesDnd5E.Intelligence;
 
-                case "animal":
-                case "insight":
-                case "medicine":
-                case "perception":
-                case "surival":
-                    return "wisdom";
+                case EnumSkillsDnd5E.Animal:
+                case EnumSkillsDnd5E.Insight:
+                case EnumSkillsDnd5E.Medicine:
+                case EnumSkillsDnd5E.Perception:
+                case EnumSkillsDnd5E.Surival:
+                    return EnumAbilitiesDnd5E.Wisdom;
 
-                case "deception":
-                case "intimidation":
-                case "perfomance":
-                case "persuasion":
-                    return "charisma";
+                case EnumSkillsDnd5E.Deception:
+                case EnumSkillsDnd5E.Intimidation:
+                case EnumSkillsDnd5E.Perfomance:
+                case EnumSkillsDnd5E.Persuasion:
+                    return EnumAbilitiesDnd5E.Charisma;
 
                 default:
-                    return "null";
+                    return EnumAbilitiesDnd5E.Strength;
             }
         }
     }

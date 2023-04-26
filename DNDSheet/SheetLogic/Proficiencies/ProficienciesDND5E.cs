@@ -4,18 +4,22 @@ namespace dnd_character_sheet
     {
         public ProficienciesDND5E()
         {
-            Proficiencies = new List<string>();
+            Proficiencies = new List<EnumAllDND5eProficiencies>();
         }
 
-        public override void AddProficiency(string prof)
+        public override void AddProficiency(Enum prof)
         {
-            if(Proficiencies.Contains(prof) == false)
+            if (Enum.TryParse<EnumAllDND5eProficiencies>(prof.ToString(), out EnumAllDND5eProficiencies result))
             {
-                Proficiencies.Add(prof);
+                if(Proficiencies.Contains(result) == false)
+                {
+                    Proficiencies.Add(result);
+                }
             }
+            
         }
         
-        public override bool CheckProficiency(string prof)
+        public override bool CheckProficiency(EnumAllDND5eProficiencies prof)
         {
             if(Proficiencies.Contains(prof))
             {

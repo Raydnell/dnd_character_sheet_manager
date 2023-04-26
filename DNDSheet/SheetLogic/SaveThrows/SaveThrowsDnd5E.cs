@@ -4,56 +4,56 @@ namespace dnd_character_sheet
     {
         public SaveThrowsDnd5E()
         {
-            SaveThrows = new List<string>();
+            SaveThrows = new List<EnumAbilitiesDnd5E>();
         }
         
-        public override void SetSaveTrows(string className)
+        public override void SetSaveTrows(EnumClassesDnd5E className)
         {
             switch (className)
             {
-                case "bard":
-                    SaveThrows.Add("dexterity");
-                    SaveThrows.Add("charisma");
+                case EnumClassesDnd5E.Bard:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Dexterity);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Charisma);
                     break;
 
-                case "barbarian":
-                case "fighter":
-                    SaveThrows.Add("strength");
-                    SaveThrows.Add("constitution");
+                case EnumClassesDnd5E.Barbarian:
+                case EnumClassesDnd5E.Fighter:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Strength);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Strength);
                     break;
 
-                case "wizard":
-                case "druid":
-                    SaveThrows.Add("intelligence");
-                    SaveThrows.Add("wisdom");
+                case EnumClassesDnd5E.Wizard:
+                case EnumClassesDnd5E.Druid:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Intelligence);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Wisdom);
                     break;
 
-                case "cleric":
-                case "warlock":
-                case "paladin":
-                    SaveThrows.Add("wisdom");
-                    SaveThrows.Add("charisma");
+                case EnumClassesDnd5E.Cleric:
+                case EnumClassesDnd5E.Warlock:
+                case EnumClassesDnd5E.Paladin:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Wisdom);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Charisma);
                     break;
 
-                case "monk":
-                case "ranger":
-                    SaveThrows.Add("strength");
-                    SaveThrows.Add("dexterity");
+                case EnumClassesDnd5E.Monk:
+                case EnumClassesDnd5E.Ranger:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Strength);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Dexterity);
                     break;
 
-                case "rogue":
-                    SaveThrows.Add("dexterity");
-                    SaveThrows.Add("intelligence");
+                case EnumClassesDnd5E.Rogue:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Dexterity);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Intelligence);
                     break;
 
-                case "sorcerer":
-                    SaveThrows.Add("constitution");
-                    SaveThrows.Add("charisma");
+                case EnumClassesDnd5E.Sorcerer:
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Constitution);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Charisma);
                     break;
             }
         }
 
-        public override bool CheckSaveThrow(string saveTrow)
+        public override bool CheckSaveThrow(EnumAbilitiesDnd5E saveTrow)
         {
             return SaveThrows.Contains(saveTrow);
         }

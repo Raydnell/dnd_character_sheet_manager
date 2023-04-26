@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetSkills
     {
-        private List<string> _skills;
+        private List<EnumSkillsDnd5E> _skills;
         
         [JsonProperty("Skills")]
-        public List<string> Skills
+        public List<EnumSkillsDnd5E> Skills
         {
             get
             {
@@ -19,8 +19,8 @@ namespace dnd_character_sheet
             }
         }
         
-        public abstract bool CheckSkill(string skill);
-        public abstract void AddSkill(string skill);
-        public abstract string SkillAbilityName(string skill);
+        public abstract bool CheckSkill(EnumSkillsDnd5E skill);
+        public abstract void AddSkill(Enum skill);
+        public abstract EnumAbilitiesDnd5E SkillAbilityName(EnumSkillsDnd5E skill);
     }
 }

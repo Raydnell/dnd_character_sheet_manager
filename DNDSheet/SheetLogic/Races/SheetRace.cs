@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetRace
     {
-        private string _name;
+        private EnumRacesDnd5E _name;
 
         [JsonProperty("Name")]
-        public string Name
+        public EnumRacesDnd5E Name
         {
             get
             {
@@ -19,6 +19,6 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void SetRace(string race);
+        public abstract void SetRace(Enum race);
     }
 }

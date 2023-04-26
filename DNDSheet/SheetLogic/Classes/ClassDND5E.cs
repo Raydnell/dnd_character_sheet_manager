@@ -4,12 +4,15 @@ namespace dnd_character_sheet
     {
         public ClassDND5E()
         {
-            Name = string.Empty;
+            Name = EnumClassesDnd5E.Bard;
         }
 
-        public override void SetClass(string sheetClass)
+        public override void SetClass(Enum sheetClass)
         {
-            Name =  sheetClass;
+            if (Enum.TryParse<EnumClassesDnd5E>(sheetClass.ToString(), out EnumClassesDnd5E result))
+            {
+                Name =  result;
+            } 
         }
     }
 }

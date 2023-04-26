@@ -30,6 +30,8 @@ namespace dnd_character_sheet
         
         public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
+            /*
+            
             _proficiencyBonus = heroSheet.SheetProgression.GetProficiencyBonus();
             
             _stayOnScreen = true;
@@ -104,7 +106,7 @@ namespace dnd_character_sheet
         {
             _userOutput.Clear();
             _userOutput.Print("Какую характеристику нужно проверить:\n");
-            _userOutput.Print(heroSheet.SheetAbilities.Abilities, language);
+            //_userOutput.Print(heroSheet.SheetAbilities.Abilities, language);
             _userOutput.Print("");
 
             _stringInput = _userInput.InputString();
@@ -125,7 +127,7 @@ namespace dnd_character_sheet
         {
             _userOutput.Clear();
             _userOutput.Print("Какие навыки есть в листе:\n");
-            _userOutput.Print(heroSheet.SheetSkills.Skills);
+            //_userOutput.Print(heroSheet.SheetSkills.Skills);
             _userOutput.Print("\nСписок всех навыков:");
             _userOutput.Print(typeof(EnumSkillsDnd5E));
             _userOutput.Print("\nУкажи навык, который нужно проверить:\n");
@@ -133,7 +135,8 @@ namespace dnd_character_sheet
             _stringInput = _userInput.InputString();
             if (Enum.TryParse<EnumSkillsDnd5E>(_stringInput, out EnumSkillsDnd5E result))
             {
-                //_abilityModificator = heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString()));
+                
+                _abilityModificator = heroSheet.SheetAbilities.GetAbilityModificator(heroSheet.SheetSkills.SkillAbilityName(result.ToString()));
                 
                 if(heroSheet.SheetSkills.CheckSkill(result.ToString()))
                 {
@@ -145,6 +148,7 @@ namespace dnd_character_sheet
                 }
                 _userOutput.Print($"\nРезультат проверки: {_rollResult}");
                 _userInput.InputKey();
+                
             }
             else
             {
@@ -204,6 +208,8 @@ namespace dnd_character_sheet
 
             _userOutput.Print("Результат броска: " + _rollResult);
             _userInput.InputKey();
+
+            */
         }
 
         private void IncorrectInput()

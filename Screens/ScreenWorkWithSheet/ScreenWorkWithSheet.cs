@@ -27,6 +27,8 @@
 
         public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
         {
+            /*
+            
             while (_backToMenu == false)
             {
                 _userOutput.Clear();
@@ -84,7 +86,7 @@
             {
                 _userOutput.Clear();
                 _userOutput.Print("Какую характеристику нужно проверить:\n");
-                _userOutput.Print(heroSheet.SheetAbilities.Abilities, language);
+                //_userOutput.Print(heroSheet.SheetAbilities.Abilities, language);
                 _userOutput.Print("\n");
 
                 _input = _userInput.InputString();
@@ -167,6 +169,8 @@
                     _userInput.InputKey();
                 }
             }
+
+            */
         }
 
         private void RaiseExpirience(CharacterSheetBase heroSheet)

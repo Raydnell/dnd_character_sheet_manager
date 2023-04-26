@@ -31,10 +31,9 @@
             while(_isPointChoose == false)
             {
                 _choosenPoint2 = _showMenusCursor.ShowMenuPoints(
-                    LocalizationsStash.MainMenuTitles, 
-                    LocalizationsStash.MainMenuPoints, 
-                    language, 
-                    EnumMainMenuTitles.MainMenu
+                    EnumMainMenuTitles.MainMenu,
+                    typeof(EnumMainMenuPoints),
+                    language
                 );
                 switch(_choosenPoint2)
                 {
@@ -59,7 +58,7 @@
                         }
                         else
                         {
-                            PrintListNotLoaded();
+                            PrintListNotLoaded(language);
                         }
                         break;
 
@@ -76,7 +75,7 @@
                         }
                         else
                         {
-                            PrintListNotLoaded();
+                            PrintListNotLoaded(language);
                         }
                         break;
 
@@ -84,12 +83,12 @@
                         if(_isSheetLoaded == true)
                         {
                             _jsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
-                            _userOutput.Print(LocalizationsStash.MainMenuTitles[EnumMainMenuTitles.SheetSaved][EnumLanguages.Russian]);
+                            _userOutput.Print(LocalizationsStash.Localizations[EnumMainMenuTitles.SheetSaved][language]);
                             _userInput.InputKey();
                         }
                         else
                         {
-                            PrintListNotLoaded();
+                            PrintListNotLoaded(language);
                         }
                         break;
 
@@ -98,16 +97,16 @@
                         break;
 
                     default:
-                        PrintListNotLoaded();
+                        PrintListNotLoaded(language);
                         break;
                 }
             }
         }
 
-        private void PrintListNotLoaded()
+        private void PrintListNotLoaded(Enum language)
         {
             _userOutput.Clear();
-            _userOutput.Print("Сначала нужно создать или загрузить лист персонажа.");
+            _userOutput.Print(LocalizationsStash.Localizations[EnumMainMenuTitles.FirstLoadOrCreateSheet][language]);
             _userInput.InputKey();
         }
     }

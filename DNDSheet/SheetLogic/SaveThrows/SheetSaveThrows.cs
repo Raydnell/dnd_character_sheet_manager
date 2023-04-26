@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetSaveThrows
     {
-        private List<string> _saveThrows = new List<string>();
+        private List<EnumAbilitiesDnd5E> _saveThrows = new List<EnumAbilitiesDnd5E>();
         
         [JsonProperty("SaveThrows")]
-        public List<string> SaveThrows
+        public List<EnumAbilitiesDnd5E> SaveThrows
         {
             get
             {
@@ -19,7 +19,7 @@ namespace dnd_character_sheet
             }
         }
         
-        public abstract void SetSaveTrows(string className);                
-        public abstract bool CheckSaveThrow(string saveTrow);
+        public abstract void SetSaveTrows(EnumClassesDnd5E className);                
+        public abstract bool CheckSaveThrow(EnumAbilitiesDnd5E saveTrow);
     }
 }

@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class SheetPersonality
     {
-        private Dictionary<string, string> _personalityList;
+        private Dictionary<EnumPersonalitiesDND5E, string> _personalityList;
 
         [JsonProperty("PersonalityList")]
-        public Dictionary<string, string> PersonalityList
+        public Dictionary<EnumPersonalitiesDND5E, string> PersonalityList
         {
             get
             {
@@ -19,6 +19,6 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void AddPersonality(string personality, string value);
+        public abstract void AddPersonality(EnumPersonalitiesDND5E personality, string value);
     }
 }

@@ -30,31 +30,25 @@
         {
             _userOutput.Clear();
             //Указание имени
-            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.EnterTheNameOfTheHero][language], false);
+            _userOutput.Print(LocalizationsStash.Localizations[EnumSheetCreateTitles.EnterTheNameOfTheHero][language], false);
             heroSheet.Name = _userInput.InputString();
 
             //Указание расы
             heroSheet.SheetRace.SetRace(
-                LocalizationsStash.DND5eRaces[
                     _showMenusCursor.ShowMenuPoints(
-                        LocalizationsStash.ScreenSheetCreateTitles, 
-                        LocalizationsStash.DND5eRaces,
-                        language, 
-                        EnumSheetCreateTitles.SelectARaceFromTheList
+                        EnumSheetCreateTitles.SelectARaceFromTheList,
+                        typeof(EnumRacesDnd5E),
+                        language
                     )
-                ][language]
             );
 
             //Указание класса
             heroSheet.SheetClass.SetClass(
-                LocalizationsStash.DND5eClasses[
                     _showMenusCursor.ShowMenuPoints(
-                        LocalizationsStash.ScreenSheetCreateTitles,
-                        LocalizationsStash.DND5eClasses,
-                        language,
-                        EnumSheetCreateTitles.SelectAClassFromTheList
+                        EnumSheetCreateTitles.SelectAClassFromTheList,
+                        typeof(EnumClassesDnd5E),
+                        language
                     )
-                ][language]
             );
 
             //Указание скилов
@@ -62,14 +56,11 @@
             while (_isFieldEditing == true)
             {
                 heroSheet.SheetSkills.AddSkill(
-                    LocalizationsStash.DND5eSkills[
                         _showMenusCursor.ShowMenuPoints(
-                            LocalizationsStash.ScreenSheetCreateTitles,
-                            LocalizationsStash.DND5eSkills,
-                            language,
-                            EnumSheetCreateTitles.SelectASkillFromTheList
+                            EnumSheetCreateTitles.SelectASkillFromTheList,
+                            typeof(EnumSkillsDnd5E),
+                            language
                         )
-                    ][language]
                 );
 
                 _isFieldEditing = IsNeedOneMore(language);
@@ -77,54 +68,54 @@
 
             //Указание характеристик
             _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.EnterTheCharacteristicsOfTheHero][language]);
+            _userOutput.Print(LocalizationsStash.Localizations[EnumSheetCreateTitles.EnterTheCharacteristicsOfTheHero][language]);
             heroSheet.SheetAbilities.SetAbilities(ChooseAbilities(language));
 
             //Указание владений
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5eArmor,
-                language,
-                EnumSheetCreateTitles.AddOwnershipOfTheArmorType
+                EnumSheetCreateTitles.AddOwnershipOfTheArmorType,
+                typeof(EnumArmorProficienciesDND5E),
+                language
             );
 
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5EGroupsOfWeapons, 
-                language,
-                EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons
+                EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons,
+                typeof(EnumWeaponsGroupsDND5E), 
+                language
             );
 
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5eWeapons, 
-                language,
-                EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon
+                EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon,
+                typeof(EnumWeaponsProficienciesDND5E), 
+                language
             );
 
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5eProfInstruments, 
-                language,
-                EnumSheetCreateTitles.AddOwnershipFfTools
+                EnumSheetCreateTitles.AddOwnershipFfTools,
+                typeof(EnumInstrumentsProficienciesDND5E), 
+                language
             );
 
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5eMusicalInstruments, 
-                language,
-                EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments
+                EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments,
+                typeof(EnumMusicalInstrumentProficienciesDND5E), 
+                language
             );
 
             SetUpProficiencies(
                 heroSheet, 
-                LocalizationsStash.DND5eProfGamingSets, 
-                language,
-                EnumSheetCreateTitles.AddOwnershipOfGameSets
+                EnumSheetCreateTitles.AddOwnershipOfGameSets,
+                typeof(EnumGamingSetProficienciesDND5E), 
+                language
             );
 
             //Указание скорости
-            heroSheet.SheetCombatAbilities.SetSpeed(GetRaceSpeed(heroSheet.SheetRace.Name));
+            heroSheet.SheetCombatAbilities.SetSpeed(GetSpeedByRace(heroSheet.SheetRace.Name));
 
             //Распределение спасбросков
             heroSheet.SheetSaveThrows.SetSaveTrows(heroSheet.SheetClass.Name);
@@ -149,18 +140,18 @@
                 SetUpPassiveWisdom(
                     heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom),
                     heroSheet.SheetProgression.GetProficiencyBonus(),
-                    heroSheet.SheetSkills.CheckSkill("Внимательсность")
+                    heroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Perception)
                 )
             );
 
             _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero][language]);
-            foreach (var item in LocalizationsStash.DND5ePersonalities)
+            _userOutput.Print(LocalizationsStash.Localizations[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero][language]);
+            foreach (var item in Enum.GetNames(typeof(EnumPersonalitiesDND5E)))
             {
-                if (item.Value.ContainsKey(language))
+                if (Enum.TryParse<EnumPersonalitiesDND5E>(item, out EnumPersonalitiesDND5E result))
                 {
-                    _userOutput.Print(item.Value[language] + ": ", false);
-                    heroSheet.SheetPersonality.AddPersonality(item.Value[language], _userInput.InputString());
+                    _userOutput.Print(LocalizationsStash.Localizations[result][language] + ": ", false);
+                    heroSheet.SheetPersonality.AddPersonality(result, _userInput.InputString());
                 }
             }
 
@@ -175,49 +166,30 @@
             Dictionary<Enum, int> tempAbilities = new Dictionary<Enum, int>();
             int inputAbility;
 
-            foreach (var item in LocalizationsStash.DND5eAbilities)
+            foreach (var item in Enum.GetNames(typeof(EnumAbilitiesDnd5E)))
             {
                 _isSet = false;
                 while (_isSet == false)
                 {
-                    _userOutput.Print(item.Value[language] + ": ", false);
-                    inputAbility = _userInput.InputInt();
-                    if (inputAbility > 0 && inputAbility <= 20)
+                    if (Enum.TryParse<EnumAbilitiesDnd5E>(item, out EnumAbilitiesDnd5E result))
                     {
-                        tempAbilities[item.Key] = inputAbility;
-                        _isSet = true;
-                    }
-                    else
-                    {
-                        _userOutput.Print(LocalizationsStash.ScreenSheetCreateTitles[EnumSheetCreateTitles.YouNeedToSpecifyAValueFrom1To20][language]);
-                        _userInput.InputKey();
+                        _userOutput.Print(LocalizationsStash.Localizations[result][language] + ": ", false);
+                        inputAbility = _userInput.InputInt();
+                        if (inputAbility > 0 && inputAbility <= 20)
+                        {
+                            tempAbilities[result] = inputAbility;
+                            _isSet = true;
+                        }
+                        else
+                        {
+                            _userOutput.Print(LocalizationsStash.Localizations[EnumSheetCreateTitles.YouNeedToSpecifyAValueFrom1To20][language]);
+                            _userInput.InputKey();
+                        }
                     }
                 }
             }
 
             return tempAbilities;
-        }
-
-        private int GetRaceSpeed(string race)
-        {
-            switch (race)
-            {
-                case "Гном":
-                case "Дварф":
-                case "Полурослик":
-                    return 25;
-
-                case "Драконорожденный":
-                case "Полуорк":
-                case "Полуэльф":
-                case "Тифлинг":
-                case "Человек":
-                case "Эльф":
-                    return 30;
-
-                default:
-                    return 30;
-            }
         }
 
         private int SetUpPassiveWisdom(int wisdomModificator, int perceptionModificator, bool havePerception)
@@ -232,40 +204,12 @@
             }
         }
 
-        private int GetClassHitDice(string sheetClass)
-        {
-            switch (sheetClass)
-            {
-                default:
-                case "Чародей":
-                case "Волщебник":
-                    return 6;
-
-                case "Бард":
-                case "Жрец":
-                case "Друид":
-                case "Монах":
-                case "Плут":
-                case "Колдун":
-                    return 8;
-
-                case "Воин":
-                case "Паладин":
-                case "Следопыт":
-                    return 10;
-
-                case "Варвар":
-                    return 12;
-            }
-        }
-
-        private void SetUpProficiencies(CharacterSheetBase heroSheet, Dictionary<Enum, Dictionary<Enum, string>> menuPoints, Enum choosenLanguage, Enum selectetTitle)
+        private void SetUpProficiencies(CharacterSheetBase heroSheet, Enum selectetTitle, Type menuPoints, Enum choosenLanguage)
         {
             _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(
-                LocalizationsStash.ScreenSheetCreateTitles,
-                LocalizationsStash.YesNo,
-                choosenLanguage,
-                selectetTitle
+                selectetTitle,
+                typeof(EnumYesNo),
+                choosenLanguage
             );
 
             switch(_choosenMenuPoint)
@@ -275,14 +219,11 @@
                     while (_isFieldEditing == true)
                     {
                         heroSheet.SheetProficiencies.AddProficiency(
-                            menuPoints[ 
                                 _showMenusCursor.ShowMenuPoints(
-                                    LocalizationsStash.ScreenSheetCreateTitles, 
-                                    menuPoints, 
-                                    choosenLanguage, 
-                                    EnumSheetCreateTitles.WhatOwnershipToAdd
+                                    EnumSheetCreateTitles.WhatOwnershipToAdd,
+                                    menuPoints,
+                                    choosenLanguage
                                 )
-                            ][choosenLanguage]
                         );
 
                         _isFieldEditing = IsNeedOneMore(choosenLanguage);
@@ -294,10 +235,9 @@
         private bool IsNeedOneMore(Enum language)
         {
             _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(
-                LocalizationsStash.ScreenSheetCreateTitles,
-                LocalizationsStash.YesNo,
-                language,
-                EnumSheetCreateTitles.AddMore
+                EnumSheetCreateTitles.AddMore,
+                typeof(EnumYesNo),
+                language
             );
 
             switch(_choosenMenuPoint)
@@ -310,6 +250,55 @@
             }
 
             return false;
+        }
+
+        private int GetSpeedByRace(Enum race)
+        {
+            switch (race)
+            {
+                case EnumRacesDnd5E.Gnome:
+                case EnumRacesDnd5E.Dwarf:
+                case EnumRacesDnd5E.Halfling:
+                    return 25;
+
+                case EnumRacesDnd5E.Dragonborn:
+                case EnumRacesDnd5E.Halforc:
+                case EnumRacesDnd5E.Halfelf:
+                case EnumRacesDnd5E.Tiefling:
+                case EnumRacesDnd5E.Human:
+                case EnumRacesDnd5E.Elf:
+                    return 30;
+
+                default:
+                    return 30;
+            }
+        }
+
+        private int GetClassHitDice(Enum sheetClass)
+        {
+            switch (sheetClass)
+            {
+                default:
+                case EnumClassesDnd5E.Warlock:
+                case EnumClassesDnd5E.Wizard:
+                    return 6;
+
+                case EnumClassesDnd5E.Bard:
+                case EnumClassesDnd5E.Cleric:
+                case EnumClassesDnd5E.Druid:
+                case EnumClassesDnd5E.Monk:
+                case EnumClassesDnd5E.Rogue:
+                case EnumClassesDnd5E.Sorcerer:
+                    return 8;
+
+                case EnumClassesDnd5E.Fighter:
+                case EnumClassesDnd5E.Paladin:
+                case EnumClassesDnd5E.Ranger:
+                    return 10;
+
+                case EnumClassesDnd5E.Barbarian:
+                    return 12;
+            }
         }
     }
 }

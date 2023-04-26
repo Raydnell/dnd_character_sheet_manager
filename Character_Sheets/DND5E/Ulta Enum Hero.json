@@ -1,27 +1,27 @@
 {
-  "Name": "NewHero 22",
+  "Name": "Ulta Enum Hero",
   "Edition": "DND5E",
   "SheetRace": {
-    "Name": "Полурослик"
+    "Name": 4
   },
   "SheetClass": {
-    "Name": "Колдун"
+    "Name": 4
   },
   "SheetAbilities": {
     "Abilities": {
-      "strength": 14,
-      "dexterity": 15,
-      "constitution": 16,
-      "intelligence": 17,
-      "wisdom": 18,
-      "charisma": 19
+      "Strength": 12,
+      "Dexterity": 13,
+      "Constitution": 14,
+      "Intelligence": 15,
+      "Wisdom": 16,
+      "Charisma": 17
     }
   },
   "SheetSkills": {
     "Skills": [
-      "История",
-      "Атлетика",
-      "Магия"
+      3,
+      4,
+      0
     ]
   },
   "SheetProgression": {
@@ -29,7 +29,10 @@
     "Level": 1
   },
   "SheetSaveThrows": {
-    "SaveThrows": []
+    "SaveThrows": [
+      3,
+      4
+    ]
   },
   "SheetPersonality": {
     "PersonalityList": {
@@ -42,27 +45,30 @@
       "Age": "123",
       "Height": "123",
       "Weight": "123",
-      "Eyes": "132",
+      "Eyes": "123",
       "Skin": "123",
       "Hair": "123"
     }
   },
   "SheetCombatAbilities": {
-    "MaximumHP": 9,
-    "CurrentHP": 9,
+    "MaximumHP": 10,
+    "CurrentHP": 10,
     "TemporaryHP": 0,
-    "Speed": 30,
-    "ArmorClass": 12,
-    "Initiative": 2,
-    "HitDice": 6,
+    "Speed": 25,
+    "ArmorClass": 11,
+    "Initiative": 1,
+    "HitDice": 8,
     "TotalHitDices": 1,
     "CurrentHitDices": 1,
     "DeathSucces": 0,
     "DeathFailure": 0,
-    "PassiveWisdom": 14
+    "PassiveWisdom": 13
   },
   "SheetProficiencies": {
-    "Proficiencies": []
+    "Proficiencies": [
+      0,
+      47
+    ]
   },
   "SheetInventory": {
     "Inventory": {}
