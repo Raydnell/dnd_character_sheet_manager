@@ -19,11 +19,11 @@ namespace dnd_character_sheet
             _userOutput.Print("\nХарактеристики: ");
             _userOutput.Print(sheet.SheetAbilities.Abilities, language);
             _userOutput.Print("\nНавыки: ");
-            //_userOutput.Print(sheet.SheetSkills.Skills);
+            _userOutput.Print(sheet.SheetSkills.Skills, language);
             _userOutput.Print("\nВладения: ");
-            //_userOutput.Print(sheet.SheetProficiencies.Proficiencies);
+            _userOutput.Print(sheet.SheetProficiencies.Proficiencies, language);
             _userOutput.Print("\nЛичные качества: ");
-            //_userOutput.Print(sheet.SheetPersonality.PersonalityList);
+            _userOutput.Print(sheet.SheetPersonality.PersonalityList, language);
             _userOutput.Print("\nБоевые качества: ");
             _userOutput.Print("HP - " + sheet.SheetCombatAbilities.CurrentHP + @"\" + sheet.SheetCombatAbilities.MaximumHP);
             _userOutput.Print("Класс доспеха - " + sheet.SheetCombatAbilities.ArmorClass);

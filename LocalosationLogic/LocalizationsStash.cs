@@ -665,6 +665,12 @@ namespace dnd_character_sheet
                 }
             },
             {
+                EnumAllDND5eProficiencies.LightArmor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Лёгкий доспех"}
+                }
+            },
+            {
                 EnumArmorProficienciesDND5E.MediumArmor, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Средний доспех"}

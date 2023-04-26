@@ -40,7 +40,7 @@ namespace dnd_character_sheet
             }
 
             //_sheetName = _showMenusCursor.ShowMenuPoints("Выберите лист, который нужно загрузить:", _sheetsInFolder.ToArray());
-            _jsonSaveLoad.JsonLoad(@"Character_Sheets\DND5E\Enum Hero.json", ref tempSheet);
+            _jsonSaveLoad.JsonLoad(@"Character_Sheets\DND5E\Ulta Enum Hero.json", ref tempSheet);
             heroSheet = tempSheet;
             Console.WriteLine("Герой загружен.");
             Console.ReadKey();

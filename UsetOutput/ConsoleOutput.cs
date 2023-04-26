@@ -106,7 +106,41 @@ namespace dnd_character_sheet
         {
             foreach(var item in value)
             {
-                //Console.WriteLine(LocalizationsStash.DND5eAbilities[item.Key][language] + ": " + item.Value);
+                Console.WriteLine(LocalizationsStash.Localizations[item.Key][language] + ": " + item.Value);
+            }
+        }
+
+        public void Print(List<EnumSkillsDnd5E> value, Enum language)
+        {
+            foreach (var item in value)
+            {
+                Console.WriteLine(LocalizationsStash.Localizations[item][language]);
+            }
+        }
+
+        public void Print(Dictionary<EnumRacesDnd5E, int> value, Enum language)
+        {
+
+        }
+        
+        public void Print(Dictionary<EnumClassesDnd5E, int> value, Enum language)
+        {
+
+        }
+
+        public void Print(List<EnumAllDND5eProficiencies> value, Enum language)
+        {
+            foreach (var item in value)
+            {
+                Console.WriteLine(LocalizationsStash.Localizations[item][language]);
+            }
+        }
+
+        public void Print(Dictionary<EnumPersonalitiesDND5E, string> value, Enum language)
+        {
+            foreach(var item in value)
+            {
+                Console.WriteLine(LocalizationsStash.Localizations[item.Key][language] + ": " + item.Value);
             }
         }
     }
