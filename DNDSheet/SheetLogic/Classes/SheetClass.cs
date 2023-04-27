@@ -19,6 +19,21 @@ namespace dnd_character_sheet
             }
         }
 
+        private int _hitDice;
+
+        [JsonProperty("HitDice")]
+        public int HitDice
+        {
+            get
+            {
+                return _hitDice;
+            }
+            protected set
+            {
+                _hitDice = value;
+            }
+        }
+
         public abstract void SetClass(Enum sheetClass);
     }
 }

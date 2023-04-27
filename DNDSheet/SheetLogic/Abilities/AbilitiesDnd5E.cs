@@ -27,38 +27,7 @@ namespace dnd_character_sheet
 
         public override int AbilityBonus(int score)
         {
-            if (score == 1)
-                return -5;
-            else if (score <= 3)
-                return -4;
-            else if (score <= 5)
-                return -3;
-            else if (score <= 7)
-                return -2;
-            else if (score <= 9)
-                return -1;
-            else if (score <= 11)
-                return 0;
-            else if (score <= 13)
-                return 1;
-            else if (score <= 15)
-                return 2;
-            else if (score <= 17)
-                return 3;
-            else if (score <= 19)
-                return 4;
-            else if (score <= 21)
-                return 5;
-            else if (score <= 23)
-                return 6;
-            else if (score <= 25)
-                return 7;
-            else if (score <= 27)
-                return 8;
-            else if (score <= 29)
-                return 9;
-            else
-                return 10;
+            return score / 2 - 5;
         }
 
         public override void SetAbilities(Dictionary<Enum, int> abilities)
