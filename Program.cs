@@ -8,14 +8,16 @@
             Enum language;
             IScreen screen = new ScreenMain();
             CharacterSheetBase heroSheet = new CharacterSheetDnd5E();
+            LocalizationsStash localizationsStash = new LocalizationsStash();
 
             language = showMenusCursor.ShowMenuPoints(
                 EnumStartMenuTitles.ChooseLang,
-                typeof(EnumLanguages),
-                EnumLanguages.Russian
+                typeof(EnumLanguages)
             );
+
+            localizationsStash.SetUpLanguage(language);
             
-            screen.ShowScreen(ref heroSheet, language);
+            screen.ShowScreen(ref heroSheet);
         }
     }
 }

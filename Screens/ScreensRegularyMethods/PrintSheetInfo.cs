@@ -9,7 +9,7 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
         }
         
-        public void ShowSheetFields(CharacterSheetBase sheet, Enum language)
+        public void ShowSheetFields(CharacterSheetBase sheet)
         {
             _userOutput.Print("Имя: " + sheet.Name);
             _userOutput.Print("\nРаса: " + sheet.SheetRace.Name);
@@ -17,22 +17,24 @@ namespace dnd_character_sheet
             _userOutput.Print("\nУровень: " + sheet.SheetProgression.Level);
             _userOutput.Print("\nОпыт: " + sheet.SheetProgression.Expirience);
             _userOutput.Print("\nХарактеристики: ");
-            _userOutput.Print(sheet.SheetAbilities.Abilities, language);
+            _userOutput.Print(sheet.SheetAbilities.Abilities);
             _userOutput.Print("\nНавыки: ");
-            _userOutput.Print(sheet.SheetSkills.Skills, language);
+            _userOutput.Print(sheet.SheetSkills.Skills);
             _userOutput.Print("\nВладения: ");
-            _userOutput.Print(sheet.SheetProficiencies.Proficiencies, language);
+            _userOutput.Print(sheet.SheetProficiencies.Proficiencies);
             _userOutput.Print("\nЛичные качества: ");
-            _userOutput.Print(sheet.SheetPersonality.PersonalityList, language);
+            _userOutput.Print(sheet.SheetPersonality.PersonalityList);
             _userOutput.Print("\nБоевые качества: ");
-            _userOutput.Print("HP - " + sheet.SheetCombatAbilities.CurrentHP + @"\" + sheet.SheetCombatAbilities.MaximumHP);
-            _userOutput.Print("Класс доспеха - " + sheet.SheetCombatAbilities.ArmorClass);
-            _userOutput.Print("Скорость - " + sheet.SheetCombatAbilities.Speed);
-            _userOutput.Print("Кость хитов - " + sheet.SheetCombatAbilities.HitDice);
-            _userOutput.Print("Количество костей хитов - " + sheet.SheetCombatAbilities.CurrentHitDices + @"\" + sheet.SheetCombatAbilities.TotalHitDices);
-            _userOutput.Print("Спасброски от смерти - " + sheet.SheetCombatAbilities.DeathSucces + @"\" + sheet.SheetCombatAbilities.DeathFailure);
+            _userOutput.Print("HP - " + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.CurrentHP] + @"\" + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.MaximumHP]);
+            _userOutput.Print("Класс доспеха - " + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.ArmorClass]);
+            _userOutput.Print("Скорость - " + sheet.SheetRace.Speed);
+            _userOutput.Print("Кость хитов - " + sheet.SheetClass.HitDice);
+            _userOutput.Print("Количество костей хитов - " + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.CurrentHitDices] + @"\" + sheet.SheetProgression.Level);
+            _userOutput.Print("Спасброски от смерти - " + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathSucces] + @"\" + sheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathFailure]);
             _userOutput.Print("\nИнвентарь: ");
-            _userOutput.Print(sheet.SheetInventory.Inventory);
+            //_userOutput.Print(sheet.SheetInventory.Inventory);
+            _userOutput.Print("\nУмения:\n");
+            _userOutput.Print(sheet.TraitsList.TraitsList);
         }
     }
 }

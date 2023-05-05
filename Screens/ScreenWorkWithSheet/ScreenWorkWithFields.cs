@@ -14,7 +14,7 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             /*
             

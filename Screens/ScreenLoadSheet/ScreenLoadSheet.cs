@@ -29,21 +29,29 @@ namespace dnd_character_sheet
             _showMenusCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
-            _folderInfo = new DirectoryInfo(@"Character_Sheets\DND5E\");
-            CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
-            
-            foreach(var item in _folderInfo.GetFiles())
+            switch(heroSheet.Edition)
             {
-                _sheetsInFolder.Add(item.Name);
-            }
+                case EnumEditions.DND5E:
+                    _folderInfo = new DirectoryInfo(@"Character_Sheets\" + heroSheet.Edition.ToString());
+                    CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
+                    
+                    foreach(var item in _folderInfo.GetFiles())
+                    {
+                        _sheetsInFolder.Add(item.Name);
+                    }
 
-            //_sheetName = _showMenusCursor.ShowMenuPoints("Выберите лист, который нужно загрузить:", _sheetsInFolder.ToArray());
-            _jsonSaveLoad.JsonLoad(@"Character_Sheets\DND5E\Ulta Enum Hero.json", ref tempSheet);
-            heroSheet = tempSheet;
-            Console.WriteLine("Герой загружен.");
-            Console.ReadKey();
+                    _sheetName = _showMenusCursor.ShowMenuPoints(EnumLoadSheetTitles.ChooseSheet, _sheetsInFolder);
+                    JsonSaveLoad.JsonLoad(@"Character_Sheets\" + heroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
+                    heroSheet = tempSheet;
+                    _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
+                    _userInput.InputKey();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

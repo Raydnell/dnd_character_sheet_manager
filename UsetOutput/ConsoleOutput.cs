@@ -70,14 +70,6 @@ namespace dnd_character_sheet
             Console.Clear();
         }
 
-        public void Print(Dictionary<int, BaseItem> value)
-        {
-            foreach(var item in value)
-            {
-                Console.WriteLine(item.Value.Name);
-            }
-        }
-
         public void Print(List<string> value)
         {
             foreach(var item in value)
@@ -102,45 +94,55 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<EnumAbilitiesDnd5E, int> value, Enum language)
+        public void Print(Dictionary<EnumAbilitiesDnd5E, int> value)
         {
             foreach(var item in value)
             {
-                Console.WriteLine(LocalizationsStash.Localizations[item.Key][language] + ": " + item.Value);
+                Console.WriteLine(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value);
             }
         }
 
-        public void Print(List<EnumSkillsDnd5E> value, Enum language)
+        public void Print(List<EnumSkillsDnd5E> value)
         {
             foreach (var item in value)
             {
-                Console.WriteLine(LocalizationsStash.Localizations[item][language]);
+                Console.WriteLine(LocalizationsStash.SelectedLocalization[item]);
             }
         }
 
-        public void Print(Dictionary<EnumRacesDnd5E, int> value, Enum language)
+        public void Print(Dictionary<EnumRacesDnd5E, int> value)
         {
 
         }
         
-        public void Print(Dictionary<EnumClassesDnd5E, int> value, Enum language)
+        public void Print(Dictionary<EnumClassesDnd5E, int> value)
         {
 
         }
 
-        public void Print(List<EnumAllDND5eProficiencies> value, Enum language)
+        public void Print(List<EnumAllDND5eProficiencies> value)
         {
             foreach (var item in value)
             {
-                Console.WriteLine(LocalizationsStash.Localizations[item][language]);
+                Console.WriteLine(LocalizationsStash.SelectedLocalization[item]);
             }
         }
 
-        public void Print(Dictionary<EnumPersonalitiesDND5E, string> value, Enum language)
+        public void Print(Dictionary<EnumPersonalitiesDND5E, string> value)
         {
             foreach(var item in value)
             {
-                Console.WriteLine(LocalizationsStash.Localizations[item.Key][language] + ": " + item.Value);
+                Console.WriteLine(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value);
+            }
+        }
+
+        public void Print(Dictionary<string, TraitBase> value)
+        {
+            foreach (var item in value)
+            {
+                Console.WriteLine(item.Value.Name);
+                Console.WriteLine(item.Value.Source);
+                Console.WriteLine(item.Value.Description + "\n");
             }
         }
     }

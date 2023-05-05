@@ -1,0 +1,79 @@
+{
+  "Name": "Hero 30",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 3,
+    "Speed": 30
+  },
+  "SheetClass": {
+    "Name": 3,
+    "HitDice": 6,
+    "SaveThrows": [
+      3,
+      4
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 13,
+      "Constitution": 13,
+      "Intelligence": 14,
+      "Wisdom": 15,
+      "Charisma": 16
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      14,
+      0,
+      4
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "132",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "123",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 11,
+      "CurrentHitDices": 1,
+      "CurrentHP": 7,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 7,
+      "TemporaryHP": 0
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      0,
+      42,
+      77,
+      46,
+      30
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  }
+}

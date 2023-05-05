@@ -28,7 +28,7 @@ namespace dnd_character_sheet
             _random = new Random();
         }
         
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             /*
             

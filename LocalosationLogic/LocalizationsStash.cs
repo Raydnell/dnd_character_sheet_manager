@@ -1,8 +1,8 @@
 namespace dnd_character_sheet
 {
-    public static class LocalizationsStash
+    public class LocalizationsStash
     {
-        public static Dictionary<Enum, Dictionary<Enum, string>> Localizations = new Dictionary<Enum, Dictionary<Enum, string>>()
+        private Dictionary<Enum, Dictionary<Enum, string>> Localizations = new Dictionary<Enum, Dictionary<Enum, string>>()
         {
             {
                 EnumStartMenuTitles.ChooseLang, new Dictionary<Enum, string>()
@@ -415,13 +415,13 @@ namespace dnd_character_sheet
             {
                 EnumWeaponsGroupsDND5E.SimpleMelee, new Dictionary<Enum, string>()
                 {
-                    { EnumLanguages.Russian, "Простое рукопашное оружие"}
+                    { EnumLanguages.Russian, "Простое рукопашное оружие" }
                 }
             },
             {
                 EnumWeaponsGroupsDND5E.SimpleRanged, new Dictionary<Enum, string>()
                 {
-                    { EnumLanguages.Russian, "Простое дальнобойное оружие"}
+                    { EnumLanguages.Russian, "Простое дальнобойное оружие" }
                 }
             },
             {
@@ -1035,7 +1035,960 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Сначала нужно создать или загрузить лист персонажа." }
                 }
+            },
+            {
+                EnumAllDND5eProficiencies.MediumArmor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Средний доспех" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.HeavyArmor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тяжёлый доспех" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Shield, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Щит" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.DiceSet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Кости" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.DragonchessSet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Драконьи шахматы" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.PlayingCardSet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Карты" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.ThreeDragonAnteSet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Ставка трех драконов" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.AlchemistsSupplies, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты алхимика" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.BrewersSupplies, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты пивовара" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CalligraphersSupplies, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты каллиграфа" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CarpentersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты плотника" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CartographersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты картографа" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CobblersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты сапожника" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CooksUtensils, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты повара" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.GlassblowersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты стеклодува" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.JewelersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты ювелира" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.LeatherworkersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты кожевника" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.MasonsTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты каменщика" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.PaintersSupplies, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты художника" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.PottersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты гончара" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.SmithsTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты кузнеца" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.TinkersTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты жестянщика" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.WeaversTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты ткача" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.WoodcarversTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты резчика по дереву" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.NavigatorsTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты навигатора" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.PoisonersKit, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инструменты отравителя" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.ThievesTools, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Воровские инструменты" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.DisguiseKit, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Набор для грима" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.ForgeryKit, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Набор для фальсификации" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Herbalism, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Набор травника" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Bagpipes, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Волынка" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Drum, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Барабан" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Dulcimer, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Цимбалы" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Flute, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Флейта" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Lute, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Лютня" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Lyre, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Лира" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Horn, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Рожок" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.PanFlute, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Свирель" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Shawm, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Шалмей" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Viol, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Виола" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.SimpleMelee, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Простое рукопашное оружие" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.SimpleRanged, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Простое дальнобойное оружие" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.MartialMelee, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Воинское рукопашное оружие" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.MartialRanged, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Воинское дальнобойное оружие" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Club, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Дубинка" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Dagger, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Кинжал" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Greatclub, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Палица" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Handaxe, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Ручной топор" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Javelin, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Метательное копьё" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.LightHammer, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Лёгкий молот" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Mace, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Булава" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Quarterstaff, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боевой посох" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Sickle, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Серп" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Spear, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Копьё" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Crossbow, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Арбалет, лёгкий" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Dart, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Дротик" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Shortbow, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Короткий лук" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Sling, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Праща" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Battleaxe, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боевой топор" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Flail, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Цеп" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Glaive, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Глефа" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Greataxe, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Секира" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Greatsword, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Двуручный меч" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Halberd, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Алебарда" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Lance, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Длинное копьё" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Longsword, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Длинный меч" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Maul, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Молот" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Morningstar, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Моргенштерн" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Pike, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Пика" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Rapier, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Рапира" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Scimitar, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Скимитар" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Shortsword, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Короткий меч" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Trident, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Трезубец" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.WarPick, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боевая кирка" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Warhammer, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боевой молот" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Whip, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Кнут" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Blowgun, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Духовая трубка" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CrossbowHand, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Арбалет, ручной" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.CrossbowHeavy, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Арбалет, тяжёлый" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Longbow, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Длинный лук" }
+                }
+            },
+            {
+                EnumAllDND5eProficiencies.Net, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сеть" }
+                }
+            },
+            {
+                EnumLoadSheetTitles.ChooseSheet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Выберите лист, который нужно загрузить:" }
+                }
+            },
+            {
+                EnumLoadSheetTitles.HeroLoaded, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Герой загружен" }
+                }
+            },
+            {
+                EnumSheetCreateTitles.IsNeedToAddTraits, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Нужно ли добавить умения?" }
+                }
+            },
+            {
+                EnumSheetCreateTitles.WriteTraitName, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Укажите имя умения" }
+                }
+            },
+            {
+                EnumSheetCreateTitles.WriteTraitSource, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Укажите источник умения" }
+                }
+            },
+            {
+                EnumSheetCreateTitles.WriteTraitDescription, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Укажите описание умения" }
+                }
+            },
+            {
+                EnumManageItemBaseTitles.WhatNeedToDoWithBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Что нужно сделать с базой предметов?" }
+                }
+            },
+            {
+                EnumManageItemBasePoints.AddNewItem, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Добавить новый предмет" }
+                }
+            },
+            {
+                EnumManageItemBasePoints.ChangeItemInBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Изменить существующий предмет" }
+                }
+            },
+            {
+                EnumManageItemBasePoints.Escape, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Назад" }
+                }
+            },
+            {
+                EnumManageItemBasePoints.RemoveItemFromBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Удалить предмет из базы" }
+                }
+            },
+            {
+                EnumManageItemBasePoints.ShowItemsBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Показать все предметы из базы" }
+                }
+            },
+            {
+                EnumMainMenuPoints.WorkWithItemsBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Работа с базой предметов" }
+                }
+            },
+            {
+                EnumManageItemBaseTitles.CurrentlyItemsInBase, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Текущие предметы в базе:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatTypeOfItemShouldAdd, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой тип предмета:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.NameOfTheItem, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Название предмета:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.TheCostOfItemInGold, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Стоимость предмета в золотых:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.ItemWeightPounds, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Вес предмета (фунты):" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.Rare, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Редкость:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.Description, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Описание:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.Magical, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Магическое:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhichGroupThisWeapon, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "К какой группе относится это оружие:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhichBasicWeaponCanAttributedTo, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "К какому базовому оружию его можно отнести:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.HowManyDamageDices, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сколько костей урона:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatDamageDice, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какая кость урона:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatDamageType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой тип урона:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatModificator, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой модификатор:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatWeaponProperties, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какие у оружия есть свойства:" }
+                }
+            },
+            {
+                EnumItemTypesDND5e.Armor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Броня" }
+                }
+            },
+            {
+                EnumItemTypesDND5e.Weapon, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Оружие" }
+                }
+            },
+            {
+                EnumItemTypesDND5e.Item, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Другое" }
+                }
+            },
+            {
+                EnumItemRarityTypes.Usual, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Обычный" }
+                }
+            },
+            {
+                EnumItemRarityTypes.Unusual, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Необычный" }
+                }
+            },
+            {
+                EnumItemRarityTypes.Rare, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Редкий" }
+                }
+            },
+            {
+                EnumItemRarityTypes.VeryRare, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Очень редкий" }
+                }
+            },
+            {
+                EnumItemRarityTypes.Legendary, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Легендарный" }
+                }
+            },
+            {
+                EnumItemRarityTypes.Artifact, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Артефакт" }
+                }
+            },
+            {
+                EnumItemDamageTypesDND5e.Bludgeoning, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Дробящий" }
+                }
+            },
+            {
+                EnumItemDamageTypesDND5e.Piercing, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Колющий" }
+                }
+            },
+            {
+                EnumItemDamageTypesDND5e.Slashing, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Рубящий" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Ammunition, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боеприпас" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Finesse, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Фехтовальное" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Heavy, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тяжёлое" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Light, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Лёгкое" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Loading, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Перезарядка" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Range, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Дистанция" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Reach, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Досягаемое" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Special, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Специальное" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Thrown, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Метательное" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.TwoHanded, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Двуручное" }
+                }
+            },
+            {
+                EnumWeaponPropertiesDND5e.Versatile, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Универсальное" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.Name, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Название" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.BaseCost, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Стоимость" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.Weight, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Вес" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.Rarity, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Редкость" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.Description, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Описание" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.IsMagic, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Магическое" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.ItemId, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "ID предмета" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.ItemType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тип предмета" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.DamageDiceCount, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Количество костей урона" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.DamageDiceValue, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Кость урона" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.DamageModificator, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Модификатор" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.DamageType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тип урона" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.StrengthRequirement, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Требование силы" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.ArmorClass, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Класс доспеха" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.MaxAgilityBonus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Максимальный бонус ловкости" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.WeaponProperty, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Свойства оружия" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.ArmorType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тип брони" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.WeaponProficiencyConcrete, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Навык оружия" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.WeaponProficiencyGroup, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Группа оружия" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatArmorType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой тип брони:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatStrenghtRequirement, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какое требование по силе:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatArmorClass, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой у брони КД:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.WhatArmorMaxDexteritiBonus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой максимальный бонус ловкости:" }
+                }
             }
         };    
+    
+        public static Dictionary<Enum, string> SelectedLocalization = new Dictionary<Enum, string>()
+        {
+            {
+                EnumStartMenuTitles.ChooseLang, @"Выберите язык \ Choose language"
+            },
+            {
+                EnumLanguages.Russian, @"Русский \ Russian" 
+            },
+            {
+                EnumMenuNavigate.Page, @"Страница \ Page"
+            }
+        };
+        
+        public void SetUpLanguage(Enum language)
+        {
+            SelectedLocalization = new Dictionary<Enum, string>();
+            
+            foreach (var item in Localizations)
+            {
+                SelectedLocalization[item.Key] = item.Value[language];
+            }
+        }
     }
 }

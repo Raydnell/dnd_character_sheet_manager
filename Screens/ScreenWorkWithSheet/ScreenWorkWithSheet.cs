@@ -25,7 +25,7 @@
             _printSheetInfo = new PrintSheetInfo();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             /*
             

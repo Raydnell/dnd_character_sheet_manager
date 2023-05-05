@@ -6,28 +6,35 @@ namespace dnd_character_sheet
         
         public InventoryDND5E()
         {
-            Inventory = new Dictionary<int, BaseItem>();
+            Inventory = new Dictionary<int, int>();
             _random = new Random();
         }
 
-        public override void AddItem(BaseItem item)
+        public override void AddItem(int item)
         {
-            Inventory.Add(_random.Next(1000), item);
+            if (Inventory.ContainsKey(item))
+            {
+                Inventory[item]++;
+            }
+            else
+            {
+                Inventory[item] = 1;
+            }
         }
 
-        public override void RemoveItem(int id)
+        public override void RemoveItem(int item)
         {
-            Inventory.Remove(id);
-        }
-
-        public override void EquipItem(int id)
-        {
-
-        }
-
-        public override void TakeOffItem(int id)
-        {
-
+            if (Inventory.ContainsKey(item))
+            {
+                if (Inventory[item]-- == 0)
+                {
+                    Inventory.Remove(item);
+                }
+                else
+                {
+                    Inventory[item]--;
+                }
+            }
         }
     }
 }

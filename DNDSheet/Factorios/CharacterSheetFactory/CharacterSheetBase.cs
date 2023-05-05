@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace dnd_character_sheet
 {
     public abstract class CharacterSheetBase
@@ -15,8 +17,8 @@ namespace dnd_character_sheet
             }
         }
 
-        private string _edition;        
-        public string Edition
+        private EnumEditions _edition;        
+        public EnumEditions Edition
         {
             get
             {
@@ -28,8 +30,10 @@ namespace dnd_character_sheet
             }
         }
 
-        private SheetRace _sheetRace;
-        public SheetRace SheetRace
+        private SheetRaceBase _sheetRace;
+
+        [JsonProperty("SheetRace")]
+        public SheetRaceBase SheetRace
         {
             get
             {
@@ -41,8 +45,10 @@ namespace dnd_character_sheet
             }
         }
 
-        private SheetClass _sheetClass;
-        public SheetClass SheetClass
+        private SheetClassBase _sheetClass;
+
+        [JsonProperty("SheetClass")]
+        public SheetClassBase SheetClass
         {
             get
             {
@@ -160,5 +166,22 @@ namespace dnd_character_sheet
                 _sheetInventory = value;
             }
         }
+
+        private TraitsListBase _traitsList;
+
+        public TraitsListBase TraitsList
+        {
+            get
+            {
+                return _traitsList;
+            }
+            protected set
+            {
+                _traitsList = value;
+            }
+        }
+
+        public abstract void SetUpRace(SheetRaceBase sheetRace);
+        public abstract void SetUpClass(SheetClassBase sheetClass);
     }
 }

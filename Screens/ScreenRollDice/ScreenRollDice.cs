@@ -21,7 +21,7 @@
             _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             _pointChoose = false;
             while (_pointChoose == false)

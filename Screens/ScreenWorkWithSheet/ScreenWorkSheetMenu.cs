@@ -14,7 +14,7 @@ namespace dnd_character_sheet
             _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             while (_isPointChoose == false)
             {
@@ -48,13 +48,13 @@ namespace dnd_character_sheet
 
                     case 1:
                         _screen = new ScreenWorkWithFields();
-                        _screen.ShowScreen(ref heroSheet, language);
+                        _screen.ShowScreen(ref heroSheet);
                         _isPointChoose = true;
                         break;
 
                     case 2:
                         _screen = new ScreenBasicSheetThrows();
-                        _screen.ShowScreen(ref heroSheet, language);
+                        _screen.ShowScreen(ref heroSheet);
                         _isPointChoose = true;
                         break;
 

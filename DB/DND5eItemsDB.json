@@ -1,0 +1,26 @@
+{
+  "ItemsBase": {
+    "0": {
+      "HealingValue": 7,
+      "Name": null,
+      "BaseCost": 0,
+      "Weight": 0,
+      "Rarity": 0,
+      "Description": null,
+      "IsMagic": false,
+      "ItemId": 0,
+      "ItemType": 0,
+      "DamageDiceCount": 0,
+      "DamageDiceValue": 0,
+      "DamageModificator": 0,
+      "DamageType": 0,
+      "StrengthRequirement": 0,
+      "ArmorClass": 0,
+      "MaxAgilityBonus": 0,
+      "WeaponProperty": 0,
+      "ArmorType": 0,
+      "WeaponProficiencyConcrete": 0,
+      "WeaponProficiencyGroup": 0
+    }
+  }
+}

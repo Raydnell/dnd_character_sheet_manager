@@ -17,6 +17,10 @@ namespace dnd_character_sheet
         HeresYourNewHero,
         YouNeedToSpecifyAValueFrom1To20,
         AddMore,
-        WhatOwnershipToAdd
+        WhatOwnershipToAdd,
+        IsNeedToAddTraits,
+        WriteTraitName,
+        WriteTraitSource,
+        WriteTraitDescription
     }
 }

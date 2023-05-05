@@ -2,12 +2,12 @@ using Newtonsoft.Json;
 
 namespace dnd_character_sheet
 {
-    public abstract class SheetClass
+    public abstract class SheetRaceBase
     {
-        private EnumClassesDnd5E _name;
+        private EnumRacesDnd5E _name;
         
         [JsonProperty("Name")]
-        public EnumClassesDnd5E Name
+        public EnumRacesDnd5E Name
         {
             get
             {
@@ -19,21 +19,19 @@ namespace dnd_character_sheet
             }
         }
 
-        private int _hitDice;
+        private int _speed;
 
-        [JsonProperty("HitDice")]
-        public int HitDice
+        [JsonProperty("Speed")]
+        public int Speed
         {
             get
             {
-                return _hitDice;
+                return _speed;
             }
             protected set
             {
-                _hitDice = value;
+                _speed = value;
             }
         }
-
-        public abstract void SetClass(Enum sheetClass);
     }
 }

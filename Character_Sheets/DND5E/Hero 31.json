@@ -1,0 +1,88 @@
+{
+  "Name": "Hero 31",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 3,
+    "Speed": 30
+  },
+  "SheetClass": {
+    "Name": 3,
+    "HitDice": 6,
+    "SaveThrows": [
+      3,
+      4
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 13,
+      "Constitution": 14,
+      "Intelligence": 15,
+      "Wisdom": 16,
+      "Charisma": 17
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      12
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "123",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "123",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 11,
+      "CurrentHitDices": 1,
+      "CurrentHP": 8,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 8,
+      "TemporaryHP": 0
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      2,
+      9
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  },
+  "TraitsList": {
+    "TraitsList": {
+      "Berserk": {
+        "Name": "Berserk",
+        "Source": "PHB",
+        "Description": "Will damage all around"
+      },
+      "Strike": {
+        "Name": "Strike",
+        "Source": "PHB",
+        "Description": "+1 to damage"
+      }
+    }
+  }
+}

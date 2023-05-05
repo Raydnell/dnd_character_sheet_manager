@@ -2,8 +2,8 @@ namespace dnd_character_sheet
 {
     public abstract class SheetInventory
     {
-        private Dictionary<int, BaseItem> _inventory;
-        public Dictionary<int, BaseItem> Inventory
+        private Dictionary<int, int> _inventory;
+        public Dictionary<int, int> Inventory
         {
             get
             {
@@ -15,9 +15,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void AddItem(BaseItem item);
-        public abstract void RemoveItem(int id);
-        public abstract void EquipItem(int id);
-        public abstract void TakeOffItem(int id);
+        public abstract void AddItem(int item);
+        public abstract void RemoveItem(int item);
     }
 }

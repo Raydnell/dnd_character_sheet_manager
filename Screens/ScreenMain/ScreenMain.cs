@@ -23,7 +23,7 @@
             _showMenusCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet, Enum language)
+        public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             Enum _choosenPoint2;
             
@@ -32,20 +32,19 @@
             {
                 _choosenPoint2 = _showMenusCursor.ShowMenuPoints(
                     EnumMainMenuTitles.MainMenu,
-                    typeof(EnumMainMenuPoints),
-                    language
+                    typeof(EnumMainMenuPoints)
                 );
                 switch(_choosenPoint2)
                 {
                     case EnumMainMenuPoints.CreateSheet:
-                        _screen = new ScreenSheetCreate();
-                        _screen.ShowScreen(ref heroSheet, language);
+                        _screen = new ScreenCreateSheet();
+                        _screen.ShowScreen(ref heroSheet);
                         _isSheetLoaded = true;
                         break;
 
                     case EnumMainMenuPoints.LoadSheet:
                         _screen = new ScreenLoadSheet();
-                        _screen.ShowScreen(ref heroSheet, language);
+                        _screen.ShowScreen(ref heroSheet);
                         _isSheetLoaded = true;
                         break;
 
@@ -53,42 +52,42 @@
                         if(_isSheetLoaded == true)
                         {
                             _userOutput.Clear();
-                            _printSheetInfo.ShowSheetFields(heroSheet, language);
+                            _printSheetInfo.ShowSheetFields(heroSheet);
                             _userInput.InputKey();
                         }
                         else
                         {
-                            PrintListNotLoaded(language);
+                            PrintListNotLoaded();
                         }
                         break;
 
                     case EnumMainMenuPoints.DiceRolls:
                         _screen = new ScreenRollDice();
-                        _screen.ShowScreen(ref heroSheet, language);
+                        _screen.ShowScreen(ref heroSheet);
                         break;
 
                     case EnumMainMenuPoints.WorkWithSheet:
                         if(_isSheetLoaded == true)
                         {
                             _screen = new ScreenWorkSheetMenu();
-                            _screen.ShowScreen(ref heroSheet, language);
+                            _screen.ShowScreen(ref heroSheet);
                         }
                         else
                         {
-                            PrintListNotLoaded(language);
+                            PrintListNotLoaded();
                         }
                         break;
 
                     case EnumMainMenuPoints.SaveSheeet:
                         if(_isSheetLoaded == true)
                         {
-                            _jsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
-                            _userOutput.Print(LocalizationsStash.Localizations[EnumMainMenuTitles.SheetSaved][language]);
+                            JsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
+                            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.SheetSaved]);
                             _userInput.InputKey();
                         }
                         else
                         {
-                            PrintListNotLoaded(language);
+                            PrintListNotLoaded();
                         }
                         break;
 
@@ -96,17 +95,22 @@
                         Environment.Exit(0);
                         break;
 
+                    case EnumMainMenuPoints.WorkWithItemsBase:
+                        _screen = new ScreenManageItemsDB();
+                        _screen.ShowScreen(ref heroSheet);
+                        break;
+
                     default:
-                        PrintListNotLoaded(language);
+                        PrintListNotLoaded();
                         break;
                 }
             }
         }
 
-        private void PrintListNotLoaded(Enum language)
+        private void PrintListNotLoaded()
         {
             _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.Localizations[EnumMainMenuTitles.FirstLoadOrCreateSheet][language]);
+            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.FirstLoadOrCreateSheet]);
             _userInput.InputKey();
         }
     }

@@ -8,6 +8,7 @@ namespace dnd_character_sheet
         DiceRolls,
         WorkWithSheet,
         SaveSheeet,
+        WorkWithItemsBase,
         Exit
     }
 }
