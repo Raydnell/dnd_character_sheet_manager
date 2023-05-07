@@ -19,6 +19,7 @@ namespace dnd_character_sheet
         WhatArmorType,
         WhatStrenghtRequirement,
         WhatArmorClass,
-        WhatArmorMaxDexteritiBonus
+        WhatArmorMaxDexteritiBonus,
+        IsNeedWeaponProperty
     }
 }

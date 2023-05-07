@@ -32,6 +32,8 @@ namespace dnd_character_sheet
                     break;
 
                 case EnumManageItemBasePoints.ShowItemsBase:
+                    _screen = new ScreenShowItemInDB();
+                    _screen.ShowScreen(ref heroSheet);
                     break;
             }
         }

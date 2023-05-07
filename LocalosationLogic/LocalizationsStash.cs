@@ -1769,6 +1769,12 @@ namespace dnd_character_sheet
                 }
             },
             {
+                EnumWeaponPropertiesDND5e.NoPropery, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Без свойства" }
+                }
+            },
+            {
                 EnumWeaponPropertiesDND5e.Finesse, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Фехтовальное" }
@@ -1964,6 +1970,54 @@ namespace dnd_character_sheet
                 EnumAddItemInDBTitles.WhatArmorMaxDexteritiBonus, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Какой максимальный бонус ловкости:" }
+                }
+            },
+            {
+                EnumAddItemInDBTitles.IsNeedWeaponProperty, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Нужно ли добавить свойство оружия?" }
+                }
+            },
+            {
+                EnumShowItemsInDBTitles.ListOfItems, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Список предметов из базы:" }
+                }
+            },
+            {
+                EnumWorkWithSheetTitles.Menu, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Меню:" }
+                }
+            },
+            {
+                EnumWorkWithSheetPoints.Back, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Назад" }
+                }
+            },
+            {
+                EnumWorkWithSheetPoints.EditSheetFields, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Редактирование полей листа" }
+                }
+            },
+            {
+                EnumWorkWithSheetPoints.InventorySheetManage, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Взаимодействие с инвентарём" }
+                }
+            },
+            {
+                EnumWorkWithSheetPoints.SheetDiceRolls, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Броски кубов по листу" }
+                }
+            },
+            {
+                EnumWorkWithSheetPoints.SpellsSheetManage, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Подготовка заклинаний" }
                 }
             }
         };    

@@ -7,54 +7,66 @@ namespace dnd_character_sheet
         private IUserInput _input;
         private IUserOutput _output;
         private bool _isNeedToStay;
-        private ItemBaseDND5e _newItem;
-        private ItemsFabricDND5e _itemFabric;
         private ItemsDataBaseDND5e _itemDB;
         private PrintItemInfo _printItemInfo;
+        private ItemArmorDND5e _itemArmor;
+        private ItemRegularDND5e _itemRegular;
+        private ItemWeaponDND5e _itemWeapon;
 
         public ScreenAddItemInDB()
         {
             _showMenuCursor = new ShowMenusCursor();
             _input = new ConsoleInput();
             _output = new ConsoleOutput();
-            _itemFabric = new ItemsFabricDND5e();
             _itemDB = new ItemsDataBaseDND5e();
             _printItemInfo = new PrintItemInfo();
         }
         
         public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
-            //Загрузка базы
+            JsonSaveLoad.JsonLoad(@"DB\DND5eItemsDB.json", ref _itemDB);
             
             _isNeedToStay = true;
             while (_isNeedToStay == true)
             {
-                _newItem = _itemFabric.CreateItem(_showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatTypeOfItemShouldAdd, typeof(EnumItemTypesDND5e)));
-
-                //Проверка, что в базе нет такого ID
-                _newItem.SetItemId();
-
-                //Указание базовых параметров
-                SetBaseItemStats(_newItem);
-
-                //Указание отличительных параметров
-                switch(_newItem.ItemType)
+                _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatTypeOfItemShouldAdd, typeof(EnumItemTypesDND5e));
+                if (Enum.TryParse<EnumItemTypesDND5e>(_choosenPoint.ToString(), out EnumItemTypesDND5e result))
                 {
-                    case EnumItemTypesDND5e.Armor:
-                        SetArmorStats(_newItem);
-                        break;
-                    
-                    case EnumItemTypesDND5e.Weapon:
-                        SetWeaponStats(_newItem);
-                        break;
+                    switch(result)
+                    {
+                        case EnumItemTypesDND5e.Item:
+                            _itemRegular = new ItemRegularDND5e();
+                            SetBaseItemStats(_itemRegular);
+                            _output.Clear();
+                            _printItemInfo.ShowItemInfo(_itemRegular);
+                            _input.InputKey();
+                            _itemDB.AddItem(_itemRegular);
+                            JsonSaveLoad.JsonSave("DND5eItemsDB", _itemDB, @"DB\");
+                            break;
+
+                        case EnumItemTypesDND5e.Armor:
+                            _itemArmor = new ItemArmorDND5e();
+                            SetBaseItemStats(_itemArmor);
+                            SetArmorStats(_itemArmor);
+                            _output.Clear();
+                            _printItemInfo.ShowItemInfo(_itemArmor);
+                            _input.InputKey();
+                            _itemDB.AddItem(_itemArmor);
+                            JsonSaveLoad.JsonSave("DND5eItemsDB", _itemDB, @"DB\");
+                            break;
+
+                        case EnumItemTypesDND5e.Weapon:
+                            _itemWeapon = new ItemWeaponDND5e();
+                            SetBaseItemStats(_itemWeapon);
+                            SetWeaponStats(_itemWeapon);
+                            _output.Clear();
+                            _printItemInfo.ShowItemInfo(_itemWeapon);
+                            _input.InputKey();
+                            _itemDB.AddItem(_itemWeapon);
+                            JsonSaveLoad.JsonSave("DND5eItemsDB", _itemDB, @"DB\");
+                            break;
+                    }
                 }
-
-                _output.Clear();
-                _printItemInfo.ShowItemInfo(_newItem);
-                _input.InputKey();
-
-                _itemDB.AddItem(_newItem);
-                JsonSaveLoad.JsonSave("DND5eItemsDB", _itemDB, @"DB\");
 
                 _isNeedToStay = BreakOrContinue();
             }
@@ -62,6 +74,17 @@ namespace dnd_character_sheet
 
         private void SetBaseItemStats(ItemBaseDND5e item)
         {
+            bool isIdUniq = false;
+
+            while (isIdUniq == false)
+            {
+                item.SetItemId();
+                if (_itemDB.ItemsBase.ContainsKey(item.ItemId) == false)
+                {
+                    isIdUniq = true;
+                }
+            }
+            
             _output.Clear();
             _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.NameOfTheItem] + "\n");
             item.SetName(_input.InputString());
@@ -100,7 +123,7 @@ namespace dnd_character_sheet
 
         }
 
-        private void SetWeaponStats(ItemBaseDND5e item)
+        private void SetWeaponStats(ItemWeaponDND5e item)
         {
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhichGroupThisWeapon, typeof(EnumWeaponsGroupsDND5E));
             if (Enum.TryParse<EnumWeaponsGroupsDND5E>(_choosenPoint.ToString(), out EnumWeaponsGroupsDND5E group))
@@ -126,12 +149,6 @@ namespace dnd_character_sheet
             _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatModificator] + "\n");
             item.SetDamageModificator(_input.InputInt());
 
-            _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatDamageType, typeof(EnumItemDamageTypesDND5e));
-            if (Enum.TryParse<EnumItemDamageTypesDND5e>(_choosenPoint.ToString(), out EnumItemDamageTypesDND5e damageType))
-            {
-                item.SetDamageType(damageType);
-            }
-
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatWeaponProperties, typeof(EnumWeaponPropertiesDND5e));
             if (Enum.TryParse<EnumWeaponPropertiesDND5e>(_choosenPoint.ToString(), out EnumWeaponPropertiesDND5e propertie))
             {
@@ -139,7 +156,7 @@ namespace dnd_character_sheet
             }
         }
     
-        private void SetArmorStats(ItemBaseDND5e item)
+        private void SetArmorStats(ItemArmorDND5e item)
         {
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatArmorType, typeof(EnumArmorProficienciesDND5E));
             if (Enum.TryParse<EnumArmorProficienciesDND5E>(_choosenPoint.ToString(), out EnumArmorProficienciesDND5E armorType))

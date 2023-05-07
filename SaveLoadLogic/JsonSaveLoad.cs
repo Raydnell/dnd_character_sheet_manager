@@ -18,6 +18,7 @@ namespace dnd_character_sheet
             jsonSerializerSettings.Converters.Add(new RaceConvertorJson());
             jsonSerializerSettings.Converters.Add(new ClassConvertorJson());
             jsonSerializerSettings.Converters.Add(new TraitConvertorJson());
+            jsonSerializerSettings.Converters.Add(new ItemsConverter());
             
             sheet = JsonConvert.DeserializeObject<T>(File.ReadAllText(pathLoad), jsonSerializerSettings);
         }

@@ -3,64 +3,47 @@ namespace dnd_character_sheet
     public class ScreenWorkSheetMenu : IScreen
     {
         private bool _isPointChoose;
+
         private IScreen _screen;
         private IUserInput _userInput;
         private IUserOutput _userOutput;
-        private int _intInput;
+        private ShowMenusCursor _showMenuCursor;
+        private Enum _choosenPoint;
 
         public ScreenWorkSheetMenu()
         {
             _userInput = new ConsoleInput();
             _userOutput = new ConsoleOutput();
+            _showMenuCursor = new ShowMenusCursor();
         }
 
         public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
             while (_isPointChoose == false)
             {
-                _userOutput.Clear();
-                _userOutput.Print("Меню: \n");
-                _userOutput.Print("1. Редактирование полей листа");
-                _userOutput.Print("2. Броски кубов по листу");
-                _userOutput.Print("3. Взаимодействие с инвентарём");
-                _userOutput.Print("4. Подготовка заклинаний");
-                _userOutput.Print("10. Вернуться в меню");
-
-                _intInput = _userInput.InputInt();
-
-                switch(_intInput)
+                _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumWorkWithSheetTitles.Menu, typeof(EnumWorkWithSheetPoints));
+                if (Enum.TryParse<EnumWorkWithSheetPoints>(_choosenPoint.ToString(), out EnumWorkWithSheetPoints result))
                 {
-                    default:
-                    case 0:
-                        _userOutput.Clear();
-                        _userOutput.Print("Выбрано неверное значение, повторить попытку или вернуться в меню?");
-                        _userOutput.Print("1. Вернуться в меню");
-                        _userOutput.Print("2. Повторить попытку");
-
-                        _intInput = _userInput.InputInt();
-                        if (_intInput == 1)
-                        {
+                    switch(result)
+                    {
+                        case EnumWorkWithSheetPoints.Back:
                             _isPointChoose = true;
                             break;
-                        }
 
-                        break;
+                        case EnumWorkWithSheetPoints.EditSheetFields:
+                            break;
 
-                    case 1:
-                        _screen = new ScreenWorkWithFields();
-                        _screen.ShowScreen(ref heroSheet);
-                        _isPointChoose = true;
-                        break;
+                        case EnumWorkWithSheetPoints.InventorySheetManage:
+                            _screen = new ScreenWorkWithInventory();
+                            _screen.ShowScreen(ref heroSheet);
+                            break;
 
-                    case 2:
-                        _screen = new ScreenBasicSheetThrows();
-                        _screen.ShowScreen(ref heroSheet);
-                        _isPointChoose = true;
-                        break;
+                        case EnumWorkWithSheetPoints.SheetDiceRolls:
+                            break;
 
-                    case 10:
-                        _isPointChoose = true;
-                        break;
+                        case EnumWorkWithSheetPoints.SpellsSheetManage:
+                            break;
+                    }
                 }
             }
         }

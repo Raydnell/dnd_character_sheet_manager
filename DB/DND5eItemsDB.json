@@ -1,26 +1,62 @@
 {
   "ItemsBase": {
-    "0": {
-      "HealingValue": 7,
-      "Name": null,
-      "BaseCost": 0,
-      "Weight": 0,
-      "Rarity": 0,
-      "Description": null,
-      "IsMagic": false,
-      "ItemId": 0,
-      "ItemType": 0,
-      "DamageDiceCount": 0,
-      "DamageDiceValue": 0,
+    "5831": {
+      "DamageDiceCount": 1,
+      "DamageDiceValue": 6,
       "DamageModificator": 0,
       "DamageType": 0,
-      "StrengthRequirement": 0,
-      "ArmorClass": 0,
-      "MaxAgilityBonus": 0,
       "WeaponProperty": 0,
-      "ArmorType": 0,
-      "WeaponProficiencyConcrete": 0,
-      "WeaponProficiencyGroup": 0
+      "WeaponProficiencyConcrete": 2,
+      "WeaponProficiencyGroup": 0,
+      "Name": "Палка",
+      "BaseCost": 15,
+      "Weight": 10,
+      "Rarity": 2,
+      "Description": "Палка, просто палка",
+      "IsMagic": false,
+      "ItemId": 5831,
+      "ItemType": 1
+    },
+    "7624": {
+      "StrengthRequirement": 16,
+      "ArmorClass": 15,
+      "MaxAgilityBonus": 0,
+      "ArmorType": 2,
+      "Name": "Кольчуга",
+      "BaseCost": 50,
+      "Weight": 40,
+      "Rarity": 0,
+      "Description": "Металлическая кольчуга",
+      "IsMagic": false,
+      "ItemId": 7624,
+      "ItemType": 0
+    },
+    "2515": {
+      "DamageDiceCount": 1,
+      "DamageDiceValue": 8,
+      "DamageModificator": 0,
+      "DamageType": 0,
+      "WeaponProperty": 0,
+      "WeaponProficiencyConcrete": 3,
+      "WeaponProficiencyGroup": 0,
+      "Name": "Топор",
+      "BaseCost": 10,
+      "Weight": 5,
+      "Rarity": 0,
+      "Description": "Простой топор",
+      "IsMagic": false,
+      "ItemId": 2515,
+      "ItemType": 1
+    },
+    "2917": {
+      "Name": "Кружка",
+      "BaseCost": 1,
+      "Weight": 2,
+      "Rarity": 0,
+      "Description": "Простая кружка",
+      "IsMagic": false,
+      "ItemId": 2917,
+      "ItemType": 2
     }
   }
 }

@@ -2,12 +2,9 @@ namespace dnd_character_sheet
 {
     public class InventoryDND5E : SheetInventory
     {
-        private Random _random;
-        
         public InventoryDND5E()
         {
             Inventory = new Dictionary<int, int>();
-            _random = new Random();
         }
 
         public override void AddItem(int item)

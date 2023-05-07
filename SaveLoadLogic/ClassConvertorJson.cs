@@ -31,40 +31,40 @@ namespace dnd_character_sheet
             JObject jo = JObject.Load(reader);
             switch (jo["Name"].Value<int>())
             {
-                case 1:
+                case 0:
                     return JsonConvert.DeserializeObject<BardClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 2:
+                case 1:
                     return JsonConvert.DeserializeObject<BarbarianClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 3:
+                case 2:
                     return JsonConvert.DeserializeObject<FighterClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 4:
+                case 3:
                     return JsonConvert.DeserializeObject<WizardClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 5:
+                case 4:
                     return JsonConvert.DeserializeObject<DruidClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 6:
+                case 5:
                     return JsonConvert.DeserializeObject<ClericClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 7:
+                case 6:
                     return JsonConvert.DeserializeObject<WarlockClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 8:
+                case 7:
                     return JsonConvert.DeserializeObject<MonkClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 9:
+                case 8:
                     return JsonConvert.DeserializeObject<PaladinClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 10:
+                case 9:
                     return JsonConvert.DeserializeObject<RogueClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 11:
+                case 10:
                     return JsonConvert.DeserializeObject<RangerClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
-                case 12:
+                case 11:
                     return JsonConvert.DeserializeObject<SorcererClassDND5e>(jo.ToString(), SpecifiedSubclassConversion);
 
                 default:
