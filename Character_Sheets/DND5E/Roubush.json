@@ -1,0 +1,92 @@
+{
+  "Name": "Roubush",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 1,
+    "Speed": 25
+  },
+  "SheetClass": {
+    "Name": 3,
+    "HitDice": 6,
+    "SaveThrows": [
+      3,
+      4
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 15,
+      "Dexterity": 16,
+      "Constitution": 17,
+      "Intelligence": 13,
+      "Wisdom": 14,
+      "Charisma": 15
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      3,
+      0
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": []
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "123",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "123",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 13,
+      "CurrentHitDices": 1,
+      "CurrentHP": 9,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 9,
+      "TemporaryHP": 0
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      2,
+      43,
+      31
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {
+      "5831": 3,
+      "7624": 2,
+      "2515": 1,
+      "2917": 1,
+      "2434": 75,
+      "1453": 3,
+      "9518": 1,
+      "1258": 1,
+      "8901": 1,
+      "4155": 1,
+      "8101": 1,
+      "7530": 1
+    }
+  },
+  "TraitsList": {
+    "TraitsList": {}
+  }
+}

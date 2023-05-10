@@ -16,6 +16,7 @@
             );
 
             localizationsStash.SetUpLanguage(language);
+            ItemsDataBaseDND5e.LoadItemsBase();
             
             screen.ShowScreen(ref heroSheet);
         }

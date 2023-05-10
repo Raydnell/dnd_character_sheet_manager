@@ -4,6 +4,7 @@ namespace dnd_character_sheet
     {
         Armor,
         Weapon,
-        Item
+        Item,
+        Coin
     }
 }
