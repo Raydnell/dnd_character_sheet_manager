@@ -20,6 +20,7 @@ namespace dnd_character_sheet
         WeaponProperty,
         ArmorType,
         WeaponProficiencyConcrete,
-        WeaponProficiencyGroup
+        WeaponProficiencyGroup,
+        CoinType
     }
 }

@@ -18,6 +18,7 @@ namespace dnd_character_sheet
         private ConsoleKeyInfo _keyPressed;
         private ModuleCreateNewItem _createNewItem;
         private ItemBaseDND5e _newItem;
+        private LookingForItemInDB _lookingForItemDB;
 
         public ScreenWorkWithInventory()
         {
@@ -26,38 +27,25 @@ namespace dnd_character_sheet
             _cursor = ">";
             _currentItemsList = new List<int>();
             _createNewItem = new ModuleCreateNewItem();
+            _lookingForItemDB = new LookingForItemInDB();
         }
         
         public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
-            PrintTable();
-            
             Console.CursorVisible = false;
-            _pagesItems = MakeListWithPages(heroSheet);
-            _totalPages = _pagesItems.Count;
-            _currentPage = 0;
-            
-            WriteText(EnumWorkWithInventoryTitles.Inventory);
-
-            WritePoints();
-            PrintInventoryWeight(heroSheet);
-
-            _cursorPositionLeft = 0;
-            _cursorPositionTop = 2;
-            Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-            Console.Write(_cursor);
-
-            PrintItem(ItemsDataBaseDND5e.ItemsDB[_currentItemsList[_cursorPositionTop - 2]]);
+            ConstructScreen(heroSheet);
 
             _isEscPressed = false;
             while (_isEscPressed == false)
             {
+                Console.CursorVisible = false;
+                
                 _keyPressed = Console.ReadKey();
 
                 Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
                 Console.Write("  ");
-                
-                switch(_keyPressed.Key)
+
+                switch (_keyPressed.Key)
                 {
                     case ConsoleKey.DownArrow:
                         if (_cursorPositionTop < _pagesItems[_currentPage].Count + 1)
@@ -97,8 +85,15 @@ namespace dnd_character_sheet
                         _newItem = _createNewItem.CreateItem();
                         ItemsDataBaseDND5e.AddItem(_newItem);
                         ItemsDataBaseDND5e.SaveDB();
+                        ConstructScreen(heroSheet);
                         break;
 
+                    case ConsoleKey.A:
+                        heroSheet.SheetInventory.AddItem(_lookingForItemDB.GetItemIdFromDB());
+                        Console.Clear();
+                        ConstructScreen(heroSheet);
+                        break;
+                        
                     default:
                         break;
                 }
@@ -122,7 +117,6 @@ namespace dnd_character_sheet
             {
                 { 0, new Dictionary<int, int>() }
             };
-            _currentItemsList = new List<int>();
             int pages = 0;
 
             foreach (var item in heroSheet.SheetInventory.Inventory)
@@ -134,7 +128,6 @@ namespace dnd_character_sheet
                 }
 
                 tempDict[pages][item.Key] = item.Value;
-                _currentItemsList.Add(item.Key);
             }
 
             return tempDict;
@@ -142,10 +135,11 @@ namespace dnd_character_sheet
 
         private void WritePoints()
         {
+            _currentItemsList = new List<int>();
             _cursorPositionLeft = 2;
             _cursorPositionTop = 2;
 
-            Console.SetCursorPosition(2,2);
+            Console.SetCursorPosition(0, 2);
             for (int y = 0; y < 10; y++)
             {
                 Console.WriteLine("                   ");
@@ -157,15 +151,17 @@ namespace dnd_character_sheet
                 Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
                 Console.Write(ItemsDataBaseDND5e.ItemsDB[item.Key].Name);
 
-                _cursorPositionLeft = 19;
+                _cursorPositionLeft = 22;
                 Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-                Console.Write("  |  " + item.Value);
+                Console.Write(item.Value);
                 Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
 
                 _cursorPositionTop++;
+
+                _currentItemsList.Add(item.Key);
             }
 
-            Console.SetCursorPosition(0, 14);
+            Console.SetCursorPosition(2, 13);
             Console.Write(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + "/" + _totalPages);
 
             _cursorPositionLeft = 0;
@@ -199,13 +195,13 @@ namespace dnd_character_sheet
             _printItemInfo.ShowItemInfo(item);
         }
 
-        private float CalculateWeight(CharacterSheetBase heroSheet)
+        private double CalculateWeight(CharacterSheetBase heroSheet)
         {
-            float itemsWeight = 0;
+            double itemsWeight = 0f;
             
             foreach (var item in heroSheet.SheetInventory.Inventory)
             {
-                itemsWeight += ItemsDataBaseDND5e.ItemsDB[item.Key].Weight * item.Value;
+                itemsWeight += Math.Round(ItemsDataBaseDND5e.ItemsDB[item.Key].Weight * item.Value, 2);
             }
 
             return itemsWeight;
@@ -218,24 +214,23 @@ namespace dnd_character_sheet
 
         private void PrintInventoryWeight(CharacterSheetBase heroSheet)
         {
-            float itemsWeight = 0;
+            double itemsWeight = 0;
             float maxHeroWeight = 0;
 
             itemsWeight = CalculateWeight(heroSheet);
             maxHeroWeight = CalculateHeroMaxPortableWeight(heroSheet);
             
-            _cursorPositionLeft = 19;
-            _cursorPositionTop = 14;
+            _cursorPositionLeft = 22;
+            _cursorPositionTop = 13;
             Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-            Console.Write("  |  " + LocalizationsStash.SelectedLocalization[EnumWorkWithInventoryTitles.Weight] + " " + itemsWeight + @"\" + maxHeroWeight);
+            Console.Write(LocalizationsStash.SelectedLocalization[EnumWorkWithInventoryTitles.Weight] + " " + itemsWeight + @"\" + (int)maxHeroWeight);
         }
 
         private void PrintTable()
         {
-            string strokeTypeOne = "                  |                  |";
-            string strokeTypeTwo = "------------------+------------------+------------------";
+            string strokeTypeOne = "                   |                   |";
+            string strokeTypeTwo = "-------------------+-------------------+------------------";
 
-            Console.Clear();
             Console.SetCursorPosition(0, 0);
             Console.WriteLine(strokeTypeOne);
             Console.WriteLine(strokeTypeTwo);
@@ -246,6 +241,46 @@ namespace dnd_character_sheet
             Console.WriteLine(strokeTypeTwo);
             Console.WriteLine(strokeTypeOne);
             Console.WriteLine(strokeTypeTwo);
+        }
+
+        private void PrintControls()
+        {
+            Console.SetCursorPosition(2, 0);
+            WriteText(EnumWorkWithInventoryTitles.Inventory);
+            Console.SetCursorPosition(22, 0);
+            WriteText(EnumWorkWithInventoryTitles.ItemsCoint);
+            Console.SetCursorPosition(42, 0);
+            WriteText(EnumWorkWithInventoryTitles.ControlButtons);
+            Console.SetCursorPosition(42, 2);
+            WriteText(EnumWorkWithInventoryTitles.AButtonAddItemFromDB);
+            Console.SetCursorPosition(42, 3);
+            WriteText(EnumWorkWithInventoryTitles.NButtonCreateNewItem);
+            Console.SetCursorPosition(42, 4);
+            WriteText(EnumWorkWithInventoryTitles.DButtonRemoveItem);
+            Console.SetCursorPosition(42, 5);
+            WriteText(EnumWorkWithInventoryTitles.PlusButtonIncreaseItemAmount);
+            Console.SetCursorPosition(42, 6);
+            WriteText(EnumWorkWithInventoryTitles.MinusButtonDecreaseItemAmount);
+        }
+
+        private void ConstructScreen(CharacterSheetBase heroSheet)
+        {
+            _pagesItems = MakeListWithPages(heroSheet);
+            _totalPages = _pagesItems.Count;
+            _currentPage = 0;
+
+            Console.Clear();
+            PrintTable();
+            PrintControls();
+            WritePoints();
+            PrintInventoryWeight(heroSheet);
+
+            _cursorPositionLeft = 0;
+            _cursorPositionTop = 2;
+
+            Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
+            Console.Write(_cursor);
+            PrintItem(ItemsDataBaseDND5e.ItemsDB[_currentItemsList[_cursorPositionTop - 2]]);
         }
     }
 }

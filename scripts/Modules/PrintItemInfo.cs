@@ -22,6 +22,10 @@ namespace dnd_character_sheet
                 case EnumItemTypesDND5e.Weapon:
                     ShowWeaponInfo((ItemWeaponDND5e)item);
                     break;
+
+                case EnumItemTypesDND5e.Coin:
+                    ShowCoinInfo((ItemCoinDND5e)item);
+                    break;
             }
         }
 
@@ -52,7 +56,12 @@ namespace dnd_character_sheet
             _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.StrengthRequirement]+ " " + item.StrengthRequirement);
             _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.ArmorClass]+ " " + item.ArmorClass);
             _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.MaxAgilityBonus]+ " " + item.MaxAgilityBonus);
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.ArmorType]+ " " + item.ArmorType);
+            _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.ArmorType]+ " " +  LocalizationsStash.SelectedLocalization[item.ArmorType]);
+        }
+
+        private void ShowCoinInfo(ItemCoinDND5e item)
+        {
+            _output.Print(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.CoinType] + " " + LocalizationsStash.SelectedLocalization[item.CoinType]);
         }
     }
 }

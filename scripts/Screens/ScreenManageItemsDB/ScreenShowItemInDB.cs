@@ -2,16 +2,16 @@ namespace dnd_character_sheet
 {
     public class ScreenShowItemInDB : IScreen
     {
-        private ShowMenusCursor _showMenuCursor;
+        private LookingForItemInDB _lookingForItemInDB;
 
         public ScreenShowItemInDB()
         {
-            _showMenuCursor = new ShowMenusCursor();
+            _lookingForItemInDB = new LookingForItemInDB();
         }
         
         public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
-            _showMenuCursor.ShowMenuPoints(EnumShowItemsInDBTitles.ListOfItems, ItemsDataBaseDND5e.ItemsDB);
+            _lookingForItemInDB.GetItemIdFromDB();
         }
     }
 }

@@ -74,7 +74,7 @@
     "ArmorType": 2,
     "Name": "Металка",
     "BaseCost": 50.0,
-    "Weight": 100.0,
+    "Weight": 25.0,
     "Rarity": 0,
     "Description": "Металлическая броня",
     "IsMagic": false,
@@ -115,7 +115,7 @@
     "ArmorType": 2,
     "Name": "Кираса",
     "BaseCost": 150.0,
-    "Weight": 40.0,
+    "Weight": 15.0,
     "Rarity": 0,
     "Description": "Кираса с поясом",
     "IsMagic": false,
@@ -160,5 +160,49 @@
     "IsMagic": false,
     "ItemId": 7530,
     "ItemType": 3
+  },
+  "0": {
+    "Name": "",
+    "BaseCost": 0.0,
+    "Weight": 0.0,
+    "Rarity": 0,
+    "Description": "",
+    "IsMagic": false,
+    "ItemId": 0,
+    "ItemType": 2
+  },
+  "9738": {
+    "Name": "Рюкзак",
+    "BaseCost": 10.0,
+    "Weight": 3.0,
+    "Rarity": 0,
+    "Description": "Хороший рюкзак",
+    "IsMagic": false,
+    "ItemId": 9738,
+    "ItemType": 2
+  },
+  "3068": {
+    "Name": "Конус",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Просто конус",
+    "IsMagic": false,
+    "ItemId": 3068,
+    "ItemType": 2
+  },
+  "8601": {
+    "StrengthRequirement": 12,
+    "ArmorClass": 13,
+    "MaxAgilityBonus": 2,
+    "ArmorType": 1,
+    "Name": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0000\u0000\u0000",
+    "BaseCost": 4.0,
+    "Weight": 15.0,
+    "Rarity": 0,
+    "Description": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000 \u0000\u0000\u0000\u0000\u0000 \u0000 \u0000\u0000\u0000\u0000\u0000",
+    "IsMagic": false,
+    "ItemId": 8601,
+    "ItemType": 0
   }
 }

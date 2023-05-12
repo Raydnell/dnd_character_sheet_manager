@@ -2115,6 +2115,18 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Горячие клавиши" }
                 }
+            },
+            {
+                EnumWorkWithInventoryTitles.ItemsCoint, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Количество" }
+                }
+            },
+            {
+                EnumItemStatsDND5e.CoinType, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Тип монеты" }
+                }
             }
         };    
     

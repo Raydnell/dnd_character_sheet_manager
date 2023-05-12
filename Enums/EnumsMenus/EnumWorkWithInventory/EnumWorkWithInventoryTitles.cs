@@ -11,6 +11,7 @@ namespace dnd_character_sheet
         DButtonRemoveItem,
         PlusButtonIncreaseItemAmount,
         MinusButtonDecreaseItemAmount,
-        ControlButtons
+        ControlButtons,
+        ItemsCoint
     }
 }
