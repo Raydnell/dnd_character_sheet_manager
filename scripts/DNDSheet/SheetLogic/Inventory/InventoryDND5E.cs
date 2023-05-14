@@ -19,11 +19,11 @@ namespace dnd_character_sheet
             }
         }
 
-        public override void RemoveItem(int item)
+        public override void DecreaseItem(int item)
         {
             if (Inventory.ContainsKey(item))
             {
-                if (Inventory[item]-- == 0)
+                if (Inventory[item] == 1)
                 {
                     Inventory.Remove(item);
                 }
@@ -31,6 +31,14 @@ namespace dnd_character_sheet
                 {
                     Inventory[item]--;
                 }
+            }
+        }
+
+        public override void RemoveItem(int item)
+        {
+            if (Inventory.ContainsKey(item))
+            {
+                Inventory.Remove(item);
             }
         }
     }

@@ -37,10 +37,9 @@ namespace dnd_character_sheet
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumShowItemsInDBTitles.ListOfItems]);
 
             MakeListWithPages();
-            WritePoints();
-
-            _currentPage = 0;
             _totalPages = _tempDict.Count;
+            _currentPage = 0;
+            WritePoints();
 
             _navigatePositionLeft = 0;
             _navigatePositionTop = 2;
@@ -109,7 +108,7 @@ namespace dnd_character_sheet
             return 0;
         }
 
-        private Dictionary<int, List<int>> MakeListWithPages()
+        private void MakeListWithPages()
         {
             int pages = 0;
 
@@ -123,8 +122,6 @@ namespace dnd_character_sheet
 
                 _tempDict[pages].Add(item.Key);
             }
-
-            return _tempDict;
         }
 
         private void WritePoints()

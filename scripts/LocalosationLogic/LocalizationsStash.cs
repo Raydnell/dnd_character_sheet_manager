@@ -2127,6 +2127,12 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Тип монеты" }
                 }
+            },
+            {
+                EnumWorkWithInventoryTitles.NoItemsMessage, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инвентарь пуст, нужно добавить предмет из базы" }
+                }
             }
         };    
     

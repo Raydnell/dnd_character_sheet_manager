@@ -1,31 +1,32 @@
 {
-  "Name": "Hero 31",
+  "Name": "Богатырь",
   "Edition": 1,
   "SheetRace": {
-    "Name": 3,
+    "Name": 7,
     "Speed": 30
   },
   "SheetClass": {
-    "Name": 3,
-    "HitDice": 6,
+    "Name": 2,
+    "HitDice": 10,
     "SaveThrows": [
-      3,
-      4
+      2,
+      0
     ]
   },
   "SheetAbilities": {
     "Abilities": {
-      "Strength": 12,
-      "Dexterity": 13,
-      "Constitution": 14,
-      "Intelligence": 15,
+      "Strength": 18,
+      "Dexterity": 16,
+      "Constitution": 20,
+      "Intelligence": 14,
       "Wisdom": 16,
-      "Charisma": 17
+      "Charisma": 15
     }
   },
   "SheetSkills": {
     "Skills": [
-      12
+      0,
+      1
     ]
   },
   "SheetProgression": {
@@ -53,19 +54,21 @@
   },
   "SheetCombatAbilities": {
     "CombatStats": {
-      "ArmorClass": 11,
+      "ArmorClass": 13,
       "CurrentHitDices": 1,
-      "CurrentHP": 8,
+      "CurrentHP": 15,
       "DeathFailure": 0,
       "DeathSucces": 0,
-      "MaximumHP": 8,
+      "MaximumHP": 15,
       "TemporaryHP": 0
     }
   },
   "SheetProficiencies": {
     "Proficiencies": [
       2,
-      9
+      43,
+      11,
+      13
     ]
   },
   "SheetInventory": {
@@ -73,15 +76,10 @@
   },
   "TraitsList": {
     "TraitsList": {
-      "Berserk": {
-        "Name": "Berserk",
-        "Source": "PHB",
-        "Description": "Will damage all around"
-      },
-      "Strike": {
-        "Name": "Strike",
-        "Source": "PHB",
-        "Description": "+1 to damage"
+      "Рывок": {
+        "Name": "Рывок",
+        "Source": "phb",
+        "Description": "Быстро переместиться на 60 фт"
       }
     }
   }

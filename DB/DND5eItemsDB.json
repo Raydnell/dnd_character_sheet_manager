@@ -161,16 +161,6 @@
     "ItemId": 7530,
     "ItemType": 3
   },
-  "0": {
-    "Name": "",
-    "BaseCost": 0.0,
-    "Weight": 0.0,
-    "Rarity": 0,
-    "Description": "",
-    "IsMagic": false,
-    "ItemId": 0,
-    "ItemType": 2
-  },
   "9738": {
     "Name": "Рюкзак",
     "BaseCost": 10.0,
@@ -191,18 +181,70 @@
     "ItemId": 3068,
     "ItemType": 2
   },
-  "8601": {
-    "StrengthRequirement": 12,
-    "ArmorClass": 13,
-    "MaxAgilityBonus": 2,
-    "ArmorType": 1,
-    "Name": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0000\u0000\u0000",
-    "BaseCost": 4.0,
-    "Weight": 15.0,
+  "7733": {
+    "StrengthRequirement": 10,
+    "ArmorClass": 12,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 0,
+    "Name": "Рубаха с щитками",
+    "BaseCost": 50.0,
+    "Weight": 5.0,
     "Rarity": 0,
-    "Description": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000\u0000\u0000\u0000\u0000 \u0000\u0000 \u0000\u0000\u0000\u0000\u0000 \u0000 \u0000\u0000\u0000\u0000\u0000",
+    "Description": "Рубаха в которую вшити щитки насекомых",
     "IsMagic": false,
-    "ItemId": 8601,
+    "ItemId": 7733,
     "ItemType": 0
+  },
+  "4913": {
+    "StrengthRequirement": 16,
+    "ArmorClass": 18,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 2,
+    "Name": "Латы",
+    "BaseCost": 500.0,
+    "Weight": 30.0,
+    "Rarity": 0,
+    "Description": "Хорошие латы, от крутого кузнеца",
+    "IsMagic": false,
+    "ItemId": 4913,
+    "ItemType": 0
+  },
+  "6991": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 10,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": 0,
+    "WeaponProficiencyConcrete": 23,
+    "WeaponProficiencyGroup": 2,
+    "Name": "Моргенштерн",
+    "BaseCost": 30.0,
+    "Weight": 10.0,
+    "Rarity": 0,
+    "Description": "Колючая штука",
+    "IsMagic": false,
+    "ItemId": 6991,
+    "ItemType": 1
+  },
+  "5157": {
+    "Name": "Кость",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Простая кость, неизвестного происхождения",
+    "IsMagic": false,
+    "ItemId": 5157,
+    "ItemType": 2
+  },
+  "1027": {
+    "CoinType": 0,
+    "Name": "Медная монета",
+    "BaseCost": 0.01,
+    "Weight": 0.02,
+    "Rarity": 0,
+    "Description": "Медная монета, на которой остались отпечатки зубов",
+    "IsMagic": false,
+    "ItemId": 1027,
+    "ItemType": 3
   }
 }

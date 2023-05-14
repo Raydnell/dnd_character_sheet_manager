@@ -1,14 +1,16 @@
 {
-  "Name": "Hero 30",
+  "Name": "Пельмень",
   "Edition": 1,
   "SheetRace": {
     "Name": 3,
     "Speed": 30
   },
   "SheetClass": {
-    "Name": 3,
-    "HitDice": 6,
+    "Name": 4,
+    "HitDice": 8,
     "SaveThrows": [
+      3,
+      4,
       3,
       4
     ]
@@ -17,17 +19,17 @@
     "Abilities": {
       "Strength": 12,
       "Dexterity": 13,
-      "Constitution": 13,
-      "Intelligence": 14,
-      "Wisdom": 15,
-      "Charisma": 16
+      "Constitution": 14,
+      "Intelligence": 15,
+      "Wisdom": 16,
+      "Charisma": 17
     }
   },
   "SheetSkills": {
     "Skills": [
-      14,
-      0,
-      4
+      2,
+      4,
+      5
     ]
   },
   "SheetProgression": {
@@ -39,7 +41,7 @@
   },
   "SheetPersonality": {
     "PersonalityList": {
-      "Background": "132",
+      "Background": "123",
       "Alignment": "123",
       "PersonalityTraits": "123",
       "Ideals": "123",
@@ -57,23 +59,39 @@
     "CombatStats": {
       "ArmorClass": 11,
       "CurrentHitDices": 1,
-      "CurrentHP": 7,
+      "CurrentHP": 10,
       "DeathFailure": 0,
       "DeathSucces": 0,
-      "MaximumHP": 7,
+      "MaximumHP": 10,
       "TemporaryHP": 0
     }
   },
   "SheetProficiencies": {
     "Proficiencies": [
-      0,
-      42,
-      77,
-      46,
-      30
+      41,
+      12,
+      14,
+      30,
+      6
     ]
   },
   "SheetInventory": {
-    "Inventory": {}
+    "Inventory": {
+      "4155": 7,
+      "2917": 2,
+      "4913": 5,
+      "6991": 1,
+      "5157": 4,
+      "1027": 200
+    }
+  },
+  "TraitsList": {
+    "TraitsList": {
+      "Взрыв пельменя": {
+        "Name": "Взрыв пельменя",
+        "Source": "phb",
+        "Description": "Выплёскивает сок наружу и травит всех вокруг"
+      }
+    }
   }
 }
