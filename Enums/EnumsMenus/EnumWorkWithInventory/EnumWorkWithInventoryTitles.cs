@@ -12,6 +12,7 @@ namespace dnd_character_sheet
         PlusButtonIncreaseItemAmount,
         MinusButtonDecreaseItemAmount,
         ControlButtons,
-        ItemsCoint
+        ItemsCoint,
+        NoItemsMessage
     }
 }

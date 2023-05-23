@@ -6,13 +6,13 @@ namespace dnd_character_sheet
         private int _cursorPositionTop;
         private int _currentPage;
         private int _totalPages;
+        private int _itemPointer;
 
         private string _cursor;
 
         private bool _isEscPressed;
 
-        private Dictionary<int, Dictionary<int, int>> _pagesItems;
-        private List<int> _currentItemsList;
+        private Dictionary<int, List<int>> _pagesItems;
         
         private PrintItemInfo _printItemInfo;
         private ConsoleKeyInfo _keyPressed;
@@ -23,16 +23,19 @@ namespace dnd_character_sheet
         public ScreenWorkWithInventory()
         {
             _printItemInfo = new PrintItemInfo();
-            _pagesItems = new Dictionary<int, Dictionary<int, int>>();
+            _pagesItems = new Dictionary<int, List<int>>();
             _cursor = ">";
-            _currentItemsList = new List<int>();
             _createNewItem = new ModuleCreateNewItem();
             _lookingForItemDB = new LookingForItemInDB();
         }
         
         public void ShowScreen(ref CharacterSheetBase heroSheet)
         {
-            Console.CursorVisible = false;
+            if (heroSheet.SheetInventory.Inventory.Count == 0)
+            {
+                NoItemsInInventory(heroSheet);
+            }
+            
             ConstructScreen(heroSheet);
 
             _isEscPressed = false;
@@ -42,22 +45,22 @@ namespace dnd_character_sheet
                 
                 _keyPressed = Console.ReadKey();
 
-                Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
+                Console.SetCursorPosition(0, _itemPointer + 2);
                 Console.Write("  ");
 
                 switch (_keyPressed.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        if (_cursorPositionTop < _pagesItems[_currentPage].Count + 1)
+                        if (_itemPointer < _pagesItems[_currentPage].Count - 1)
                         {
-                            _cursorPositionTop++;
+                            _itemPointer++;
                         }
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (_cursorPositionTop > 2)
+                        if (_itemPointer > 0)
                         {
-                            _cursorPositionTop--;
+                            _itemPointer--;
                         }
                         break;
 
@@ -69,7 +72,9 @@ namespace dnd_character_sheet
                         if (_currentPage > 0 && _totalPages > 1)
                         {
                             _currentPage--;
+                            _itemPointer = 0;
                             WritePoints();
+                            WriteCount(heroSheet);
                         }
                         break;
 
@@ -77,7 +82,9 @@ namespace dnd_character_sheet
                         if (_currentPage < _totalPages - 1 && _totalPages > 1)
                         {
                             _currentPage++;
+                            _itemPointer = 0;
                             WritePoints();
+                            WriteCount(heroSheet);
                         }
                         break;
 
@@ -90,7 +97,45 @@ namespace dnd_character_sheet
 
                     case ConsoleKey.A:
                         heroSheet.SheetInventory.AddItem(_lookingForItemDB.GetItemIdFromDB());
-                        Console.Clear();
+                        ConstructScreen(heroSheet);
+                        break;
+
+                    case ConsoleKey.OemMinus:
+                        heroSheet.SheetInventory.DecreaseItem(_pagesItems[_currentPage][_itemPointer]);
+
+                        if (heroSheet.SheetInventory.Inventory.Count == 0)
+                        {
+                            NoItemsInInventory(heroSheet);
+                            ConstructScreen(heroSheet);
+                        }
+                        else
+                        {
+                            if (heroSheet.SheetInventory.Inventory.ContainsKey(_pagesItems[_currentPage][_itemPointer]) == false)
+                            {
+                                ConstructScreen(heroSheet);
+                            }
+                            else
+                            {
+                                WriteCount(heroSheet);
+                                WriteInventoryWeight(heroSheet);
+                            }
+                        }
+                        
+                        break;
+
+                    case ConsoleKey.OemPlus:
+                        heroSheet.SheetInventory.AddItem(_pagesItems[_currentPage][_itemPointer]);
+                        WriteCount(heroSheet);
+                        WriteInventoryWeight(heroSheet);
+                        break;
+
+                    case ConsoleKey.D:
+                        heroSheet.SheetInventory.RemoveItem(_pagesItems[_currentPage][_itemPointer]);
+                        if (heroSheet.SheetInventory.Inventory.Count == 0)
+                        {
+                            NoItemsInInventory(heroSheet);
+                        }
+
                         ConstructScreen(heroSheet);
                         break;
                         
@@ -98,9 +143,8 @@ namespace dnd_character_sheet
                         break;
                 }
 
-                PrintItem(ItemsDataBaseDND5e.ItemsDB[_currentItemsList[_cursorPositionTop - 2]]);
-                Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-                Console.Write(_cursor);
+                WriteItem(ItemsDataBaseDND5e.ItemsDB[_pagesItems[_currentPage][_itemPointer]]);
+                WriteCursor();
             }
 
             Console.CursorVisible = true;
@@ -111,11 +155,11 @@ namespace dnd_character_sheet
             Console.Write(LocalizationsStash.SelectedLocalization[title]);
         }
 
-        private Dictionary<int, Dictionary<int, int>> MakeListWithPages(CharacterSheetBase heroSheet)
+        private Dictionary<int, List<int>> MakeListWithPages(CharacterSheetBase heroSheet)
         {
-            Dictionary<int, Dictionary<int, int>> tempDict = new Dictionary<int, Dictionary<int, int>>()
+            Dictionary<int, List<int>> tempDict = new Dictionary<int, List<int>>()
             {
-                { 0, new Dictionary<int, int>() }
+                { 0, new List<int>() }
             };
             int pages = 0;
 
@@ -124,10 +168,10 @@ namespace dnd_character_sheet
                 if (tempDict[pages].Count == 10)
                 {
                     pages++;
-                    tempDict[pages] = new Dictionary<int, int>();
+                    tempDict[pages] = new List<int>();
                 }
 
-                tempDict[pages][item.Key] = item.Value;
+                tempDict[pages].Add(item.Key);
             }
 
             return tempDict;
@@ -135,49 +179,49 @@ namespace dnd_character_sheet
 
         private void WritePoints()
         {
-            _currentItemsList = new List<int>();
-            _cursorPositionLeft = 2;
             _cursorPositionTop = 2;
 
             Console.SetCursorPosition(0, 2);
-            for (int y = 0; y < 10; y++)
+            for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine("                   ");
             }
             
             foreach (var item in _pagesItems[_currentPage])
             {
-                _cursorPositionLeft = 2;
-                Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-                Console.Write(ItemsDataBaseDND5e.ItemsDB[item.Key].Name);
-
-                _cursorPositionLeft = 22;
-                Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-                Console.Write(item.Value);
-                Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-
+                Console.SetCursorPosition(2, _cursorPositionTop);
+                Console.Write(ItemsDataBaseDND5e.ItemsDB[item].Name);
                 _cursorPositionTop++;
-
-                _currentItemsList.Add(item.Key);
             }
-
-            Console.SetCursorPosition(2, 13);
-            Console.Write(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + "/" + _totalPages);
-
-            _cursorPositionLeft = 0;
-            _cursorPositionTop = 2;
         }
 
-        private void ErasePoints()
+        private void WriteCount(CharacterSheetBase heroSheet)
         {
+            _cursorPositionTop = 2;
+            
             for (int i = 0; i < 10; i++)
             {
-                Console.SetCursorPosition(2, i + 2);
-                Console.Write("                 ");
+                Console.SetCursorPosition(22, i + 2);
+                Console.Write("    ");
+            }
+
+            foreach (var item in _pagesItems[_currentPage])
+            {
+                Console.SetCursorPosition(22, _cursorPositionTop);
+                Console.Write(heroSheet.SheetInventory.Inventory[item]);
+                _cursorPositionTop++;
             }
         }
 
-        private void PrintItem(ItemBaseDND5e item)
+        private void WritePage()
+        {
+            Console.SetCursorPosition(2, 13);
+            Console.Write("               ");
+            Console.SetCursorPosition(2, 13);
+            Console.Write(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + "/" + _totalPages);
+        }
+
+        private void WriteItem(ItemBaseDND5e item)
         {
             Console.SetCursorPosition(0, 18);
             for (int i = 0; i < 17; i++)
@@ -201,10 +245,10 @@ namespace dnd_character_sheet
             
             foreach (var item in heroSheet.SheetInventory.Inventory)
             {
-                itemsWeight += Math.Round(ItemsDataBaseDND5e.ItemsDB[item.Key].Weight * item.Value, 2);
+                itemsWeight += ItemsDataBaseDND5e.ItemsDB[item.Key].Weight * item.Value;
             }
 
-            return itemsWeight;
+            return Math.Round(itemsWeight, 2);
         }
 
         private float CalculateHeroMaxPortableWeight(CharacterSheetBase heroSheet)
@@ -212,7 +256,7 @@ namespace dnd_character_sheet
             return heroSheet.SheetAbilities.Abilities[EnumAbilitiesDnd5E.Strength] * 15;
         }
 
-        private void PrintInventoryWeight(CharacterSheetBase heroSheet)
+        private void WriteInventoryWeight(CharacterSheetBase heroSheet)
         {
             double itemsWeight = 0;
             float maxHeroWeight = 0;
@@ -223,10 +267,12 @@ namespace dnd_character_sheet
             _cursorPositionLeft = 22;
             _cursorPositionTop = 13;
             Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
+            Console.Write("               ");
+            Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
             Console.Write(LocalizationsStash.SelectedLocalization[EnumWorkWithInventoryTitles.Weight] + " " + itemsWeight + @"\" + (int)maxHeroWeight);
         }
 
-        private void PrintTable()
+        private void WriteTable()
         {
             string strokeTypeOne = "                   |                   |";
             string strokeTypeTwo = "-------------------+-------------------+------------------";
@@ -243,7 +289,13 @@ namespace dnd_character_sheet
             Console.WriteLine(strokeTypeTwo);
         }
 
-        private void PrintControls()
+        private void WriteCursor()
+        {
+            Console.SetCursorPosition(0, _itemPointer + 2);
+            Console.Write(_cursor);
+        }
+
+        private void WriteControls()
         {
             Console.SetCursorPosition(2, 0);
             WriteText(EnumWorkWithInventoryTitles.Inventory);
@@ -268,19 +320,25 @@ namespace dnd_character_sheet
             _pagesItems = MakeListWithPages(heroSheet);
             _totalPages = _pagesItems.Count;
             _currentPage = 0;
+            _itemPointer = 0;            
 
             Console.Clear();
-            PrintTable();
-            PrintControls();
+            WriteTable();
+            WriteControls();
             WritePoints();
-            PrintInventoryWeight(heroSheet);
+            WriteCount(heroSheet);
+            WritePage();
+            WriteInventoryWeight(heroSheet);
+            WriteItem(ItemsDataBaseDND5e.ItemsDB[_pagesItems[_currentPage][_itemPointer]]);
+            WriteCursor();
+        }
 
-            _cursorPositionLeft = 0;
-            _cursorPositionTop = 2;
-
-            Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-            Console.Write(_cursor);
-            PrintItem(ItemsDataBaseDND5e.ItemsDB[_currentItemsList[_cursorPositionTop - 2]]);
+        private void NoItemsInInventory(CharacterSheetBase heroSheet)
+        {
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumWorkWithInventoryTitles.NoItemsMessage]);
+            Console.ReadKey();
+            heroSheet.SheetInventory.AddItem(_lookingForItemDB.GetItemIdFromDB());
         }
     }
 }

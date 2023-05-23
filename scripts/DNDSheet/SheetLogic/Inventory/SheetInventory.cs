@@ -21,5 +21,6 @@ namespace dnd_character_sheet
 
         public abstract void AddItem(int item);
         public abstract void RemoveItem(int item);
+        public abstract void DecreaseItem(int item);
     }
 }
