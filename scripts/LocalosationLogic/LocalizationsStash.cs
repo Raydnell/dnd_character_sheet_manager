@@ -2127,6 +2127,114 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Тип монеты" }
                 }
+            },
+            {
+                EnumPrintSheetInfoTitles.Name, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Имя" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Race, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Раса" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Class, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Класс" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Level, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Уровень" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Expirience, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Опыт" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Abilities, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Характеристики" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Skills, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Навыки" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Proficiencies, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Владения" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.PersonalityList, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Личные качества" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.CombatStats, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Боевые характеристики" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.HP, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "ХП" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.AC, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Класс доспеха" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Speed, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Скорость" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.HitDice, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Кость хитов" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.HitDiceCount, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Количество костей хитов" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.DeathDices, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Броски спасбросков от смерти" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Inventory, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Инвентарь" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Traits, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Умения" }
+                }
             }
         };    
     

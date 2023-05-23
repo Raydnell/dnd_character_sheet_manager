@@ -10,7 +10,6 @@ namespace dnd_character_sheet
 
         private List<string> _sheetsInFolder;
 
-        private JsonSaveLoad _jsonSaveLoad;
         private IUserOutput _userOutput;
         private IUserInput _userInput;
         private DirectoryInfo _folderInfo;
@@ -21,8 +20,6 @@ namespace dnd_character_sheet
             _choosenEdition = string.Empty;
             _stringInput = string.Empty;
             _sheetsInFolder = new List<string>();
-
-            _jsonSaveLoad = new JsonSaveLoad();
             _userOutput = new ConsoleOutput();
             _userInput = new ConsoleInput();
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
@@ -45,7 +42,7 @@ namespace dnd_character_sheet
                     _sheetName = _showMenusCursor.ShowMenuPoints(EnumLoadSheetTitles.ChooseSheet, _sheetsInFolder);
                     JsonSaveLoad.JsonLoad(@"Character_Sheets\" + heroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
                     heroSheet = tempSheet;
-                    _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
+                    _userOutput.Print("\n" + LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
                     _userInput.InputKey();
                     break;
 

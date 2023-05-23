@@ -14,10 +14,9 @@ namespace dnd_character_sheet
         public void Print(Dictionary<string, string>.KeyCollection value);
         public void Print(Dictionary<EnumAbilitiesDnd5E, int> value);
         public void Print(List<EnumSkillsDnd5E> value);
-        public void Print(Dictionary<EnumRacesDnd5E, int> value);
-        public void Print(Dictionary<EnumClassesDnd5E, int> value);
         public void Print(List<EnumAllDND5eProficiencies> value);
         public void Print(Dictionary<EnumPersonalitiesDND5E, string> value);
         public void Print(Dictionary<string, TraitBase> value);
+        public void PrintInventory(Dictionary<int, int> inventory);
     }
 }

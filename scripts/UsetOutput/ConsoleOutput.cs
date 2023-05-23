@@ -110,16 +110,6 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<EnumRacesDnd5E, int> value)
-        {
-
-        }
-        
-        public void Print(Dictionary<EnumClassesDnd5E, int> value)
-        {
-
-        }
-
         public void Print(List<EnumAllDND5eProficiencies> value)
         {
             foreach (var item in value)
@@ -143,6 +133,14 @@ namespace dnd_character_sheet
                 Console.WriteLine(item.Value.Name);
                 Console.WriteLine(item.Value.Source);
                 Console.WriteLine(item.Value.Description + "\n");
+            }
+        }
+
+        public void PrintInventory(Dictionary<int, int> inventory)
+        {
+            foreach (var item in inventory)
+            {
+                Console.WriteLine(ItemsDataBaseDND5e.ItemsDB[item.Key].Name + ": " + item.Value);
             }
         }
     }
