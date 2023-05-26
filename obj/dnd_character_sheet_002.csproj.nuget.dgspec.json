@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj": {}
+    "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj": {}
   },
   "projects": {
-    "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj": {
+    "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
+        "projectUniqueName": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
         "projectName": "dnd_character_sheet_002",
-        "projectPath": "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
-        "packagesPath": "C:\\Users\\Raydnell\\.nuget\\packages\\",
-        "outputPath": "D:\\Progaem\\c_sharp\\dnd_character_sheet_manager\\obj\\",
+        "projectPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\dnd_character_sheet_002.csproj",
+        "packagesPath": "C:\\Users\\raydnell\\.nuget\\packages\\",
+        "outputPath": "C:\\Other\\c_sharp_project\\train_code\\project_w_oop\\dnd_character_sheet_manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Raydnell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\raydnell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Spectre.Console": {
+              "target": "Package",
+              "version": "[0.47.0, )"
             }
           },
           "imports": [
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

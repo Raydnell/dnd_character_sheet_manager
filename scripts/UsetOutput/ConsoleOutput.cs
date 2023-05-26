@@ -1,32 +1,8 @@
 namespace dnd_character_sheet
 {
-    public class ConsoleOutput : IUserOutput
+    public class ConsoleOutput
     {
-        public void Print(string value, bool transfer = true)
-        {
-            if(transfer)
-            {
-                Console.WriteLine(value);
-            }
-            else
-            {
-                Console.Write(value);
-            }
-        }
-
-        public void Print(int value, bool transfer = true)
-        {
-            if(transfer)
-            {
-                Console.WriteLine(value);
-            }
-            else
-            {
-                Console.Write(value);
-            }
-        }
-
-        public void Print(Dictionary<string, int> value)
+        public static void Print(Dictionary<string, int> value)
         {
             foreach(var item in value)
             {
@@ -34,7 +10,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<string, bool> value)
+        public static void Print(Dictionary<string, bool> value)
         {
             foreach(var item in value)
             {
@@ -42,7 +18,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Type value, bool orderNumber = true)
+        public static void Print(Type value, bool orderNumber = true)
         {
             int number = 1;
             
@@ -65,12 +41,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Clear()
-        {
-            Console.Clear();
-        }
-
-        public void Print(List<string> value)
+        public static void Print(List<string> value)
         {
             foreach(var item in value)
             {
@@ -78,7 +49,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<string, string> value)
+        public static void Print(Dictionary<string, string> value)
         {
             foreach(var item in value)
             {
@@ -86,7 +57,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<string, string>.KeyCollection value)
+        public static void Print(Dictionary<string, string>.KeyCollection value)
         {
             foreach(string item in value)
             {
@@ -94,7 +65,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<EnumAbilitiesDnd5E, int> value)
+        public static void Print(Dictionary<EnumAbilitiesDnd5E, int> value)
         {
             foreach(var item in value)
             {
@@ -102,7 +73,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(List<EnumSkillsDnd5E> value)
+        public static void Print(List<EnumSkillsDnd5E> value)
         {
             foreach (var item in value)
             {
@@ -110,7 +81,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(List<EnumAllDND5eProficiencies> value)
+        public static void Print(List<EnumAllDND5eProficiencies> value)
         {
             foreach (var item in value)
             {
@@ -118,7 +89,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<EnumPersonalitiesDND5E, string> value)
+        public static void Print(Dictionary<EnumPersonalitiesDND5E, string> value)
         {
             foreach(var item in value)
             {
@@ -126,7 +97,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void Print(Dictionary<string, TraitBase> value)
+        public static void Print(Dictionary<string, TraitBase> value)
         {
             foreach (var item in value)
             {
@@ -136,7 +107,7 @@ namespace dnd_character_sheet
             }
         }
 
-        public void PrintInventory(Dictionary<int, int> inventory)
+        public static void PrintInventory(Dictionary<int, int> inventory)
         {
             foreach (var item in inventory)
             {

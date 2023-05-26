@@ -9,7 +9,7 @@ namespace dnd_character_sheet
             _lookingForItemInDB = new LookingForItemInDB();
         }
         
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             _lookingForItemInDB.GetItemIdFromDB();
         }

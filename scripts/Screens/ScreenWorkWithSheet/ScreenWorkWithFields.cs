@@ -3,18 +3,10 @@ namespace dnd_character_sheet
     public class ScreenWorkWithFields : IScreen
     {
         private bool _isPointChoose;
-        private IUserInput _userInput;
-        private IUserOutput _userOutput;
         private int _intInput;
         private string _stringInput;
 
-        public ScreenWorkWithFields()
-        {
-            _userInput = new ConsoleInput();
-            _userOutput = new ConsoleOutput();
-        }
-
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             /*
             
@@ -509,13 +501,13 @@ namespace dnd_character_sheet
                 IncorrectInput();
             }
 
-            */
         }
 
         private void IncorrectInput()
         {
             _userOutput.Print("Некорректный ввод.");
             _userInput.InputKey();
+            */
         }
     }
 }

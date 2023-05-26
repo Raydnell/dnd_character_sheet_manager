@@ -11,7 +11,7 @@ namespace dnd_character_sheet
             _showMenusCursor = new ShowMenusCursor();
         }
         
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             _choosenPoint = _showMenusCursor.ShowMenuPoints(EnumManageItemBaseTitles.WhatNeedToDoWithBase, typeof(EnumManageItemBasePoints));
 
@@ -19,7 +19,7 @@ namespace dnd_character_sheet
             {
                 case EnumManageItemBasePoints.AddNewItem:
                     _screen = new ScreenAddItemInDB();
-                    _screen.ShowScreen(ref heroSheet);
+                    _screen.ShowScreen();
                     break;
 
                 case EnumManageItemBasePoints.ChangeItemInBase:
@@ -33,7 +33,7 @@ namespace dnd_character_sheet
 
                 case EnumManageItemBasePoints.ShowItemsBase:
                     _screen = new ScreenShowItemInDB();
-                    _screen.ShowScreen(ref heroSheet);
+                    _screen.ShowScreen();
                     break;
             }
         }

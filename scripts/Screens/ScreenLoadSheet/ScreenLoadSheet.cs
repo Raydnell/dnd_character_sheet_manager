@@ -10,8 +10,6 @@ namespace dnd_character_sheet
 
         private List<string> _sheetsInFolder;
 
-        private IUserOutput _userOutput;
-        private IUserInput _userInput;
         private DirectoryInfo _folderInfo;
         private ShowMenusCursor _showMenusCursor;
 
@@ -20,18 +18,16 @@ namespace dnd_character_sheet
             _choosenEdition = string.Empty;
             _stringInput = string.Empty;
             _sheetsInFolder = new List<string>();
-            _userOutput = new ConsoleOutput();
-            _userInput = new ConsoleInput();
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
             _showMenusCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
-            switch(heroSheet.Edition)
+            switch(CurrentHeroSheet.HeroSheet.Edition)
             {
                 case EnumEditions.DND5E:
-                    _folderInfo = new DirectoryInfo(@"Character_Sheets\" + heroSheet.Edition.ToString());
+                    _folderInfo = new DirectoryInfo(@"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition.ToString());
                     CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
                     
                     foreach(var item in _folderInfo.GetFiles())
@@ -40,10 +36,10 @@ namespace dnd_character_sheet
                     }
 
                     _sheetName = _showMenusCursor.ShowMenuPoints(EnumLoadSheetTitles.ChooseSheet, _sheetsInFolder);
-                    JsonSaveLoad.JsonLoad(@"Character_Sheets\" + heroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
-                    heroSheet = tempSheet;
-                    _userOutput.Print("\n" + LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
-                    _userInput.InputKey();
+                    JsonSaveLoad.JsonLoad(@"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
+                    CurrentHeroSheet.HeroSheet = tempSheet;
+                    Console.WriteLine("\n" + LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
+                    Console.ReadKey();
                     break;
 
                 default:

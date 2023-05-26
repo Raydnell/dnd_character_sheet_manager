@@ -5,19 +5,15 @@ namespace dnd_character_sheet
         private bool _isPointChoose;
 
         private IScreen _screen;
-        private IUserInput _userInput;
-        private IUserOutput _userOutput;
         private ShowMenusCursor _showMenuCursor;
         private Enum _choosenPoint;
 
         public ScreenWorkSheetMenu()
         {
-            _userInput = new ConsoleInput();
-            _userOutput = new ConsoleOutput();
             _showMenuCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             while (_isPointChoose == false)
             {
@@ -35,7 +31,7 @@ namespace dnd_character_sheet
 
                         case EnumWorkWithSheetPoints.InventorySheetManage:
                             _screen = new ScreenWorkWithInventory();
-                            _screen.ShowScreen(ref heroSheet);
+                            _screen.ShowScreen();
                             break;
 
                         case EnumWorkWithSheetPoints.SheetDiceRolls:

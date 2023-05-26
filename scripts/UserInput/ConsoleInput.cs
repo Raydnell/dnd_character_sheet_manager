@@ -1,25 +1,18 @@
-public class ConsoleInput : IUserInput
+namespace dnd_character_sheet
 {
-    public string InputString()
+    public class ConsoleInput
     {
-        return Console.ReadLine();
-    }
-
-    public int InputInt()
-    {
-        string consoleInput = Console.ReadLine();
-        if (int.TryParse(consoleInput, out int inputInt))
+        public static int InputInt()
         {
-            return inputInt;
+            string consoleInput = Console.ReadLine();
+            if (int.TryParse(consoleInput, out int inputInt))
+            {
+                return inputInt;
+            }
+            else
+            {
+                return 0;
+            }
         }
-        else
-        {
-            return 0;
-        }
-    }
-
-    public void InputKey()
-    {
-        Console.ReadKey();
     }
 }

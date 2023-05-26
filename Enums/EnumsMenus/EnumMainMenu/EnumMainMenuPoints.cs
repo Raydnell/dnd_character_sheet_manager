@@ -9,6 +9,8 @@ namespace dnd_character_sheet
         WorkWithSheet,
         SaveSheeet,
         WorkWithItemsBase,
+        SheetActions,
+        ScreenManageSpellsDB,
         Exit
     }
 }

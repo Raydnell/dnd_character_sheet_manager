@@ -181,6 +181,20 @@ namespace dnd_character_sheet
             }
         }
 
+        private SheetSpellsBase _sheetSpells;
+
+        public SheetSpellsBase SheetSpells
+        {
+            get
+            {
+                return _sheetSpells;
+            }
+            protected set
+            {
+                _sheetSpells = value;
+            }
+        }
+
         public abstract void SetUpRace(SheetRaceBase sheetRace);
         public abstract void SetUpClass(SheetClassBase sheetClass);
     }

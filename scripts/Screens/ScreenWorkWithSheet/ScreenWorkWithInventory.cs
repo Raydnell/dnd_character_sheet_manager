@@ -29,14 +29,14 @@ namespace dnd_character_sheet
             _lookingForItemDB = new LookingForItemInDB();
         }
         
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
-            if (heroSheet.SheetInventory.Inventory.Count == 0)
+            if (CurrentHeroSheet.HeroSheet.SheetInventory.Inventory.Count == 0)
             {
-                NoItemsInInventory(heroSheet);
+                NoItemsInInventory(CurrentHeroSheet.HeroSheet);
             }
             
-            ConstructScreen(heroSheet);
+            ConstructScreen(CurrentHeroSheet.HeroSheet);
 
             _isEscPressed = false;
             while (_isEscPressed == false)
@@ -74,7 +74,7 @@ namespace dnd_character_sheet
                             _currentPage--;
                             _itemPointer = 0;
                             WritePoints();
-                            WriteCount(heroSheet);
+                            WriteCount(CurrentHeroSheet.HeroSheet);
                         }
                         break;
 
@@ -84,7 +84,7 @@ namespace dnd_character_sheet
                             _currentPage++;
                             _itemPointer = 0;
                             WritePoints();
-                            WriteCount(heroSheet);
+                            WriteCount(CurrentHeroSheet.HeroSheet);
                         }
                         break;
 
@@ -92,51 +92,51 @@ namespace dnd_character_sheet
                         _newItem = _createNewItem.CreateItem();
                         ItemsDataBaseDND5e.AddItem(_newItem);
                         ItemsDataBaseDND5e.SaveDB();
-                        ConstructScreen(heroSheet);
+                        ConstructScreen(CurrentHeroSheet.HeroSheet);
                         break;
 
                     case ConsoleKey.A:
-                        heroSheet.SheetInventory.AddItem(_lookingForItemDB.GetItemIdFromDB());
-                        ConstructScreen(heroSheet);
+                        CurrentHeroSheet.HeroSheet.SheetInventory.AddItem(_lookingForItemDB.GetItemIdFromDB());
+                        ConstructScreen(CurrentHeroSheet.HeroSheet);
                         break;
 
                     case ConsoleKey.OemMinus:
-                        heroSheet.SheetInventory.DecreaseItem(_pagesItems[_currentPage][_itemPointer]);
+                        CurrentHeroSheet.HeroSheet.SheetInventory.DecreaseItem(_pagesItems[_currentPage][_itemPointer]);
 
-                        if (heroSheet.SheetInventory.Inventory.Count == 0)
+                        if (CurrentHeroSheet.HeroSheet.SheetInventory.Inventory.Count == 0)
                         {
-                            NoItemsInInventory(heroSheet);
-                            ConstructScreen(heroSheet);
+                            NoItemsInInventory(CurrentHeroSheet.HeroSheet);
+                            ConstructScreen(CurrentHeroSheet.HeroSheet);
                         }
                         else
                         {
-                            if (heroSheet.SheetInventory.Inventory.ContainsKey(_pagesItems[_currentPage][_itemPointer]) == false)
+                            if (CurrentHeroSheet.HeroSheet.SheetInventory.Inventory.ContainsKey(_pagesItems[_currentPage][_itemPointer]) == false)
                             {
-                                ConstructScreen(heroSheet);
+                                ConstructScreen(CurrentHeroSheet.HeroSheet);
                             }
                             else
                             {
-                                WriteCount(heroSheet);
-                                WriteInventoryWeight(heroSheet);
+                                WriteCount(CurrentHeroSheet.HeroSheet);
+                                WriteInventoryWeight(CurrentHeroSheet.HeroSheet);
                             }
                         }
                         
                         break;
 
                     case ConsoleKey.OemPlus:
-                        heroSheet.SheetInventory.AddItem(_pagesItems[_currentPage][_itemPointer]);
-                        WriteCount(heroSheet);
-                        WriteInventoryWeight(heroSheet);
+                        CurrentHeroSheet.HeroSheet.SheetInventory.AddItem(_pagesItems[_currentPage][_itemPointer]);
+                        WriteCount(CurrentHeroSheet.HeroSheet);
+                        WriteInventoryWeight(CurrentHeroSheet.HeroSheet);
                         break;
 
                     case ConsoleKey.D:
-                        heroSheet.SheetInventory.RemoveItem(_pagesItems[_currentPage][_itemPointer]);
-                        if (heroSheet.SheetInventory.Inventory.Count == 0)
+                        CurrentHeroSheet.HeroSheet.SheetInventory.RemoveItem(_pagesItems[_currentPage][_itemPointer]);
+                        if (CurrentHeroSheet.HeroSheet.SheetInventory.Inventory.Count == 0)
                         {
-                            NoItemsInInventory(heroSheet);
+                            NoItemsInInventory(CurrentHeroSheet.HeroSheet);
                         }
 
-                        ConstructScreen(heroSheet);
+                        ConstructScreen(CurrentHeroSheet.HeroSheet);
                         break;
                         
                     default:
@@ -236,7 +236,7 @@ namespace dnd_character_sheet
             Console.SetCursorPosition(0, 16);
             WriteText(EnumWorkWithInventoryTitles.ItemInfo);
             Console.Write("\n\n");
-            _printItemInfo.ShowItemInfo(item);
+            PrintItemInfo.ShowItemInfo(item);
         }
 
         private double CalculateWeight(CharacterSheetBase heroSheet)

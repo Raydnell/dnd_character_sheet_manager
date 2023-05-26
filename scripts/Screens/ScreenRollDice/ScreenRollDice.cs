@@ -10,18 +10,14 @@
         private int _diceResult;
         private int _diceModificator;
 
-        private IUserInput _userInput;
-        private IUserOutput _userOutput;
         private Dicer _dicer;
 
         public ScreenRollDice() 
         {
             _dicer = new Dicer();
-            _userInput = new ConsoleInput();
-            _userOutput = new ConsoleOutput();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             _pointChoose = false;
             while (_pointChoose == false)
@@ -34,21 +30,21 @@
                 Console.Clear();
                 Console.WriteLine("Время бросать кубы!\n");
                 Console.WriteLine("Сколько кубов нужно кинуть?");
-                _diceCount = _userInput.InputInt();
+                _diceCount = ConsoleInput.InputInt();
 
                 Console.WriteLine("Сколько граней?");
-                _diceValue = _userInput.InputInt();
+                _diceValue = ConsoleInput.InputInt();
 
                 Console.WriteLine("Какой модификатор?");
-                _diceModificator = _userInput.InputInt();
+                _diceModificator = ConsoleInput.InputInt();
 
                 _diceResult = _dicer.DiceRoll(_diceCount, _diceValue, _diceModificator);
 
-                _userOutput.Print($"Результат броска: {_diceResult}\n");
+                Console.WriteLine($"Результат броска: {_diceResult}\n");
 
-                _userOutput.Print("Бросить ещё? (1 = Да, другое = Нет)");
+                Console.WriteLine("Бросить ещё? (1 = Да, другое = Нет)");
 
-                _choosenPoint = _userInput.InputInt();;
+                _choosenPoint = ConsoleInput.InputInt();
 
                 if (_choosenPoint == 1)
                 {

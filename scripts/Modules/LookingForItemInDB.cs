@@ -2,7 +2,6 @@ namespace dnd_character_sheet
 {
     public class LookingForItemInDB
     {
-        private int _pages;
         private int _currentPage;
         private int _totalPages;
         private int _navigatePositionLeft;
@@ -21,10 +20,7 @@ namespace dnd_character_sheet
 
         public LookingForItemInDB()
         {
-            _tempDict = new Dictionary<int, List<int>>()
-            {
-                { 0, new List<int>() }
-            };
+            _tempDict = new Dictionary<int, List<int>>();
             _cursor = ">";
             _printItemInfo = new PrintItemInfo();
         }
@@ -110,6 +106,8 @@ namespace dnd_character_sheet
 
         private void MakeListWithPages()
         {
+            _tempDict.Clear();
+            _tempDict[0] = new List<int>();
             int pages = 0;
 
             foreach (var item in ItemsDataBaseDND5e.ItemsDB)
@@ -166,7 +164,7 @@ namespace dnd_character_sheet
             Console.SetCursorPosition(0, 16);
             Console.Write(LocalizationsStash.SelectedLocalization[EnumWorkWithInventoryTitles.ItemInfo]);
             Console.Write("\n\n");
-            _printItemInfo.ShowItemInfo(item);
+            PrintItemInfo.ShowItemInfo(item);
         }
     }
 }

@@ -5,55 +5,45 @@
         private bool _isSheetLoaded;
         private bool _isPointChoose;
 
-        private string _choosenPoint;
+        private Enum _choosenPoint;
 
-        private JsonSaveLoad _jsonSaveLoad;
-        private IUserOutput _userOutput;
-        private IUserInput _userInput;
-        private PrintSheetInfo _printSheetInfo;
         private IScreen _screen;
         private ShowMenusCursor _showMenusCursor;
 
         public ScreenMain()
         {
-            _jsonSaveLoad = new JsonSaveLoad();
-            _userOutput = new ConsoleOutput();
-            _userInput = new ConsoleInput();
-            _printSheetInfo = new PrintSheetInfo();
             _showMenusCursor = new ShowMenusCursor();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
-            Enum _choosenPoint2;
-            
             _isPointChoose = false;
             while(_isPointChoose == false)
             {
-                _choosenPoint2 = _showMenusCursor.ShowMenuPoints(
+                _choosenPoint = _showMenusCursor.ShowMenuPoints(
                     EnumMainMenuTitles.MainMenu,
                     typeof(EnumMainMenuPoints)
                 );
-                switch(_choosenPoint2)
+                switch(_choosenPoint)
                 {
                     case EnumMainMenuPoints.CreateSheet:
                         _screen = new ScreenCreateSheet();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen();
                         _isSheetLoaded = true;
                         break;
 
                     case EnumMainMenuPoints.LoadSheet:
                         _screen = new ScreenLoadSheet();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen();
                         _isSheetLoaded = true;
                         break;
 
                     case EnumMainMenuPoints.PrintSheet:
                         if(_isSheetLoaded == true)
                         {
-                            _userOutput.Clear();
-                            _printSheetInfo.ShowSheetFields(heroSheet);
-                            _userInput.InputKey();
+                            Console.Clear();
+                            PrintSheetInfo.ShowSheetFields(CurrentHeroSheet.HeroSheet);
+                            Console.ReadKey();
                         }
                         else
                         {
@@ -63,14 +53,14 @@
 
                     case EnumMainMenuPoints.DiceRolls:
                         _screen = new ScreenRollDice();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen();
                         break;
 
                     case EnumMainMenuPoints.WorkWithSheet:
                         if(_isSheetLoaded == true)
                         {
                             _screen = new ScreenWorkSheetMenu();
-                            _screen.ShowScreen(ref heroSheet);
+                            _screen.ShowScreen();
                         }
                         else
                         {
@@ -81,9 +71,21 @@
                     case EnumMainMenuPoints.SaveSheeet:
                         if(_isSheetLoaded == true)
                         {
-                            JsonSaveLoad.JsonSave(heroSheet.Name, heroSheet, @"Character_Sheets\" + heroSheet.Edition + @"\");
-                            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.SheetSaved]);
-                            _userInput.InputKey();
+                            JsonSaveLoad.JsonSave(CurrentHeroSheet.HeroSheet.Name, CurrentHeroSheet.HeroSheet, @"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition + @"\");
+                            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.SheetSaved]);
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            PrintListNotLoaded();
+                        }
+                        break;
+
+                    case EnumMainMenuPoints.SheetActions:
+                        if(_isSheetLoaded == true)
+                        {
+                            _screen = new ScreenActionsWithSheet();
+                            _screen.ShowScreen();
                         }
                         else
                         {
@@ -97,7 +99,12 @@
 
                     case EnumMainMenuPoints.WorkWithItemsBase:
                         _screen = new ScreenManageItemsDB();
-                        _screen.ShowScreen(ref heroSheet);
+                        _screen.ShowScreen();
+                        break;
+
+                    case EnumMainMenuPoints.ScreenManageSpellsDB:
+                        _screen = new ScreenManageSpellsDB();
+                        _screen.ShowScreen();
                         break;
 
                     default:
@@ -109,9 +116,9 @@
 
         private void PrintListNotLoaded()
         {
-            _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.FirstLoadOrCreateSheet]);
-            _userInput.InputKey();
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.FirstLoadOrCreateSheet]);
+            Console.ReadKey();
         }
     }
 }

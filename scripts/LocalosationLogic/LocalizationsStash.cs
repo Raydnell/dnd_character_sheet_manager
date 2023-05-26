@@ -2235,6 +2235,36 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Умения" }
                 }
+            },
+            {
+                EnumMainMenuPoints.SheetActions, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Игра с листом" }
+                }
+            },
+            {
+                EnumCreateNewSpell.Name, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Название заклинания:" }
+                }
+            },
+            {
+                EnumCreateNewSpell.Level, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Уровень заклинания:" }
+                }
+            },
+            {
+                EnumCreateNewSpell.ThisIsNewSpell, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Новое заклинание:" }
+                }
+            },
+            {
+                EnumMainMenuPoints.ScreenManageSpellsDB, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Работа с базой заклинаний" }
+                }
             }
         };    
     

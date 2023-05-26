@@ -47,3 +47,4 @@ D:\Progaem\c_sharp\dnd_character_sheet_manager\bin\Debug\net7.0\Newtonsoft.Json.
 D:\Progaem\c_sharp\dnd_character_sheet_manager\obj\Debug\net7.0\dnd_character_sheet_002.csproj.CopyComplete
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\obj\Debug\net7.0\dnd_character_sheet_002.csproj.CopyComplete
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Debug\net7.0\Spectre.Console.dll

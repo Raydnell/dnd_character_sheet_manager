@@ -12,20 +12,16 @@
         private bool _correctInput;
 
         private Dicer _dicer;
-        private IUserInput _userInput;
-        private IUserOutput _userOutput;
         private PrintSheetInfo _printSheetInfo;
 
         public ScreenWorkWithSheet()
         {
             _dicer = new Dicer();
             _input = string.Empty;
-            _userInput = new ConsoleInput();
-            _userOutput = new ConsoleOutput();
             _printSheetInfo = new PrintSheetInfo();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
             /*
             
@@ -170,7 +166,6 @@
                 }
             }
 
-            */
         }
 
         private void RaiseExpirience(CharacterSheetBase heroSheet)
@@ -181,6 +176,7 @@
             Console.Write("\nТекущее количество опыта: ");
             Console.Write(heroSheet.SheetProgression.Expirience);
             Console.ReadKey();
+            */
         }
     }
 }

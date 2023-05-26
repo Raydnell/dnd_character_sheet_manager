@@ -2,6 +2,6 @@ namespace dnd_character_sheet
 {
     public interface IScreen
     {
-        public void ShowScreen(ref CharacterSheetBase heroSheet);
+        public void ShowScreen();
     }
 }

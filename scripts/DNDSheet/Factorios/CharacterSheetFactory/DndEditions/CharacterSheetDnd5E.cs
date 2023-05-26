@@ -14,6 +14,7 @@ namespace dnd_character_sheet
             SheetProficiencies = new ProficienciesDND5E();
             SheetInventory = new InventoryDND5E();
             TraitsList = new TraitsListDND5e();
+            SheetSpells = new SheetSpellsDND5e();
         }
 
         public override void SetUpRace(SheetRaceBase sheetRace)

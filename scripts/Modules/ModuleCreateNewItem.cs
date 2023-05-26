@@ -4,16 +4,12 @@ namespace dnd_character_sheet
     {
         private Enum _choosenPoint;
         private ShowMenusCursor _showMenuCursor;
-        private IUserOutput _output;
-        private IUserInput _input;
         private ItemBaseDND5e _newItem;
         private PrintItemInfo _printItemInfo;
         
         public ModuleCreateNewItem()
         {
             _showMenuCursor = new ShowMenusCursor();
-            _output = new ConsoleOutput();
-            _input = new ConsoleInput();
             _printItemInfo = new PrintItemInfo();
         }
 
@@ -65,17 +61,17 @@ namespace dnd_character_sheet
                 }
             }
             
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.NameOfTheItem] + "\n");
-            item.SetName(_input.InputString());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.NameOfTheItem] + "\n");
+            item.SetName(Console.ReadLine());
             
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.TheCostOfItemInGold] + "\n");
-            item.SetBaseCost(Single.Parse(_input.InputString()));
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.TheCostOfItemInGold] + "\n");
+            item.SetBaseCost(Single.Parse(Console.ReadLine()));
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.ItemWeightPounds] + "\n");
-            item.SetWeight(Single.Parse(_input.InputString()));
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.ItemWeightPounds] + "\n");
+            item.SetWeight(Single.Parse(Console.ReadLine()));
 
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.Rare, typeof(EnumItemRarityTypes));
             if (Enum.TryParse<EnumItemRarityTypes>(_choosenPoint.ToString(), out EnumItemRarityTypes result))
@@ -83,9 +79,9 @@ namespace dnd_character_sheet
                 item.SetRarity(result);
             }
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.Description] + "\n");
-            item.SetDescription(_input.InputString());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.Description] + "\n");
+            item.SetDescription(Console.ReadLine());
 
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.Magical, typeof(EnumYesNo));
             switch(_choosenPoint)
@@ -99,7 +95,7 @@ namespace dnd_character_sheet
                     break;
             }
 
-            _output.Clear();
+            Console.Clear();
 
         }
 
@@ -117,17 +113,17 @@ namespace dnd_character_sheet
                 item.SetWeaponConcreteProf(concrete);
             }
             
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.HowManyDamageDices] + "\n");
-            item.SetDamageDiceCount(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.HowManyDamageDices] + "\n");
+            item.SetDamageDiceCount(ConsoleInput.InputInt());
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatDamageDice] + "\n");
-            item.SetDamageDiceValue(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatDamageDice] + "\n");
+            item.SetDamageDiceValue(ConsoleInput.InputInt());
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatModificator] + "\n");
-            item.SetDamageModificator(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatModificator] + "\n");
+            item.SetDamageModificator(ConsoleInput.InputInt());
 
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatWeaponProperties, typeof(EnumWeaponPropertiesDND5e));
             if (Enum.TryParse<EnumWeaponPropertiesDND5e>(_choosenPoint.ToString(), out EnumWeaponPropertiesDND5e propertie))
@@ -144,17 +140,17 @@ namespace dnd_character_sheet
                 item.SetArmorType(armorType);
             }
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatStrenghtRequirement] + "\n");
-            item.SetStrengthRequirement(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatStrenghtRequirement] + "\n");
+            item.SetStrengthRequirement(ConsoleInput.InputInt());
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatArmorClass] + "\n");
-            item.SetArmorClass(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatArmorClass] + "\n");
+            item.SetArmorClass(ConsoleInput.InputInt());
 
-            _output.Clear();
-            _output.Print(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatArmorMaxDexteritiBonus] + "\n");
-            item.SetMaxAgilityBonus(_input.InputInt());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatArmorMaxDexteritiBonus] + "\n");
+            item.SetMaxAgilityBonus(ConsoleInput.InputInt());
         }    
 
         private void SetCoinStats(ItemCoinDND5e item)

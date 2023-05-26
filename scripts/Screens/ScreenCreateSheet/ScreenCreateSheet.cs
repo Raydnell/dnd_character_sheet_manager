@@ -9,9 +9,6 @@
         private bool _isFieldEditing;
 
         private JsonSaveLoad _jsonSaveLoad;
-        private CharacterSheetFactory _sheetFactory;
-        private IUserOutput _userOutput;
-        private IUserInput _userInput;
         private PrintSheetInfo _printSheetInfo;
         private ShowMenusCursor _showMenusCursor;
         private SheetRaceFactory _sheetRaceFactory;
@@ -20,9 +17,6 @@
         public ScreenCreateSheet()
         {
             _jsonSaveLoad = new JsonSaveLoad();
-            _sheetFactory = new CharacterSheetFactory();
-            _userOutput = new ConsoleOutput();
-            _userInput = new ConsoleInput();
             _inputString = string.Empty;
             _printSheetInfo = new PrintSheetInfo();
             _showMenusCursor = new ShowMenusCursor();
@@ -30,15 +24,15 @@
             _sheetClassFactory = new SheetClassFactory();
         }
 
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
-            _userOutput.Clear();
+            Console.Clear();
             //Указание имени
-            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.EnterTheNameOfTheHero], false);
-            heroSheet.Name = _userInput.InputString();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.EnterTheNameOfTheHero], false);
+            CurrentHeroSheet.HeroSheet.Name = Console.ReadLine();
 
             //Указание расы
-            heroSheet.SetUpRace(
+            CurrentHeroSheet.HeroSheet.SetUpRace(
                 _sheetRaceFactory.CreateSheetRace(
                     _showMenusCursor.ShowMenuPoints(
                         EnumSheetCreateTitles.SelectARaceFromTheList, 
@@ -48,7 +42,7 @@
             );
 
             //Указание класса
-            heroSheet.SetUpClass(
+            CurrentHeroSheet.HeroSheet.SetUpClass(
                 _sheetClassFactory.CreateSheetClass(
                     _showMenusCursor.ShowMenuPoints(
                         EnumSheetCreateTitles.SelectAClassFromTheList, 
@@ -61,57 +55,57 @@
             _isFieldEditing = true;
             while (_isFieldEditing == true)
             {
-                heroSheet.SheetSkills.AddSkill(_showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.SelectASkillFromTheList, typeof(EnumSkillsDnd5E)));
+                CurrentHeroSheet.HeroSheet.SheetSkills.AddSkill(_showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.SelectASkillFromTheList, typeof(EnumSkillsDnd5E)));
 
                 _isFieldEditing = IsNeedOneMore();
             }
 
             //Указание характеристик
-            _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.EnterTheCharacteristicsOfTheHero]);
-            heroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.EnterTheCharacteristicsOfTheHero]);
+            CurrentHeroSheet.HeroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
 
             //Указание владений
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipOfTheArmorType, typeof(EnumArmorProficienciesDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfTheArmorType, typeof(EnumArmorProficienciesDND5E));
 
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons, typeof(EnumWeaponsGroupsDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons, typeof(EnumWeaponsGroupsDND5E));
 
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon, typeof(EnumWeaponsProficienciesDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon, typeof(EnumWeaponsProficienciesDND5E));
 
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipFfTools, typeof(EnumInstrumentsProficienciesDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipFfTools, typeof(EnumInstrumentsProficienciesDND5E));
 
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments, typeof(EnumMusicalInstrumentProficienciesDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments, typeof(EnumMusicalInstrumentProficienciesDND5E));
 
-            SetUpProficiencies(heroSheet, EnumSheetCreateTitles.AddOwnershipOfGameSets, typeof(EnumGamingSetProficienciesDND5E));
+            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfGameSets, typeof(EnumGamingSetProficienciesDND5E));
 
             //Указание HP
-            heroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.MaximumHP, (heroSheet.SheetClass.HitDice + heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution)));
-            heroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.CurrentHP, heroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.MaximumHP]);
+            CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.MaximumHP, (CurrentHeroSheet.HeroSheet.SheetClass.HitDice + CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution)));
+            CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.CurrentHP, CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.MaximumHP]);
 
             //Указание базового КД (без брони)
-            heroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.ArmorClass, 10 + heroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity));
+            CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.ArmorClass, 10 + CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity));
 
             //Указание кости хитов
-            heroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.CurrentHitDices, heroSheet.SheetProgression.Level);
+            CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.CurrentHitDices, CurrentHeroSheet.HeroSheet.SheetProgression.Level);
 
-            _userOutput.Clear();
-            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero]);
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero]);
             foreach (var item in Enum.GetNames(typeof(EnumPersonalitiesDND5E)))
             {
                 if (Enum.TryParse<EnumPersonalitiesDND5E>(item, out EnumPersonalitiesDND5E result))
                 {
-                    _userOutput.Print(LocalizationsStash.SelectedLocalization[result] + ": ", false);
-                    heroSheet.SheetPersonality.AddPersonality(result, _userInput.InputString());
+                    Console.WriteLine(LocalizationsStash.SelectedLocalization[result] + ": ", false);
+                    CurrentHeroSheet.HeroSheet.SheetPersonality.AddPersonality(result, Console.ReadLine());
                 }
             }
 
             //Указание умений
-            SetUpTraits(heroSheet);
+            SetUpTraits(CurrentHeroSheet.HeroSheet);
 
-            _userOutput.Clear();
-            _userOutput.Print("Вот ваш новый герой!\n");
-            _printSheetInfo.ShowSheetFields(heroSheet);
-            _userInput.InputKey();
+            Console.Clear();
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.HeresYourNewHero] + "\n");
+            PrintSheetInfo.ShowSheetFields(CurrentHeroSheet.HeroSheet);
+            Console.ReadKey();
         }
 
         private Dictionary<Enum, int> ChooseAbilities()
@@ -126,8 +120,8 @@
                 {
                     if (Enum.TryParse<EnumAbilitiesDnd5E>(item, out EnumAbilitiesDnd5E result))
                     {
-                        _userOutput.Print(LocalizationsStash.SelectedLocalization[result] + ": ", false);
-                        inputAbility = _userInput.InputInt();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[result] + ": ", false);
+                        inputAbility = ConsoleInput.InputInt();
                         if (inputAbility > 0 && inputAbility <= 20)
                         {
                             tempAbilities[result] = inputAbility;
@@ -135,8 +129,8 @@
                         }
                         else
                         {
-                            _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.YouNeedToSpecifyAValueFrom1To20]);
-                            _userInput.InputKey();
+                            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.YouNeedToSpecifyAValueFrom1To20]);
+                            Console.ReadKey();
                         }
                     }
                 }
@@ -253,15 +247,15 @@
                     _isFieldEditing = true;
                     while (_isFieldEditing == true)
                     {
-                        _userOutput.Clear();
-                        _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitName] + "\n");
-                        tempName = _userInput.InputString();
+                        Console.Clear();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitName] + "\n");
+                        tempName = Console.ReadLine();
 
-                        _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitSource] + "\n");
-                        tempSource = _userInput.InputString();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitSource] + "\n");
+                        tempSource = Console.ReadLine();
 
-                        _userOutput.Print(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitDescription] + "\n");
-                        tempDescription = _userInput.InputString();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitDescription] + "\n");
+                        tempDescription = Console.ReadLine();
 
                         heroSheet.TraitsList.AddTrait(tempName, tempSource, tempDescription);
                         

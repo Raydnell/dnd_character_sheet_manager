@@ -4,14 +4,14 @@
     {
         static void Main(string[] args)
         {
-            Console.InputEncoding = System.Text.Encoding.UTF8;
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
             ShowMenusCursor showMenusCursor = new ShowMenusCursor();
             Enum language;
             IScreen screen = new ScreenMain();
-            CharacterSheetBase heroSheet = new CharacterSheetDnd5E();
             LocalizationsStash localizationsStash = new LocalizationsStash();
+
+            //Console.InputEncoding = System.Text.Encoding.UTF8;
+            //Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.SetWindowSize(200, 50);
 
             language = showMenusCursor.ShowMenuPoints(
                 EnumStartMenuTitles.ChooseLang,
@@ -20,8 +20,10 @@
 
             localizationsStash.SetUpLanguage(language);
             ItemsDataBaseDND5e.LoadItemsBase();
+            SpellsDataBaseDND5e.LoadDB();
+            //выбор редакции, но т.к. она сейчас одна, поэтому и выбора нет
             
-            screen.ShowScreen(ref heroSheet);
+            screen.ShowScreen();
         }
     }
 }

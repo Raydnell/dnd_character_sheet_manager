@@ -13,26 +13,22 @@ namespace dnd_character_sheet
         private int _abilityModificator;
         private int _proficiencyBonus;
         
-        private IUserInput _userInput;
-        private IUserOutput _userOutput;
         private Dicer _dicer;
         private IScreen _screen;
         private Random _random;
 
         public ScreenBasicSheetThrows()
         {
-            _userInput = new ConsoleInput();
-            _userOutput = new ConsoleOutput();
             _dicer = new Dicer();
             _stringInput = string.Empty;
             _random = new Random();
         }
         
-        public void ShowScreen(ref CharacterSheetBase heroSheet)
+        public void ShowScreen()
         {
-            /*
+            _proficiencyBonus = CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus();
             
-            _proficiencyBonus = heroSheet.SheetProgression.GetProficiencyBonus();
+            /*
             
             _stayOnScreen = true;
             while (_stayOnScreen == true)
@@ -209,13 +205,13 @@ namespace dnd_character_sheet
             _userOutput.Print("Результат броска: " + _rollResult);
             _userInput.InputKey();
 
-            */
         }
 
         private void IncorrectInput()
         {
             _userOutput.Print("Некорректный ввод");
             _userInput.InputKey();
+            */
         }
     }
 }
