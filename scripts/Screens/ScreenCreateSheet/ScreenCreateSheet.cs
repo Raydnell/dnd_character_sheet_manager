@@ -88,6 +88,9 @@
             //Указание кости хитов
             CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.CurrentHitDices, CurrentHeroSheet.HeroSheet.SheetProgression.Level);
 
+            //Указание спасбросков
+            CurrentHeroSheet.HeroSheet.SheetSaveThrows.SetSaveTrows(CurrentHeroSheet.HeroSheet.SheetClass.Name);
+
             Console.Clear();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero]);
             foreach (var item in Enum.GetNames(typeof(EnumPersonalitiesDND5E)))
