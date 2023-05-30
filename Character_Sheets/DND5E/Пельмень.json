@@ -11,6 +11,8 @@
     "HitDice": 6,
     "SaveThrows": [
       2,
+      5,
+      2,
       5
     ]
   },
@@ -83,7 +85,9 @@
     ]
   },
   "SheetInventory": {
-    "Inventory": {}
+    "Inventory": {
+      "2515": 1
+    }
   },
   "TraitsList": {
     "TraitsList": {

@@ -2051,6 +2051,12 @@ namespace dnd_character_sheet
                 }
             },
             {
+                EnumWorkWithInventoryTitles.NoItemsMessage, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Нет предметов в инвентаре, переход к экрану добавления" }
+                }
+            },
+            {
                 EnumCoinsTypeDND5e.Copper, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Медная" }
