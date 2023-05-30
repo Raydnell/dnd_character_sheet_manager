@@ -6,6 +6,7 @@ namespace dnd_character_sheet
         {
             Name = EnumRacesDnd5E.Gnome;
             Speed = 25;
+            Size = EnumCreaturesSizesDND5e.Small;
         }
     }
 }

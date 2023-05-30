@@ -6,6 +6,7 @@ namespace dnd_character_sheet
         {
             Name = EnumRacesDnd5E.Human;
             Speed = 30;
+            Size = EnumCreaturesSizesDND5e.Medium;
         }
     }
 }

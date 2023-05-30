@@ -33,5 +33,20 @@ namespace dnd_character_sheet
                 _speed = value;
             }
         }
+
+        private EnumCreaturesSizesDND5e _size;
+
+        [JsonProperty("Size")]
+        public EnumCreaturesSizesDND5e Size
+        {
+            get
+            {
+                return _size;
+            }
+            protected set
+            {
+                _size = value;
+            }
+        }
     }
 }

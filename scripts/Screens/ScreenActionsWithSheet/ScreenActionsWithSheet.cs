@@ -7,9 +7,6 @@ namespace dnd_character_sheet
     {
         private StringBuilder _stringBuilder;
         private Table _table;
-        private string _abilitiesRows;
-        private string _skillsRows;
-        private string _proficienciesRows;
 
         public ScreenActionsWithSheet()
         {
@@ -21,7 +18,6 @@ namespace dnd_character_sheet
         {
             Console.Clear();
             FillTable(_table);
-
             AnsiConsole.Write(_table);
             Console.ReadKey();
         }
@@ -41,7 +37,6 @@ namespace dnd_character_sheet
                     _stringBuilder.Append("[[ ]] " + LocalizationsStash.SelectedLocalization[item.Key] + " " + item.Value + "\n");
                 }
             }
-            _stringBuilder.Remove(_stringBuilder.Length - 2, 2);
 
             Panel tempPanel = new Panel(_stringBuilder.ToString());
             tempPanel.Border = BoxBorder.Square;
@@ -70,8 +65,6 @@ namespace dnd_character_sheet
                 }
             }
 
-            _stringBuilder.Remove(_stringBuilder.Length - 2, 2);
-            
             Panel tempPanel = new Panel(_stringBuilder.ToString());
             tempPanel.Border = BoxBorder.Square;
             tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Skills]);
@@ -89,8 +82,6 @@ namespace dnd_character_sheet
                 _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item] + "\n");
             }
 
-            _stringBuilder.Remove(_stringBuilder.Length - 2, 2);
-            
             Panel tempPanel = new Panel(_stringBuilder.ToString());
             tempPanel.Border = BoxBorder.Square;
             tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Proficiencies]);
@@ -101,9 +92,80 @@ namespace dnd_character_sheet
 
         private Panel CreateCombatPanel()
         {
-            Panel tempPanel = new Panel("HP 12|12\nAC 13\nTHP 2\nHit dice 5");
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+
+            _stringBuilder.Append(
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.HP] + ": " + 
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.CurrentHP] + @"\" + 
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.MaximumHP] + "\n"
+            );
+
+            _stringBuilder.Append(
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.THP] + ": " +
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.TemporaryHP] + "\n"
+            );
+
+            _stringBuilder.Append(
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Speed] + ": " +
+                CurrentHeroSheet.HeroSheet.SheetRace.Speed + "\n"
+            );
+
+            _stringBuilder.Append(
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.AC] + ": " +
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.ArmorClass] + "\n"
+            );
+
+            _stringBuilder.Append(
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.DeathDices] + ": " +
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathFailure] + @"\" + 
+                CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathSucces]
+            );
+
+            Panel tempPanel = new Panel(_stringBuilder.ToString());
             tempPanel.Border = BoxBorder.Square;
-            tempPanel.Header = new PanelHeader("Combat:");
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]);
+            tempPanel.HeaderAlignment(Justify.Center);
+            
+            return tempPanel;
+        }
+
+        private Panel CreateMainPanel()
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            
+            _stringBuilder.Append(
+                CurrentHeroSheet.HeroSheet.Name + "\n" +
+                LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetClass.Name] + "\n" +
+                LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetRace.Name] + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Level] + " " + CurrentHeroSheet.HeroSheet.SheetProgression.Level + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Expirience] + " " + CurrentHeroSheet.HeroSheet.SheetProgression.Expirience + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.ProficiencyBonus] + " " + CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus() + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PassiveWisdom] + " " + CalculatePassiveWisdom() + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Size] + " " + LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetRace.Size] + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.HitDice] + " " + CurrentHeroSheet.HeroSheet.SheetClass.HitDice + "\n" +
+                "[[ ]] " + LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Inspiration]
+            );
+
+            Panel tempPanel = new Panel(_stringBuilder.ToString());
+            tempPanel.Border = BoxBorder.Square;
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Hero]);
+            tempPanel.HeaderAlignment(Justify.Center);
+            
+            return tempPanel;
+        }
+
+        private Panel CreatePersonalityPanel()
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            
+            foreach (var item in CurrentHeroSheet.HeroSheet.SheetPersonality.PersonalityList)
+            {
+                _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value + "\n");
+            }
+
+            Panel tempPanel = new Panel(_stringBuilder.ToString());
+            tempPanel.Border = BoxBorder.Square;
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PersonalityList]);
             tempPanel.HeaderAlignment(Justify.Center);
             
             return tempPanel;
@@ -111,14 +173,18 @@ namespace dnd_character_sheet
 
         private void FillTable(Table table)
         {
-            table.AddColumns(new string[]{
-                CurrentHeroSheet.HeroSheet.Name, 
-                LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetClass.Name],
-                LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetRace.Name],
-                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Level] + " " + CurrentHeroSheet.HeroSheet.SheetProgression.Level,
-                LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Expirience] + " " + CurrentHeroSheet.HeroSheet.SheetProgression.Expirience
-            });
-            table.AddRow(CreateAbilityPanel(), CreateSkillPanel(), CreateProficienciesPanel(), CreateCombatPanel());
+            table.AddColumns(new string[]{ "1", "2", "3" });
+            table.AddColumn(new TableColumn("1231").Footer("123"));
+            table.HideHeaders();
+            table.ShowFooters();
+
+            table.AddRow(CreateMainPanel(), CreateAbilityPanel(), CreatePersonalityPanel());
+            table.AddRow(CreateSkillPanel(), CreateProficienciesPanel(), CreateCombatPanel());
+        }
+
+        private int CalculatePassiveWisdom()
+        {
+            return 8 + CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom) + (CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Perception) ? CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus() : 0);
         }
     }
 }

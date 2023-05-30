@@ -2191,7 +2191,19 @@ namespace dnd_character_sheet
             {
                 EnumPrintSheetInfoTitles.HP, new Dictionary<Enum, string>()
                 {
-                    { EnumLanguages.Russian, "ХП" }
+                    { EnumLanguages.Russian, "Хиты" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Hero, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Герой" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.THP, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Временные хиты" }
                 }
             },
             {
@@ -2219,9 +2231,33 @@ namespace dnd_character_sheet
                 }
             },
             {
+                EnumPrintSheetInfoTitles.ProficiencyBonus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Бонус мастерства" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.PassiveWisdom, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Пассивная внимательность" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Inspiration, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Вдохновение" }
+                }
+            },
+            {
+                EnumPrintSheetInfoTitles.Size, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Размер" }
+                }
+            },
+            {
                 EnumPrintSheetInfoTitles.DeathDices, new Dictionary<Enum, string>()
                 {
-                    { EnumLanguages.Russian, "Броски спасбросков от смерти" }
+                    { EnumLanguages.Russian, "Спасброски от смерти" }
                 }
             },
             {
@@ -2264,6 +2300,42 @@ namespace dnd_character_sheet
                 EnumMainMenuPoints.ScreenManageSpellsDB, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Работа с базой заклинаний" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Tiny, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Крошечный" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Small, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Маленький" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Medium, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Средний" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Large, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Большой" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Huge, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Огромный" }
+                }
+            },
+            {
+                EnumCreaturesSizesDND5e.Gargantuan, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Громадный" }
                 }
             }
         };    

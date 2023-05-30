@@ -13,12 +13,18 @@ namespace dnd_character_sheet
         PersonalityList,
         CombatStats,
         HP,
+        THP,
         AC,
         Speed,
         HitDice,
         HitDiceCount,
         DeathDices,
         Inventory,
-        Traits
+        Traits,
+        PassiveWisdom,
+        ProficiencyBonus,
+        Inspiration,
+        Size,
+        Hero
     }
 }

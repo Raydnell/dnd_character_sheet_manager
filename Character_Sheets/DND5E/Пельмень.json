@@ -2,17 +2,16 @@
   "Name": "Пельмень",
   "Edition": 1,
   "SheetRace": {
-    "Name": 3,
-    "Speed": 30
+    "Name": 4,
+    "Speed": 25,
+    "Size": 1
   },
   "SheetClass": {
-    "Name": 4,
-    "HitDice": 8,
+    "Name": 6,
+    "HitDice": 6,
     "SaveThrows": [
-      3,
-      4,
-      3,
-      4
+      2,
+      5
     ]
   },
   "SheetAbilities": {
@@ -27,9 +26,13 @@
   },
   "SheetSkills": {
     "Skills": [
-      2,
-      4,
-      5
+      1,
+      0,
+      3,
+      5,
+      10,
+      11,
+      12
     ]
   },
   "SheetProgression": {
@@ -37,7 +40,10 @@
     "Level": 1
   },
   "SheetSaveThrows": {
-    "SaveThrows": []
+    "SaveThrows": [
+      4,
+      5
+    ]
   },
   "SheetPersonality": {
     "PersonalityList": {
@@ -59,39 +65,41 @@
     "CombatStats": {
       "ArmorClass": 11,
       "CurrentHitDices": 1,
-      "CurrentHP": 10,
+      "CurrentHP": 8,
       "DeathFailure": 0,
       "DeathSucces": 0,
-      "MaximumHP": 10,
+      "MaximumHP": 8,
       "TemporaryHP": 0
     }
   },
   "SheetProficiencies": {
     "Proficiencies": [
+      0,
+      42,
       41,
-      12,
-      14,
-      30,
-      6
+      46,
+      47,
+      48
     ]
   },
   "SheetInventory": {
-    "Inventory": {
-      "4155": 7,
-      "2917": 2,
-      "4913": 5,
-      "6991": 1,
-      "5157": 4,
-      "1027": 200
-    }
+    "Inventory": {}
   },
   "TraitsList": {
     "TraitsList": {
-      "Взрыв пельменя": {
-        "Name": "Взрыв пельменя",
-        "Source": "phb",
-        "Description": "Выплёскивает сок наружу и травит всех вокруг"
+      "123": {
+        "Name": "123",
+        "Source": "123",
+        "Description": "123"
+      },
+      "567": {
+        "Name": "567",
+        "Source": "567",
+        "Description": "567"
       }
     }
+  },
+  "SheetSpells": {
+    "Name": {}
   }
 }
