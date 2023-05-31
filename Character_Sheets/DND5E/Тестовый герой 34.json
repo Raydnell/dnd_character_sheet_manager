@@ -1,0 +1,105 @@
+{
+  "Name": "Тестовый герой 34",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 7,
+    "Speed": 30,
+    "Size": 2
+  },
+  "SheetClass": {
+    "Name": 2,
+    "HitDice": 10,
+    "SaveThrows": [
+      2,
+      0
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 14,
+      "Constitution": 16,
+      "Intelligence": 18,
+      "Wisdom": 20,
+      "Charisma": 1
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      0,
+      2
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "Шёл шёл и пришёл",
+      "Alignment": "Нейтральное",
+      "PersonalityTraits": "Никакие",
+      "Ideals": "Идеальные",
+      "Bonds": "Привязаны",
+      "Flaws": "Слабые",
+      "Age": "55",
+      "Height": "200",
+      "Weight": "50",
+      "Eyes": "Глазоеды",
+      "Skin": "Кожанная",
+      "Hair": "Волосатая"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 12,
+      "CurrentHitDices": 1,
+      "CurrentHP": 13,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 13,
+      "TemporaryHP": 0
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      0,
+      41,
+      45,
+      8,
+      31,
+      4
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  },
+  "TraitsList": {
+    "TraitsList": {
+      "Первый": {
+        "Name": "Первый",
+        "Source": "Книга",
+        "Description": "Что-то делает, хз что"
+      },
+      "123": {
+        "Name": "123",
+        "Source": "123",
+        "Description": "123"
+      }
+    }
+  },
+  "SheetSpells": {
+    "Name": {}
+  },
+  "SheetEquipmentSlots": {
+    "EquipmentSlots": {}
+  }
+}

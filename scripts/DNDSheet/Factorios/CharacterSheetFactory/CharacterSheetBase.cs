@@ -195,6 +195,20 @@ namespace dnd_character_sheet
             }
         }
 
+        private BaseEquipmentSystem _sheetEquipmentSlots;
+
+        public BaseEquipmentSystem SheetEquipmentSlots
+        {
+            get
+            {
+                return _sheetEquipmentSlots;
+            }
+            protected set
+            {
+                _sheetEquipmentSlots = value;
+            }
+        }
+
         public abstract void SetUpRace(SheetRaceBase sheetRace);
         public abstract void SetUpClass(SheetClassBase sheetClass);
     }

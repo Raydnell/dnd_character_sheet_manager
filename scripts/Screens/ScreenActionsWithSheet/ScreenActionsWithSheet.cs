@@ -13,16 +13,18 @@ namespace dnd_character_sheet
         private string[] _logMessages;
         private Panel _logPanel;
         private string _amountOfDices;
-        private int _rollModificator;
-        private int _fullRollResult;
-        private int _diceRollResult; //Ability roll! 1d20 + 2 : 13 + 2 = 15!
+        private int _rollModificatorOne;
+        private int _diceRollResult;
+        private string _rollDescription;
+        private int _proficiencyBonus;
+        private IScreen _screen;
 
         public ScreenActionsWithSheet()
         {
             _stringBuilder = new StringBuilder();
             _table = new Table();
             _random = new Random();
-            _logMessages = new string[10] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+            _logMessages = new string[10] { "", "", "", "", "", "", "", "", "", "" };
         }
 
         public void ShowScreen()
@@ -30,6 +32,7 @@ namespace dnd_character_sheet
             Console.Clear();
             FillTable(_table);
             AnsiConsole.Write(_table);
+            _proficiencyBonus = CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus();
 
             _isExit = false;
             while (_isExit == false)
@@ -39,22 +42,53 @@ namespace dnd_character_sheet
                 switch (_pressedKey.Key)
                 {
                     case ConsoleKey.A:
-                        _fullRollResult = MakeAbilityCheck();
-                        _logPanel = NewMessageToLog("Ability roll! 1d20 + " + _rollModificator.ToString() + " : " + _diceRollResult.ToString() + " + " + _rollModificator.ToString() + " = " + _fullRollResult.ToString());
+                        MakeAbilityCheck();
+                        _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " : " + _diceRollResult + " + " + _rollModificatorOne + " = " + (_rollModificatorOne + _diceRollResult));
+                        
+                        Console.Clear();
+                        _table.UpdateCell(0, 3, _logPanel);
+                        AnsiConsole.Write(_table);
                         break;
 
                     case ConsoleKey.Q:
-                        _logPanel = NewMessageToLog("\nSavethow roll! " + MakeSaveThrowCheck());
+                        if (MakeSaveThrowCheck())
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " + " + _proficiencyBonus + " : " + _diceRollResult + " + " + _rollModificatorOne + " + " + _proficiencyBonus + " = " + (_rollModificatorOne + _diceRollResult + _proficiencyBonus));
+                        }
+                        else
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " : " + _diceRollResult + " + " + _rollModificatorOne + " = " + (_rollModificatorOne + _diceRollResult));
+                        }
+                        
+                        Console.Clear();
+                        _table.UpdateCell(0, 3, _logPanel);
+                        AnsiConsole.Write(_table);
                         break;
 
                     case ConsoleKey.S:
-                        _logPanel = NewMessageToLog("\nSkill roll! " + MakeSkillCheck());
+                        if (MakeSkillCheck())
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " + " + _proficiencyBonus + " : " + _diceRollResult + " + " + _rollModificatorOne + " + " + _proficiencyBonus + " = " + (_rollModificatorOne + _diceRollResult + _proficiencyBonus));
+                        }
+                        else
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " : " + _diceRollResult + " + " + _rollModificatorOne + " = " + (_rollModificatorOne + _diceRollResult));
+                        }
+                        
+                        Console.Clear();
+                        _table.UpdateCell(0, 3, _logPanel);
+                        AnsiConsole.Write(_table);
+                        break;
+
+                    case ConsoleKey.I:
+                        _screen = new ScreenWorkWithInventory();
+                        _screen.ShowScreen();
+                        break;
+                    
+                    case ConsoleKey.Escape:
+                        _isExit = true;
                         break;
                 }
-
-                Console.Clear();
-                _table.UpdateCell(0, 3, _logPanel);
-                AnsiConsole.Write(_table);
             }
         }
 
@@ -212,8 +246,9 @@ namespace dnd_character_sheet
             table.AddColumns(new string[]{ "1", "2", "3", "4" });
             table.HideHeaders();
 
-            table.AddRow(CreateMainPanel(), CreateAbilityPanel(), CreatePersonalityPanel(), NewMessageToLog("Тут будут новые броски"));
-            table.AddRow(CreateSkillPanel(), CreateProficienciesPanel(), CreateCombatPanel());
+            table.AddRow(CreateMainPanel(), CreateAbilityPanel(), CreatePersonalityPanel(), NewMessageToLog(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.RollResultsWillBeHere]));
+            table.AddRow(CreateSkillPanel(), CreateProficienciesPanel(), CreateCombatPanel(), CreateEquipmentPanel());
+            table.AddRow(CreateScreensPanel());
         }
 
         private int CalculatePassiveWisdom()
@@ -221,198 +256,192 @@ namespace dnd_character_sheet
             return 8 + CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom) + (CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Perception) ? CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus() : 0);
         }
 
-        private int MakeAbilityCheck()
+        private void MakeAbilityCheck()
         {
+            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));    
+            
             var pressedKey = Console.ReadKey();
-            _diceRollResult = _random.Next(1, DiceEdges.Dices[5]);    
             switch (pressedKey.Key)
             {
                 case ConsoleKey.D1:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength);
-                    return _diceRollResult + _rollModificator;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityStrength];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength);
+                    break;
 
                 case ConsoleKey.D2:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity);
-                    return _diceRollResult + _rollModificator;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityDexterity];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity);
+                    break;
 
                 case ConsoleKey.D3:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution);
-                    return _diceRollResult + _rollModificator;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityConstitution];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution);
+                    break;
 
                 case ConsoleKey.D4:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Intelligence);
-                    return _diceRollResult + _rollModificator;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityIntelligence];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Intelligence);
+                    break;
 
                 case ConsoleKey.D5:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom);
-                    return _diceRollResult + _rollModificator;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityWisdom];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom);
+                    break;
 
                 case ConsoleKey.D6:
-                    _rollModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Charisma);
-                    return _diceRollResult + _rollModificator;
-            
-                default:
-                    return 0;
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityCharisma];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Charisma);
+                    break;
             }
         }
 
-        private int MakeSaveThrowCheck()
+        private bool MakeSaveThrowCheck()
         {
+            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));
+            
             var pressedKey = Console.ReadKey();    
             switch (pressedKey.Key)
             {
                 case ConsoleKey.D1:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Strength) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowStrength];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Strength);
 
                 case ConsoleKey.D2:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Dexterity) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowDexterity];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Dexterity);
 
                 case ConsoleKey.D3:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Constitution) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowConstitution];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Constitution);
 
                 case ConsoleKey.D4:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Intelligence) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Intelligence) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Intelligence)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowIntelligence];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Intelligence);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Intelligence);
 
                 case ConsoleKey.D5:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Wisdom) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowWisdom];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Wisdom);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Wisdom);
 
                 case ConsoleKey.D6:
-                    return 
-                        CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Charisma) ? 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Charisma) + 
-                            CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus()
-                        ) : 
-                        (
-                            _random.Next(1, DiceEdges.Dices[5]) + 
-                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Charisma)
-                        );
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowCharisma];
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Charisma);
+                    return CurrentHeroSheet.HeroSheet.SheetSaveThrows.CheckSaveThrow(EnumAbilitiesDnd5E.Charisma);
             
                 default:
-                    return 0;
+                    return false;
             }
         }
 
-        private int MakeSkillCheck()
+        private bool MakeSkillCheck()
         {
+            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));
+            
             var pressedKey = Console.ReadKey();    
             switch (pressedKey.Key)
             {
                 case ConsoleKey.Q:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Athletics);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillAthletics];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Athletics);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Athletics);
 
                 case ConsoleKey.W:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Acrobatics);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillAcrobatics];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Athletics);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Athletics);
 
                 case ConsoleKey.E:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Sleight);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillSleight];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Sleight);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Sleight);
 
                 case ConsoleKey.R:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Stealth);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillStealth];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Stealth);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Stealth);
 
                 case ConsoleKey.T:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Arcana);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillArcana];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Arcana);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Arcana);
 
                 case ConsoleKey.Y:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.History);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillHistory];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.History);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.History);
 
                 case ConsoleKey.A:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Investigation);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillInvestigation];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Investigation);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Investigation);
 
                 case ConsoleKey.S:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Nature);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillNature];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Nature);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Nature);
 
                 case ConsoleKey.D:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Religion);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillReligion];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Religion);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Religion);
 
                 case ConsoleKey.F:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Animal);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillAnimal];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Animal);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Animal);
 
                 case ConsoleKey.G:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Insight);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillInsight];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Insight);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Insight);
 
                 case ConsoleKey.H:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Medicine);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillMedicine];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Medicine);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Medicine);
 
                 case ConsoleKey.Z:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Perception);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillPerception];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Perception);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Perception);
 
                 case ConsoleKey.X:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Surival);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillSurival];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Surival);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Surival);
 
                 case ConsoleKey.C:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Deception);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillDeception];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Deception);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Deception);
 
                 case ConsoleKey.V:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Intimidation);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillIntimidation];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Intimidation);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Intimidation);
 
                 case ConsoleKey.B:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Perfomance);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillPerfomance];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Perfomance);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Perfomance);
 
                 case ConsoleKey.N:
-                    return _random.Next(1, DiceEdges.Dices[5]) + GetSkillModificator(EnumSkillsDnd5E.Persuasion);
+                    _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillPersuasion];
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Persuasion);
+                    return CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Persuasion);
 
                 default:
-                    return 0;
+                    return false;
             }
         }
 
         private int GetSkillModificator(EnumSkillsDnd5E skill)
         {
-            int proficiencyBonus = CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(skill) ? CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus() : 0;
-            int abilityModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(CurrentHeroSheet.HeroSheet.SheetSkills.SkillAbilityName(skill));
-            return proficiencyBonus + abilityModificator;
+            return CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(CurrentHeroSheet.HeroSheet.SheetSkills.SkillAbilityName(skill));
         }
 
         private Panel NewMessageToLog(string message)
@@ -433,10 +462,48 @@ namespace dnd_character_sheet
 
             Panel tempPanel = new Panel(_stringBuilder.ToString());
             tempPanel.Border = BoxBorder.Square;
-            tempPanel.Header = new PanelHeader("Message box");
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox]);
             tempPanel.HeaderAlignment(Justify.Center);
 
             return tempPanel;
         }
+
+        private Panel CreateEquipmentPanel()
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            
+            if (CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots.Count == 0)
+            {
+                _stringBuilder.Append(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EmptyEquipmentSlots]);
+            }
+            else
+            {
+                foreach (var item in CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots)
+                {
+                    _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value.Name + "\n");
+                }
+            }
+            
+            Panel tempPanel = new Panel(_stringBuilder.ToString());
+            tempPanel.Border = BoxBorder.Square;
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots]);
+            tempPanel.HeaderAlignment(Justify.Center);
+            
+            return tempPanel;
+        }
+
+        private Panel CreateScreensPanel()
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+
+            _stringBuilder.Append(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.Inventory] + "\n" + LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.Spells] + "\n" + LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.SheetEdit]);
+            
+            Panel tempPanel = new Panel(_stringBuilder.ToString());
+            tempPanel.Border = BoxBorder.Square;
+            tempPanel.Header = new PanelHeader(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.OpenScreens]);
+            tempPanel.HeaderAlignment(Justify.Center);
+            
+            return tempPanel;
+        }        
     }
 }

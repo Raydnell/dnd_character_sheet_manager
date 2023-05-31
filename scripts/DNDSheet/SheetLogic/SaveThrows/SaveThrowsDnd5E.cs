@@ -19,7 +19,7 @@ namespace dnd_character_sheet
                 case EnumClassesDnd5E.Barbarian:
                 case EnumClassesDnd5E.Fighter:
                     SaveThrows.Add(EnumAbilitiesDnd5E.Strength);
-                    SaveThrows.Add(EnumAbilitiesDnd5E.Strength);
+                    SaveThrows.Add(EnumAbilitiesDnd5E.Constitution);
                     break;
 
                 case EnumClassesDnd5E.Wizard:

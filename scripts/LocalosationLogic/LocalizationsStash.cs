@@ -2343,6 +2343,252 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Громадный" }
                 }
+            },
+            {
+                EnumActionsWithSheet.MessageBox, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сообщения" }
+                }
+            },
+            {
+                EnumActionsWithSheet.RollResultsWillBeHere, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Результаты бросков будут тут" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityStrength, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка силы!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityDexterity, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка ловкости!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityConstitution, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка телосложения!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityIntelligence, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка интеллекта!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityWisdom, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка мудрости!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckAbilityCharisma, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка харизмы!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowStrength, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок силы!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowDexterity, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок ловкости!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowConstitution, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок телосложения!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowIntelligence, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок интеллекта!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowWisdom, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок мудрости!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSaveThrowCharisma, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасбросок харизмы!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillAthletics, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка атлетики!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillAcrobatics, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка акробатики!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillSleight, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка ловкости рук!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillStealth, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка скрытности!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillArcana, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка магии!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillHistory, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка истории!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillInvestigation, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка анализа!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillNature, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка природы!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillReligion, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка религии!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillAnimal, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка ухода за животными!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillInsight, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка проницательности!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillMedicine, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка медицины!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillPerception, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка восприятия!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillSurival, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка выживания!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillDeception, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка обмана!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillIntimidation, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка запугивания!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillPerfomance, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка выступления!" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CheckSkillPersuasion, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Проверка убеждения!" }
+                }
+            },
+            {
+                EnumEquipmentSlotsDND5e.LeftHand, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Левая рука" }
+                }
+            },
+            {
+                EnumEquipmentSlotsDND5e.RightHand, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Правая рука" }
+                }
+            },
+            {
+                EnumEquipmentSlotsDND5e.BodyArmor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Броня" }
+                }
+            },
+            {
+                EnumActionsWithSheet.EquipmentSlots, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Экипировка" }
+                }
+            },
+            {
+                EnumActionsWithSheet.EmptyEquipmentSlots, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Ничего не экипировано" }
+                }
+            },
+            {
+                EnumActionsWithSheet.OpenScreens, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Другие экраны" }
+                }
+            },
+            {
+                EnumActionsWithSheet.Inventory, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Работа с инвентарём" }
+                }
+            },
+            {
+                EnumActionsWithSheet.Spells, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Работа с заклинаниями" }
+                }
+            },
+            {
+                EnumActionsWithSheet.SheetEdit, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Изменить поля в листе" }
+                }
             }
         };    
     
