@@ -20,6 +20,6 @@ namespace dnd_character_sheet
         }
 
         public abstract void AddProficiency(Enum prof);
-        public abstract bool CheckProficiency(EnumAllDND5eProficiencies prof);
+        public abstract bool CheckProficiency(Enum prof);
     }
 }

@@ -41,7 +41,7 @@ namespace dnd_character_sheet
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.DamageType]+ " " + LocalizationsStash.SelectedLocalization[item.DamageType]);
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.WeaponProficiencyConcrete]+ " " + LocalizationsStash.SelectedLocalization[item.WeaponProficiencyConcrete]);
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.WeaponProficiencyGroup]+ " " + LocalizationsStash.SelectedLocalization[item.WeaponProficiencyGroup]);
-            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.WeaponProperty]+ " " + LocalizationsStash.SelectedLocalization[item.WeaponProperty]);
+            //Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.WeaponProperty]+ " " + LocalizationsStash.SelectedLocalization[item.WeaponProperty]);
         }
 
         private static void ShowArmorInfo(ItemArmorDND5e item) 

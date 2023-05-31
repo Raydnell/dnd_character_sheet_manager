@@ -11,6 +11,14 @@
     "HitDice": 10,
     "SaveThrows": [
       2,
+      0,
+      2,
+      0,
+      2,
+      0,
+      2,
+      0,
+      2,
       0
     ]
   },
@@ -60,7 +68,7 @@
   },
   "SheetCombatAbilities": {
     "CombatStats": {
-      "ArmorClass": 12,
+      "ArmorClass": 16,
       "CurrentHitDices": 1,
       "CurrentHP": 13,
       "DeathFailure": 0,
@@ -80,7 +88,18 @@
     ]
   },
   "SheetInventory": {
-    "Inventory": {}
+    "Inventory": {
+      "7624": 2,
+      "5831": 1,
+      "2515": 1,
+      "1453": 1,
+      "8901": 1,
+      "1258": 1,
+      "7733": 1,
+      "7053": 1,
+      "3068": 1,
+      "6868": 1
+    }
   },
   "TraitsList": {
     "TraitsList": {
@@ -100,6 +119,54 @@
     "Name": {}
   },
   "SheetEquipmentSlots": {
-    "EquipmentSlots": {}
+    "EquipmentSlots": {
+      "RightHand": {
+        "StrengthRequirement": 10,
+        "ArmorClass": 2,
+        "MaxAgilityBonus": 0,
+        "ArmorType": 3,
+        "Name": "Крышка унитаза",
+        "BaseCost": 15.0,
+        "Weight": 10.0,
+        "Rarity": 0,
+        "Description": "Принёс из дома",
+        "IsMagic": false,
+        "ItemId": 7053,
+        "ItemType": 0
+      },
+      "LeftHand": {
+        "DamageDiceCount": 1,
+        "DamageDiceValue": 8,
+        "DamageModificator": 0,
+        "DamageType": 0,
+        "WeaponProperty": [
+          0
+        ],
+        "WeaponProficiencyConcrete": 3,
+        "WeaponProficiencyGroup": 0,
+        "Name": "Топор",
+        "BaseCost": 10.0,
+        "Weight": 5.0,
+        "Rarity": 0,
+        "Description": "Простой топор",
+        "IsMagic": false,
+        "ItemId": 2515,
+        "ItemType": 1
+      },
+      "BodyArmor": {
+        "StrengthRequirement": 10,
+        "ArmorClass": 12,
+        "MaxAgilityBonus": 0,
+        "ArmorType": 0,
+        "Name": "Рубаха с щитками",
+        "BaseCost": 50.0,
+        "Weight": 5.0,
+        "Rarity": 0,
+        "Description": "Рубаха в которую вшити щитки насекомых",
+        "IsMagic": false,
+        "ItemId": 7733,
+        "ItemType": 0
+      }
+    }
   }
 }

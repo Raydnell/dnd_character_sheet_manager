@@ -2,7 +2,6 @@ namespace dnd_character_sheet
 {
     public enum EnumWeaponPropertiesDND5e
     {
-        NoPropery,
         Ammunition,
         Finesse,
         Heavy,

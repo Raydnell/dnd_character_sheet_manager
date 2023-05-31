@@ -1781,12 +1781,6 @@ namespace dnd_character_sheet
                 }
             },
             {
-                EnumWeaponPropertiesDND5e.NoPropery, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Без свойства" }
-                }
-            },
-            {
                 EnumWeaponPropertiesDND5e.Finesse, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Фехтовальное" }

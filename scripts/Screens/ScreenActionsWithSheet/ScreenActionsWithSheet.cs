@@ -14,10 +14,13 @@ namespace dnd_character_sheet
         private Panel _logPanel;
         private string _amountOfDices;
         private int _rollModificatorOne;
+        private int _rollModificatorTwo;
         private int _diceRollResult;
         private string _rollDescription;
         private int _proficiencyBonus;
         private IScreen _screen;
+        private EquipmentSystem _equipmentSystem;
+        private int _damageRollResult;
 
         public ScreenActionsWithSheet()
         {
@@ -25,6 +28,7 @@ namespace dnd_character_sheet
             _table = new Table();
             _random = new Random();
             _logMessages = new string[10] { "", "", "", "", "", "", "", "", "", "" };
+            _equipmentSystem = new EquipmentSystem();
         }
 
         public void ShowScreen()
@@ -83,6 +87,31 @@ namespace dnd_character_sheet
                     case ConsoleKey.I:
                         _screen = new ScreenWorkWithInventory();
                         _screen.ShowScreen();
+                        Console.Clear();
+                        AnsiConsole.Write(_table);
+                        break;
+
+                    case ConsoleKey.E:
+                        EquipmentSlots();
+                        _table.UpdateCell(1, 3, CreateEquipmentPanel());
+                        _table.UpdateCell(1, 2, CreateCombatPanel());
+                        Console.Clear();
+                        AnsiConsole.Write(_table);
+                        break;
+
+                    case ConsoleKey.C:
+                        ChooseAttackHand();
+                        if (_rollDescription == "лошара")
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription);
+                        }
+                        else
+                        {
+                            _logPanel = NewMessageToLog(_rollDescription + " 1d20 + " + _rollModificatorOne + " + " + _proficiencyBonus + " : " + _diceRollResult + " + " + _rollModificatorOne + " + " + _proficiencyBonus + " = " + (_diceRollResult + _rollModificatorOne + _proficiencyBonus) + ". Урон " + (_damageRollResult + _rollModificatorOne) + "!");
+                        }
+                        Console.Clear();
+                        _table.UpdateCell(0, 3, _logPanel);
+                        AnsiConsole.Write(_table);
                         break;
                     
                     case ConsoleKey.Escape:
@@ -258,10 +287,10 @@ namespace dnd_character_sheet
 
         private void MakeAbilityCheck()
         {
-            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));    
+            _diceRollResult = _random.Next(1, (int)EnumDices.d20 + 1);    
             
-            var pressedKey = Console.ReadKey();
-            switch (pressedKey.Key)
+            _pressedKey = Console.ReadKey();
+            switch (_pressedKey.Key)
             {
                 case ConsoleKey.D1:
                     _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckAbilityStrength];
@@ -297,10 +326,10 @@ namespace dnd_character_sheet
 
         private bool MakeSaveThrowCheck()
         {
-            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));
+            _diceRollResult = _random.Next(1, (int)EnumDices.d20 + 1);
             
-            var pressedKey = Console.ReadKey();    
-            switch (pressedKey.Key)
+            _pressedKey = Console.ReadKey();    
+            switch (_pressedKey.Key)
             {
                 case ConsoleKey.D1:
                     _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSaveThrowStrength];
@@ -339,10 +368,10 @@ namespace dnd_character_sheet
 
         private bool MakeSkillCheck()
         {
-            _diceRollResult = _random.Next(1, (DiceEdges.Dices[5] + 1));
+            _diceRollResult = _random.Next(1, (int)EnumDices.d20 + 1);
             
-            var pressedKey = Console.ReadKey();    
-            switch (pressedKey.Key)
+            _pressedKey = Console.ReadKey();    
+            switch (_pressedKey.Key)
             {
                 case ConsoleKey.Q:
                     _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillAthletics];
@@ -504,6 +533,186 @@ namespace dnd_character_sheet
             tempPanel.HeaderAlignment(Justify.Center);
             
             return tempPanel;
+        }
+
+        private void EquipmentSlots()
+        {
+            _pressedKey = Console.ReadKey();    
+            switch (_pressedKey.Key)
+            {
+                case ConsoleKey.A:
+                    _equipmentSystem.EquipArmor();
+                    break;
+
+                case ConsoleKey.R:
+                    _equipmentSystem.EquipHand(EnumEquipmentSlotsDND5e.RightHand);
+                    break;
+
+                case ConsoleKey.L:
+                    _equipmentSystem.EquipHand(EnumEquipmentSlotsDND5e.LeftHand);
+                    break;
+
+                case ConsoleKey.T:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.LeftHand);
+                    break;
+
+                case ConsoleKey.Y:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.RightHand);
+                    break;
+
+                case ConsoleKey.U:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.BodyArmor);
+                    break;
+            }
+
+            CalculateArmorClass();
+        }
+
+        private void CalculateArmorClass()
+        {
+            var dexModificator = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity);
+            var sheildArmorClass = 0;
+            var armorClass = 0;
+            ItemArmorDND5e equippedArmor;
+
+            foreach (var item in Enum.GetNames(typeof(EnumEquipmentSlotsDND5e)))
+            {
+                if (Enum.TryParse<EnumEquipmentSlotsDND5e>(item, out EnumEquipmentSlotsDND5e result))
+                {
+                    if (CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots.ContainsKey(result))
+                    {
+                        if (CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots[result].ItemType == EnumItemTypesDND5e.Armor)
+                        {
+                            equippedArmor = (ItemArmorDND5e)CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots[result];
+
+                            switch(equippedArmor.ArmorType)
+                            {
+                                case EnumArmorProficienciesDND5E.LightArmor:
+                                    armorClass = equippedArmor.ArmorClass;
+                                    break;
+                                
+                                case EnumArmorProficienciesDND5E.MediumArmor:
+                                    if (dexModificator > 2)
+                                    {
+                                        dexModificator = 2;
+                                    }
+                                    armorClass = equippedArmor.ArmorClass;
+                                    break;
+
+                                case EnumArmorProficienciesDND5E.HeavyArmor:
+                                    dexModificator = 0;
+                                    armorClass = equippedArmor.ArmorClass;
+                                    break;
+
+                                case EnumArmorProficienciesDND5E.Shield:
+                                    sheildArmorClass = equippedArmor.ArmorClass;
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (armorClass < 10)
+            {
+                armorClass = 10;
+            }
+
+            CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.ArmorClass] = 
+                    armorClass + dexModificator + sheildArmorClass;
+        }
+
+        private void ChooseAttackHand()
+        {
+            _pressedKey = Console.ReadKey();    
+            switch (_pressedKey.Key)
+            {
+                case ConsoleKey.R:
+                    RollAttack(CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots[EnumEquipmentSlotsDND5e.RightHand]);
+                    break;
+
+                case ConsoleKey.L:
+                    RollAttack(CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipmentSlots[EnumEquipmentSlotsDND5e.LeftHand]);
+                    break;
+            }
+        }
+
+        private void RollAttack(ItemBaseDND5e weapon)
+        {
+            _diceRollResult = _random.Next(1, (int)EnumDices.d20 + 1);
+            _proficiencyBonus = CurrentHeroSheet.HeroSheet.SheetProgression.GetProficiencyBonus();
+            var isCrit = false;
+            ItemWeaponDND5e itemWeapon;
+            _damageRollResult = 0;
+            _rollModificatorOne = 0;
+            _rollModificatorTwo = 0;
+            
+            if (_diceRollResult == 1)
+            {
+                _rollDescription = "лошара!";
+            }
+            else
+            {
+                _rollDescription = "Атака с помощью " + weapon.Name + "! ";
+
+                if (_diceRollResult == 20)
+                {
+                    isCrit = true;
+                }
+
+                if (weapon.ItemType == EnumItemTypesDND5e.Weapon)
+                {
+                    itemWeapon = (ItemWeaponDND5e)weapon;
+                    if (
+                        CurrentHeroSheet.HeroSheet.SheetProficiencies.CheckProficiency(itemWeapon.WeaponProficiencyConcrete) == false && 
+                        CurrentHeroSheet.HeroSheet.SheetProficiencies.CheckProficiency(itemWeapon.WeaponProficiencyGroup) == false
+                    )
+                    {
+                        _proficiencyBonus = 0;
+                    }
+
+                    if (itemWeapon.WeaponProperty.Contains(EnumWeaponPropertiesDND5e.Finesse))
+                    {
+                        _rollModificatorOne = 
+                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength) <= 
+                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity) ? 
+                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Dexterity) : 
+                            CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength);
+                    }
+
+                    if (isCrit == true)
+                    {
+                        for (int i = 0; i < (itemWeapon.DamageDiceCount * 2); i++)
+                        {
+                            _damageRollResult += _random.Next(1, itemWeapon.DamageDiceValue);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < itemWeapon.DamageDiceCount; i++)
+                        {
+                            _damageRollResult += _random.Next(1, itemWeapon.DamageDiceValue);
+                        }
+                    }
+                }
+                else
+                {
+                    _rollModificatorOne = CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Strength);
+                    _proficiencyBonus = 0;
+
+                    if (isCrit == true)
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            _damageRollResult += _random.Next(1, (int)EnumDices.d4 + 1);
+                        }
+                    }
+                    else
+                    {
+                        _damageRollResult += _random.Next(1, (int)EnumDices.d4 + 1);
+                    }
+                }
+            }
         }        
     }
 }

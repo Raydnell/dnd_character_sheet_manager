@@ -4,7 +4,9 @@
     "DamageDiceValue": 6,
     "DamageModificator": 0,
     "DamageType": 0,
-    "WeaponProperty": 0,
+    "WeaponProperty": [
+      0
+    ],
     "WeaponProficiencyConcrete": 2,
     "WeaponProficiencyGroup": 0,
     "Name": "Палка",
@@ -35,7 +37,9 @@
     "DamageDiceValue": 8,
     "DamageModificator": 0,
     "DamageType": 0,
-    "WeaponProperty": 0,
+    "WeaponProperty": [
+      0
+    ],
     "WeaponProficiencyConcrete": 3,
     "WeaponProficiencyGroup": 0,
     "Name": "Топор",
@@ -86,7 +90,9 @@
     "DamageDiceValue": 12,
     "DamageModificator": 0,
     "DamageType": 0,
-    "WeaponProperty": 0,
+    "WeaponProperty": [
+      0
+    ],
     "WeaponProficiencyConcrete": 21,
     "WeaponProficiencyGroup": 2,
     "Name": "Меч",
@@ -127,7 +133,9 @@
     "DamageDiceValue": 12,
     "DamageModificator": 0,
     "DamageType": 0,
-    "WeaponProperty": 3,
+    "WeaponProperty": [
+      3
+    ],
     "WeaponProficiencyConcrete": 17,
     "WeaponProficiencyGroup": 2,
     "Name": "Секира супер",
@@ -214,7 +222,9 @@
     "DamageDiceValue": 10,
     "DamageModificator": 0,
     "DamageType": 0,
-    "WeaponProperty": 0,
+    "WeaponProperty": [
+      0
+    ],
     "WeaponProficiencyConcrete": 23,
     "WeaponProficiencyGroup": 2,
     "Name": "Моргенштерн",
@@ -246,5 +256,38 @@
     "IsMagic": false,
     "ItemId": 1027,
     "ItemType": 3
+  },
+  "7053": {
+    "StrengthRequirement": 10,
+    "ArmorClass": 2,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 3,
+    "Name": "Крышка унитаза",
+    "BaseCost": 15.0,
+    "Weight": 10.0,
+    "Rarity": 0,
+    "Description": "Принёс из дома",
+    "IsMagic": false,
+    "ItemId": 7053,
+    "ItemType": 0
+  },
+  "6868": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 20,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 0,
+    "WeaponProficiencyGroup": 0,
+    "Name": "Надувная дубинка",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Сдувается",
+    "IsMagic": false,
+    "ItemId": 6868,
+    "ItemType": 1
   }
 }

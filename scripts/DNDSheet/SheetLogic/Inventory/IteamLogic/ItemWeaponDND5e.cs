@@ -64,10 +64,10 @@ namespace dnd_character_sheet
             }
         }
         
-        private EnumWeaponPropertiesDND5e _weaponProperty;
+        private List<EnumWeaponPropertiesDND5e> _weaponProperty;
 
         [JsonProperty("WeaponProperty")]
-        public EnumWeaponPropertiesDND5e WeaponProperty
+        public List<EnumWeaponPropertiesDND5e> WeaponProperty
         {
             get
             {
@@ -124,7 +124,7 @@ namespace dnd_character_sheet
             DamageDiceValue = 0;
             DamageModificator = 0;
             DamageType = EnumItemDamageTypesDND5e.Bludgeoning;
-            WeaponProperty = EnumWeaponPropertiesDND5e.NoPropery;
+            WeaponProperty = new List<EnumWeaponPropertiesDND5e>();
             WeaponProficiencyConcrete = EnumWeaponsProficienciesDND5E.Club;
             WeaponProficiencyGroup = EnumWeaponsGroupsDND5E.SimpleMelee;
         }
@@ -149,9 +149,12 @@ namespace dnd_character_sheet
             DamageType = value;
         }
 
-        public void SetWeaponProperty(EnumWeaponPropertiesDND5e value)
+        public void AddWeaponProperty(EnumWeaponPropertiesDND5e value)
         {
-            WeaponProperty = value;
+            if (WeaponProperty.Contains(value) == false)
+            {
+                WeaponProperty.Add(value);
+            }
         }
 
         public void SetWeaponGroup(EnumWeaponsGroupsDND5E value)

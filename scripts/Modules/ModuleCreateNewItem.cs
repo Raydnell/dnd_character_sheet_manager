@@ -128,7 +128,7 @@ namespace dnd_character_sheet
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatWeaponProperties, typeof(EnumWeaponPropertiesDND5e));
             if (Enum.TryParse<EnumWeaponPropertiesDND5e>(_choosenPoint.ToString(), out EnumWeaponPropertiesDND5e propertie))
             {
-                item.SetWeaponProperty(propertie);
+                item.AddWeaponProperty(propertie);
             }
         }
     

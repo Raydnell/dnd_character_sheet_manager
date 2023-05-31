@@ -11,7 +11,7 @@ namespace dnd_character_sheet
         {
             if (Enum.TryParse<EnumAllDND5eProficiencies>(prof.ToString(), out EnumAllDND5eProficiencies result))
             {
-                if(Proficiencies.Contains(result) == false)
+                if (Proficiencies.Contains(result) == false)
                 {
                     Proficiencies.Add(result);
                 }
@@ -19,11 +19,14 @@ namespace dnd_character_sheet
             
         }
         
-        public override bool CheckProficiency(EnumAllDND5eProficiencies prof)
+        public override bool CheckProficiency(Enum prof)
         {
-            if(Proficiencies.Contains(prof))
+            if (Enum.TryParse<EnumAllDND5eProficiencies>(prof.ToString(), out EnumAllDND5eProficiencies result))
             {
-                return true;
+                if (Proficiencies.Contains(result))
+                {
+                    return true;
+                }
             }
 
             return false;
