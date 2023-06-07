@@ -2,13 +2,49 @@ using Spectre.Console;
 
 namespace dnd_character_sheet
 {
-    public class EquipmentSystem
+    public class EquipmentSystem : IEquipmentSystem
     {
         private List<string> _filtredItems;
+        private ConsoleKeyInfo _pressedKey;
 
         public EquipmentSystem()
         {
             _filtredItems = new List<string>();
+        }
+
+        public string ChooseAction()
+        {
+            _pressedKey = Console.ReadKey();    
+            switch (_pressedKey.Key)
+            {
+                case ConsoleKey.A:
+                    EquipArmor();
+                    break;
+
+                case ConsoleKey.R:
+                    EquipHand(EnumEquipmentSlotsDND5e.RightHand);
+                    break;
+
+                case ConsoleKey.L:
+                    EquipHand(EnumEquipmentSlotsDND5e.LeftHand);
+                    break;
+
+                case ConsoleKey.T:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.LeftHand);
+                    break;
+
+                case ConsoleKey.Y:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.RightHand);
+                    break;
+
+                case ConsoleKey.U:
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.BodyArmor);
+                    break;
+            }
+
+            SheetFormulas.CalculateArmorClass();
+
+            return "Было какое-то действие с экипировкой";
         }
         
         public void EquipArmor()
@@ -51,7 +87,7 @@ namespace dnd_character_sheet
             }
         }
 
-        private void MakeArmorSlotList()
+        public void MakeArmorSlotList()
         {
             _filtredItems.Clear();
             
@@ -69,7 +105,7 @@ namespace dnd_character_sheet
             }
         }
 
-        private void MakeHandSlotList()
+        public void MakeHandSlotList()
         {
             _filtredItems.Clear();
             

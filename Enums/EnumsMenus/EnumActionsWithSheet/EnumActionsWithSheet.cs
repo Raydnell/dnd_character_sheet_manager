@@ -39,6 +39,13 @@ namespace dnd_character_sheet
         OpenScreens,
         Inventory,
         Spells,
-        SheetEdit        
+        SheetEdit,
+        CriticalFailure,
+        CriticalSuccess,
+        AttackWith,
+        WrongInput,
+        MessagesWillBeHere,
+        InputPanel,
+        SheetTraits
     }
 }

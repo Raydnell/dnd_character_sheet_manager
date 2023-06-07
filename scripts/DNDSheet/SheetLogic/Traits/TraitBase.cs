@@ -49,6 +49,21 @@ namespace dnd_character_sheet
             }
         }
 
+        private int _id;
+
+        [JsonProperty("Id")]
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            protected set
+            {
+                _id = value;
+            }
+        }
+
         public TraitBase(string name, string source, string description)
         {
             Name = name;

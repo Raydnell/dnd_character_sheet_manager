@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public MonkClassDND5e()
         {
             Name = EnumClassesDnd5E.Monk;
-            HitDice = 8;
+            HitDice = EnumDices.d8;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Dexterity,

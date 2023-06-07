@@ -116,7 +116,10 @@
     }
   },
   "SheetSpells": {
-    "Name": {}
+    "SheetSpells": {
+      "1008": 0,
+      "1009": 0
+    }
   },
   "SheetEquipmentSlots": {
     "EquipmentSlots": {

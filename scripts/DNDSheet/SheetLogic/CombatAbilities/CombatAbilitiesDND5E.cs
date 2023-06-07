@@ -12,7 +12,8 @@ namespace dnd_character_sheet
                 [EnumCombatStatsDND5e.DeathFailure] = 0,
                 [EnumCombatStatsDND5e.DeathSucces] = 0,
                 [EnumCombatStatsDND5e.MaximumHP] = 0,
-                [EnumCombatStatsDND5e.TemporaryHP] = 0
+                [EnumCombatStatsDND5e.TemporaryHP] = 0,
+                [EnumCombatStatsDND5e.Round] = 1
             };
         }
 

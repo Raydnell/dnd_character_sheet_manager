@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public PaladinClassDND5e()
         {
             Name = EnumClassesDnd5E.Paladin;
-            HitDice = 10;
+            HitDice = EnumDices.d10;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Wisdom,

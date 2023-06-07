@@ -19,6 +19,12 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void AddTrait(string name, string source, string description);
+        public void AddTrait(string name, string source, string description)
+        {
+            if (TraitsList.ContainsKey(name) == false)
+            {
+                TraitsList[name] = new TraitDND5e(name, source, description);
+            }
+        }
     }
 }

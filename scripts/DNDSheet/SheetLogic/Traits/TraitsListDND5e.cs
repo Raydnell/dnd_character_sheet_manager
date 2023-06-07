@@ -6,13 +6,5 @@ namespace dnd_character_sheet
         {
             TraitsList = new Dictionary<string, TraitBase>();
         }
-
-        public override void AddTrait(string name, string source, string description)
-        {
-            if (TraitsList.ContainsKey(name) == false)
-            {
-                TraitsList[name] = new TraitDND5e(name, source, description);
-            }
-        }
     }
 }

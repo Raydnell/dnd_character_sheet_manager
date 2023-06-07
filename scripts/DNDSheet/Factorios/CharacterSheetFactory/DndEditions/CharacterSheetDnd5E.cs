@@ -16,15 +16,22 @@ namespace dnd_character_sheet
             TraitsList = new TraitsListDND5e();
             SheetSpells = new SheetSpellsDND5e();
             SheetEquipmentSlots = new EquipmentDND5e();
+            Inspiration = false;
         }
 
         public override void SetUpRace(SheetRaceBase sheetRace)
         {
             SheetRace = sheetRace;
         }
+        
         public override void SetUpClass(SheetClassBase sheetClass)
         {
             SheetClass = sheetClass;
+        }
+
+        public override void ChangeInspiration()
+        {
+            Inspiration = !Inspiration;
         }
     }
 }

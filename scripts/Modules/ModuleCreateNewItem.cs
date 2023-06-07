@@ -118,8 +118,11 @@ namespace dnd_character_sheet
             item.SetDamageDiceCount(ConsoleInput.InputInt());
 
             Console.Clear();
-            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatDamageDice] + "\n");
-            item.SetDamageDiceValue(ConsoleInput.InputInt());
+            _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatDamageDice, typeof(EnumDices));
+            if (Enum.TryParse<EnumDices>(_choosenPoint.ToString(), out EnumDices damageDice))
+            {
+                item.SetDamageDiceValue(damageDice);
+            }
 
             Console.Clear();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatModificator] + "\n");

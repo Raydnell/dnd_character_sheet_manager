@@ -61,6 +61,8 @@ namespace dnd_character_sheet
         }
 
         private SheetAbilities _sheetAbilities;
+
+        [JsonProperty("SheetAbilities")]
         public SheetAbilities SheetAbilities
         {
             get
@@ -74,6 +76,8 @@ namespace dnd_character_sheet
         }
 
         private SheetSkills _sheetSkills;
+
+        [JsonProperty("SheetSkills")]
         public SheetSkills SheetSkills
         {
             get
@@ -87,6 +91,8 @@ namespace dnd_character_sheet
         }
 
         private SheetProgression _sheetProgression;
+
+        [JsonProperty("SheetProgression")]
         public SheetProgression SheetProgression
         {
             get
@@ -100,6 +106,8 @@ namespace dnd_character_sheet
         }
 
         private SheetSaveThrows _sheetSaveThrows;
+
+        [JsonProperty("SheetSaveThrows")]
         public SheetSaveThrows SheetSaveThrows
         {
             get
@@ -113,6 +121,8 @@ namespace dnd_character_sheet
         }
 
         private SheetPersonality _sheetPersonality;
+
+        [JsonProperty("SheetPersonality")]
         public SheetPersonality SheetPersonality
         {
             get
@@ -127,6 +137,7 @@ namespace dnd_character_sheet
 
         private SheetCombatAbilities _sheetCombatAbilities;
 
+        [JsonProperty("SheetCombatAbilities")]
         public SheetCombatAbilities SheetCombatAbilities
         {
             get
@@ -140,7 +151,8 @@ namespace dnd_character_sheet
         }
 
         private SheetProficiencies _sheetProficiencies;
-
+        
+        [JsonProperty("SheetProficiencies")]
         public SheetProficiencies SheetProficiencies
         {
             get
@@ -155,6 +167,7 @@ namespace dnd_character_sheet
 
         private SheetInventory _sheetInventory;
 
+        [JsonProperty("SheetInventory")]
         public SheetInventory SheetInventory
         {
             get
@@ -169,6 +182,7 @@ namespace dnd_character_sheet
 
         private TraitsListBase _traitsList;
 
+        [JsonProperty("TraitsList")]
         public TraitsListBase TraitsList
         {
             get
@@ -183,6 +197,7 @@ namespace dnd_character_sheet
 
         private SheetSpellsBase _sheetSpells;
 
+        [JsonProperty("SheetSpells")]
         public SheetSpellsBase SheetSpells
         {
             get
@@ -197,6 +212,7 @@ namespace dnd_character_sheet
 
         private BaseEquipmentSystem _sheetEquipmentSlots;
 
+        [JsonProperty("SheetEquipmentSlots")]
         public BaseEquipmentSystem SheetEquipmentSlots
         {
             get
@@ -209,7 +225,21 @@ namespace dnd_character_sheet
             }
         }
 
+        private bool _inspiration;
+        public bool Inspiration
+        {
+            get
+            {
+                return _inspiration;
+            }
+            protected set
+            {
+                _inspiration = value;
+            }
+        }
+
         public abstract void SetUpRace(SheetRaceBase sheetRace);
         public abstract void SetUpClass(SheetClassBase sheetClass);
+        public abstract void ChangeInspiration();
     }
 }

@@ -11,7 +11,7 @@
 
             //Console.InputEncoding = System.Text.Encoding.UTF8;
             //Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.SetWindowSize(200, 50);
+            Console.SetWindowSize(175, 50);
 
             language = showMenusCursor.ShowMenuPoints(
                 EnumStartMenuTitles.ChooseLang,
@@ -21,7 +21,6 @@
             localizationsStash.SetUpLanguage(language);
             ItemsDataBaseDND5e.LoadItemsBase();
             SpellsDataBaseDND5e.LoadDB();
-            //выбор редакции, но т.к. она сейчас одна, поэтому и выбора нет
             
             screen.ShowScreen();
         }

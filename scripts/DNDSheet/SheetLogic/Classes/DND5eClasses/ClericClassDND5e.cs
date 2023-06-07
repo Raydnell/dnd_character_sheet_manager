@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public ClericClassDND5e()
         {
             Name = EnumClassesDnd5E.Cleric;
-            HitDice = 8;
+            HitDice = EnumDices.d8;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Wisdom,

@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public FighterClassDND5e()
         {
             Name = EnumClassesDnd5E.Fighter;
-            HitDice = 10;
+            HitDice = EnumDices.d10;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Constitution,

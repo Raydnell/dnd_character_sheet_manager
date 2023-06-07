@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public BarbarianClassDND5e()
         {
             Name = EnumClassesDnd5E.Barbarian;
-            HitDice = 12;
+            HitDice = EnumDices.d12;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Constitution,

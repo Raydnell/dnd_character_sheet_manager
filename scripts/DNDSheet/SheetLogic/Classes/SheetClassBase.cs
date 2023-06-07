@@ -19,10 +19,10 @@ namespace dnd_character_sheet
             }
         }
 
-        private int _hitDice;
+        private EnumDices _hitDice;
 
         [JsonProperty("HitDice")]
-        public int HitDice
+        public EnumDices HitDice
         {
             get
             {

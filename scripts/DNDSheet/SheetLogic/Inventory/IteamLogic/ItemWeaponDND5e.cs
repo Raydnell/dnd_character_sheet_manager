@@ -19,10 +19,10 @@ namespace dnd_character_sheet
             }
         }
 
-        private int _damageDiceValue;
+        private EnumDices _damageDiceValue;
 
         [JsonProperty("DamageDiceValue")]
-        public int DamageDiceValue
+        public EnumDices DamageDiceValue
         {
             get
             {
@@ -79,7 +79,7 @@ namespace dnd_character_sheet
             }
         }
 
-                private EnumWeaponsProficienciesDND5E _weaponProficiencyConcrete;
+        private EnumWeaponsProficienciesDND5E _weaponProficiencyConcrete;
 
         [JsonProperty("WeaponProficiencyConcrete")]
         public EnumWeaponsProficienciesDND5E WeaponProficiencyConcrete
@@ -121,7 +121,7 @@ namespace dnd_character_sheet
             IsMagic = false;
             ItemId = 0;
             DamageDiceCount = 0;
-            DamageDiceValue = 0;
+            DamageDiceValue = EnumDices.d4;
             DamageModificator = 0;
             DamageType = EnumItemDamageTypesDND5e.Bludgeoning;
             WeaponProperty = new List<EnumWeaponPropertiesDND5e>();
@@ -134,7 +134,7 @@ namespace dnd_character_sheet
             DamageDiceCount = value;
         }
 
-        public void SetDamageDiceValue(int value)
+        public void SetDamageDiceValue(EnumDices value)
         {
             DamageDiceValue = value;
         }

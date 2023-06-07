@@ -5,7 +5,7 @@ namespace dnd_character_sheet
         public WarlockClassDND5e()
         {
             Name = EnumClassesDnd5E.Warlock;
-            HitDice = 6;
+            HitDice = EnumDices.d6;
             SaveThrows = new List<EnumAbilitiesDnd5E>()
             {
                 EnumAbilitiesDnd5E.Constitution,

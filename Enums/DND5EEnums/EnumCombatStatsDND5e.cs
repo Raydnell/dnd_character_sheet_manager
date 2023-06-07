@@ -8,6 +8,7 @@ namespace dnd_character_sheet
         ArmorClass,
         CurrentHitDices,
         DeathSucces,
-        DeathFailure
+        DeathFailure,
+        Round
     }
 }

@@ -2583,6 +2583,204 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Изменить поля в листе" }
                 }
+            },
+            {
+                EnumActionsWithSheet.CriticalFailure, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Критическая неудача" }
+                }
+            },
+            {
+                EnumActionsWithSheet.CriticalSuccess, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Критический успех" }
+                }
+            },
+            {
+                EnumActionsWithSheet.AttackWith, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Атака с помощью" }
+                }
+            },
+            {
+                EnumActionsWithSheet.WrongInput, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Некорректная команда" }
+                }
+            },
+            {
+                EnumRollThrower.ChooseDice, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Выбери кость" }
+                }
+            },
+            {
+                EnumRollThrower.WhatCountOfDices, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Напиши, сколько нужно кинуть кубов" }
+                }
+            },
+            {
+                EnumRollThrower.WhatIsdiceModificator, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Какой модификатор у броска" }
+                }
+            },
+            {
+                EnumCombatStatsDND5e.Round, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Раунд" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.RoundPlus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Следующий раунд" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.RoundMinus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Раунд назад" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.RoundRestore, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сброс раундов" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPPlus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Прибавить хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPMinus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Уменьшить хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPRestore, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Восстановить все хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.DeathThrowSucces, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Удачный спасбросок от смерти" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.DeathThrowFailure, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Неудачный спасбросок от смерти" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPTempPlus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Прибавить временные хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPTempMinus, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Уменьшить временные хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.HPTempRestore, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Сбросить временные хиты" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.DeathThrowAlive, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Герой живывает" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.DeathThrowDeath, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Герой погибает" }
+                }
+            },
+            {
+                EnumCombatActionsTexts.DeathThrowReset, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Спасброски от смерти сброшены" }
+                }
+            },
+            {
+                EnumActionsWithSheet.MessagesWillBeHere, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Новые сообщения будут тут" }
+                }
+            },
+            {
+                EnumProgressionActions.ExpGained, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Опыт увеличен на" }
+                }
+            },
+            {
+                EnumProgressionActions.ExpLowered, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Опыт уменьшен на" }
+                }
+            },
+            {
+                EnumActionsWithSheet.InputPanel, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Строка ввода" }
+                }
+            },
+            {
+                EnumAttackHandSystem.Attack, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Попадание" }
+                }
+            },
+            {
+                EnumAttackHandSystem.Damage, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Урон" }
+                }
+            },
+            {
+                EnumProgressionActions.InspirationFalse, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Вдохновения больше нет" }
+                }
+            },
+            {
+                EnumProgressionActions.InspirationTrue, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Вдохновение есть" }
+                }
+            },
+            {
+                EnumWorkWithSpells.ListOfSpells, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Известные заклинания героя" }
+                }
+            },
+            {
+                EnumWorkWithSpells.NoSpellsInSheet, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "В листе персонажа нет добавленных заклинаний" }
+                }
+            },
+            {
+                EnumActionsWithSheet.SheetTraits, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Работа с умениями" }
+                }
             }
         };    
     
