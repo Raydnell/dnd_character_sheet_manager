@@ -9,6 +9,7 @@
             IScreen screen = new ScreenMain();
             LocalizationsStash localizationsStash = new LocalizationsStash();
 
+            //Если ломается кодировка
             //Console.InputEncoding = System.Text.Encoding.UTF8;
             //Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.SetWindowSize(175, 50);

@@ -13,19 +13,19 @@ namespace dnd_character_sheet
             protected set { _sheetSpells = value; }
         }
 
-        public void AddSpell(SpellBase spell)
+        public void AddSpell(int id)
         {
-            if (!_sheetSpells.ContainsKey(spell.Id))
+            if (!_sheetSpells.ContainsKey(id))
             {
-                _sheetSpells[spell.Id] = spell.Level;
+                _sheetSpells[id] = SpellsDataBaseDND5e.SpellsDB[id].Level;
             }
         }
 
-        public void RemoveSpell(SpellBase spell)
+        public void RemoveSpell(int id)
         {
-            if (_sheetSpells.ContainsKey(spell.Id))
+            if (_sheetSpells.ContainsKey(id))
             {
-                _sheetSpells.Remove(spell.Id);
+                _sheetSpells.Remove(id);
             }
         }
     }
