@@ -15,14 +15,12 @@ namespace dnd_character_sheet
 
         private Dictionary<int, List<int>> _tempDict;
 
-        private PrintItemInfo _printItemInfo;
         private ConsoleKeyInfo _keyPressed;
 
         public LookingForItemInDB()
         {
             _tempDict = new Dictionary<int, List<int>>();
             _cursor = ">";
-            _printItemInfo = new PrintItemInfo();
         }
 
         public int GetItemIdFromDB()

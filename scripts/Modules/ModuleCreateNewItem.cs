@@ -5,12 +5,10 @@ namespace dnd_character_sheet
         private Enum _choosenPoint;
         private ShowMenusCursor _showMenuCursor;
         private ItemBaseDND5e _newItem;
-        private PrintItemInfo _printItemInfo;
         
         public ModuleCreateNewItem()
         {
             _showMenuCursor = new ShowMenusCursor();
-            _printItemInfo = new PrintItemInfo();
         }
 
         public ItemBaseDND5e CreateItem()

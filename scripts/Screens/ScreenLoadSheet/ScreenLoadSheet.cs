@@ -5,8 +5,6 @@ namespace dnd_character_sheet
     public class ScreenLoadSheet : IScreen
     {
         private string _sheetName;
-        private string _stringInput;
-        private string _choosenEdition;
 
         private List<string> _sheetsInFolder;
 
@@ -15,8 +13,6 @@ namespace dnd_character_sheet
 
         public ScreenLoadSheet()
         {
-            _choosenEdition = string.Empty;
-            _stringInput = string.Empty;
             _sheetsInFolder = new List<string>();
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
             _showMenusCursor = new ShowMenusCursor();

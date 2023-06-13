@@ -41,24 +41,6 @@ namespace dnd_character_sheet
                 }
             },
             {
-                EnumMainMenuPoints.PrintSheet, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Вывести информацию о текущем листе персонажа" }
-                }
-            },
-            {
-                EnumMainMenuPoints.DiceRolls, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Свободные броски кубика" }
-                }
-            },
-            {
-                EnumMainMenuPoints.WorkWithSheet, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Работа с листом" }
-                }
-            },
-            {
                 EnumMainMenuPoints.SaveSheeet, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Сохранить текущий лист" }
@@ -1595,12 +1577,6 @@ namespace dnd_character_sheet
                 }
             },
             {
-                EnumMainMenuPoints.WorkWithItemsBase, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Работа с базой предметов" }
-                }
-            },
-            {
                 EnumManageItemBaseTitles.CurrentlyItemsInBase, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Текущие предметы в базе:" }
@@ -2294,12 +2270,6 @@ namespace dnd_character_sheet
                 EnumCreateNewSpell.ThisIsNewSpell, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Новое заклинание:" }
-                }
-            },
-            {
-                EnumMainMenuPoints.ScreenManageSpellsDB, new Dictionary<Enum, string>()
-                {
-                    { EnumLanguages.Russian, "Работа с базой заклинаний" }
                 }
             },
             {

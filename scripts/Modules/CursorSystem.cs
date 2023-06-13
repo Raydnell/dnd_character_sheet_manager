@@ -3,9 +3,12 @@ namespace dnd_character_sheet
     public class CursorSystem
     {
         private int _cursorPosition;
-        private ConsoleKeyInfo _pressedKey;
-        private bool _isNeedExit;
+
         private string _cursor;
+        
+        private bool _isNeedExit;
+
+        private ConsoleKeyInfo _pressedKey;
 
         public CursorSystem()
         {

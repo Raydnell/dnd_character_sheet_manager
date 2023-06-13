@@ -14,7 +14,6 @@ namespace dnd_character_sheet
 
         private Dictionary<int, List<int>> _pagesItems;
         
-        private PrintItemInfo _printItemInfo;
         private ConsoleKeyInfo _keyPressed;
         private ModuleCreateNewItem _createNewItem;
         private ItemBaseDND5e _newItem;
@@ -22,7 +21,6 @@ namespace dnd_character_sheet
 
         public ScreenWorkWithInventory()
         {
-            _printItemInfo = new PrintItemInfo();
             _pagesItems = new Dictionary<int, List<int>>();
             _cursor = ">";
             _createNewItem = new ModuleCreateNewItem();

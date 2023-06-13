@@ -5,18 +5,22 @@ namespace dnd_character_sheet
 {
     public class ScreenWorkWithSpells : IScreen
     {
-        private Dictionary<int, string> _spells;
-        private Dictionary<int, Dictionary<int, string>> _spellsOnPages;
-        private Table _table;
-        private StringBuilder _stringBuilder;
-        private List<string> _spellsNames;
-        private List<int> _spellsIds;
         private int _cursorPosition;
-        private ConsoleKey _pressedKey;
-        private CursorSystem _cursorSystem;
-        private bool _isNeedExit;
+        
         private string _spellsRow;
         private string _spellDescription;
+        
+        private bool _isNeedExit;
+        
+        private Dictionary<int, string> _spells;
+        private Dictionary<int, Dictionary<int, string>> _spellsOnPages;
+        private List<string> _spellsNames;
+        private List<int> _spellsIds;
+        
+        private Table _table;
+        private StringBuilder _stringBuilder;
+        private ConsoleKey _pressedKey;
+        private CursorSystem _cursorSystem;
 
         public ScreenWorkWithSpells()
         {
@@ -61,7 +65,7 @@ namespace dnd_character_sheet
                             break;
 
                         case ConsoleKey.A:
-                            //Добавить заклинание из базы
+                            AddSpell();
                             break;
 
                         case ConsoleKey.LeftArrow:

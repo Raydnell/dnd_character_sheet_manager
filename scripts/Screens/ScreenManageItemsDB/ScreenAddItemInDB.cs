@@ -29,7 +29,7 @@ namespace dnd_character_sheet
                 _isNeedToStay = BreakOrContinue();
             }
         }
-   
+
         private bool BreakOrContinue()
         {
             _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumSheetCreateTitles.AddMore, typeof(EnumYesNo));

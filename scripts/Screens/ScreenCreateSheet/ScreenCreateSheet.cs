@@ -2,23 +2,17 @@
 {
     public class ScreenCreateSheet : IScreen
     {
-        private string _inputString;
         private Enum _choosenMenuPoint;
 
         private bool _isSet;
         private bool _isFieldEditing;
 
-        private JsonSaveLoad _jsonSaveLoad;
-        private PrintSheetInfo _printSheetInfo;
         private ShowMenusCursor _showMenusCursor;
         private SheetRaceFactory _sheetRaceFactory;
         private SheetClassFactory _sheetClassFactory;
 
         public ScreenCreateSheet()
         {
-            _jsonSaveLoad = new JsonSaveLoad();
-            _inputString = string.Empty;
-            _printSheetInfo = new PrintSheetInfo();
             _showMenusCursor = new ShowMenusCursor();
             _sheetRaceFactory = new SheetRaceFactory();
             _sheetClassFactory = new SheetClassFactory();
@@ -142,18 +136,6 @@
             return tempAbilities;
         }
 
-        private int SetUpPassiveWisdom(int wisdomModificator, int perceptionModificator, bool havePerception)
-        {
-            if (havePerception)
-            {
-                return 10 + wisdomModificator + perceptionModificator;
-            }
-            else
-            {
-                return 10 + wisdomModificator;
-            }
-        }
-
         private void SetUpProficiencies(CharacterSheetBase heroSheet, Enum selectetTitle, Type menuPoints)
         {
             _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(selectetTitle, typeof(EnumYesNo));
@@ -185,55 +167,6 @@
             }
 
             return false;
-        }
-
-        private int GetSpeedByRace(Enum race)
-        {
-            switch (race)
-            {
-                case EnumRacesDnd5E.Gnome:
-                case EnumRacesDnd5E.Dwarf:
-                case EnumRacesDnd5E.Halfling:
-                    return 25;
-
-                case EnumRacesDnd5E.Dragonborn:
-                case EnumRacesDnd5E.Halforc:
-                case EnumRacesDnd5E.Halfelf:
-                case EnumRacesDnd5E.Tiefling:
-                case EnumRacesDnd5E.Human:
-                case EnumRacesDnd5E.Elf:
-                    return 30;
-
-                default:
-                    return 30;
-            }
-        }
-
-        private int GetClassHitDice(Enum sheetClass)
-        {
-            switch (sheetClass)
-            {
-                default:
-                case EnumClassesDnd5E.Warlock:
-                case EnumClassesDnd5E.Wizard:
-                    return 6;
-
-                case EnumClassesDnd5E.Bard:
-                case EnumClassesDnd5E.Cleric:
-                case EnumClassesDnd5E.Druid:
-                case EnumClassesDnd5E.Monk:
-                case EnumClassesDnd5E.Rogue:
-                case EnumClassesDnd5E.Sorcerer:
-                    return 8;
-
-                case EnumClassesDnd5E.Fighter:
-                case EnumClassesDnd5E.Paladin:
-                case EnumClassesDnd5E.Ranger:
-                    return 10;
-
-                case EnumClassesDnd5E.Barbarian:
-                    return 12;
-            }
         }
 
         private void SetUpTraits(CharacterSheetBase heroSheet)
