@@ -15,3 +15,4 @@ C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\ob
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\obj\Release\net7.0\dnd_character_sheet_002.pdb
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\obj\Release\net7.0\dnd_character_sheet_002.genruntimeconfig.cache
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\obj\Release\net7.0\ref\dnd_character_sheet_002.dll
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Release\net7.0\Spectre.Console.dll

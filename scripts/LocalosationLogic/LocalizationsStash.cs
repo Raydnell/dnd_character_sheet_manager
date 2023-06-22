@@ -19,7 +19,7 @@ namespace dnd_character_sheet
             {
                 EnumMainMenuTitles.MainMenu, new Dictionary<Enum, string>()
                 {
-                    { EnumLanguages.Russian, "Создание листа"}
+                    { EnumLanguages.Russian, "Главное меню"}
                 }
             },
             {
@@ -2750,6 +2750,78 @@ namespace dnd_character_sheet
                 EnumActionsWithSheet.SheetTraits, new Dictionary<Enum, string>()
                 {
                     { EnumLanguages.Russian, "Работа с умениями" }
+                }
+            },
+            {
+                EnumLoadSheetTitles.ArrowsControl, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Используй стрелочки, чтобы листать список" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.DoneNewName, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Новое имя героя" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.DoneNewClass, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Новый класс героя" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.DoneNewRace, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Новая раса героя" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.AbilityChange, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Характеристики были изменены" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.SkillsChanged, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Навыки были изменены" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.NewValueMaximumHP, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Максимум хитов изменён, новое значение" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.ListOfProficienciesEdited, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Список владений изменён" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.ListOfProficienciesEmpty, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Список владений пуст" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.WhatPersonalityNeedToChange, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Что нужно изменить?" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.PersonalityWasChanged, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Личностные характеристики были изменены" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.WriteNewValue, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Напишите новое значение" }
                 }
             }
         };    

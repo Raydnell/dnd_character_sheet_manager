@@ -1,0 +1,91 @@
+{
+  "Name": "Квасовщик",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 3,
+    "Speed": 30,
+    "Size": 2
+  },
+  "SheetClass": {
+    "Name": 3,
+    "HitDice": 6,
+    "SaveThrows": [
+      3,
+      4
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 13,
+      "Constitution": 14,
+      "Intelligence": 15,
+      "Wisdom": 16,
+      "Charisma": 18
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      2,
+      0,
+      5
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      3,
+      4
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "123",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "123",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 11,
+      "CurrentHitDices": 1,
+      "CurrentHP": 8,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 8,
+      "TemporaryHP": 0,
+      "Round": 1
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      0,
+      43
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  },
+  "TraitsList": {
+    "TraitsList": {}
+  },
+  "SheetSpells": {
+    "SheetSpells": {}
+  },
+  "SheetEquipmentSlots": {
+    "EquipmentSlots": {}
+  },
+  "Inspiration": false
+}

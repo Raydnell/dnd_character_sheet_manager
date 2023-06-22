@@ -10,12 +10,14 @@
         private ShowMenusCursor _showMenusCursor;
         private SheetRaceFactory _sheetRaceFactory;
         private SheetClassFactory _sheetClassFactory;
+        private ProficiencyAdderSystem _proficiencyAdderSystem;
 
         public ScreenCreateSheet()
         {
             _showMenusCursor = new ShowMenusCursor();
             _sheetRaceFactory = new SheetRaceFactory();
             _sheetClassFactory = new SheetClassFactory();
+            _proficiencyAdderSystem = new ProficiencyAdderSystem();
         }
 
         public void ShowScreen()
@@ -49,8 +51,8 @@
             _isFieldEditing = true;
             while (_isFieldEditing == true)
             {
-                CurrentHeroSheet.HeroSheet.SheetSkills.AddSkill(_showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.SelectASkillFromTheList, typeof(EnumSkillsDnd5E)));
-
+                var skill = _showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.SelectASkillFromTheList, typeof(EnumSkillsDnd5E));
+                CurrentHeroSheet.HeroSheet.SheetSkills.AddSkill((EnumSkillsDnd5E)skill);
                 _isFieldEditing = IsNeedOneMore();
             }
 
@@ -60,17 +62,7 @@
             CurrentHeroSheet.HeroSheet.SheetAbilities.SetAbilities(ChooseAbilities());
 
             //Указание владений
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfTheArmorType, typeof(EnumArmorProficienciesDND5E));
-
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfAGroupOfWeapons, typeof(EnumWeaponsGroupsDND5E));
-
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipFfASpecificWeapon, typeof(EnumWeaponsProficienciesDND5E));
-
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipFfTools, typeof(EnumInstrumentsProficienciesDND5E));
-
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfMusicalInstruments, typeof(EnumMusicalInstrumentProficienciesDND5E));
-
-            SetUpProficiencies(CurrentHeroSheet.HeroSheet, EnumSheetCreateTitles.AddOwnershipOfGameSets, typeof(EnumGamingSetProficienciesDND5E));
+            _proficiencyAdderSystem.StartAddProficiencies();
 
             //Указание HP
             CurrentHeroSheet.HeroSheet.SheetCombatAbilities.ChangeStat(EnumCombatStatsDND5e.MaximumHP, ((int)CurrentHeroSheet.HeroSheet.SheetClass.HitDice + CurrentHeroSheet.HeroSheet.SheetAbilities.GetAbilityModificator(EnumAbilitiesDnd5E.Constitution)));
@@ -85,6 +77,7 @@
             //Указание спасбросков
             CurrentHeroSheet.HeroSheet.SheetSaveThrows.SetSaveTrows(CurrentHeroSheet.HeroSheet.SheetClass.Name);
 
+            //Указание персоналий
             Console.Clear();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SpecifyTheCharactersOfTheHero]);
             foreach (var item in Enum.GetNames(typeof(EnumPersonalitiesDND5E)))
@@ -134,23 +127,6 @@
             }
 
             return tempAbilities;
-        }
-
-        private void SetUpProficiencies(CharacterSheetBase heroSheet, Enum selectetTitle, Type menuPoints)
-        {
-            _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(selectetTitle, typeof(EnumYesNo));
-
-            switch(_choosenMenuPoint)
-            {
-                case EnumYesNo.Yes:
-                    _isFieldEditing = true;
-                    while (_isFieldEditing == true)
-                    {
-                        heroSheet.SheetProficiencies.AddProficiency(_showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.WhatOwnershipToAdd, menuPoints));
-                        _isFieldEditing = IsNeedOneMore();
-                    }
-                    break;
-            }
         }
 
         private bool IsNeedOneMore()

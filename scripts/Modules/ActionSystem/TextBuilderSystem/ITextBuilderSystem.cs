@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public interface ITextBuilderSystem
     {
-        public string BuildAbility();
+        public string BuildAbilitiesWithSaveThrows();
         public string BuildHero();
         public string BuildPersonality();
         public string BuildSkills();

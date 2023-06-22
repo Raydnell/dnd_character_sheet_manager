@@ -1,0 +1,293 @@
+{
+  "5831": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 6,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 2,
+    "WeaponProficiencyGroup": 0,
+    "Name": "Палка",
+    "BaseCost": 15.0,
+    "Weight": 10.0,
+    "Rarity": 2,
+    "Description": "Палка, просто палка",
+    "IsMagic": false,
+    "ItemId": 5831,
+    "ItemType": 1
+  },
+  "7624": {
+    "StrengthRequirement": 16,
+    "ArmorClass": 15,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 2,
+    "Name": "Кольчуга",
+    "BaseCost": 50.0,
+    "Weight": 4.5,
+    "Rarity": 0,
+    "Description": "Металлическая кольчуга",
+    "IsMagic": false,
+    "ItemId": 7624,
+    "ItemType": 0
+  },
+  "2515": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 8,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 3,
+    "WeaponProficiencyGroup": 0,
+    "Name": "Топор",
+    "BaseCost": 10.0,
+    "Weight": 5.0,
+    "Rarity": 0,
+    "Description": "Простой топор",
+    "IsMagic": false,
+    "ItemId": 2515,
+    "ItemType": 1
+  },
+  "2917": {
+    "Name": "Кружка",
+    "BaseCost": 1.0,
+    "Weight": 2.0,
+    "Rarity": 0,
+    "Description": "Простая кружка",
+    "IsMagic": false,
+    "ItemId": 2917,
+    "ItemType": 2
+  },
+  "2434": {
+    "Name": "Палка",
+    "BaseCost": 10.0,
+    "Weight": 5.0,
+    "Rarity": 3,
+    "Description": "Простая палка №2",
+    "IsMagic": false,
+    "ItemId": 2434,
+    "ItemType": 2
+  },
+  "1453": {
+    "StrengthRequirement": 16,
+    "ArmorClass": 17,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 2,
+    "Name": "Металка",
+    "BaseCost": 50.0,
+    "Weight": 25.0,
+    "Rarity": 0,
+    "Description": "Металлическая броня",
+    "IsMagic": false,
+    "ItemId": 1453,
+    "ItemType": 0
+  },
+  "9518": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 12,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 21,
+    "WeaponProficiencyGroup": 2,
+    "Name": "Меч",
+    "BaseCost": 30.0,
+    "Weight": 5.0,
+    "Rarity": 0,
+    "Description": "Меч туда-сюда",
+    "IsMagic": false,
+    "ItemId": 9518,
+    "ItemType": 1
+  },
+  "1258": {
+    "Name": "Пакет",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Простой пакет для пакетов",
+    "IsMagic": false,
+    "ItemId": 1258,
+    "ItemType": 2
+  },
+  "8901": {
+    "StrengthRequirement": 14,
+    "ArmorClass": 15,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 2,
+    "Name": "Кираса",
+    "BaseCost": 150.0,
+    "Weight": 15.0,
+    "Rarity": 0,
+    "Description": "Кираса с поясом",
+    "IsMagic": false,
+    "ItemId": 8901,
+    "ItemType": 0
+  },
+  "4155": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 12,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      3
+    ],
+    "WeaponProficiencyConcrete": 17,
+    "WeaponProficiencyGroup": 2,
+    "Name": "Секира супер",
+    "BaseCost": 200.0,
+    "Weight": 13.0,
+    "Rarity": 0,
+    "Description": "Секира опасная, очень",
+    "IsMagic": false,
+    "ItemId": 4155,
+    "ItemType": 1
+  },
+  "8101": {
+    "CoinType": 2,
+    "Name": "Золотая монета",
+    "BaseCost": 1.0,
+    "Weight": 0.02,
+    "Rarity": 0,
+    "Description": "Золотая монета классная",
+    "IsMagic": false,
+    "ItemId": 8101,
+    "ItemType": 3
+  },
+  "7530": {
+    "CoinType": 1,
+    "Name": "Серебряная монета",
+    "BaseCost": 0.1,
+    "Weight": 0.02,
+    "Rarity": 0,
+    "Description": "Серебяная монета ничё так",
+    "IsMagic": false,
+    "ItemId": 7530,
+    "ItemType": 3
+  },
+  "9738": {
+    "Name": "Рюкзак",
+    "BaseCost": 10.0,
+    "Weight": 3.0,
+    "Rarity": 0,
+    "Description": "Хороший рюкзак",
+    "IsMagic": false,
+    "ItemId": 9738,
+    "ItemType": 2
+  },
+  "3068": {
+    "Name": "Конус",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Просто конус",
+    "IsMagic": false,
+    "ItemId": 3068,
+    "ItemType": 2
+  },
+  "7733": {
+    "StrengthRequirement": 10,
+    "ArmorClass": 12,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 0,
+    "Name": "Рубаха с щитками",
+    "BaseCost": 50.0,
+    "Weight": 5.0,
+    "Rarity": 0,
+    "Description": "Рубаха в которую вшити щитки насекомых",
+    "IsMagic": false,
+    "ItemId": 7733,
+    "ItemType": 0
+  },
+  "4913": {
+    "StrengthRequirement": 16,
+    "ArmorClass": 18,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 2,
+    "Name": "Латы",
+    "BaseCost": 500.0,
+    "Weight": 30.0,
+    "Rarity": 0,
+    "Description": "Хорошие латы, от крутого кузнеца",
+    "IsMagic": false,
+    "ItemId": 4913,
+    "ItemType": 0
+  },
+  "6991": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 10,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 23,
+    "WeaponProficiencyGroup": 2,
+    "Name": "Моргенштерн",
+    "BaseCost": 30.0,
+    "Weight": 10.0,
+    "Rarity": 0,
+    "Description": "Колючая штука",
+    "IsMagic": false,
+    "ItemId": 6991,
+    "ItemType": 1
+  },
+  "5157": {
+    "Name": "Кость",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Простая кость, неизвестного происхождения",
+    "IsMagic": false,
+    "ItemId": 5157,
+    "ItemType": 2
+  },
+  "1027": {
+    "CoinType": 0,
+    "Name": "Медная монета",
+    "BaseCost": 0.01,
+    "Weight": 0.02,
+    "Rarity": 0,
+    "Description": "Медная монета, на которой остались отпечатки зубов",
+    "IsMagic": false,
+    "ItemId": 1027,
+    "ItemType": 3
+  },
+  "7053": {
+    "StrengthRequirement": 10,
+    "ArmorClass": 2,
+    "MaxAgilityBonus": 0,
+    "ArmorType": 3,
+    "Name": "Крышка унитаза",
+    "BaseCost": 15.0,
+    "Weight": 10.0,
+    "Rarity": 0,
+    "Description": "Принёс из дома",
+    "IsMagic": false,
+    "ItemId": 7053,
+    "ItemType": 0
+  },
+  "6868": {
+    "DamageDiceCount": 1,
+    "DamageDiceValue": 20,
+    "DamageModificator": 0,
+    "DamageType": 0,
+    "WeaponProperty": [
+      0
+    ],
+    "WeaponProficiencyConcrete": 0,
+    "WeaponProficiencyGroup": 0,
+    "Name": "Надувная дубинка",
+    "BaseCost": 1.0,
+    "Weight": 1.0,
+    "Rarity": 0,
+    "Description": "Сдувается",
+    "IsMagic": false,
+    "ItemId": 6868,
+    "ItemType": 1
+  }
+}

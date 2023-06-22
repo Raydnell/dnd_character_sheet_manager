@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Spectre.Console;
 
 namespace dnd_character_sheet
 {
@@ -9,13 +10,12 @@ namespace dnd_character_sheet
         private List<string> _sheetsInFolder;
 
         private DirectoryInfo _folderInfo;
-        private ShowMenusCursor _showMenusCursor;
 
         public ScreenLoadSheet()
         {
             _sheetsInFolder = new List<string>();
             _folderInfo = new DirectoryInfo(@"Character_Sheets\");
-            _showMenusCursor = new ShowMenusCursor();
+            _sheetName = string.Empty;
         }
 
         public void ShowScreen()
@@ -31,10 +31,16 @@ namespace dnd_character_sheet
                         _sheetsInFolder.Add(item.Name);
                     }
 
-                    _sheetName = _showMenusCursor.ShowMenuPoints(EnumLoadSheetTitles.ChooseSheet, _sheetsInFolder);
+                    Console.Clear();
+                    _sheetName = AnsiConsole.Prompt(
+                        new SelectionPrompt<string>()
+                            .Title(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ChooseSheet])
+                            .PageSize(10)
+                            .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
+                            .AddChoices(_sheetsInFolder));
                     JsonSaveLoad.JsonLoad(@"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
                     CurrentHeroSheet.HeroSheet = tempSheet;
-                    Console.WriteLine("\n" + LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
+                    Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
                     Console.ReadKey();
                     break;
 

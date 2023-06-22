@@ -4,3 +4,4 @@ C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bi
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Release\net7.0\publish\dnd_character_sheet_002.runtimeconfig.json
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Release\net7.0\publish\dnd_character_sheet_002.pdb
 C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Release\net7.0\publish\Newtonsoft.Json.dll
+C:\Other\c_sharp_project\train_code\project_w_oop\dnd_character_sheet_manager\bin\Release\net7.0\publish\Spectre.Console.dll

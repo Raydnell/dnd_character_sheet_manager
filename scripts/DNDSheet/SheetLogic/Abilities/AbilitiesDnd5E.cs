@@ -48,5 +48,20 @@ namespace dnd_character_sheet
                 Abilities[abilityName] = abilityScore;
             }
         }
+
+        public override void RaiseAbilityScore(EnumAbilitiesDnd5E abilityName)
+        {
+            if (Abilities[abilityName] + 1 <= 30)
+            {
+                Abilities[abilityName]++;
+            }
+        }
+        public override void LowerAbilityScore(EnumAbilitiesDnd5E abilityName)
+        {
+            if (Abilities[abilityName] - 1 >= 1)
+            {
+                Abilities[abilityName]--;
+            }
+        }
     }
 }

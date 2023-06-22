@@ -20,7 +20,8 @@ namespace dnd_character_sheet
         }
         
         public abstract bool CheckSkill(EnumSkillsDnd5E skill);
-        public abstract void AddSkill(Enum skill);
+        public abstract void AddSkill(EnumSkillsDnd5E skill);
+        public abstract void RemoveSkill(EnumSkillsDnd5E skill);
         public abstract EnumAbilitiesDnd5E SkillAbilityName(EnumSkillsDnd5E skill);
     }
 }

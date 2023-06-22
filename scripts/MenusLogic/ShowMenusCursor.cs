@@ -1,10 +1,11 @@
+using Spectre.Console;
+
 namespace dnd_character_sheet
 {
     public class ShowMenusCursor
     {
         private string _cursor;
 
-        private int _cursorPositionLeft;
         private int _cursorPositionTop;
         private int _navigatePositionLeft;
         private int _navigatePositionTop;
@@ -13,108 +14,53 @@ namespace dnd_character_sheet
 
         private bool _isPointChoose;
 
+        private Dictionary<int, List<Enum>> _tempDict;
+
         private ConsoleKeyInfo _keyPressed;
-        private PrintItemInfo _printItemInfo;
         
         public ShowMenusCursor()
         {
             _cursor = ">";
-            _printItemInfo = new PrintItemInfo();
+            _tempDict = new Dictionary<int, List<Enum>>();
+            _navigatePositionLeft = 0;
+            _navigatePositionTop = 2;
         }
 
         public Enum ShowMenuPoints(Enum title, Type points)
         {
             Console.CursorVisible = false;
             
-            Dictionary<int, List<Enum>> tempDict = new Dictionary<int, List<Enum>>()
-            {
-                { 0, new List<Enum>() }
-            };
-
-            int pages = 0;
-
-            foreach (var item in Enum.GetNames(points))
-            {
-                if (tempDict[pages].Count == 10)
-                {
-                    pages++;
-                    tempDict[pages] = new List<Enum>();
-                }
-
-                tempDict[pages].Add((Enum)Enum.Parse(points, item));
-            }
-
-            _currentPage = 0;
-            _totalPages = tempDict.Count;
-
-            _navigatePositionLeft = 0;
-            _navigatePositionTop = 2;
+            MakePages(points);
+            StartUpWrite(title);
             
             _isPointChoose = false;
             while (_isPointChoose == false)
             {
-                _cursorPositionLeft = 2;
-                _cursorPositionTop = 2;
-
-                Console.Clear();
-                Console.WriteLine(LocalizationsStash.SelectedLocalization[title]);
-
-                foreach (var item in tempDict[_currentPage])
-                {
-                    Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-
-                    Console.Write(LocalizationsStash.SelectedLocalization[item]);
-                    _cursorPositionTop++;
-                }
-
-                Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
-                Console.WriteLine(_cursor);
-
-                Console.SetCursorPosition(0, 14);
-                Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + "/" + _totalPages);
-
                 _keyPressed = Console.ReadKey();
-
                 switch(_keyPressed.Key)
                 {
                     case ConsoleKey.DownArrow:
-                        if (_navigatePositionTop < tempDict[_currentPage].Count + 1)
-                        {
-                            _navigatePositionTop++;
-                        }
+                        WriteCursor(EnumMenusCursor.Down);
                         break;
 
                     case ConsoleKey.UpArrow:
-                        if (_navigatePositionTop > 2)
-                        {
-                            _navigatePositionTop--;
-                        }
+                        WriteCursor(EnumMenusCursor.Up);
                         break;
 
                     case ConsoleKey.Enter:
                         Console.CursorVisible = true;
-                        return tempDict[_currentPage][_navigatePositionTop - 2];
+                        return _tempDict[_currentPage][_navigatePositionTop - 2];
 
                     case ConsoleKey.Escape:
                         Console.CursorVisible = true;
                         return EnumMainMenuPoints.Exit;
 
                     case ConsoleKey.LeftArrow:
-                        if (_currentPage > 0 && _totalPages > 1)
-                        {
-                            _currentPage--;
-                            _navigatePositionLeft = 0;
-                            _navigatePositionTop = 2;
-                        }
+                        SwitchPages(EnumMenusCursor.Left);
                         break;
 
                     case ConsoleKey.RightArrow:
-                        if (_currentPage < _totalPages - 1 && _totalPages > 1)
-                        {
-                            _currentPage++;
-                            _navigatePositionLeft = 0;
-                            _navigatePositionTop = 2;
-                        }
+                        SwitchPages(EnumMenusCursor.Right);
                         break;
 
                     default:
@@ -125,103 +71,114 @@ namespace dnd_character_sheet
             return EnumIncorrectInput.IncorrectInput;
         }
 
-        public string ShowMenuPoints(Enum title, List<string> points)
+        private void WritePages()
         {
-            Dictionary<int, List<string>> tempDict = new Dictionary<int, List<string>>()
-            {
-                { 0, new List<string>() }
-            };
+            Console.SetCursorPosition(0, 14);
+            Console.WriteLine("                            ");
+            Console.SetCursorPosition(0, 14);
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + @"\" + _totalPages);
+        }
 
-            int pages = 0;
-
-            foreach (var item in points)
+        private void WriteRows()
+        {
+            _cursorPositionTop = 2;
+            for (int i = 0; i < 10; i++)
             {
-                if (tempDict[pages].Count == 10)
+                Console.SetCursorPosition(2, _cursorPositionTop + i);
+                Console.Write("                                              ");
+            }
+            
+            foreach (var item in _tempDict[_currentPage])
+            {
+                Console.SetCursorPosition(2, _cursorPositionTop);
+                Console.Write(LocalizationsStash.SelectedLocalization[item]);
+                _cursorPositionTop++;
+            }
+        }
+
+        private void WriteCursor(EnumMenusCursor direction)
+        {
+            Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
+            Console.Write("  ");
+            
+            if (direction == EnumMenusCursor.Down)
+            {
+                if (_navigatePositionTop < _tempDict[_currentPage].Count + 1)
                 {
-                    pages++;
-                    tempDict[pages] = new List<string>();
+                    _navigatePositionTop++;
                 }
-
-                tempDict[pages].Add(item);
+            }
+            else if (direction == EnumMenusCursor.Up)
+            {
+                if (_navigatePositionTop > 2)
+                {
+                    _navigatePositionTop--;
+                }
             }
 
-            _currentPage = 0;
-            _totalPages = tempDict.Count;
+            Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
+            AnsiConsole.Markup($"[yellow]{_cursor}[/]");
+        }
 
+        private void StartUpWrite(Enum title)
+        {
+            Console.Clear();
+            AnsiConsole.Markup($"[bold]{LocalizationsStash.SelectedLocalization[title]}[/]");
+            WriteRows();
+            WritePages();
+            ResetCursor();
+        }
+        
+        private void MakePages(Type points)
+        {
+            _totalPages = 0;
+            _tempDict.Clear();
+            _tempDict[_totalPages] = new List<Enum>();
+
+            foreach (var item in Enum.GetNames(points))
+            {
+                if (_tempDict[_totalPages].Count == 10)
+                {
+                    _totalPages++;
+                    _tempDict[_totalPages] = new List<Enum>();
+                }
+
+                _tempDict[_totalPages].Add((Enum)Enum.Parse(points, item));
+            }
+
+            _totalPages++;
+        }
+
+        private void SwitchPages(EnumMenusCursor direction)
+        {
+            if (direction == EnumMenusCursor.Left)
+            {
+                if (_currentPage > 0 && _totalPages > 1)
+                {
+                    _currentPage--;
+                }
+            }
+            else if (direction == EnumMenusCursor.Right)
+            {
+                if (_currentPage < _totalPages - 1 && _totalPages > 1)
+                {
+                    _currentPage++;
+                }
+            }
+
+            WritePages();
+            WriteRows();
+            ResetCursor();
+        }
+
+        private void ResetCursor()
+        {
+            Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
+            Console.Write("  ");
             _navigatePositionLeft = 0;
             _navigatePositionTop = 2;
-            
-            _isPointChoose = false;
-            while (_isPointChoose == false)
-            {
-                _cursorPositionLeft = 2;
-                _cursorPositionTop = 2;
-
-                Console.Clear();
-                Console.WriteLine(LocalizationsStash.SelectedLocalization[title]);
-
-                foreach (var item in tempDict[_currentPage])
-                {
-                    Console.SetCursorPosition(_cursorPositionLeft, _cursorPositionTop);
-
-                    Console.Write(item);
-                    _cursorPositionTop++;
-                }
-
-                Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
-                Console.WriteLine(_cursor);
-
-                Console.SetCursorPosition(0, 14);
-                Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page] + " " + (_currentPage + 1) + "/" + _totalPages);
-
-                _keyPressed = Console.ReadKey();
-
-                switch(_keyPressed.Key)
-                {
-                    case ConsoleKey.DownArrow:
-                        if (_navigatePositionTop < tempDict[_currentPage].Count + 1)
-                        {
-                            _navigatePositionTop++;
-                        }
-                        break;
-
-                    case ConsoleKey.UpArrow:
-                        if (_navigatePositionTop > 2)
-                        {
-                            _navigatePositionTop--;
-                        }
-                        break;
-
-                    case ConsoleKey.Enter:
-                        return tempDict[_currentPage][_navigatePositionTop - 2];
-
-                    case ConsoleKey.Escape:
-                        break;
-
-                    case ConsoleKey.LeftArrow:
-                        if (_currentPage > 0 && _totalPages > 1)
-                        {
-                            _currentPage--;
-                            _navigatePositionLeft = 0;
-                            _navigatePositionTop = 2;
-                        }
-                        break;
-
-                    case ConsoleKey.RightArrow:
-                        if (_currentPage < _totalPages - 1 && _totalPages > 1)
-                        {
-                            _currentPage++;
-                            _navigatePositionLeft = 0;
-                            _navigatePositionTop = 2;
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
-            return string.Empty;
+            Console.SetCursorPosition(_navigatePositionLeft, _navigatePositionTop);
+            AnsiConsole.Markup($"[yellow]{_cursor}[/]");
         }
     }
 }

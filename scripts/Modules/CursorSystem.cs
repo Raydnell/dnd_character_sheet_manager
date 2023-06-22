@@ -18,8 +18,9 @@ namespace dnd_character_sheet
         public ConsoleKey CursorSelector(int left, int top, int height, ref int cursorPotion)
         {
             Console.CursorVisible = false;
-            DrawCursor(left, top, height - 1);
-            _cursorPosition = 0;
+            
+            _cursorPosition = cursorPotion;
+            DrawCursor(left, top + _cursorPosition, height - 1);
             
             _isNeedExit = false;
             while (_isNeedExit == false)

@@ -12,7 +12,7 @@
             //Если ломается кодировка
             //Console.InputEncoding = System.Text.Encoding.UTF8;
             //Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.SetWindowSize(175, 50);
+            Console.SetWindowSize(140, 50);
 
             language = showMenusCursor.ShowMenuPoints(
                 EnumStartMenuTitles.ChooseLang,

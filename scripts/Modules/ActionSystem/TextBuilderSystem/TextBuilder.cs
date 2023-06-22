@@ -13,7 +13,7 @@ namespace dnd_character_sheet
             _logMessages = new string[10] { "", "", "", "", "", "", "", "", "", "" };
         }
 
-        public string BuildAbility()
+        public string BuildAbilitiesWithSaveThrows()
         {
             _stringBuilder.Remove(0, _stringBuilder.Length);
             
@@ -28,6 +28,7 @@ namespace dnd_character_sheet
                     _stringBuilder.Append("[[ ]] " + LocalizationsStash.SelectedLocalization[item.Key] + " " + item.Value + "\n");
                 }
             }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
 
             return _stringBuilder.ToString();
         }
@@ -60,6 +61,7 @@ namespace dnd_character_sheet
             {
                 _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value + "\n");
             }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
 
             return _stringBuilder.ToString();
         }
@@ -82,6 +84,7 @@ namespace dnd_character_sheet
                     }
                 }
             }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
 
             return _stringBuilder.ToString();
         }
@@ -90,9 +93,17 @@ namespace dnd_character_sheet
         {
             _stringBuilder.Remove(0, _stringBuilder.Length);
             
-            foreach (var item in CurrentHeroSheet.HeroSheet.SheetProficiencies.Proficiencies)
+            if (CurrentHeroSheet.HeroSheet.SheetProficiencies.Proficiencies.Count == 0)
             {
-                _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item] + "\n");
+                _stringBuilder.Append(LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.ListOfProficienciesEmpty]);
+            }
+            else
+            {
+                foreach (var item in CurrentHeroSheet.HeroSheet.SheetProficiencies.Proficiencies)
+                {
+                    _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item] + "\n");
+                }
+                _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
             }
 
             return _stringBuilder.ToString();
@@ -149,6 +160,7 @@ namespace dnd_character_sheet
                     _stringBuilder.Append(LocalizationsStash.SelectedLocalization[item.Key] + ": " + item.Value.Name + "\n");
                 }
             }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
 
             return _stringBuilder.ToString();
         }
@@ -185,6 +197,81 @@ namespace dnd_character_sheet
             {
                 _stringBuilder.Append(item + "\n");
             }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildAbilities()
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            
+            foreach (var item in CurrentHeroSheet.HeroSheet.SheetAbilities.Abilities)
+            {
+                _stringBuilder.Append("  " + LocalizationsStash.SelectedLocalization[item.Key] + " " + item.Value + "\n");
+            }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildSkillsEditor(int pointer)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            string[] skillsList = Enum.GetNames(typeof(EnumSkillsDnd5E));
+
+            for (int i = 0; i < skillsList.Length; i++)
+            {
+                if (Enum.TryParse<EnumSkillsDnd5E>(skillsList[i], out EnumSkillsDnd5E result))
+                {
+                    if (CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(result))
+                    {
+                        if (i == pointer)
+                        {
+                            _stringBuilder.Append($"[bold yellow][[X]] {LocalizationsStash.SelectedLocalization[result]}[/]\n");
+                        }
+                        else
+                        {
+                            _stringBuilder.Append($"[[X]] {LocalizationsStash.SelectedLocalization[result]}\n");
+                        }
+                        
+                    }
+                    else
+                    {
+                        if (i == pointer)
+                        {
+                            _stringBuilder.Append($"[bold yellow][[ ]] {LocalizationsStash.SelectedLocalization[result]}[/]\n");
+                        }
+                        else
+                        {
+                            _stringBuilder.Append($"[[ ]] {LocalizationsStash.SelectedLocalization[result]}\n");
+                        }
+                        
+                    }
+                }
+            }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildProficienciesEditor(int pointer)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            List<EnumAllDND5eProficiencies> proficienciesList = CurrentHeroSheet.HeroSheet.SheetProficiencies.Proficiencies;
+
+            for (int i = 0; i < proficienciesList.Count; i++)
+            {
+                if (i == pointer)
+                {
+                    _stringBuilder.Append($"[bold yellow]{LocalizationsStash.SelectedLocalization[proficienciesList[i]]}[/]\n");
+                }
+                else
+                {
+                    _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[proficienciesList[i]]}\n");
+                }
+            }
+            _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
 
             return _stringBuilder.ToString();
         }

@@ -12,14 +12,11 @@ namespace dnd_character_sheet
             return Skills.Contains(skill);
         }
 
-        public override void AddSkill(Enum skill)
+        public override void AddSkill(EnumSkillsDnd5E skill)
         {
-            if (Enum.TryParse<EnumSkillsDnd5E>(skill.ToString(), out EnumSkillsDnd5E result))
+            if(Skills.Contains(skill) == false)
             {
-                if(Skills.Contains(result) == false)
-                {
-                    Skills.Add(result);
-                }
+                Skills.Add(skill);
             }
         }
 
@@ -57,6 +54,14 @@ namespace dnd_character_sheet
 
                 default:
                     return EnumAbilitiesDnd5E.Strength;
+            }
+        }
+
+        public override void RemoveSkill(EnumSkillsDnd5E skill)
+        {
+            if (Skills.Contains(skill))
+            {
+                Skills.Remove(skill);
             }
         }
     }

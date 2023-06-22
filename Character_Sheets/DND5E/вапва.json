@@ -1,0 +1,98 @@
+{
+  "Name": "вапва",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 6,
+    "Speed": 30,
+    "Size": 2
+  },
+  "SheetClass": {
+    "Name": 11,
+    "HitDice": 8,
+    "SaveThrows": [
+      4,
+      5,
+      4,
+      5
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 12,
+      "Constitution": 12,
+      "Intelligence": 13,
+      "Wisdom": 14,
+      "Charisma": 15
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      4,
+      5,
+      7,
+      2,
+      10,
+      11,
+      12,
+      0,
+      1
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      2,
+      5
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "123",
+      "Alignment": "123",
+      "PersonalityTraits": "123",
+      "Ideals": "123",
+      "Bonds": "123",
+      "Flaws": "123",
+      "Age": "123",
+      "Height": "123",
+      "Weight": "123",
+      "Eyes": "123",
+      "Skin": "123",
+      "Hair": "123"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 11,
+      "CurrentHitDices": 1,
+      "CurrentHP": 9,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 9,
+      "TemporaryHP": 0,
+      "Round": 1
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      0
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {}
+  },
+  "TraitsList": {
+    "TraitsList": {}
+  },
+  "SheetSpells": {
+    "SheetSpells": {}
+  },
+  "SheetEquipmentSlots": {
+    "EquipmentSlots": {}
+  },
+  "Inspiration": false
+}

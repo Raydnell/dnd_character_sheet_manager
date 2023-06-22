@@ -31,5 +31,16 @@ namespace dnd_character_sheet
 
             return false;
         }
+
+        public override void RemoveProficiency(Enum prof)
+        {
+            if (Enum.TryParse<EnumAllDND5eProficiencies>(prof.ToString(), out EnumAllDND5eProficiencies result))
+            {
+                if (Proficiencies.Contains(result))
+                {
+                    Proficiencies.Remove(result);
+                }
+            }
+        }
     }
 }

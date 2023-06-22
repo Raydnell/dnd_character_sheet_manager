@@ -20,6 +20,7 @@ namespace dnd_character_sheet
         private PanelCreate _panelCreate;
         private ThrowChecksSystem _throwChecksSystem;
         private AttackHandSystem _attackHandSystem;
+        private FieldEditSystem _fieldEditSystem;
 
         public ScreenActionsWithSheet()
         {
@@ -34,6 +35,7 @@ namespace dnd_character_sheet
             _panelCreate = new PanelCreate();
             _throwChecksSystem = new ThrowChecksSystem();
             _attackHandSystem = new AttackHandSystem();
+            _fieldEditSystem = new FieldEditSystem();
         }
 
         public void ShowScreen()
@@ -80,6 +82,10 @@ namespace dnd_character_sheet
                         _screen.ShowScreen();
                         break;
 
+                    case ConsoleKey.L:
+                        _textBuilder.NewMessageToLog(_fieldEditSystem.ChooseAction());
+                        break;
+
                     case ConsoleKey.Escape:
                         _isExit = true;
                         break;
@@ -99,28 +105,29 @@ namespace dnd_character_sheet
 
             _table.AddColumns(new string[]{ "1", "2", "3", "4" });
             _table.HideHeaders();
+            _table.Border = TableBorder.DoubleEdge;
             
             _textBuilder.NewMessageToLog(LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessagesWillBeHere]);
             _table.AddRow(
-                _panelCreate.MakePanelFromString(_textBuilder.BuildHero(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Hero]), 
-                _panelCreate.MakePanelFromString(_textBuilder.BuildAbility(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Abilities]),
-                _panelCreate.MakePanelFromString(_textBuilder.BuildPersonality(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PersonalityList]),
-                _panelCreate.MakePanelFromString(_textBuilder.BuildMessageBox(), LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox])
+                _panelCreate.MakePanelFromString(_textBuilder.BuildHero(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Hero]}[/]"), 
+                _panelCreate.MakePanelFromString(_textBuilder.BuildAbilitiesWithSaveThrows(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Abilities]}[/]"),
+                _panelCreate.MakePanelFromString(_textBuilder.BuildCombatStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]}[/]"), 
+                _panelCreate.MakePanelFromString(_textBuilder.BuildMessageBox(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox]}[/]")
                 );
 
             _table.AddRow(
-                _panelCreate.MakePanelFromString(_textBuilder.BuildSkills(), "(s) " + LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Skills]),
-                _panelCreate.MakePanelFromString(_textBuilder.BuildProficiencies(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Proficiencies]), 
-                _panelCreate.MakePanelFromString(_textBuilder.BuildCombatStats(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]), 
-                _panelCreate.MakePanelFromString(_textBuilder.BuildEquipmentStats(), "(e) " + LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots])
+                _panelCreate.MakePanelFromString(_textBuilder.BuildSkills(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Skills]}[/]"),
+                _panelCreate.MakePanelFromString(_textBuilder.BuildProficiencies(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Proficiencies]}[/]"),
+                _panelCreate.MakePanelFromString(_textBuilder.BuildPersonality(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PersonalityList]}[/]"),
+                _panelCreate.MakePanelFromString(_textBuilder.BuildEquipmentStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots]}[/]")
                 );
 
             _table.AddRow(
-                _panelCreate.MakePanelFromString(_textBuilder.BuildScreensPoints(), LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.OpenScreens])
+                _panelCreate.MakePanelFromString(_textBuilder.BuildScreensPoints(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.OpenScreens]}[/]")
                 );
 
             AnsiConsole.Write(_table);
-            AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]));
+            AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]}[/]"));
             Console.SetCursorPosition(Console.GetCursorPosition().Left + 2, Console.GetCursorPosition().Top - 2);
         }
 
@@ -128,10 +135,14 @@ namespace dnd_character_sheet
         {
             Console.Clear();
 
-            _table.UpdateCell(0, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildMessageBox(), LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox]));
-            _table.UpdateCell(1, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildEquipmentStats(), LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots]));
-            _table.UpdateCell(1, 2, _panelCreate.MakePanelFromString(_textBuilder.BuildCombatStats(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]));
-            _table.UpdateCell(0, 0, _panelCreate.MakePanelFromString(_textBuilder.BuildHero(), LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Hero]));
+            _table.UpdateCell(0, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildMessageBox(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox]}[/]"));
+            _table.UpdateCell(1, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildEquipmentStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots]}[/]"));
+            _table.UpdateCell(0, 2, _panelCreate.MakePanelFromString(_textBuilder.BuildCombatStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]}[/]"));
+            _table.UpdateCell(0, 0, _panelCreate.MakePanelFromString(_textBuilder.BuildHero(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Hero]}[/]"));
+            _table.UpdateCell(0, 1, _panelCreate.MakePanelFromString(_textBuilder.BuildAbilitiesWithSaveThrows(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Abilities]}[/]"));
+            _table.UpdateCell(1, 0,  _panelCreate.MakePanelFromString(_textBuilder.BuildSkills(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Skills]}[/]"));
+            _table.UpdateCell(1, 1, _panelCreate.MakePanelFromString(_textBuilder.BuildProficiencies(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Proficiencies]}[/]"));
+            _table.UpdateCell(1, 2, _panelCreate.MakePanelFromString(_textBuilder.BuildPersonality(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PersonalityList]}[/]"));
 
             AnsiConsole.Write(_table);
             AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]));
