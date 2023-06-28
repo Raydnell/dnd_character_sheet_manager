@@ -173,7 +173,8 @@ namespace dnd_character_sheet
                 LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.Inventory] + "\n" + 
                 LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.Spells] + "\n" + 
                 LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.SheetTraits] + "\n" + 
-                LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.SheetEdit]
+                LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.SheetEdit] + "\n" +
+                LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.ControlsKeys]
             );
 
             return _stringBuilder.ToString();
@@ -272,6 +273,56 @@ namespace dnd_character_sheet
                 }
             }
             _stringBuilder.Remove(_stringBuilder.Length - 1, 1);
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildSpellsRows(List<KeyValuePair<int, string>> spells, int currentPage, int totalPages)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+
+            foreach (var item in spells)
+            {
+                _stringBuilder.Append($"  {item.Value}\n");
+            }
+
+            _stringBuilder.Append($"\n{LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page]} {currentPage}|{totalPages}");
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildSpellDescription(int spellId)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            _stringBuilder.Append(
+                $"{LocalizationsStash.SelectedLocalization[EnumCreateNewSpell.Name]}: {SpellsDataBaseDND5e.SpellsDB[spellId].Name}\n{LocalizationsStash.SelectedLocalization[EnumCreateNewSpell.Level]}: {SpellsDataBaseDND5e.SpellsDB[spellId].Level}"
+            );
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildTraitsRows(List<KeyValuePair<int, string>> traits, int currentPage, int totalPages)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+
+            foreach (var item in traits)
+            {
+                _stringBuilder.Append($"  {item.Value}\n");
+            }
+
+            _stringBuilder.Append($"\n{LocalizationsStash.SelectedLocalization[EnumMenuNavigate.Page]} {currentPage}|{totalPages}");
+
+            return _stringBuilder.ToString();
+        }
+
+        public string BuildTraitDescription(int traitId)
+        {
+            _stringBuilder.Remove(0, _stringBuilder.Length);
+            
+            _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.Name]}: {TraitsDataBaseDND5e.TraitsDB[traitId].Name}\n");
+            _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Level]}: {TraitsDataBaseDND5e.TraitsDB[traitId].LevelGained}\n");
+            _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[EnumTraitsText.Source]}: {TraitsDataBaseDND5e.TraitsDB[traitId].Source}\n");
+            _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[EnumItemStatsDND5e.Description]}: {TraitsDataBaseDND5e.TraitsDB[traitId].Description}\n");
+            _stringBuilder.Append($"{LocalizationsStash.SelectedLocalization[EnumTraitsText.NewIdTrait]}: {TraitsDataBaseDND5e.TraitsDB[traitId].Id}");
 
             return _stringBuilder.ToString();
         }

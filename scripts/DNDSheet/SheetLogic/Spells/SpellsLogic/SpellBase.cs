@@ -33,7 +33,7 @@ namespace dnd_character_sheet
 
         public void SetID()
         {
-            Id = _random.Next(1000, 10000);
+            Id = RollRandom.LetsRoll.Next(1000, 10000);
         }
     }
 }

@@ -3,10 +3,17 @@ namespace dnd_character_sheet
     public class SpellsDataBaseDND5e
     {
         public static Dictionary<int, SpellBase> SpellsDB = new Dictionary<int, SpellBase>();
+        private static DirectoryInfo _folderInfo = new DirectoryInfo(@"Data\DND5E\DataBases");
 
         public static void LoadDB()
         {
-            JsonSaveLoad.JsonLoad(@"DB\DND5eSpellsDB.json", ref SpellsDB);
+            foreach (var item in _folderInfo.GetFiles())
+            {
+                if (item.Name == "DND5eSpellsDB.json")
+                {
+                    JsonSaveLoad.JsonLoad(@"Data\DND5E\DataBases\DND5eSpellsDB.json", ref SpellsDB);
+                }
+            }
         }
 
         public static void AddSpell(SpellBase spell)
@@ -24,13 +31,12 @@ namespace dnd_character_sheet
 
         public static void SaveDB()
         {
-            JsonSaveLoad.JsonSave("DND5eSpellsDB", SpellsDB, @"DB\");
+            JsonSaveLoad.JsonSave("DND5eSpellsDB", SpellsDB, @"Data\DND5E\DataBases\");
         }
 
         public static SpellBase GetSpell(int id)
         {
             return SpellsDB[id];
         }
-
     }
 }

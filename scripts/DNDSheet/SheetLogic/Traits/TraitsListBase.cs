@@ -4,10 +4,10 @@ namespace dnd_character_sheet
 {
     public abstract class TraitsListBase
     {
-        private Dictionary<string, TraitBase> _traitsList;
+        private Dictionary<int, int> _traitsList;
 
         [JsonProperty("TraitsList")]
-        public Dictionary<string, TraitBase> TraitsList
+        public Dictionary<int, int> TraitsList
         {
             get
             {
@@ -19,11 +19,19 @@ namespace dnd_character_sheet
             }
         }
 
-        public void AddTrait(string name, string source, string description)
+        public void AddTrait(int traitId)
         {
-            if (TraitsList.ContainsKey(name) == false)
+            if (!_traitsList.ContainsKey(traitId))
             {
-                TraitsList[name] = new TraitDND5e(name, source, description);
+                _traitsList[traitId] = TraitsDataBaseDND5e.TraitsDB[traitId].LevelGained;
+            }
+        }
+
+        public void RemoveTrait(int traitId)
+        {
+            if (_traitsList.ContainsKey(traitId))
+            {
+                _traitsList.Remove(traitId);
             }
         }
     }

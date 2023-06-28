@@ -89,12 +89,7 @@
                 }
             }
 
-            //Указание умений
-            SetUpTraits(CurrentHeroSheet.HeroSheet);
-
-            Console.Clear();
-            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.HeresYourNewHero] + "\n");
-            PrintSheetInfo.ShowSheetFields(CurrentHeroSheet.HeroSheet);
+            Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SheetCreationComplete] + "\n");
             Console.ReadKey();
         }
 
@@ -143,39 +138,6 @@
             }
 
             return false;
-        }
-
-        private void SetUpTraits(CharacterSheetBase heroSheet)
-        {
-            _choosenMenuPoint = _showMenusCursor.ShowMenuPoints(EnumSheetCreateTitles.IsNeedToAddTraits, typeof(EnumYesNo));
-
-            switch(_choosenMenuPoint)
-            {
-                case EnumYesNo.Yes:
-                    string tempName;
-                    string tempSource;
-                    string tempDescription;
-
-                    _isFieldEditing = true;
-                    while (_isFieldEditing == true)
-                    {
-                        Console.Clear();
-                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitName] + "\n");
-                        tempName = Console.ReadLine();
-
-                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitSource] + "\n");
-                        tempSource = Console.ReadLine();
-
-                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.WriteTraitDescription] + "\n");
-                        tempDescription = Console.ReadLine();
-
-                        heroSheet.TraitsList.AddTrait(tempName, tempSource, tempDescription);
-                        
-                        _isFieldEditing = IsNeedOneMore();
-                    }
-
-                    break;
-            }
         }
     }
 }

@@ -4,7 +4,7 @@ namespace dnd_character_sheet
     {
         public TraitsListDND5e()
         {
-            TraitsList = new Dictionary<string, TraitBase>();
+            TraitsList = new Dictionary<int, int>();
         }
     }
 }

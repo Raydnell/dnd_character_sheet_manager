@@ -10,7 +10,6 @@ namespace dnd_character_sheet
         private StringBuilder _stringBuilder;
         private Table _table;
         private ConsoleKeyInfo _pressedKey;
-        private Random _random;
         private IScreen _screen;
         private EquipmentSystem _equipmentSystem;
         private TextBuilder _textBuilder;
@@ -21,12 +20,14 @@ namespace dnd_character_sheet
         private ThrowChecksSystem _throwChecksSystem;
         private AttackHandSystem _attackHandSystem;
         private FieldEditSystem _fieldEditSystem;
+        private SpellsEditSystem _spellsEditSystem;
+        private TraitsEditSystem _traitsEditSystem;
+        private ShowControls _showControls;
 
         public ScreenActionsWithSheet()
         {
             _stringBuilder = new StringBuilder();
             _table = new Table();
-            _random = new Random();
             _equipmentSystem = new EquipmentSystem();
             _textBuilder = new TextBuilder();
             _rollThrower = new RollThrower();
@@ -36,6 +37,9 @@ namespace dnd_character_sheet
             _throwChecksSystem = new ThrowChecksSystem();
             _attackHandSystem = new AttackHandSystem();
             _fieldEditSystem = new FieldEditSystem();
+            _spellsEditSystem = new SpellsEditSystem();
+            _traitsEditSystem = new TraitsEditSystem();
+            _showControls = new ShowControls();
         }
 
         public void ShowScreen()
@@ -78,12 +82,19 @@ namespace dnd_character_sheet
                         break;
 
                     case ConsoleKey.S:
-                        _screen = new ScreenWorkWithSpells();
-                        _screen.ShowScreen();
+                        _spellsEditSystem.StartWorkWithSpells();
                         break;
 
                     case ConsoleKey.L:
                         _textBuilder.NewMessageToLog(_fieldEditSystem.ChooseAction());
+                        break;
+
+                    case ConsoleKey.H:
+                        _traitsEditSystem.StartWorkWithTraits();
+                        break;
+
+                    case ConsoleKey.O:
+                        _showControls.Show();
                         break;
 
                     case ConsoleKey.Escape:
@@ -95,6 +106,7 @@ namespace dnd_character_sheet
                         break;
                 }
 
+                CurrentHeroSheet.SaveSheet();
                 UpdateTable();
             }
         }

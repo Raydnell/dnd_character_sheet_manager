@@ -1,47 +1,47 @@
-﻿using Newtonsoft.Json;
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace dnd_character_sheet
 {
     public class ScreenLoadSheet : IScreen
     {
-        private string _sheetName;
-
-        private List<string> _sheetsInFolder;
-
-        private DirectoryInfo _folderInfo;
-
-        public ScreenLoadSheet()
-        {
-            _sheetsInFolder = new List<string>();
-            _folderInfo = new DirectoryInfo(@"Character_Sheets\");
-            _sheetName = string.Empty;
-        }
-
         public void ShowScreen()
         {
             switch(CurrentHeroSheet.HeroSheet.Edition)
             {
                 case EnumEditions.DND5E:
-                    _folderInfo = new DirectoryInfo(@"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition.ToString());
-                    CharacterSheetDnd5E tempSheet = new CharacterSheetDnd5E();
+                    DirectoryInfo folderInfo = new DirectoryInfo(@"Data\DND5E\CharacterSheets\");
                     
-                    foreach(var item in _folderInfo.GetFiles())
+                    if (folderInfo.GetFiles().Length == 0)
                     {
-                        _sheetsInFolder.Add(item.Name);
+                        Console.Clear();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.NoSheetInFolder]);
+                        Console.ReadKey();
                     }
+                    else
+                    {
+                        var tempSheet = new CharacterSheetDnd5E();
+                        var sheetInFolder = new List<string>();
 
-                    Console.Clear();
-                    _sheetName = AnsiConsole.Prompt(
-                        new SelectionPrompt<string>()
-                            .Title(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ChooseSheet])
-                            .PageSize(10)
-                            .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
-                            .AddChoices(_sheetsInFolder));
-                    JsonSaveLoad.JsonLoad(@"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition.ToString() + @"\" + _sheetName, ref tempSheet);
-                    CurrentHeroSheet.HeroSheet = tempSheet;
-                    Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
-                    Console.ReadKey();
+                        foreach (var item in folderInfo.GetFiles())
+                        {
+                            sheetInFolder.Add(item.Name);
+                        }
+
+                        Console.Clear();
+                        var sheetName = AnsiConsole.Prompt(
+                            new SelectionPrompt<string>()
+                                .Title(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ChooseSheet])
+                                .PageSize(10)
+                                .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
+                                .AddChoices(sheetInFolder));
+
+                        JsonSaveLoad.JsonLoad(@$"Data\DND5E\CharacterSheets\{sheetName}", ref tempSheet);
+                        CurrentHeroSheet.HeroSheet = tempSheet;
+
+                        Console.Clear();
+                        Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.HeroLoaded]);
+                        Console.ReadKey();
+                    }
                     break;
 
                 default:

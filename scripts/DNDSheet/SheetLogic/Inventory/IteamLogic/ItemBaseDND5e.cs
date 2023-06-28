@@ -4,8 +4,6 @@ namespace dnd_character_sheet
 {
     public abstract class ItemBaseDND5e
     {
-        private Random _random = new Random();
-        
         private string _name;
         
         [JsonProperty("Name")]
@@ -128,7 +126,7 @@ namespace dnd_character_sheet
 
         public void SetItemId()
         {
-            ItemId = _random.Next(1000, 10000);
+            ItemId = RollRandom.LetsRoll.Next(1000, 10000);
         }
 
         public void SetName(string value)

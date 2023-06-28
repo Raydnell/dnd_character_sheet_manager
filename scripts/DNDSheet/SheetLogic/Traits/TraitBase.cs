@@ -64,11 +64,44 @@ namespace dnd_character_sheet
             }
         }
 
-        public TraitBase(string name, string source, string description)
+        private int _levelGained;
+
+        [JsonProperty("LevelGained")]
+        public int LevelGained
         {
-            Name = name;
-            Source = source;
-            Description = description;
+            get
+            {
+                return _levelGained;
+            }
+            protected set
+            {
+                _levelGained = value;
+            }
+        }
+
+        public void SetID()
+        {
+            _id = RollRandom.LetsRoll.Next(1000, 10000);
+        }
+
+        public void SetName(string name)
+        {
+            _name = name;
+        }
+
+        public void SetDescription(string description)
+        {
+            _description = description;
+        }
+
+        public void SetSource(string source)
+        {
+            _source = source;
+        }
+
+        public void SetLevel(int level)
+        {
+            _levelGained = level;
         }
     }
 }

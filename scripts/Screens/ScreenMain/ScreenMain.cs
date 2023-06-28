@@ -26,6 +26,11 @@
                     case EnumMainMenuPoints.CreateSheet:
                         _screen = new ScreenCreateSheet();
                         _screen.ShowScreen();
+                        if (CurrentHeroSheet.HeroSheet.Name != null)
+                        {
+                            _screen = new ScreenActionsWithSheet();
+                            _screen.ShowScreen();
+                        }
                         _isSheetLoaded = true;
                         break;
 
@@ -78,7 +83,8 @@
 
         private void SaveSheet()
         {
-            JsonSaveLoad.JsonSave(CurrentHeroSheet.HeroSheet.Name, CurrentHeroSheet.HeroSheet, @"Character_Sheets\" + CurrentHeroSheet.HeroSheet.Edition + @"\");
+            CurrentHeroSheet.SaveSheet();
+            Console.Clear();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumMainMenuTitles.SheetSaved]);
             Console.ReadKey();
         }

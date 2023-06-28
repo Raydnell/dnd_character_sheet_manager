@@ -161,9 +161,9 @@ namespace dnd_character_sheet
 
                 case ConsoleKey.W:
                     _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillAcrobatics];
-                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Athletics);
-                    skillObtained = CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Athletics);
-                    break;
+                    _rollModificatorOne = GetSkillModificator(EnumSkillsDnd5E.Acrobatics);
+                    skillObtained = CurrentHeroSheet.HeroSheet.SheetSkills.CheckSkill(EnumSkillsDnd5E.Acrobatics);
+                    break;  
 
                 case ConsoleKey.E:
                     _rollDescription = LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.CheckSkillSleight];
