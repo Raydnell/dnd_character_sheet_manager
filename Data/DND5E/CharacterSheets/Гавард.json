@@ -1,0 +1,120 @@
+{
+  "Name": "Гавард",
+  "Edition": 1,
+  "SheetRace": {
+    "Name": 7,
+    "Speed": 30,
+    "Size": 2
+  },
+  "SheetClass": {
+    "Name": 10,
+    "HitDice": 10,
+    "SaveThrows": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ]
+  },
+  "SheetAbilities": {
+    "Abilities": {
+      "Strength": 12,
+      "Dexterity": 14,
+      "Constitution": 16,
+      "Intelligence": 18,
+      "Wisdom": 20,
+      "Charisma": 1
+    }
+  },
+  "SheetSkills": {
+    "Skills": [
+      1,
+      0,
+      2,
+      3,
+      14,
+      16
+    ]
+  },
+  "SheetProgression": {
+    "Expirience": 0,
+    "Level": 1
+  },
+  "SheetSaveThrows": {
+    "SaveThrows": [
+      0,
+      1
+    ]
+  },
+  "SheetPersonality": {
+    "PersonalityList": {
+      "Background": "Жил не тужил",
+      "Alignment": "Нейтральное",
+      "PersonalityTraits": "Суровый",
+      "Ideals": "Церковь",
+      "Bonds": "Семья",
+      "Flaws": "Гордость",
+      "Age": "87",
+      "Height": "165",
+      "Weight": "77",
+      "Eyes": "Голубые",
+      "Skin": "Грубая",
+      "Hair": "Лысый"
+    }
+  },
+  "SheetCombatAbilities": {
+    "CombatStats": {
+      "ArmorClass": 12,
+      "CurrentHitDices": 1,
+      "CurrentHP": 13,
+      "DeathFailure": 0,
+      "DeathSucces": 0,
+      "MaximumHP": 13,
+      "TemporaryHP": 0,
+      "Round": 1
+    }
+  },
+  "SheetProficiencies": {
+    "Proficiencies": [
+      0,
+      41,
+      47,
+      9,
+      31,
+      4
+    ]
+  },
+  "SheetInventory": {
+    "Inventory": {
+      "4155": 6
+    }
+  },
+  "TraitsList": {
+    "TraitsList": {}
+  },
+  "SheetSpells": {
+    "SheetSpells": {}
+  },
+  "SheetEquipmentSlots": {
+    "EquipmentSlots": {}
+  },
+  "Inspiration": false
+}

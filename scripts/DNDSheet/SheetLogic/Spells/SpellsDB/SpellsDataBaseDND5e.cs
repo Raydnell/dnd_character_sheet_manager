@@ -21,22 +21,9 @@ namespace dnd_character_sheet
             SpellsDB[spell.Id] = spell;
         }
 
-        public static void RemoveSpell(SpellBase spell)
-        {
-            if (SpellsDB.ContainsKey(spell.Id))
-            {
-                SpellsDB.Remove(spell.Id);
-            }
-        }
-
         public static void SaveDB()
         {
             JsonSaveLoad.JsonSave("DND5eSpellsDB", SpellsDB, @"Data\DND5E\DataBases\");
-        }
-
-        public static SpellBase GetSpell(int id)
-        {
-            return SpellsDB[id];
         }
     }
 }

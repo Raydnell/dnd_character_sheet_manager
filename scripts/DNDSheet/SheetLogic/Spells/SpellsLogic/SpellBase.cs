@@ -4,8 +4,6 @@ namespace dnd_character_sheet
 {
     public abstract class SpellBase
     {
-        private Random _random = new Random();
-
         private string _name;
 
         [JsonProperty("Name")]
@@ -23,17 +21,17 @@ namespace dnd_character_sheet
 
         public void SetName(string name)
         {
-            Name = name;
+            _name = name;
         }
 
         public void SetLevel(int level)
         {
-            Level = level;
+            _level = level;
         }
 
         public void SetID()
         {
-            Id = RollRandom.LetsRoll.Next(1000, 10000);
+            _id = RollRandom.LetsRoll.Next(1000, 10000);
         }
     }
 }

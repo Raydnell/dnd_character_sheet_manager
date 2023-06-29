@@ -238,9 +238,15 @@ namespace dnd_character_sheet
             }
         }
 
-        public abstract void SetUpRace(SheetRaceBase sheetRace);
-
-        public abstract void SetUpClass(SheetClassBase sheetClass);
+        public void SetUpRace(SheetRaceBase sheetRace)
+        {
+            SheetRace = sheetRace;
+        }
+        
+        public void SetUpClass(SheetClassBase sheetClass)
+        {
+            SheetClass = sheetClass;
+        }
 
         public abstract void ChangeInspiration();
     }

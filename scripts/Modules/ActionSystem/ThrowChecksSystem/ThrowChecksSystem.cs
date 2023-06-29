@@ -14,12 +14,13 @@ namespace dnd_character_sheet
 
         public ThrowChecksSystem()
         {
-            _rollDescription = string.Empty;
             _stringBuilder = new StringBuilder();
         }
 
         public string ChooseAction()
         {
+            _rollDescription = string.Empty;
+
             _pressedKey = Console.ReadKey();
             switch (_pressedKey.Key)
             {

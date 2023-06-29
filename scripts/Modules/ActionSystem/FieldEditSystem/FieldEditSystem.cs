@@ -4,16 +4,17 @@ namespace dnd_character_sheet
 {
     public class FieldEditSystem : IFieldEditSystem
     {
-        private ConsoleKeyInfo _pressedKey;
+        private int _pointPosition;
 
+        private bool _isExit;
+
+        private ConsoleKeyInfo _pressedKey;
         private ShowMenusCursor _showMenusCursor;
         private SheetRaceFactory _sheetRaceFactory;
         private SheetClassFactory _sheetClassFactory;
         private TextBuilder _textBuilder;
         private PanelCreate _panelCreate;
         private CursorSystem _cursor;
-        private int _pointPosition;
-        private bool _isExit;
         private ProficiencyAdderSystem _proficiencyAdderSystem;
         private Enum _choosenPoint;
         
@@ -62,14 +63,14 @@ namespace dnd_character_sheet
             }
         }
 
-        private string ChangeName()
+        public string ChangeName()
         {
             var name = Console.ReadLine();
             CurrentHeroSheet.HeroSheet.Name = name;
             return $"{LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.DoneNewName]}: {name}";
         }
 
-        private string ChangeClass()
+        public string ChangeClass()
         {
             CurrentHeroSheet.HeroSheet.SetUpClass(
                 _sheetClassFactory.CreateSheetClass(
@@ -83,7 +84,7 @@ namespace dnd_character_sheet
             return $"{LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.DoneNewClass]}: {LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetClass.Name]}";
         }
 
-        private string ChangeRace()
+        public string ChangeRace()
         {
             CurrentHeroSheet.HeroSheet.SetUpRace(
                 _sheetRaceFactory.CreateSheetRace(
@@ -97,7 +98,7 @@ namespace dnd_character_sheet
             return $"{LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.DoneNewRace]}: {LocalizationsStash.SelectedLocalization[CurrentHeroSheet.HeroSheet.SheetRace.Name]}";
         }
 
-        private string ChangeAbilities()
+        public string ChangeAbilities()
         {
             _pointPosition = 0;
             _isExit = false;
@@ -130,7 +131,7 @@ namespace dnd_character_sheet
             return LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.AbilityChange];
         }
 
-        private string ChangeSkills()
+        public string ChangeSkills()
         {
             _pointPosition = 0;
             _isExit = false;
@@ -180,7 +181,7 @@ namespace dnd_character_sheet
             return LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.SkillsChanged];
         }
 
-        private string ChangeMaximumHP()
+        public string ChangeMaximumHP()
         {
             var maximumHP = ConsoleInput.InputInt();
             if (maximumHP < 1)
@@ -192,7 +193,7 @@ namespace dnd_character_sheet
             return $"{LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.NewValueMaximumHP]}: {maximumHP}";
         }
 
-        private string AddOrRemoveProficiency()
+        public string AddOrRemoveProficiency()
         {
             _pressedKey = Console.ReadKey();
             switch (_pressedKey.Key)
@@ -204,17 +205,17 @@ namespace dnd_character_sheet
                     return RemoveProficiency();
             }
 
-            return string.Empty;
+            return LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.WrongInput];
         }
 
-        private string AddProficiency()
+        public string AddProficiency()
         {
             _proficiencyAdderSystem.StartAddProficiencies();
 
             return LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.ListOfProficienciesEdited];
         }
 
-        private string RemoveProficiency()
+        public string RemoveProficiency()
         {
             _pointPosition = 0;
             _isExit = false;
@@ -265,7 +266,7 @@ namespace dnd_character_sheet
             return LocalizationsStash.SelectedLocalization[EnumWorkWithFieldsText.ListOfProficienciesEdited];
         }
 
-        private string EditPersonality()
+        public string EditPersonality()
         {
             _choosenPoint = _showMenusCursor.ShowMenuPoints(EnumWorkWithFieldsText.WhatPersonalityNeedToChange, typeof(EnumPersonalitiesDND5E));
             if (Enum.TryParse<EnumPersonalitiesDND5E>(_choosenPoint.ToString(), out EnumPersonalitiesDND5E result))

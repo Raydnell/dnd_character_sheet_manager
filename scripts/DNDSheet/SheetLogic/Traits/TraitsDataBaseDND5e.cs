@@ -25,14 +25,5 @@ namespace dnd_character_sheet
         {
             TraitsDB[trait.Id] = trait;
         }
-
-        public static void RemoveTrait(TraitBase trait)
-        {
-            if (TraitsDB.ContainsKey(trait.Id))
-            {
-                TraitsDB.Remove(trait.Id);
-            }
-        }
-
     }
 }

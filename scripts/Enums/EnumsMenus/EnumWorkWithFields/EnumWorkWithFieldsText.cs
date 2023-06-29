@@ -12,6 +12,7 @@ namespace dnd_character_sheet
         ListOfProficienciesEdited,
         WhatPersonalityNeedToChange,
         PersonalityWasChanged,
-        WriteNewValue
+        WriteNewValue,
+        ListOfProficienciesWasChanged
     }
 }

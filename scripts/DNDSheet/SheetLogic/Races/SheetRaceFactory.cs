@@ -8,7 +8,6 @@ namespace dnd_character_sheet
             {
                 switch(result)
                 {
-                    default:
                     case EnumRacesDnd5E.Dragonborn:
                         return new DragonbornRaceDND5e();
 
@@ -37,10 +36,8 @@ namespace dnd_character_sheet
                         return new TieflingRaceDND5e();
                 }
             }
-            else
-            {
-                return new DragonbornRaceDND5e();
-            }
+            
+            return new DragonbornRaceDND5e();
         }
     }
 }

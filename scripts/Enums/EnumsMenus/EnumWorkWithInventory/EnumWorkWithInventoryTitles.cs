@@ -4,7 +4,6 @@ namespace dnd_character_sheet
     {
         Inventory,
         Weight,
-        Value,
         ItemInfo,
         NButtonCreateNewItem,
         AButtonAddItemFromDB,

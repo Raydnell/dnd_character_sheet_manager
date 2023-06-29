@@ -23,7 +23,6 @@ namespace dnd_character_sheet
         public abstract int GetAbilityScore(EnumAbilitiesDnd5E ability);
         public abstract int AbilityBonus(int score);
         public abstract void SetAbilities(Dictionary<Enum, int> abilities);
-        public abstract void SetAbilityScore(EnumAbilitiesDnd5E abilityName, int abilityScore);
         public abstract void RaiseAbilityScore(EnumAbilitiesDnd5E abilityName);
         public abstract void LowerAbilityScore(EnumAbilitiesDnd5E abilityName);
     }

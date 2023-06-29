@@ -2,7 +2,6 @@ namespace dnd_character_sheet
 {
     public class ItemsDataBaseDND5e
     {
-
         public static Dictionary<int, ItemBaseDND5e> ItemsDB = new Dictionary<int, ItemBaseDND5e>();
         private static DirectoryInfo _folderInfo = new DirectoryInfo(@"Data\DND5E\DataBases");
 

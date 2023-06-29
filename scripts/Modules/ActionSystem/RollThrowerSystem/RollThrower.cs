@@ -5,16 +5,14 @@ namespace dnd_character_sheet
 {
     public class RollThrower : IRollSystem
     {
-        private Random _random;
         private int _diceRollResult;
         private int _oneDiceRollResult;
+        
         private StringBuilder _stringBuilder;
 
         public RollThrower()
         {
-            _random = new Random();
             _stringBuilder = new StringBuilder();
-            _diceRollResult = 0;
         }
 
         public string ChooseAction()
@@ -39,7 +37,7 @@ namespace dnd_character_sheet
 
                 for (int i = 1; i <= diceAmount; i++)
                 {
-                    _oneDiceRollResult = _random.Next(1, (int)dice + 1);
+                    _oneDiceRollResult = RollRandom.LetsRoll.Next(1, (int)dice + 1);
 
                     if (i == diceAmount)
                     {

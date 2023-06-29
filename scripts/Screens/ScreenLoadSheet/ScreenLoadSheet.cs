@@ -32,7 +32,7 @@ namespace dnd_character_sheet
                             new SelectionPrompt<string>()
                                 .Title(LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ChooseSheet])
                                 .PageSize(10)
-                                .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
+                                .MoreChoicesText($"({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})")
                                 .AddChoices(sheetInFolder));
 
                         JsonSaveLoad.JsonLoad(@$"Data\DND5E\CharacterSheets\{sheetName}", ref tempSheet);

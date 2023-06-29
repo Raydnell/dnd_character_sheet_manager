@@ -3060,6 +3060,66 @@ namespace dnd_character_sheet
 
 [underline red][[O]] - это окно[/]" }
                 }
+            },
+            {
+                EnumWorkWithEquipment.EquipmentWasChange, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Экипировка была изменена" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.ChooseArmor, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Выберите броню" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.ChooseWhatEquipInHand, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Выберите что экипировать в руку" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.ArmorEquip, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Броня экипирована" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.RightHandEquip, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Правая рука экипирована" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.LeftHandEquip, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Левая рука экипирована" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.ArmorOff, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Снята броня" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.RightHandOff, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Правая рука свободна" }
+                }
+            },
+            {
+                EnumWorkWithEquipment.LeftHandOff, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Левая рука свободна" }
+                }
+            },
+            {
+                EnumWorkWithFieldsText.ListOfProficienciesWasChanged, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "Список владений был изменён" }
+                }
             }
         };    
     

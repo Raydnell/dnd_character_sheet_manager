@@ -123,6 +123,13 @@ namespace dnd_character_sheet
             }
 
             Console.Clear();
+            _choosenPoint = _showMenuCursor.ShowMenuPoints(EnumAddItemInDBTitles.WhatDamageType, typeof(EnumItemDamageTypesDND5e));
+            if (Enum.TryParse<EnumItemDamageTypesDND5e>(_choosenPoint.ToString(), out EnumItemDamageTypesDND5e damageType))
+            {
+                item.SetDamageType(damageType);
+            }
+
+            Console.Clear();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumAddItemInDBTitles.WhatModificator] + "\n");
             item.SetDamageModificator(ConsoleInput.InputInt());
 

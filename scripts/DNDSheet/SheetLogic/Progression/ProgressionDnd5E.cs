@@ -14,11 +14,6 @@ namespace dnd_character_sheet
             CalculateLevel();
         }
 
-        public override void LevelUp()
-        {
-            Level++;
-        }
-
         public override int GetProficiencyBonus()
         {
             if (Level <= 4)
@@ -43,6 +38,7 @@ namespace dnd_character_sheet
             {
                 Expirience -= exp;
             }
+            
             CalculateLevel();
         }
 

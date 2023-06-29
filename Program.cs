@@ -7,8 +7,19 @@
             IScreen screen = new ScreenMain();
             Initialize startUp = new Initialize();
 
-            startUp.Start();
-            screen.ShowScreen();
+            try
+            {
+                startUp.Start();
+                screen.ShowScreen();
+            }
+            catch (Exception error)
+            {
+                Console.Clear();
+                Console.WriteLine("Some error happen, restart program.");
+                Console.WriteLine("\nError message:\n");
+                Console.WriteLine(error);
+                Console.ReadLine();
+            }
         }
     }
 }

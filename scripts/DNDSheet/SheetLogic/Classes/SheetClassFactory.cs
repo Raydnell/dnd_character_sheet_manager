@@ -8,7 +8,6 @@ namespace dnd_character_sheet
             {
                 switch(result)
                 {
-                    default:
                     case EnumClassesDnd5E.Barbarian:
                         return new BarbarianClassDND5e();
 
@@ -46,10 +45,8 @@ namespace dnd_character_sheet
                         return new WizardClassDND5e();
                 }
             }
-            else 
-            {
-                return new BarbarianClassDND5e();
-            }
+            
+            return new BarbarianClassDND5e();
         }
     }
 }

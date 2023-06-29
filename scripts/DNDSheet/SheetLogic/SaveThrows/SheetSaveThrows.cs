@@ -18,7 +18,7 @@ namespace dnd_character_sheet
                 _saveThrows = value;
             }
         }
-        
+
         public abstract void SetSaveTrows(EnumClassesDnd5E className);                
         public abstract bool CheckSaveThrow(EnumAbilitiesDnd5E saveTrow);
     }

@@ -5,12 +5,8 @@ namespace dnd_character_sheet
 {
     public class ScreenActionsWithSheet : IScreen
     {
-        private bool _isExit;
-        
-        private StringBuilder _stringBuilder;
         private Table _table;
         private ConsoleKeyInfo _pressedKey;
-        private IScreen _screen;
         private EquipmentSystem _equipmentSystem;
         private TextBuilder _textBuilder;
         private RollThrower _rollThrower;
@@ -23,10 +19,10 @@ namespace dnd_character_sheet
         private SpellsEditSystem _spellsEditSystem;
         private TraitsEditSystem _traitsEditSystem;
         private ShowControls _showControls;
+        private IScreen _screenWorkWithInventory;
 
         public ScreenActionsWithSheet()
         {
-            _stringBuilder = new StringBuilder();
             _table = new Table();
             _equipmentSystem = new EquipmentSystem();
             _textBuilder = new TextBuilder();
@@ -40,14 +36,23 @@ namespace dnd_character_sheet
             _spellsEditSystem = new SpellsEditSystem();
             _traitsEditSystem = new TraitsEditSystem();
             _showControls = new ShowControls();
+            _screenWorkWithInventory = new ScreenWorkWithInventory();
         }
 
         public void ShowScreen()
         {
-            DrawTable();
+            var isExit = false;
+            
+            if (_table.Rows.Count == 0)
+            {
+                BuildTable();
+            }
 
-            _isExit = false;
-            while (_isExit == false)
+            Console.Clear();
+            AnsiConsole.Write(_table);
+            DrawInputBox();
+
+            while (isExit == false)
             {
                 _pressedKey = Console.ReadKey();
                 switch (_pressedKey.Key)
@@ -57,12 +62,12 @@ namespace dnd_character_sheet
                         break;
 
                     case ConsoleKey.I:
-                        _screen = new ScreenWorkWithInventory();
-                        _screen.ShowScreen();
+                        _screenWorkWithInventory.ShowScreen();
                         break;
 
                     case ConsoleKey.E:
                         _textBuilder.NewMessageToLog(_equipmentSystem.ChooseAction());
+                        SheetFormulas.CalculateArmorClass();
                         break;
 
                     case ConsoleKey.C:
@@ -98,7 +103,7 @@ namespace dnd_character_sheet
                         break;
 
                     case ConsoleKey.Escape:
-                        _isExit = true;
+                        isExit = true;
                         break;
 
                     default:
@@ -107,14 +112,15 @@ namespace dnd_character_sheet
                 }
 
                 CurrentHeroSheet.SaveSheet();
+                Console.Clear();
                 UpdateTable();
+                AnsiConsole.Write(_table);
+                DrawInputBox();
             }
         }
 
-        private void DrawTable()
+        private void BuildTable()
         {
-            Console.Clear();
-
             _table.AddColumns(new string[]{ "1", "2", "3", "4" });
             _table.HideHeaders();
             _table.Border = TableBorder.DoubleEdge;
@@ -137,16 +143,10 @@ namespace dnd_character_sheet
             _table.AddRow(
                 _panelCreate.MakePanelFromString(_textBuilder.BuildScreensPoints(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.OpenScreens]}[/]")
                 );
-
-            AnsiConsole.Write(_table);
-            AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]}[/]"));
-            Console.SetCursorPosition(Console.GetCursorPosition().Left + 2, Console.GetCursorPosition().Top - 2);
         }
 
         private void UpdateTable()
         {
-            Console.Clear();
-
             _table.UpdateCell(0, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildMessageBox(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.MessageBox]}[/]"));
             _table.UpdateCell(1, 3, _panelCreate.MakePanelFromString(_textBuilder.BuildEquipmentStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.EquipmentSlots]}[/]"));
             _table.UpdateCell(0, 2, _panelCreate.MakePanelFromString(_textBuilder.BuildCombatStats(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.CombatStats]}[/]"));
@@ -155,9 +155,11 @@ namespace dnd_character_sheet
             _table.UpdateCell(1, 0,  _panelCreate.MakePanelFromString(_textBuilder.BuildSkills(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Skills]}[/]"));
             _table.UpdateCell(1, 1, _panelCreate.MakePanelFromString(_textBuilder.BuildProficiencies(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.Proficiencies]}[/]"));
             _table.UpdateCell(1, 2, _panelCreate.MakePanelFromString(_textBuilder.BuildPersonality(), $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumPrintSheetInfoTitles.PersonalityList]}[/]"));
+        }
 
-            AnsiConsole.Write(_table);
-            AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]));
+        private void DrawInputBox()
+        {
+            AnsiConsole.Write(_panelCreate.MakePanelFromString("                            ", $"[underline yellow]{LocalizationsStash.SelectedLocalization[EnumActionsWithSheet.InputPanel]}[/]"));
             Console.SetCursorPosition(Console.GetCursorPosition().Left + 2, Console.GetCursorPosition().Top - 2);
         } 
     }

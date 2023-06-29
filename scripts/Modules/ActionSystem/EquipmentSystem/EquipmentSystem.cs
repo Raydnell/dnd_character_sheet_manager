@@ -14,37 +14,38 @@ namespace dnd_character_sheet
 
         public string ChooseAction()
         {
+            var textToMessageLog = string.Empty;
+            
             _pressedKey = Console.ReadKey();    
             switch (_pressedKey.Key)
             {
                 case ConsoleKey.A:
                     EquipArmor();
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ArmorEquip];
 
                 case ConsoleKey.R:
                     EquipHand(EnumEquipmentSlotsDND5e.RightHand);
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.RightHandEquip];
 
                 case ConsoleKey.L:
                     EquipHand(EnumEquipmentSlotsDND5e.LeftHand);
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.LeftHandEquip];
 
                 case ConsoleKey.T:
                     CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.LeftHand);
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.LeftHandOff];
 
                 case ConsoleKey.Y:
                     CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.RightHand);
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.RightHandOff];
 
                 case ConsoleKey.U:
                     CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.BodyArmor);
-                    break;
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ArmorOff];
+
+                default:
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.EquipmentWasChange];
             }
-
-            SheetFormulas.CalculateArmorClass();
-
-            return "Было какое-то действие с экипировкой";
         }
         
         public void EquipArmor()
@@ -52,15 +53,14 @@ namespace dnd_character_sheet
             Console.Clear();
             MakeArmorSlotList();
             
-            var fruit = AnsiConsole.Prompt(
+            var armor = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Выбери броню из инвентаря, которую хочешь одеть")
+                    .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseArmor])
                     .PageSize(10)
-                    .MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+                    .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
                     .AddChoices(_filtredItems));
-            AnsiConsole.WriteLine($"I agree. {fruit} is tasty!");
 
-            string itemId = fruit.Substring(0, 4);
+            string itemId = armor.Substring(0, 4);
             if (int.TryParse(itemId, out int result))
             {
                 CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(EnumEquipmentSlotsDND5e.BodyArmor, ItemsDataBaseDND5e.ItemsDB[result]);
@@ -72,15 +72,14 @@ namespace dnd_character_sheet
             Console.Clear();
             MakeHandSlotList();
 
-            var fruit = AnsiConsole.Prompt(
+            var handSlot = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Выбери броню из инвентаря, которую хочешь одеть")
+                    .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseWhatEquipInHand])
                     .PageSize(10)
-                    .MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
+                    .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
                     .AddChoices(_filtredItems));
-            AnsiConsole.WriteLine($"I agree. {fruit} is tasty!");
 
-            string itemId = fruit.Substring(0, 4);
+            string itemId = handSlot.Substring(0, 4);
             if (int.TryParse(itemId, out int result))
             {
                 CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(slot, ItemsDataBaseDND5e.ItemsDB[result]);
@@ -95,9 +94,8 @@ namespace dnd_character_sheet
             {
                 if (ItemsDataBaseDND5e.ItemsDB[item.Key].ItemType == EnumItemTypesDND5e.Armor)
                 {
-                    var ItemArmorDND5e = (ItemArmorDND5e)ItemsDataBaseDND5e.ItemsDB[item.Key];
-
-                    if (ItemArmorDND5e.ArmorType != EnumArmorProficienciesDND5E.Shield)
+                    var itemArmorDND5e = (ItemArmorDND5e)ItemsDataBaseDND5e.ItemsDB[item.Key];
+                    if (itemArmorDND5e.ArmorType != EnumArmorProficienciesDND5E.Shield)
                     {
                         _filtredItems.Add(item.Key + " - " + ItemsDataBaseDND5e.ItemsDB[item.Key].Name);
                     }
@@ -113,9 +111,9 @@ namespace dnd_character_sheet
             {
                 if (ItemsDataBaseDND5e.ItemsDB[item.Key].ItemType == EnumItemTypesDND5e.Armor)
                 {
-                    var ItemArmorDND5e = (ItemArmorDND5e)ItemsDataBaseDND5e.ItemsDB[item.Key];
+                    var itemArmorDND5e = (ItemArmorDND5e)ItemsDataBaseDND5e.ItemsDB[item.Key];
 
-                    if (ItemArmorDND5e.ArmorType == EnumArmorProficienciesDND5E.Shield)
+                    if (itemArmorDND5e.ArmorType == EnumArmorProficienciesDND5E.Shield)
                     {
                         _filtredItems.Add(item.Key + " - " + ItemsDataBaseDND5e.ItemsDB[item.Key].Name);
                     }

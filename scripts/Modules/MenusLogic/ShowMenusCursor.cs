@@ -22,14 +22,14 @@ namespace dnd_character_sheet
         {
             _cursor = ">";
             _tempDict = new Dictionary<int, List<Enum>>();
-            _navigatePositionLeft = 0;
-            _navigatePositionTop = 2;
         }
 
         public Enum ShowMenuPoints(Enum title, Type points)
         {
             Console.CursorVisible = false;
             _currentPage = 0;
+            _navigatePositionLeft = 0;
+            _navigatePositionTop = 2;
             
             MakePages(points);
             StartUpWrite(title);

@@ -31,16 +31,20 @@
       4,
       5,
       4,
+      5,
+      4,
+      5,
+      4,
       5
     ]
   },
   "SheetAbilities": {
     "Abilities": {
-      "Strength": 12,
-      "Dexterity": 12,
+      "Strength": 20,
+      "Dexterity": 10,
       "Constitution": 12,
-      "Intelligence": 13,
-      "Wisdom": 14,
+      "Intelligence": 15,
+      "Wisdom": 11,
       "Charisma": 15
     }
   },

@@ -7,12 +7,17 @@
 
         private Enum _choosenPoint;
 
-        private IScreen _screen;
         private ShowMenusCursor _showMenusCursor;
+        private IScreen _screenActionsWithSheet;
+        private IScreen _screenCreateSheet;
+        private IScreen _screenLoadSheet;
 
         public ScreenMain()
         {
             _showMenusCursor = new ShowMenusCursor();
+            _screenActionsWithSheet = new ScreenActionsWithSheet();
+            _screenCreateSheet = new ScreenCreateSheet();
+            _screenLoadSheet = new ScreenLoadSheet();
         }
 
         public void ShowScreen()
@@ -24,19 +29,13 @@
                 switch(_choosenPoint)
                 {
                     case EnumMainMenuPoints.CreateSheet:
-                        _screen = new ScreenCreateSheet();
-                        _screen.ShowScreen();
-                        if (CurrentHeroSheet.HeroSheet.Name != null)
-                        {
-                            _screen = new ScreenActionsWithSheet();
-                            _screen.ShowScreen();
-                        }
+                        _screenCreateSheet.ShowScreen();
+                        _screenActionsWithSheet.ShowScreen();
                         _isSheetLoaded = true;
                         break;
 
                     case EnumMainMenuPoints.LoadSheet:
-                        _screen = new ScreenLoadSheet();
-                        _screen.ShowScreen();
+                        _screenLoadSheet.ShowScreen();
                         _isSheetLoaded = true;
                         break;
 
@@ -54,8 +53,7 @@
                     case EnumMainMenuPoints.SheetActions:
                         if(_isSheetLoaded == true)
                         {
-                            _screen = new ScreenActionsWithSheet();
-                            _screen.ShowScreen();
+                            _screenActionsWithSheet.ShowScreen();
                         }
                         else
                         {

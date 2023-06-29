@@ -10,10 +10,7 @@ namespace dnd_character_sheet
         {
             _panel = new Panel(text);
             _panel.Border = BoxBorder.Square;
-            if (header != "")
-            {
-                _panel.Header = new PanelHeader(header, Justify.Left);
-            }
+            _panel.Header = new PanelHeader(header);
             _panel.HeaderAlignment(Justify.Center);
 
             return _panel;

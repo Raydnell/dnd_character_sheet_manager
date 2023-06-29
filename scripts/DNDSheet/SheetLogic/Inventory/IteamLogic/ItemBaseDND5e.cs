@@ -158,10 +158,5 @@ namespace dnd_character_sheet
         {
             IsMagic = value;
         }
-
-        public void SetItemType(EnumItemTypesDND5e value)
-        {
-            ItemType = value;
-        }
     }
 }

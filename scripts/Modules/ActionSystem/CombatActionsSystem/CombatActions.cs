@@ -3,11 +3,10 @@ namespace dnd_character_sheet
     public class CombatActions : ICombatActions
     {
         private ConsoleKeyInfo _pressedKey;
-        private Random _random;
 
         public CombatActions()
         {
-            _random = new Random();
+
         }
         
         public string ChooseAction()
@@ -91,7 +90,7 @@ namespace dnd_character_sheet
             switch (_pressedKey.Key)
             {
                 case ConsoleKey.D:
-                    if (_random.Next(1, (int)EnumDices.d20) >= 10)
+                    if (RollRandom.LetsRoll.Next(1, (int)EnumDices.d20) >= 10)
                     {
                         CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathSucces]++;
                         if (CurrentHeroSheet.HeroSheet.SheetCombatAbilities.CombatStats[EnumCombatStatsDND5e.DeathSucces] == 3)

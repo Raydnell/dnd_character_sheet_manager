@@ -2,7 +2,7 @@ namespace dnd_character_sheet
 {
     public enum EnumInstrumentsProficienciesDND5E
     {
-	    AlchemistsSupplies,
+        AlchemistsSupplies,
         BrewersSupplies,
         CalligraphersSupplies,
         CarpentersTools,

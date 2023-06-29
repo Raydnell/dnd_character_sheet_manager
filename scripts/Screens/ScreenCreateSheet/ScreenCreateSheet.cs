@@ -89,6 +89,8 @@
                 }
             }
 
+            Console.Clear();
+            CurrentHeroSheet.SaveSheet();
             Console.WriteLine(LocalizationsStash.SelectedLocalization[EnumSheetCreateTitles.SheetCreationComplete] + "\n");
             Console.ReadKey();
         }

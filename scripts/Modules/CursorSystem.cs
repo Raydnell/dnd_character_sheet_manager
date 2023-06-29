@@ -8,8 +8,6 @@ namespace dnd_character_sheet
         
         private bool _isNeedExit;
 
-        private ConsoleKeyInfo _pressedKey;
-
         public CursorSystem()
         {
             _cursor = ">";
@@ -17,6 +15,8 @@ namespace dnd_character_sheet
 
         public ConsoleKey CursorSelector(int left, int top, int height, ref int cursorPotion)
         {
+            var pressedKey = new ConsoleKeyInfo();
+            
             Console.CursorVisible = false;
             
             _cursorPosition = cursorPotion;
@@ -25,8 +25,8 @@ namespace dnd_character_sheet
             _isNeedExit = false;
             while (_isNeedExit == false)
             {
-                _pressedKey = Console.ReadKey();
-                switch (_pressedKey.Key)
+                pressedKey = Console.ReadKey();
+                switch (pressedKey.Key)
                 {
                     case ConsoleKey.UpArrow:
                         MoveCursorUp();
@@ -46,7 +46,7 @@ namespace dnd_character_sheet
             }
 
             Console.CursorVisible = true;
-            return _pressedKey.Key;
+            return pressedKey.Key;
         }
 
         private void DrawCursor(int left, int top, int height)

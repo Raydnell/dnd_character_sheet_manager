@@ -41,14 +41,6 @@ namespace dnd_character_sheet
             }
         }
 
-        public override void SetAbilityScore(EnumAbilitiesDnd5E abilityName, int abilityScore)
-        {
-            if(abilityScore > 0 && Abilities.ContainsKey(abilityName))
-            {
-                Abilities[abilityName] = abilityScore;
-            }
-        }
-
         public override void RaiseAbilityScore(EnumAbilitiesDnd5E abilityName)
         {
             if (Abilities[abilityName] + 1 <= 30)

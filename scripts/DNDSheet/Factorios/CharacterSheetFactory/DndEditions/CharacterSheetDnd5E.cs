@@ -19,16 +19,6 @@ namespace dnd_character_sheet
             Inspiration = false;
         }
 
-        public override void SetUpRace(SheetRaceBase sheetRace)
-        {
-            SheetRace = sheetRace;
-        }
-        
-        public override void SetUpClass(SheetClassBase sheetClass)
-        {
-            SheetClass = sheetClass;
-        }
-
         public override void ChangeInspiration()
         {
             Inspiration = !Inspiration;
