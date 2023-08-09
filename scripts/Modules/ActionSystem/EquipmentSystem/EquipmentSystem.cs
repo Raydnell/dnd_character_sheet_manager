@@ -20,16 +20,13 @@ namespace dnd_character_sheet
             switch (_pressedKey.Key)
             {
                 case ConsoleKey.A:
-                    EquipArmor();
-                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ArmorEquip];
+                    return EquipArmor();
 
                 case ConsoleKey.R:
-                    EquipHand(EnumEquipmentSlotsDND5e.RightHand);
-                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.RightHandEquip];
+                    return EquipHand(EnumEquipmentSlotsDND5e.RightHand);
 
                 case ConsoleKey.L:
-                    EquipHand(EnumEquipmentSlotsDND5e.LeftHand);
-                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.LeftHandEquip];
+                    return EquipHand(EnumEquipmentSlotsDND5e.LeftHand);
 
                 case ConsoleKey.T:
                     CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.UnEquipSlot(EnumEquipmentSlotsDND5e.LeftHand);
@@ -48,41 +45,66 @@ namespace dnd_character_sheet
             }
         }
         
-        public void EquipArmor()
+        public string EquipArmor()
         {
             Console.Clear();
             MakeArmorSlotList();
-            
-            var armor = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                    .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseArmor])
-                    .PageSize(10)
-                    .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
-                    .AddChoices(_filtredItems));
 
-            string itemId = armor.Substring(0, 4);
-            if (int.TryParse(itemId, out int result))
+            if (_filtredItems.Count == 0)
             {
-                CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(EnumEquipmentSlotsDND5e.BodyArmor, ItemsDataBaseDND5e.ItemsDB[result]);
+                return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.NoArmorInInventory];
+            }
+            else
+            {
+                var armor = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseArmor])
+                        .PageSize(10)
+                        .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
+                        .AddChoices(_filtredItems));
+
+                string itemId = armor.Substring(0, 4);
+                if (int.TryParse(itemId, out int result))
+                {
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(EnumEquipmentSlotsDND5e.BodyArmor, ItemsDataBaseDND5e.ItemsDB[result]);
+                }
+
+                return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ArmorEquip];
             }
         }
 
-        public void EquipHand(EnumEquipmentSlotsDND5e slot)
+        public string EquipHand(EnumEquipmentSlotsDND5e slot)
         {
             Console.Clear();
             MakeHandSlotList();
 
-            var handSlot = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                    .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseWhatEquipInHand])
-                    .PageSize(10)
-                    .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
-                    .AddChoices(_filtredItems));
-
-            string itemId = handSlot.Substring(0, 4);
-            if (int.TryParse(itemId, out int result))
+            if (_filtredItems.Count == 0)
             {
-                CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(slot, ItemsDataBaseDND5e.ItemsDB[result]);
+                return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.NoArmorInInventory];
+            }
+            else
+            {
+                var handSlot = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title(LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.ChooseWhatEquipInHand])
+                        .PageSize(10)
+                        .MoreChoicesText($"[grey]({LocalizationsStash.SelectedLocalization[EnumLoadSheetTitles.ArrowsControl]})[/]")
+                        .AddChoices(_filtredItems));
+
+                string itemId = handSlot.Substring(0, 4);
+                if (int.TryParse(itemId, out int result))
+                {
+                    CurrentHeroSheet.HeroSheet.SheetEquipmentSlots.EquipItem(slot, ItemsDataBaseDND5e.ItemsDB[result]);
+                }
+
+                if (slot == EnumEquipmentSlotsDND5e.RightHand)
+                {
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.RightHandEquip];
+                }
+                else
+                {
+                    return LocalizationsStash.SelectedLocalization[EnumWorkWithEquipment.LeftHandEquip];
+                }
             }
         }
 

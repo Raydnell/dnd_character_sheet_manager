@@ -3120,6 +3120,12 @@ namespace dnd_character_sheet
                 {
                     { EnumLanguages.Russian, "Список владений был изменён" }
                 }
+            },
+            {
+                EnumWorkWithEquipment.NoArmorInInventory, new Dictionary<Enum, string>()
+                {
+                    { EnumLanguages.Russian, "В инвентаре нет подходящих для экипировки предметов" }
+                }
             }
         };    
     

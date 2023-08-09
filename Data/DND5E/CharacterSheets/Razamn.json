@@ -1,66 +1,37 @@
 {
-  "Name": "Муляж",
+  "Name": "Razamn",
   "Edition": 1,
   "SheetRace": {
-    "Name": 6,
+    "Name": 5,
     "Speed": 30,
     "Size": 2
   },
   "SheetClass": {
-    "Name": 11,
+    "Name": 7,
     "HitDice": 8,
     "SaveThrows": [
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5,
-      4,
-      5
+      1,
+      0,
+      1,
+      0
     ]
   },
   "SheetAbilities": {
     "Abilities": {
-      "Strength": 20,
-      "Dexterity": 10,
-      "Constitution": 12,
-      "Intelligence": 15,
-      "Wisdom": 11,
-      "Charisma": 15
+      "Strength": 12,
+      "Dexterity": 14,
+      "Constitution": 15,
+      "Intelligence": 16,
+      "Wisdom": 17,
+      "Charisma": 20
     }
   },
   "SheetSkills": {
     "Skills": [
       4,
-      5,
-      7,
-      2,
-      10,
-      11,
-      12,
       0,
-      1
+      5,
+      8
     ]
   },
   "SheetProgression": {
@@ -69,8 +40,8 @@
   },
   "SheetSaveThrows": {
     "SaveThrows": [
-      2,
-      5
+      0,
+      1
     ]
   },
   "SheetPersonality": {
@@ -91,80 +62,91 @@
   },
   "SheetCombatAbilities": {
     "CombatStats": {
-      "ArmorClass": 10,
+      "ArmorClass": 17,
       "CurrentHitDices": 1,
-      "CurrentHP": 9,
+      "CurrentHP": 10,
       "DeathFailure": 0,
       "DeathSucces": 0,
-      "MaximumHP": 9,
+      "MaximumHP": 10,
       "TemporaryHP": 0,
       "Round": 1
     }
   },
   "SheetProficiencies": {
     "Proficiencies": [
-      0
+      0,
+      3,
+      8,
+      10,
+      13
     ]
   },
   "SheetInventory": {
     "Inventory": {
-      "5831": 1
+      "2515": 1,
+      "7624": 1,
+      "1453": 1,
+      "1258": 1,
+      "7053": 1
     }
   },
   "TraitsList": {
-    "TraitsList": {
-      "1000": 1,
-      "1159": 3
-    }
+    "TraitsList": {}
   },
   "SheetSpells": {
     "SheetSpells": {
       "1001": 0,
-      "1002": 0,
-      "1003": 0,
-      "1004": 0,
       "1005": 0,
-      "1006": 0
+      "1007": 0
     }
   },
   "SheetEquipmentSlots": {
     "EquipmentSlots": {
+      "BodyArmor": {
+        "StrengthRequirement": 16,
+        "ArmorClass": 15,
+        "MaxAgilityBonus": 0,
+        "ArmorType": 2,
+        "Name": "Кольчуга",
+        "BaseCost": 50.0,
+        "Weight": 4.5,
+        "Rarity": 0,
+        "Description": "Металлическая кольчуга",
+        "IsMagic": false,
+        "ItemId": 7624,
+        "ItemType": 0
+      },
       "LeftHand": {
-        "DamageDiceCount": 1,
-        "DamageDiceValue": 6,
-        "DamageModificator": 0,
-        "DamageType": 0,
-        "WeaponProperty": [
-          0
-        ],
-        "WeaponProficiencyConcrete": 2,
-        "WeaponProficiencyGroup": 0,
-        "Name": "Палка",
+        "StrengthRequirement": 10,
+        "ArmorClass": 2,
+        "MaxAgilityBonus": 0,
+        "ArmorType": 3,
+        "Name": "Крышка унитаза",
         "BaseCost": 15.0,
         "Weight": 10.0,
-        "Rarity": 2,
-        "Description": "Палка, просто палка",
+        "Rarity": 0,
+        "Description": "Принёс из дома",
         "IsMagic": false,
-        "ItemId": 5831,
-        "ItemType": 1
+        "ItemId": 7053,
+        "ItemType": 0
       },
       "RightHand": {
         "DamageDiceCount": 1,
-        "DamageDiceValue": 6,
+        "DamageDiceValue": 8,
         "DamageModificator": 0,
         "DamageType": 0,
         "WeaponProperty": [
           0
         ],
-        "WeaponProficiencyConcrete": 2,
+        "WeaponProficiencyConcrete": 3,
         "WeaponProficiencyGroup": 0,
-        "Name": "Палка",
-        "BaseCost": 15.0,
-        "Weight": 10.0,
-        "Rarity": 2,
-        "Description": "Палка, просто палка",
+        "Name": "Топор",
+        "BaseCost": 10.0,
+        "Weight": 5.0,
+        "Rarity": 0,
+        "Description": "Простой топор",
         "IsMagic": false,
-        "ItemId": 5831,
+        "ItemId": 2515,
         "ItemType": 1
       }
     }

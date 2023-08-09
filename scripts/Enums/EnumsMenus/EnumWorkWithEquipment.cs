@@ -10,6 +10,7 @@ namespace dnd_character_sheet
         LeftHandEquip,
         ArmorOff,
         RightHandOff,
-        LeftHandOff
+        LeftHandOff,
+        NoArmorInInventory
     }
 }
